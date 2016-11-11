@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_default"
+    android:paddingRight="@dimen/padding_default" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_row" >
+
+        <LinearLayout
+            android:id="@+id/li_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:weightSum="6" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_symbol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_market_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description" />
+                </LinearLayout>
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_symbol_fullname_eng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/img_trade_signal"
+                    android:layout_width="@dimen/icon_system_watch_w"
+                    android:layout_height="@dimen/icon_system_watch_h"
+                    android:background="@drawable/icon_empty" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_trade_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/img_macd"
+                    android:layout_width="@dimen/icon_system_color"
+                    android:layout_height="@dimen/icon_system_color"
+                    android:layout_margin="@dimen/padding_row"
+                    android:background="@drawable/icon_empty" />
+
+                <ImageView
+                    android:id="@+id/img_bb"
+                    android:layout_width="@dimen/icon_system_color"
+                    android:layout_height="@dimen/icon_system_color"
+                    android:layout_marginRight="@dimen/padding_default"
+                    android:background="@drawable/icon_empty" />
+
+                <ImageView
+                    android:id="@+id/img_sto"
+                    android:layout_width="@dimen/icon_system_color"
+                    android:layout_height="@dimen/icon_system_color"
+                    android:layout_marginRight="@dimen/padding_default"
+                    android:background="@drawable/icon_empty" />
+
+                <ImageView
+                    android:id="@+id/img_rsi"
+                    android:layout_width="@dimen/icon_system_color"
+                    android:layout_height="@dimen/icon_system_color"
+                    android:layout_marginRight="@dimen/padding_default"
+                    android:background="@drawable/icon_empty" />
+
+                <ImageView
+                    android:id="@+id/img_ema"
+                    android:layout_width="@dimen/icon_system_color"
+                    android:layout_height="@dimen/icon_system_color"
+                    android:layout_marginRight="@dimen/padding_default"
+                    android:background="@drawable/icon_empty" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_add_symbol"
+            android:layout_width="@dimen/icon_system_add"
+            android:layout_height="@dimen/icon_system_add"
+            android:background="@drawable/icon_plus_blue"
+            android:paddingLeft="@dimen/padding_default" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/bg_default" />
+
+</LinearLayout>

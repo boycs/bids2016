@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="false" android:state_pressed="false"><shape>
+            <gradient android:angle="0" android:centerColor="@color/bg_default" android:endColor="@color/bg_default" android:startColor="@color/bg_default" />
+
+<!--             <stroke android:width="@dimen/risk_line" android:color="@color/c_border" /> -->
+
+<!--             <padding android:left="@dimen/padding_default" android:top="@dimen/padding_default" /> -->
+
+            <corners android:bottomRightRadius="@dimen/risk_radius" android:topRightRadius="@dimen/risk_radius"/>
+        </shape></item>
+
+</selector>

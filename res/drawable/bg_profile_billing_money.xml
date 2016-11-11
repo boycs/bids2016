@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="false" android:state_pressed="false"><shape>
+            <gradient android:angle="270" android:centerColor="@android:color/transparent" android:endColor="@android:color/transparent" android:startColor="@android:color/transparent" />
+
+            <stroke android:width="@dimen/line_wh" android:color="@color/c_success" />
+
+            <padding android:bottom="@dimen/padding_row" android:left="@dimen/padding_default" android:right="@dimen/padding_default" android:top="@dimen/padding_row" />
+
+            <corners android:radius="@dimen/padding_default" />
+        </shape></item>
+
+</selector>

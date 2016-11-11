@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_big" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logo_bidchart" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/padding_big" >
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_register2"
+                    android:drawableLeft="@drawable/icon_username"
+                    android:ems="10"
+                    android:hint="  Username"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:textColor="@color/c_title"
+                    android:textColorHint="@color/c_title"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="@dimen/f_normal" >
+                </EditText>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/padding_big" />
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_register2"
+                    android:drawableLeft="@drawable/icon_email"
+                    android:ems="10"
+                    android:hint="  Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:textColor="@color/c_title"
+                    android:textColorHint="@color/c_title"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="@dimen/f_normal" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/padding_big" />
+
+                <EditText
+                    android:id="@+id/et_pss"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_register2"
+                    android:drawableLeft="@drawable/icon_password"
+                    android:ems="10"
+                    android:hint="  Password"
+                    android:inputType="textPassword"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:textColor="@color/c_title"
+                    android:textColorHint="@color/c_title"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="@dimen/f_normal" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/padding_big" />
+
+                <EditText
+                    android:id="@+id/et_pss_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_register2"
+                    android:drawableLeft="@drawable/icon_password"
+                    android:ems="10"
+                    android:hint="  Confirm Password"
+                    android:inputType="textPassword"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:textColor="@color/c_title"
+                    android:textColorHint="@color/c_title"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="@dimen/f_normal" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/padding_big" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.95"
+                        android:background="@drawable/bg_input_register2"
+                        android:drawableLeft="@drawable/icon_birthday"
+                        android:gravity="center_vertical"
+                        android:onClick="showDatePickerDialog"
+                        android:paddingLeft="@dimen/padding_default"
+                        android:textColor="@color/c_title"
+                        android:textSize="@dimen/f_normal" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/padding_big" />
+
+                <EditText
+                    android:id="@+id/et_idnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_register"
+                    android:drawableLeft="@drawable/icon_personnel"
+                    android:ems="10"
+                    android:hint="  id number"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:textColor="@color/c_title"
+                    android:textColorHint="@color/c_title"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="@dimen/f_normal"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/padding_big"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/bt_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_register"
+                    android:padding="@dimen/padding_big"
+                    android:text="REGISTER"
+                    android:textSize="@dimen/f_normal" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

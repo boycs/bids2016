@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/li_row_bord"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_back"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_title_height"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_default" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_back" />
+
+        <com.app.custom.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News&apos;s Detail "
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+
+        <com.app.custom.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comment"
+            android:textColor="@color/c_content2"
+            android:textSize="@dimen/f_description" />
+    </LinearLayout>
+
+    <com.app.custom.CustomTextView
+        android:id="@+id/tv_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_default"
+        android:text="loading..."
+        android:textColor="@color/c_title"
+        android:textSize="@dimen/f_description"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_big" >
+
+        <ImageView
+            android:id="@+id/img_like_count"
+            android:layout_width="@dimen/img_icon_news"
+            android:layout_height="@dimen/img_icon_news"
+            android:background="@drawable/icon_like" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_likes_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding_default"
+            android:text="0 คนถูกใจ"
+            android:textColor="@color/c_title"
+            android:textSize="@dimen/f_description" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.95" >
+
+        <LinearLayout
+            android:id="@+id/hide_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/li_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_default2"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_default" >
+
+        <EditText
+            android:id="@+id/et_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:background="@drawable/bg_comment"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:padding="@dimen/padding_default"
+            android:textSize="@dimen/f_title" />
+
+        <Button
+            android:id="@+id/bt_send_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="Post"
+            android:textColor="@color/c_blue"
+            android:textSize="@dimen/f_description" />
+    </LinearLayout>
+
+</LinearLayout>

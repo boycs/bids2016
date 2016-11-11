@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|center_vertical"
+    android:orientation="vertical" >
+
+    <com.app.bids.MyLinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/carousel_border" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/carousel_tab_top"
+                    android:paddingBottom="@dimen/padding_row"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:paddingRight="@dimen/padding_default"
+                    android:paddingTop="@dimen/padding_row" >
+
+                    <ImageView
+                        android:layout_width="@dimen/img_icon"
+                        android:layout_height="@dimen/img_icon"
+                        android:layout_marginRight="@dimen/padding_default"
+                        android:src="@drawable/menu_bottom_heat" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/marque_scrolling_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_default" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.95"
+                            android:orientation="vertical"
+                            android:padding="@dimen/padding_default" >
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_symbol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_normalmor" />
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_symbol_fullname_eng"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_small" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_default" >
+
+                            <ImageView
+                                android:layout_width="@dimen/img_icon"
+                                android:layout_height="@dimen/img_icon"
+                                android:src="@drawable/icon_facebook" />
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_count_facebook"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/padding_row"
+                                android:layout_marginRight="@dimen/padding_default"
+                                android:gravity="center"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_description" />
+
+                            <ImageView
+                                android:layout_width="@dimen/img_icon"
+                                android:layout_height="@dimen/img_icon"
+                                android:src="@drawable/icon_feed" />
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_count_pantip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/padding_row"
+                                android:layout_marginRight="@dimen/padding_default"
+                                android:gravity="center"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_description" />
+
+                            <ImageView
+                                android:layout_width="@dimen/img_icon"
+                                android:layout_height="@dimen/img_icon"
+                                android:src="@drawable/icon_bidschart" />
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_count_news"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/padding_row"
+                                android:layout_marginRight="@dimen/padding_default"
+                                android:gravity="center"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_description" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/padding_default"
+                        android:weightSum="2" >
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_last_trade"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="@color/c_content"
+                            android:textSize="@dimen/f_normalmor" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:weightSum="3" >
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical" >
+
+                                <com.app.custom.CustomTextView
+                                    android:id="@+id/tv_volume"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/c_content"
+                                    android:textSize="@dimen/f_small" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Volume"
+                                    android:textColor="@color/c_content"
+                                    android:textSize="@dimen/f_small" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical" >
+
+                                <com.app.custom.CustomTextView
+                                    android:id="@+id/tv_change"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/c_content"
+                                    android:textSize="@dimen/f_small" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Change"
+                                    android:textColor="@color/c_content"
+                                    android:textSize="@dimen/f_small" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical" >
+
+                                <com.app.custom.CustomTextView
+                                    android:id="@+id/tv_percentChange"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/c_content"
+                                    android:textSize="@dimen/f_small" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="%Change"
+                                    android:textColor="@color/c_content"
+                                    android:textSize="@dimen/f_small" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </com.app.bids.MyLinearLayout>
+
+</LinearLayout>

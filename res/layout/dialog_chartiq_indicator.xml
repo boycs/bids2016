@@ -1,0 +1,1335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_default" >
+
+            <LinearLayout
+                android:id="@+id/li_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:weightSum="3" >
+
+                <LinearLayout
+                    android:id="@+id/li_1_col_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_AccSwing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Acc Swing"
+                        android:text="Accumulative Swing Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ADX"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="ADX"
+                        android:text="ADX/DMS"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Alligator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Alligator"
+                        android:text="Alligator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Aroon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Aroon"
+                        android:text="Aroon"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_AroonOsc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Aroon Osc"
+                        android:text="Aroon Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ATR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="ATR"
+                        android:text="Average True Range"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ATRBands"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="ATR Bands"
+                        android:text="ATR Bands"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ATRTrailingStop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="ATR Trailing Stop"
+                        android:text="ATR Trailing Stops"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_1_col_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Awesome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Awesome"
+                        android:text="Awesome Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_BollingerBands"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Bollinger Bands"
+                        android:text="Bollinger Bands"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Bollb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Boll %b"
+                        android:text="Bollinger %b"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_BollBW"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Boll BW"
+                        android:text="Bollinger BandWidth"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_COG"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="COG"
+                        android:text="Center Of Gravity"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ChaikinMF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Chaikin MF"
+                        android:text="Chaikin Money Flow"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ChaikinVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Chaikin Vol"
+                        android:text="Chaikin Volatility"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ChandeFcst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Chande Fcst"
+                        android:text="Chande Forecast Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_1_col_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ChandeMtm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Chande Mtm"
+                        android:text="Chande Momentum Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_CCI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="CCI"
+                        android:text="Commodity Channel Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Choppiness"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Choppiness"
+                        android:text="Choppiness Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Coppock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Coppock"
+                        android:text="Coppock Curve"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Detrended"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Detrended"
+                        android:text="Detrended Price Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Disparity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Disparity"
+                        android:text="Disparity Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_DonchianChannel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Donchian Channel"
+                        android:text="Donchian Channel"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_DonchianWidth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Donchian Width"
+                        android:text="Donchian Width"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_default" />
+
+            <LinearLayout
+                android:id="@+id/li_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:weightSum="3" >
+
+                <LinearLayout
+                    android:id="@+id/li_2_col_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_EOM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="EOM"
+                        android:text="Ease of Movement"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_EhlerFisher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Ehler Fisher"
+                        android:text="Ehler Fisher Transform"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ElderForce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Elder Force"
+                        android:text="Elder Force Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ElderRay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Elder Ray"
+                        android:text="Elder Ray"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_FractalChaosBands"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Fractal Chaos Bands"
+                        android:text="Fractal Chaos Bands"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_FractalChaos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Fractal Chaos"
+                        android:text="Fractal Chaos Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_GAPO"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="GAPO"
+                        android:text="Gopalakrishnan Range Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Gator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Gator"
+                        android:text="Gator Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_2_col_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_HighLow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="High Low"
+                        android:text="High Low Bands"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_HighLowm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="High-Low"
+                        android:text="High Minus Low"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_HHV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="HHV"
+                        android:text="Highest High Value"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_HistVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Hist Vol"
+                        android:text="Historical Volatility"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_IchimokuClouds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Ichimoku Clouds"
+                        android:text="Ichimoku Clouds"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_IntradayMtm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Intraday Mtm"
+                        android:text="Intraday Momentum Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Keltner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Keltner"
+                        android:text="Keltner Channel"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Klinger"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Klinger"
+                        android:text="Klinger Volume Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_2_col_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_LinFcst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Lin Fcst"
+                        android:text="Linear Reg Forecast"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_LinIncpt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Lin Incpt"
+                        android:text="Linear Reg Intercept"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_LinR2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Lin R2"
+                        android:text="Linear Reg R2"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_LRSlope"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="LR Slope"
+                        android:text="Linear Reg Slope"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_LLV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="LLV"
+                        android:text="Lowest Low Value"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_macd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="macd"
+                        android:text="MACD"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_WMFI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="W MFI"
+                        android:text="Market Facilitation Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_MassIdx"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Mass Idx"
+                        android:text="Mass Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_MedPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Med Price"
+                        android:text="Median Price"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_default" />
+
+            <LinearLayout
+                android:id="@+id/li_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:weightSum="3" >
+
+                <LinearLayout
+                    android:id="@+id/li_3_col_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Momentum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Momentum"
+                        android:text="Momentum Indicator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_MFlow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="M Flow"
+                        android:text="Money Flow Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_ma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="ma"
+                        android:text="Moving Average"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_MAEnv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="MA Env"
+                        android:text="Moving Average Envelope"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_NegVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Neg Vol"
+                        android:text="Negative Volume Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_OnBalVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="On Bal Vol"
+                        android:text="On Balance Volume"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PSAR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="PSAR"
+                        android:text="ParabolicSAR"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PerfIdx"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Perf Idx"
+                        android:text="Performance Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_3_col_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PivotPoints"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Pivot Points"
+                        android:text="Pivot Points"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PMO"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="PMO"
+                        android:text="Price Momentum Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PosVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Pos Vol"
+                        android:text="Positive Volume Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PrettyGood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Pretty Good"
+                        android:text="Pretty Good Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PriceOsc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Price Osc"
+                        android:text="Price Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PriceROC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Price ROC"
+                        android:text="Price Rate of Change"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PRel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="P Rel"
+                        android:text="Price Relative"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PriceVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Price Vol"
+                        android:text="Price Volume Trend"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_3_col_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PrimeNumberBands"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Prime Number Bands"
+                        android:text="Prime Number Bands"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PrimeNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Prime Number"
+                        android:text="Prime Number Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PringKST"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Pring KST"
+                        android:text="Pring&apos;s Know Sure Thing"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_PringSpK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Pring Sp-K"
+                        android:text="Pring&apos;s Special K"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_QStick"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="QStick"
+                        android:text="QStick"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_RainbowMA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Rainbow MA"
+                        android:text="Rainbow"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_RainbowOsc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Rainbow Osc"
+                        android:text="Rainbow Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_RandomWalkapos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Random Walk"
+                        android:text="Random Walk Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_RAVI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="RAVI"
+                        android:text="RAVI"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_default" />
+
+            <LinearLayout
+                android:id="@+id/li_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3" >
+
+                <LinearLayout
+                    android:id="@+id/li_4_col_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_RelVig"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Rel Vig"
+                        android:text="Relative Vigor Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_RelVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Rel Vol"
+                        android:text="Relative Volatility"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_RSI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="rsi"
+                        android:text="RSI"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Schaff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Schaff"
+                        android:text="Schaff Trend Cycle"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_STDDev"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="STD Dev"
+                        android:text="Standard Deviation"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_stochastics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="stochastics"
+                        android:text="Stochastics"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_StchMtm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Stch Mtm"
+                        android:text="Stochastic Momentum Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Swing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Swing"
+                        android:text="Swing Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_4_col_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_TradeVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Trade Vol"
+                        android:text="Trade Volume Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_TRIX"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="TRIX"
+                        android:text="TRIX"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_TrueRange"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="True Range"
+                        android:text="True Range"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Twiggs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Twiggs"
+                        android:text="Twiggs Money Flow"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_TypicalPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Typical Price"
+                        android:text="Typical Price"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Ulcer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Ulcer"
+                        android:text="Ulcer Index"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_Ultimate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Ultimate"
+                        android:text="Ultimate Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_VTHZFilter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="VT HZ Filter"
+                        android:text="Vertical Horizontal Filte"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_4_col_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_vchart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="vchart"
+                        android:text="Volume"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_VolOsc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Vol Osc"
+                        android:text="Volume Oscillator"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_volprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="vol profile"
+                        android:text="Volume Profile"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_VolROC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Vol ROC"
+                        android:text="Volume Rate of Change"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_volundr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="vol undr"
+                        android:text="Volume Underlay"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_WeightedClose"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Weighted Close"
+                        android:text="Weighted Close"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_WilliamsR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="Williams %R"
+                        android:text="Williams %R"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_WAccDist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickListenerStudies"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:tag="W Acc Dist"
+                        android:text="Williams Accumulation/Distribution"
+                        android:textColor="@color/c_content2"
+                        android:textSize="@dimen/f_small" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

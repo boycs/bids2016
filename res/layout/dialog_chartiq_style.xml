@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default" >
+
+    <com.app.custom.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_default"
+        android:text="STYLE"
+        android:textColor="@color/c_content"
+        android:textSize="@dimen/f_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_default2"
+        android:weightSum="2" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_chartstyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_default"
+                android:text="CHART STYLE (8)"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_description" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_charttype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_default"
+                android:text="CHART TYPE (6)"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_description" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_chartscale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_default"
+                android:text="CHART SCALE (1)"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_description" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/li_chartstyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_default"
+                    android:visibility="visible" >
+
+                    <LinearLayout
+                        android:id="@+id/li_candle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="candle" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_candle" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="candle"
+                            android:text="Candle"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="bar" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_bars" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="bar"
+                            android:text="Bar"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_coloredbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="colored_bar" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_colored_bar" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="colored_bar"
+                            android:text="Colored Bar"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="line" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_line" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="line"
+                            android:text="Line"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_hollowcandle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="hollow_candle" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_hollow_candles" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="hollow_candle"
+                            android:text="Hollow Candle"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_mountain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="mountain" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_mountain" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="mountain"
+                            android:text="Mountain"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_coloredline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="colored_line" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_colored_line" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="colored_line"
+                            android:text="Colored Line"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_baseelinedelta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="baseline_delta" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_baseline_delta" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="baseline_delta"
+                            android:text="Baseline Delta"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_charttype"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_default"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:id="@+id/li_heikinashi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="heikinashi" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_heikin_ashi" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="heikinashi"
+                            android:text="Heikin-Ashi"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_kagi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="kagi" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_kagi" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="kagi"
+                            android:text="Kagi"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_linebreak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="linebreak" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_line_break" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="linebreak"
+                            android:text="Line Break"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_pointfigure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="pandf" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_point_figure" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="pandf"
+                            android:text="Point Figure"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_rangebars"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="rangebars" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_range_bar" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="rangebars"
+                            android:text="Range Bars"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/li_renko"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row"
+                        android:tag="renko" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_renko" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:tag="renko"
+                            android:text="Renko"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_chartscale"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_default"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:id="@+id/li_logscale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_row" >
+
+                        <ImageView
+                            android:layout_width="@dimen/chartiq_icon_style"
+                            android:layout_height="@dimen/chartiq_icon_style"
+                            android:src="@drawable/chartiq_icon_log_scale" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.95"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding_default"
+                            android:text="Log Scale"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_description" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

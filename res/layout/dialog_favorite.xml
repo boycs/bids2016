@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_dialog"
+        android:padding="@dimen/padding_default" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3" >
+
+            <LinearLayout
+                android:id="@+id/li_favorite1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_row" >
+
+                <ImageView
+                    android:id="@+id/img_follow"
+                    android:layout_width="@dimen/icon_favorite"
+                    android:layout_height="@dimen/icon_favorite"
+                    android:background="@drawable/icon_favorite_1" />
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:layout_weight="0.95"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="Favorite 1"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <ImageView
+                    android:layout_width="@dimen/icon_favorite"
+                    android:layout_height="@dimen/icon_favorite"
+                    android:background="@drawable/icon_favorite_2" />
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:layout_weight="0.95"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="Favorite 2"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <ImageView
+                    android:layout_width="@dimen/icon_favorite"
+                    android:layout_height="@dimen/icon_favorite"
+                    android:background="@drawable/icon_favorite_3" />
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:layout_weight="0.95"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="Favorite 3"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <ImageView
+                    android:layout_width="@dimen/icon_favorite"
+                    android:layout_height="@dimen/icon_favorite"
+                    android:background="@drawable/icon_favorite_4" />
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:layout_weight="0.95"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="Favorite 4"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <ImageView
+                    android:layout_width="@dimen/icon_favorite"
+                    android:layout_height="@dimen/icon_favorite"
+                    android:background="@drawable/icon_favorite_5" />
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:layout_weight="0.95"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="Favorite 5"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

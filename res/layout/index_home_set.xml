@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_default"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_row" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:padding="1dp"
+        android:visibility="visible" >
+
+        <WebView
+            android:id="@+id/wv_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_default" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/distance_default" />
+
+    <LinearLayout
+        android:id="@+id/li_attr_symbol"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/bg_set"
+            android:orientation="vertical" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_last_trade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1,420.57"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="+3.66"
+                    android:textColor="@color/c_success"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_percentChange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="+0.26%"
+                    android:textColor="@color/c_success"
+                    android:textSize="@dimen/f_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_symbol_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=".SET"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_normalmor" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1,496.05M"
+                android:textColor="@color/c_blue"
+                android:textSize="@dimen/f_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/li_open2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="Open"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_open2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_high"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="High"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_high"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_low"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="Low"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_low"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_default" >
+
+            <LinearLayout
+                android:id="@+id/li_prev_close"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="PrevousClose"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_prev_close"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_high52W"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="52WHight"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_high52W"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_low52W"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="52WLow"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_low52W"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/distance_default" />
+
+</LinearLayout>

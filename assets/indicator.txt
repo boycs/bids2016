@@ -1,0 +1,140 @@
+﻿[
+    {
+        "title":"Band Indicators",
+        "key":"BandStudies",
+        "value":[
+            {"title":"Bollinger Bands","key":"Bollinger Bands"},
+            {"title":"Bollinger %b","key":"Boll %b"},
+            {"title":"Bollinger BandWidth","key":"Boll BW"},
+            {"title":"Donchian Channel","key":"Donchian Channel"},
+            {"title":"Donchian Width","key":"Donchian Width"},
+            {"title":"High Low Bands","key":"High Low"},
+            {"title":"Keltner Channel","key":"Keltner"},
+            {"title":"Moving Average","key":"ma"},
+            {"title":"ATR Bands","key":"ATR Bands"},
+            {"title":"Fractal Chaos Bands","key":"Fractal Chaos Bands"},
+            {"title":"Prime Number Bands","key":"Prime Number Bands"}
+        ]
+    },
+    {
+        "title":"General Indicator",
+        "key":"GeneralStudies",
+        "value":[
+            {"title":"Highest High Value","key":"HHV"},
+            {"title":"High Minus Low","key":"High-Low"},
+            {"title":"Lowest Low Value","key":"LLV"},
+            {"title":"Median Price","key":"Med Price"},
+            {"title":"Price Rate of Change","key":"Price ROC"},
+            {"title":"Standard Deviation","key":"STD Dev"},
+            {"title":"Typical Price","key":"Typical Price"},
+            {"title":"Volume Rate of Change","key":"Vol ROC"},
+            {"title":"Weighted Close","key":"Weighted Close"}
+        ]
+    },
+    {
+        "title":"Index Indicator",
+        "key":"IndexStudies",
+        "value":[
+            {"title":"Accumulative Swing Index","key":"Acc Swing"},
+            {"title":"Commodity Channel Index","key":"CCI"},
+            {"title":"Chaikin Money Flow","key":"Chaikin MF"},
+            {"title":"Money Flow Index","key":"M Flow"},
+            {"title":"Swing Index","key":"Swing"},
+            {"title":"Trade Volume Index","key":"Trade Vol"},
+            {"title":"Ulcer Index","key":"Ulcer"},
+            {"title":"Mass Index","key":"Mass Idx"},
+            {"title":"Negative Volume Index","key":"Neg Vol"},
+            {"title":"On Balance Volume","key":"On Bal Vol"},
+            {"title":"RSI","key":"rsi"},
+            {"title":"Performance Index","key":"Perf Idx"},
+            {"title":"Pivot Points","key":"Pivot Points"},
+            {"title":"Positive Volume Index","key":"Pos Vol"},
+            {"title":"Price Volume Trend","key":"Price Vol"},
+            {"title":"QStick","key":"QStick"}
+        ]
+    },
+    {
+        "title":"Linear Average Indicator",
+        "key":"LinearStudies",
+        "value":[
+            {"title":"Linear Reg Forecast","key":"Lin Fcst"},
+            {"title":"Linear Reg Intercept","key":"Lin Incpt"},
+            {"title":"Linear Reg R2","key":"Lin R2"},
+            {"title":"Linear Reg Slope","key":"LR Slope"}
+        ]
+    },
+    {
+        "title":"Moving Average Indicator",
+        "key":"MovingStudies",
+        "value":[
+            {"title":"Ichimoku Clouds","key":"Ichimoku Clouds"},
+            {"title":"Moving Average","key":"ma"},
+            {"title":"Moving Average Envelope","key":"MA Env"},
+            {"title":"Rainbow Moving Average","key":"Rainbow MA"}
+        ]
+    },
+    {
+        "title":"Oscillator Indicator",
+        "key":"OscillatorStudies",
+        "value":[
+            {"title":"ADX/DMS","key":"ADX"},
+            {"title":"Aroon","key":"Aroon"},
+            {"title":"Aroon Oscillator","key":"Aroon Osc"},
+            {"title":"Average True Range","key":"ATR"},
+            {"title":"ATR Trailing Stops","key":"ATR Trailing Stop"},
+            {"title":"Awesome Oscillator","key":"Awesome"},
+            {"title":"Coppock Curve","key":"Coppock"},
+            {"title":"Chaikin Volatility","key":"Chaikin Vol"},
+            {"title":"Historical Volatility","key":"Hist Vol"},
+            {"title":"Relative Volatility","key":"Rel Vol"},
+            {"title":"Chande Forecast Oscillator","key":"Chande Fcst"},
+            {"title":"Chande Momentum Oscillator","key":"Chande Mtm"},
+            {"title":"Detrended Price Oscillator","key":"Detrended"},
+            {"title":"Fractal Chaos Oscillator","key":"Fractal Chaos"},
+            {"title":"Klinger Volume Oscillator","key":"Klinger"},
+            {"title":"MACD","key":"macd"},
+            {"title":"Gator Oscillator","key":"Gator"},
+            {"title":"Price Momentum Oscillator","key":"PMO"},
+            {"title":"Pretty Good Oscillator","key":"Pretty Good"},
+            {"title":"Price Oscillator","key":"Price Osc"},
+            {"title":"Prime Number Oscillator","key":"Prime Number"},
+            {"title":"Rainbow Oscillator","key":"Rainbow Osc"},
+            {"title":"Ultimate Oscillator","key":"Ultimate"},
+            {"title":"Volume Oscillator","key":"Vol Osc"},
+            {"title":"Ease of Movement","key":"EOM"},
+            {"title":"Ehler Fisher Transform","key":"Ehler Fisher"},
+            {"title":"Elder Force Index","key":"Elder Force"},
+            {"title":"Elder Ray","key":"Elder Ray"},
+            {"title":"Momentum Indicator","key":"Momentum"},
+            {"title":"TRIX","key":"TRIX"},
+            {"title":"True Range","key":"True Range"},
+            {"title":"Williams %R","key":"Williams %R"},
+            {"title":"Williams Accumulation/Distribution","key":"W Acc Dist"},
+            {"title":"Stochastics","key":"stochastics"},
+            {"title":"Stochastic Momentum Index","key":"Stch Mtm"}
+        ]
+    },
+    {
+        "title":"Simulate Indicator",
+        "key":"SimulateStudies",
+        "value":[]
+    },
+    {
+        "title":"Miscellaneous",
+        "key":"MiscellaneousStudies",
+        "value":[]
+    },
+    {
+        "title":"Data",
+        "key":"DataStudies",
+        "value":[
+                 {"title":"Volume","key":"vchart"}
+                ]
+    },
+    {
+        "title":"Result Search",
+        "key":"content_search",
+        "value":[]
+    }
+
+]

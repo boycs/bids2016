@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_title_height"
+        android:background="@color/bg_default2" >
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_namepager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Hot"
+            android:textColor="@color/c_content2"
+            android:textSize="@dimen/f_normalmor"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_line" />
+
+    <LinearLayout
+        android:id="@+id/li_search_tabbegin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_border_search"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_default"
+        android:paddingLeft="@dimen/padding_default"
+        android:paddingTop="@dimen/padding_default"
+        android:visibility="visible" >
+
+        <ImageView
+            android:layout_width="@dimen/img_icon"
+            android:layout_height="@dimen/img_icon"
+            android:layout_marginRight="@dimen/padding_default"
+            android:src="@drawable/ic_launcher" />
+
+        <LinearLayout
+            android:id="@+id/li_search_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/padding_default"
+            android:background="@drawable/bg_search_select"
+            android:gravity="center"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="@dimen/img_icon_search"
+                android:layout_height="@dimen/img_icon_search"
+                android:background="@drawable/icon_search"
+                android:visibility="visible" />
+
+            <com.app.custom.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Symbol"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_small"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <com.app.custom.CustomTextViewSliding
+            android:id="@+id/tv_sliding_marquee"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_sliding_marquee"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_normal" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <com.app.custom.CustomTextViewSliding
+                android:id="@+id/marque_scrolling_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="16dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Create a Marquee (Scrolling Text) in Android Using TextView. Android Marquee (Scrolling Text) Tutorial with Example"
+                android:textColor="@color/c_content"
+                android:textSize="24sp"
+                android:visibility="gone" />
+
+            <com.app.custom.CustomTextViewSliding
+                android:id="@+id/sliding_text_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:padding="16dp"
+                android:singleLine="true"
+                android:text="Scrolling Text (Marquee) in Android Application"
+                android:textColor="@color/c_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_heatmap"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heatmap_h"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/li_ArticleByCategoryHot"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/carousel_h"
+                android:orientation="vertical" >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_ArticleByCategoryHot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:overScrollMode="never" >
+                </android.support.v4.view.ViewPager>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_default2"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/gv_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:visibility="gone" >
+            </GridView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

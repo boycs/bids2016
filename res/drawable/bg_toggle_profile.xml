@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/icon_settinginfomation" android:state_checked="true"/>
+    <item android:drawable="@drawable/icon_ettinginfomationnoselect" android:state_checked="false"/>
+    <item android:drawable="@drawable/icon_settinginfomation"></item>
+
+<!--     <item android:drawable="@color/c_blue" android:state_checked="true"/> -->
+<!--     <item android:drawable="@color/c_line" android:state_checked="false"/> -->
+<!--     <item android:drawable="@color/c_line"></item> -->
+
+</selector>

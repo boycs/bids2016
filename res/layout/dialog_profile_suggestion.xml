@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+            android:padding="@dimen/padding_big"
+    android:orientation="vertical" >
+
+    <com.app.custom.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="ข้อเสนอแนะ"
+        android:textColor="@color/c_warning"
+        android:textSize="@dimen/f_normalmor" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:id="@+id/iv_content"
+                        android:layout_width="@dimen/icon_suggestion"
+                        android:layout_height="@dimen/icon_suggestion"
+                        android:background="@drawable/ic_launcher" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="หากพบปัญหา หรือมีข้อเสนอแนะแอพ กรุณาแจ้งทีมงานด้วยนะครับ เพื่อปรับปรุงการใช้งานแอพให้ดียิ่งขึ้นไป ขอบคุณมากครับ"
+                            android:textColor="@color/c_content"
+                            android:textSize="@dimen/f_small" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="(เพียงส่งข้อเสนอแนะ ลุ้นรับรางวัลจากทีมงาน)"
+                            android:textColor="@color/c_warning"
+                            android:textSize="@dimen/f_small" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_default"
+                    android:paddingTop="@dimen/padding_default"
+                    android:text="ข้อเสนอแนะ :"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+
+                <EditText
+                    android:id="@+id/dl_et_suggestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_comment"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:inputType="text|textMultiLine"
+                    android:textColor="@color/bg_default"
+                    android:textSize="@dimen/f_description" >
+                </EditText>
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_default"
+                    android:paddingTop="@dimen/padding_default"
+                    android:text="ปัญหาที่พบ :"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+
+                <EditText
+                    android:id="@+id/dl_et_problem"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_comment"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:inputType="text|textMultiLine"
+                    android:textColor="@color/bg_default"
+                    android:textSize="@dimen/f_description" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_default" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/dl_tv_submit"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_button"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/padding_default"
+                        android:paddingLeft="@dimen/padding_big"
+                        android:paddingRight="@dimen/padding_big"
+                        android:paddingTop="@dimen/padding_default"
+                        android:text="Submit"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description" />
+
+                    <View
+                        android:layout_width="@dimen/padding_big"
+                        android:layout_height="wrap_content" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/dl_tv_rate"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_button"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/padding_default"
+                        android:paddingLeft="@dimen/padding_big"
+                        android:paddingRight="@dimen/padding_big"
+                        android:paddingTop="@dimen/padding_default"
+                        android:text="Rate"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

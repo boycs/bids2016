@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/padding_row" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/row_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/row_symboldetail_h"
+            android:padding="@dimen/padding_row" >
+
+            <ImageView
+                android:id="@+id/img_chart"
+                android:layout_width="@dimen/watchlist_detail_mfun_col"
+                android:layout_height="match_parent"
+                android:background="@drawable/icon_empty" />
+
+            <LinearLayout
+                android:layout_width="@dimen/watchlist_detail_mfun_col_long"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/padding_row" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_watchlist_detail" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/watchlist_detail_mfun_col_rating"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <RatingBar
+                    android:id="@+id/rb_rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/c_warning"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:progressTint="@android:color/transparent"
+                    android:secondaryProgressTint="@color/c_warning"
+                    android:stepSize="1.0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/watchlist_detail_mfun_col_risk"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_row" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/padding_row"
+                    android:text="Low"
+                    android:textColor="@color/c_success"
+                    android:textSize="@dimen/f_note" />
+
+                <LinearLayout
+                    android:id="@+id/li_risk"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_big"
+                    android:layout_weight="0.95"
+                    android:background="@drawable/bg_tab_risk_active"
+                    android:orientation="horizontal"
+                    android:weightSum="8" >
+
+                    <View
+                        android:id="@+id/v_risk_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginLeft="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="@dimen/risk_line"
+                        android:layout_height="match_parent"
+                        android:background="@color/c_border" />
+
+                    <View
+                        android:id="@+id/v_risk_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="@dimen/risk_line"
+                        android:layout_height="match_parent"
+                        android:background="@color/c_border" />
+
+                    <View
+                        android:id="@+id/v_risk_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="@dimen/risk_line"
+                        android:layout_height="match_parent"
+                        android:background="@color/c_border" />
+
+                    <View
+                        android:id="@+id/v_risk_4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="@dimen/risk_line"
+                        android:layout_height="match_parent"
+                        android:background="@color/c_border" />
+
+                    <View
+                        android:id="@+id/v_risk_5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="@dimen/risk_line"
+                        android:layout_height="match_parent"
+                        android:background="@color/c_border" />
+
+                    <View
+                        android:id="@+id/v_risk_6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="@dimen/risk_line"
+                        android:layout_height="match_parent"
+                        android:background="@color/c_border" />
+
+                    <View
+                        android:id="@+id/v_risk_7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="@dimen/risk_line"
+                        android:layout_height="match_parent"
+                        android:background="@color/c_border" />
+
+                    <View
+                        android:id="@+id/v_risk_8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/risk_line"
+                        android:layout_marginRight="@dimen/risk_line"
+                        android:layout_marginTop="@dimen/risk_line"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+                </LinearLayout>
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_row"
+                    android:text="Higth"
+                    android:textColor="@color/c_danger"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_policy"
+                android:layout_width="@dimen/watchlist_detail_mfun_col2"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="dividend"
+                android:textColor="@color/c_blue"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_1mth"
+                android:layout_width="@dimen/watchlist_detail_mfun_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_3mth"
+                android:layout_width="@dimen/watchlist_detail_mfun_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_6mth"
+                android:layout_width="@dimen/watchlist_detail_mfun_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_1yr"
+                android:layout_width="@dimen/watchlist_detail_mfun_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_3yr"
+                android:layout_width="@dimen/watchlist_detail_mfun_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_5yr"
+                android:layout_width="@dimen/watchlist_detail_mfun_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_date"
+                android:layout_width="@dimen/watchlist_detail_col_date"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_line" />
+
+</LinearLayout>

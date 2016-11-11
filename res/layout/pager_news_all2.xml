@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_ArticleByCategoryHot"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/carousel_h"
+        android:orientation="vertical" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_ArticleByCategoryHot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:overScrollMode="never" >
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gv_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2" >
+    </GridView>
+
+</LinearLayout>

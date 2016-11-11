@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/li_row_reply"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/padding_default"
+    android:paddingLeft="@dimen/padding_default" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#AAAAAA"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingLeft="3dp"
+        android:paddingTop="3dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_image_reply"
+                android:layout_width="@dimen/img_icon_likecomment"
+                android:layout_height="@dimen/img_icon_likecomment"
+                android:background="@drawable/icon_username" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:orientation="vertical"
+            android:paddingLeft="3dp" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_username_reply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="user"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_description" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_content_reply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="des"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom" >
+
+                <ImageView
+                    android:id="@+id/img_agree_reply"
+                    android:layout_width="@dimen/img_icon_news"
+                    android:layout_height="@dimen/img_icon_news"
+                    android:background="@drawable/icon_agree" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_agree_count_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:paddingRight="@dimen/padding_big"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+
+                <ImageView
+                    android:id="@+id/img_disagree_reply"
+                    android:layout_width="@dimen/img_icon_news"
+                    android:layout_height="@dimen/img_icon_news"
+                    android:background="@drawable/icon_uagree" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_disagree_count_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:paddingRight="@dimen/padding_big"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_reply_count_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:paddingRight="@dimen/padding_big"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_comment_del_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_normalmor"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

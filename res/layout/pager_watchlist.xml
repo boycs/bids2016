@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical"
+    tools:context="com.app.bids.PagerWatchList" >
+
+    <LinearLayout
+        android:id="@+id/li_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_title_height"
+            android:background="@color/bg_default2"
+            android:paddingBottom="@dimen/padding_row"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default"
+            android:paddingTop="@dimen/padding_default" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_watchlist_categories"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Category"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_description" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:orientation="vertical" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_pager_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Market Watch"
+                    android:textColor="@color/c_content2"
+                    android:textSize="@dimen/f_normalmor"
+                    android:textStyle="bold" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_pager_title_sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:gravity="center"
+                    android:textColor="@color/c_content2"
+                    android:textSize="@dimen/f_small" />
+            </LinearLayout>
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Edit"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_normal"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_wh"
+            android:background="@color/c_line" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_title"
+            android:padding="@dimen/padding_big"
+            android:text="กำลังโหลด..."
+            android:textColor="@color/c_bottom_menu"
+            android:textSize="@dimen/f_watchlist_detail"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/hidelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/li_tab_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/li_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bg_border_search"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_default" >
+
+                        <EditText
+                            android:id="@+id/et_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.95"
+                            android:background="@drawable/bg_input"
+                            android:drawableLeft="@drawable/icon_search"
+                            android:ems="10"
+                            android:hint="Symbol"
+                            android:textColor="@color/c_title"
+                            android:textColorHint="@color/c_title"
+                            android:textSize="@dimen/f_normal" >
+
+                            <requestFocus />
+                        </EditText>
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_close_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/padding_default"
+                            android:layout_marginRight="@dimen/padding_row"
+                            android:gravity="center"
+                            android:text="Cancle"
+                            android:textColor="@color/c_content"
+                            android:textSize="@dimen/f_watchlist_detail" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/padding_default"
+                        android:paddingRight="@dimen/padding_default"
+                        android:paddingTop="@dimen/padding_row"
+                        android:visibility="visible" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_search_default"
+                            android:orientation="horizontal"
+                            android:weightSum="3" >
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_search_common"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/border_search_activeleft"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_default"
+                                android:text="Common"
+                                android:textColor="@color/bg_default"
+                                android:textSize="@dimen/f_description" />
+
+                            <View
+                                android:layout_width="@dimen/search_border_line"
+                                android:layout_height="match_parent"
+                                android:background="@color/bg_search_select" />
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_search_warrant"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_default"
+                                android:text="Warrant"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_description" />
+
+                            <View
+                                android:layout_width="@dimen/search_border_line"
+                                android:layout_height="match_parent"
+                                android:background="@color/bg_search_select" />
+
+                            <com.app.custom.CustomTextView
+                                android:id="@+id/tv_search_dw"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_default"
+                                android:text="DW"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_description" />
+                        </LinearLayout>
+
+                        <ListView
+                            android:id="@+id/list_search_symbol"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+                        </ListView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_search_tabbegin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_border_search"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padding_default"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:paddingTop="@dimen/padding_default"
+                    android:visibility="visible" >
+
+                    <ImageView
+                        android:layout_width="@dimen/img_icon"
+                        android:layout_height="@dimen/img_icon"
+                        android:layout_marginRight="@dimen/padding_default"
+                        android:src="@drawable/ic_launcher" />
+
+                    <LinearLayout
+                        android:id="@+id/li_search_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/padding_default"
+                        android:background="@drawable/bg_search_select"
+                        android:gravity="center" >
+
+                        <ImageView
+                            android:layout_width="@dimen/img_icon_search"
+                            android:layout_height="@dimen/img_icon_search"
+                            android:background="@drawable/icon_search"
+                            android:visibility="visible" />
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Symbol"
+                            android:textColor="@color/c_title"
+                            android:textSize="@dimen/f_small"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.app.custom.CustomTextViewSliding
+                        android:id="@+id/tv_sliding_marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.95"
+                        android:background="@drawable/bg_sliding_marquee"
+                        android:ellipsize="marquee"
+                        android:gravity="center_vertical"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_normal" />
+
+                    <LinearLayout
+                        android:layout_width="@dimen/icon_status_connect_w"
+                        android:layout_height="@dimen/icon_status_connect_h"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/img_status_m"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/icon_status_m" />
+
+                        <ImageView
+                            android:id="@+id/img_connect_c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/icon_connect_c" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- <com.app.bidchart.LineChartView -->
+            <!-- android:id="@+id/linechart" -->
+            <!-- android:layout_width="@dimen/watchlist_detail_col" -->
+            <!-- android:layout_height="@dimen/img_title_wh" -->
+            <!-- android:background="@color/bg_default" -->
+            <!-- android:padding="@dimen/padding_row" /> -->
+
+
+            <!-- <ScrollView -->
+            <!-- android:id="@+id/sv_search_symbol" -->
+            <!-- android:layout_width="match_parent" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:visibility="gone" > -->
+
+
+            <!-- <LinearLayout -->
+            <!-- android:layout_width="match_parent" -->
+            <!-- android:layout_height="match_parent" -->
+            <!-- android:orientation="vertical" > -->
+
+
+            <!-- <ListView -->
+            <!-- android:id="@+id/list_search_symbol" -->
+            <!-- android:layout_width="match_parent" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:orientation="vertical" > -->
+            <!-- </ListView> -->
+            <!-- </LinearLayout> -->
+            <!-- </ScrollView> -->
+
+            <LinearLayout
+                android:id="@+id/li_title_fundamental"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_default"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <Spinner
+                        android:id="@+id/spn_fundamental_industry"
+                        android:layout_width="@dimen/watchlist_dropdown_w"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/c_content" />
+
+                    <Spinner
+                        android:id="@+id/spn_fundamental_sector"
+                        android:layout_width="@dimen/watchlist_dropdown_w"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/c_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_title_trendsignal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_default"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <Spinner
+                        android:id="@+id/spn_trendsignal_industry"
+                        android:layout_width="@dimen/watchlist_dropdown_w"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/c_content" />
+
+                    <Spinner
+                        android:id="@+id/spn_trendsignal_sector"
+                        android:layout_width="@dimen/watchlist_dropdown_w"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/c_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/padding_big"
+                    android:paddingRight="@dimen/padding_big"
+                    android:weightSum="4" >
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_trendsignal_average"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:text="Average"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description"
+                        android:textStyle="bold" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_trendsignal_1w"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:text="1W"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description"
+                        android:textStyle="bold" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_trendsignal_1m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:text="1M"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description"
+                        android:textStyle="bold" />
+
+                    <com.app.custom.CustomTextView
+                        android:id="@+id/tv_trendsignal_3m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_default"
+                        android:singleLine="true"
+                        android:text="3M"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_description"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/watchlist_detail_margin_top"
+                    android:paddingLeft="@dimen/padding_big"
+                    android:paddingRight="@dimen/padding_big"
+                    android:weightSum="4" >
+
+                    <View
+                        android:id="@+id/v_trendsignal_average"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/padding_row"
+                        android:layout_weight="1"
+                        android:background="@color/c_success" />
+
+                    <View
+                        android:id="@+id/v_trendsignal_1w"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/padding_row"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:id="@+id/v_trendsignal_1m"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/padding_row"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:id="@+id/v_trendsignal_3m"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/padding_row"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/scr_search_symbol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/li_search_symbol_"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/sv_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:id="@+id/li_list_symbol_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="Symbol"
+                            android:textColor="@color/c_title"
+                            android:textSize="@dimen/f_watchlist_detail" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/line_wh"
+                            android:background="@color/c_line" />
+
+                        <LinearLayout
+                            android:id="@+id/list_symbol"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:id="@+id/horizontalScrollView1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:id="@+id/col_title_detail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingBottom="@dimen/padding_default"
+                                android:paddingTop="@dimen/padding_default" >
+
+                                <View
+                                    android:id="@+id/v_sft"
+                                    android:layout_width="@dimen/watchlist_sft_col"
+                                    android:layout_height="match_parent" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Chart"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <View
+                                    android:layout_width="@dimen/img_updown"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Price"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Change"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Volume"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Value"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="High"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Low"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Ceiling"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Floor"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_grahp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Trend"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/E"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/BV"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROE"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROA"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="PEG"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/col_title_detail_fundamental"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingBottom="@dimen/padding_default"
+                                android:paddingTop="@dimen/padding_default"
+                                android:visibility="gone" >
+
+                                <com.app.custom.CustomTextView
+                                    android:id="@+id/tv_sft_fun"
+                                    android:layout_width="@dimen/watchlist_detail_col_f"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_ftrend"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="F-Trend"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Chart"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Price"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Change"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_grahp_fun"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Activity"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_grahp_fun"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Profit"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_grahp_fun"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Lev."
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_grahp_fun"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Liq."
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Rank"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="CG"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Volume"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Value"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/E"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/BV"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROE"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROA"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="PEG"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="MktCap"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/col_title_detail_portfolio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingBottom="@dimen/padding_default"
+                                android:paddingTop="@dimen/padding_default"
+                                android:visibility="gone" >
+
+                                <View
+                                    android:id="@+id/v_sft_port"
+                                    android:layout_width="@dimen/watchlist_sft_col"
+                                    android:layout_height="match_parent" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Chart"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_grahp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Trend"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_f"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Signal"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_date"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Date"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Price"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Change"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Volume"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Value"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="High"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Low"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Ceiling"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Floor"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/E"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/BV"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROE"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROA"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="PEG"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/col_title_detail_trendsignal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingBottom="@dimen/padding_default"
+                                android:paddingTop="@dimen/padding_default"
+                                android:visibility="gone" >
+
+                                <View
+                                    android:id="@+id/v_sft_trend"
+                                    android:layout_width="@dimen/watchlist_sft_col"
+                                    android:layout_height="match_parent" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Chart"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col_grahp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Trend"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <View
+                                    android:layout_width="@dimen/img_updown"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Price"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Change"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Volume"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Value"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="High"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Low"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Ceiling"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="Floor"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/E"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="P/BV"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROE"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="ROA"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+
+                                <com.app.custom.CustomTextView
+                                    android:layout_width="@dimen/watchlist_detail_col2"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="PEG"
+                                    android:textColor="@color/c_title"
+                                    android:textSize="@dimen/f_watchlist_detail" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/line_wh"
+                                android:background="@color/c_line" />
+
+                            <LinearLayout
+                                android:id="@+id/list_detail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

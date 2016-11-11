@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_default"
+    android:paddingRight="@dimen/padding_default" >
+
+    <LinearLayout
+        android:id="@+id/row_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_default"
+        android:paddingTop="@dimen/padding_default" >
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.95"
+            android:singleLine="true"
+            android:text="Categories"
+            android:textColor="@color/c_content2"
+            android:textSize="@dimen/f_description" />
+
+        <ImageView
+            android:layout_width="@dimen/img_iconrow"
+            android:layout_height="@dimen/img_iconrow"
+            android:src="@drawable/icon_next" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_line" />
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#BABABA</color>
+    <color name="list_background_pressed">#199faf</color>
+    <color name="list_divider">#B0B0B0</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="bg_default">#171d21</color>
+    <color name="bg_default2">#1d2328</color>
+    <color name="bg_watchlist">#ffffff</color>
+    <color name="bg_title">#161d21</color>
+    <color name="bg_row_list">#161d21</color>
+    <color name="bg_bottom_menu">#1F2429</color>
+    <color name="bg_tab_right">#FFFF00</color>
+    <color name="bg_search">#171d21</color>
+    <color name="bg_border_search">#444444</color>
+    <color name="bg_transparent">#88333333</color>
+    <color name="bg_edit_password">#EEEEEE</color>
+    <color name="c_title_list">#fcb913</color>
+    <color name="c_bottom_menu">#ffffff</color>
+    <color name="c_top_title">#161d21</color>
+    <color name="c_title">#686f74</color>
+    <color name="c_content">#ffffff</color>
+    <color name="c_content2">#BBBBBB</color>
+    <!-- <color name="c_content3">#0033FF</color> -->
+    <color name="c_content4">#161d21</color>
+    <color name="c_blue">#478ecb</color>
+    <color name="c_pink">#B4045F</color>
+    <color name="c_success">#95dd33</color>
+    <color name="c_success_transparent">#8895dd33</color>
+    <color name="c_warning">#FFC125</color>
+    <color name="c_danger">#eb4848</color>
+    <color name="c_line">#27292e</color>
+    <color name="c_border">#585f65</color>
+    <color name="c_bg_slide_menu">#eaedf2</color>
+    <color name="c_bg_slide_menu_list">#80bbed</color>
+    <color name="bg_row_2">#f1eded</color>
+    <color name="bg_button_select">#b3b3b3</color>
+    <color name="bg_search_select">#ffffff</color>
+    <color name="menu_select">#95dd33</color>
+    <color name="bg_dialog">#dfdddd</color>
+    <color name="bg_dialog_value">#efeeee</color>
+    <!-- <color name="c_list_menu">#7d466d</color> -->
+
+
+    <!-- carousel -->
+    <color name="carousel_tab_top">#BB0000</color>
+
+    <!-- chartiq -->
+    <color name="chartiq_default">#95dd33</color>
+
+    <!-- Analytics -->
+    <color name="colorPrimary">#FF6D00</color>
+    <color name="colorPrimaryDark">#FF6D00</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#FFD180</color>
+    <color name="btnBackground">#e7e7e7</color>
+
+</resources>

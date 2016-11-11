@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_big"
+        android:paddingTop="@dimen/padding_big" >
+
+        <com.app.custom.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Edit"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_normal" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/bg_default" />
+
+    <LinearLayout
+        android:id="@+id/li_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_big"
+        android:paddingTop="@dimen/padding_big" >
+
+        <com.app.custom.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Setting"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_normal" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/bg_default" />
+
+    <LinearLayout
+        android:id="@+id/li_singout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_big"
+        android:paddingTop="@dimen/padding_big" >
+
+        <com.app.custom.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Sing Out"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_normal" />
+    </LinearLayout>
+
+</LinearLayout>

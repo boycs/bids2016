@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/padding_default" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_symboldetail_h"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_row"
+        android:paddingTop="@dimen/padding_row" >
+
+        <LinearLayout
+            android:id="@+id/li_sft"
+            android:layout_width="@dimen/watchlist_sft_col"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_row"
+            android:visibility="gone" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_color_macd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="S"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_note" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/watchlist_sft_line" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_fundamental"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="F"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_note" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/watchlist_sft_line" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_trendSignal_avg_percent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="T"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_note" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/img_chart"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_empty" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/padding_default"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:id="@+id/img_updown"
+                    android:layout_width="@dimen/img_updown"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_empty" />
+            </LinearLayout>
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_last_trade"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="change"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <LinearLayout
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/padding_row" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="change"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_percentChange"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="%"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_note" />
+            </LinearLayout>
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_volume"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="Volume"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_value"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="Value"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_high"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="High"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_low"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="Low"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_ceiling"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="Ceil"
+                android:textColor="@color/c_blue"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_floor"
+                android:layout_width="@dimen/watchlist_detail_col"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="Floor"
+                android:textColor="@color/c_pink"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_p_e"
+                android:layout_width="@dimen/watchlist_detail_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="P/E"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_p_bv"
+                android:layout_width="@dimen/watchlist_detail_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="P/BV"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_roe"
+                android:layout_width="@dimen/watchlist_detail_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="-"
+                android:textColor="@color/c_blue"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_roa"
+                android:layout_width="@dimen/watchlist_detail_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="-"
+                android:textColor="@color/c_blue"
+                android:textSize="@dimen/f_small" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_peg"
+                android:layout_width="@dimen/watchlist_detail_col2"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/padding_row"
+                android:singleLine="true"
+                android:text="-"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_small" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_line" />
+
+</LinearLayout>

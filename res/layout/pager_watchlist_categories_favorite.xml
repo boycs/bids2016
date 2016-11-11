@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_title_height"
+        android:paddingRight="@dimen/padding_row" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="0.95"
+            android:orientation="vertical" >
+
+            <com.app.custom.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Watch List"
+                android:textColor="@color/c_content2"
+                android:textSize="@dimen/f_normal" />
+
+            <com.app.custom.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="favorite"
+                android:textColor="@color/c_content2"
+                android:textSize="@dimen/f_small" />
+        </LinearLayout>
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/padding_default"
+            android:text="Close"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_normal" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_line" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_default"
+        android:padding="@dimen/padding_default" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3" >
+
+            <LinearLayout
+                android:id="@+id/li_favorite1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.95"
+                    android:singleLine="true"
+                    android:text="Favorite1"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+
+                <ImageView
+                    android:layout_width="@dimen/img_iconrow"
+                    android:layout_height="@dimen/img_iconrow"
+                    android:src="@drawable/icon_next" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.95"
+                    android:singleLine="true"
+                    android:text="Favorite2"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+
+                <ImageView
+                    android:layout_width="@dimen/img_iconrow"
+                    android:layout_height="@dimen/img_iconrow"
+                    android:src="@drawable/icon_next" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.95"
+                    android:singleLine="true"
+                    android:text="Favorite3"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+
+                <ImageView
+                    android:layout_width="@dimen/img_iconrow"
+                    android:layout_height="@dimen/img_iconrow"
+                    android:src="@drawable/icon_next" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.95"
+                    android:singleLine="true"
+                    android:text="Favorite4"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+
+                <ImageView
+                    android:layout_width="@dimen/img_iconrow"
+                    android:layout_height="@dimen/img_iconrow"
+                    android:src="@drawable/icon_next" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:id="@+id/li_favorite5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_default" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.95"
+                    android:singleLine="true"
+                    android:text="Favorite5"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_description" />
+
+                <ImageView
+                    android:layout_width="@dimen/img_iconrow"
+                    android:layout_height="@dimen/img_iconrow"
+                    android:src="@drawable/icon_next" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

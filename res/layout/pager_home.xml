@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_menu_hide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_title"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_default"
+        android:visibility="gone" >
+
+        <com.app.custom.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.95"
+            android:text="2014-01-03"
+            android:textColor="@color/c_title"
+            android:textSize="@dimen/f_description" />
+
+        <com.app.custom.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:text="User Thanadet Balance 22.506.89฿"
+            android:textColor="@color/c_title"
+            android:textSize="@dimen/f_small" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/li_list_set"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:id="@+id/li_data_set"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_tradingsummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_default" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.95"
+                        android:singleLine="true"
+                        android:text="Trading Summary"
+                        android:textColor="@color/c_title"
+                        android:textSize="@dimen/f_description" />
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:singleLine="true"
+                        android:text="2014-02-14"
+                        android:textColor="@color/c_title"
+                        android:textSize="@dimen/f_description" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_default"
+                    android:weightSum="5" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4" >
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text="Buy"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text="Sell"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text="Net"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/li_institution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4" >
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text="Institution"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/li_proprietary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4" >
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text="Proprietary"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/li_foreign"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4" >
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text="Foreign"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/li_individual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4" >
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:text="Individual"
+                                android:textColor="@color/c_content"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/c_content2"
+                                android:textSize="@dimen/f_small" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical" >
+
+                        <com.app.custom.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="Total Trading Value"
+                            android:textColor="@color/c_content2"
+                            android:textSize="@dimen/f_small" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2" >
+
+                            <com.app.bids.ProgressWheel
+                                android:id="@+id/progressBar1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                ProgressWheel:pwBarColor="@color/c_success"
+                                ProgressWheel:pwBarLength="60dp"
+                                ProgressWheel:pwBarWidth="5dp"
+                                ProgressWheel:pwRimColor="@color/c_content"
+                                ProgressWheel:pwRimWidth="5dp"
+                                ProgressWheel:pwSpinSpeed="5dp"
+                                ProgressWheel:pwTextColor="@color/c_blue"
+                                ProgressWheel:pwTextSize="@dimen/f_description" />
+
+                            <com.app.bids.ProgressWheel
+                                android:id="@+id/progressBar2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                ProgressWheel:pwBarColor="@color/c_success"
+                                ProgressWheel:pwBarLength="60dp"
+                                ProgressWheel:pwBarWidth="5dp"
+                                ProgressWheel:pwRimColor="@color/c_content"
+                                ProgressWheel:pwRimWidth="5dp"
+                                ProgressWheel:pwSpinSpeed="5dp"
+                                ProgressWheel:pwTextColor="@color/c_blue"
+                                ProgressWheel:pwTextSize="@dimen/f_description" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2" >
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="3,434.33"
+                                android:textColor="@color/c_blue"
+                                android:textSize="@dimen/f_small" />
+
+                            <com.app.custom.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="M.Baht"
+                                android:textColor="@color/c_blue"
+                                android:textSize="@dimen/f_small" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_hotsymbol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_default" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:singleLine="true"
+                        android:text="Hot Symbol"
+                        android:textColor="@color/c_title"
+                        android:textSize="@dimen/f_description" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_list_hotsymbol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

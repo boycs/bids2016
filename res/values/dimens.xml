@@ -1,0 +1,190 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- font -->
+    <dimen name="f_xlarge">29sp</dimen>
+    <dimen name="f_large">24sp</dimen>
+    <dimen name="f_title">21sp</dimen>
+    <dimen name="f_normalmor">19sp</dimen>
+    <dimen name="f_normal">16sp</dimen>
+    <dimen name="f_description">14sp</dimen>
+    <dimen name="f_note">9sp</dimen>
+    <dimen name="f_sft">6sp</dimen>
+    <dimen name="f_small">11sp</dimen>
+    <dimen name="f_symbol_detail_title">15sp</dimen>
+    <dimen name="f_watchlist_detail">12sp</dimen>
+    <dimen name="f_symbol_detail">13sp</dimen>
+    <dimen name="f_symbol_detail_small">9sp</dimen>
+    <dimen name="f_setalert_row">13sp</dimen>
+    <dimen name="f_smart_detail">12sp</dimen>
+
+    <!-- layout -->
+    <dimen name="tab_title_height">45dp</dimen>
+    <dimen name="tab_title_height2">35dp</dimen>
+    <dimen name="img_title_wh">26dp</dimen>
+    <dimen name="img_bottom_menu">30dp</dimen>
+    <dimen name="img_iconrow">20dp</dimen>
+    <dimen name="img_updown">18dp</dimen>
+    <dimen name="padding_row">2dp</dimen>
+    <dimen name="padding_default">5dp</dimen>
+    <dimen name="padding_default2">7dp</dimen>
+    <dimen name="padding_input_register">10dp</dimen>
+    <dimen name="padding_big">10dp</dimen>
+    <dimen name="padding_large">20dp</dimen>
+    <dimen name="margin_default">-5dp</dimen>
+    <dimen name="margin_big">-20dp</dimen>
+    <dimen name="line_wh">0.5dp</dimen>
+    <dimen name="line_select">1dp</dimen>
+    <dimen name="distance_default">4dp</dimen>
+    <dimen name="list_slidermenu_width">240dp</dimen>
+    <dimen name="row_list_news_h">150dp</dimen>
+    <dimen name="img_news_select_h">170dp</dimen>
+    <dimen name="img_back">32dp</dimen>
+    <dimen name="img_icon">22dp</dimen>
+    <dimen name="img_icon_updown">16dp</dimen>
+    <dimen name="img_icon_symboldetail_showhide">12dp</dimen>
+    <dimen name="img_icon_search">12dp</dimen>
+    <dimen name="img_bottom_menu_margin">-5dp</dimen>
+    <dimen name="img_index_news_w">55dp</dimen>
+    <dimen name="img_index_news_h">40dp</dimen>
+    <dimen name="img_icon_news">13dp</dimen>
+    <dimen name="img_icon_likecomment">36dp</dimen>
+    <dimen name="systemt_chart_h">35dp</dimen>
+    <dimen name="border_input">4dp</dimen>
+    <dimen name="border_default">7dp</dimen>
+    <dimen name="carousel_h">150dp</dimen>
+    <dimen name="heatmap_h">190dp</dimen>
+    <dimen name="row_grid_h">170dp</dimen>
+    <dimen name="padding_chart_menu_right">15dp</dimen>
+    <dimen name="margin_chart_menu_right">-15dp</dimen>
+    <dimen name="menu_icon_right_wh">34dp</dimen>
+    <dimen name="ideas_list_h">180dp</dimen>
+    <dimen name="icon_splash_screen_wh">130dp</dimen>
+    <dimen name="icon_chart_color">13dp</dimen>     
+    <dimen name="stoploss_w">10dp</dimen>   
+    <dimen name="stoploss_w2">13dp</dimen>
+
+    <!-- login -->
+    <dimen name="padding_login">20dp</dimen>
+    <dimen name="logo_w">100dp</dimen>
+    <dimen name="logo_h">100dp</dimen>
+
+    <!-- search mar -->
+    <dimen name="icon_status_connect_h">24dp</dimen>
+    <dimen name="icon_status_connect_w">10dp</dimen>
+
+    <!-- watchlist -->
+    <dimen name="watchlist_sft_col">15dp</dimen>
+    <dimen name="watchlist_sft_line">1dp</dimen>
+    <dimen name="watchlist_detail_col_long">100dp</dimen>
+    <dimen name="watchlist_detail_col">60dp</dimen>
+    <dimen name="watchlist_detail_col2">50dp</dimen>
+    <dimen name="watchlist_detail_col3">74dp</dimen>
+    <dimen name="watchlist_detail_col_date">70dp</dimen>
+    <dimen name="watchlist_detail_col_breakout">80dp</dimen>
+    <dimen name="watchlist_detail_col_f">38dp</dimen>
+    <dimen name="watchlist_detail_col_grahp">32dp</dimen>
+    <dimen name="watchlist_detail_col_grahp_fun">32dp</dimen>
+    <dimen name="watchlist_detail_col_ftrend">64dp</dimen>
+    <dimen name="watchlist_detail_col_icon">28dp</dimen>
+    <dimen name="watchlist_chart_h">24dp</dimen>
+    <dimen name="watchlist_chart_bs_w">55dp</dimen>
+    <dimen name="watchlist_chart_bs_h">34dp</dimen>
+    <dimen name="watchlist_percent_buysell">5dp</dimen>
+    <dimen name="search_border_line">0.5dp</dimen>
+    <dimen name="padding_tab_pager">30dp</dimen>
+    <dimen name="trend_wh">18dp</dimen>
+    <dimen name="icon_del_fav">22dp</dimen>
+    <dimen name="icon_news_magin_left">-12dp</dimen>
+    <dimen name="icon_news_magin_bottom">-10dp</dimen>
+    <dimen name="icon_news">24dp</dimen>
+    <dimen name="watchlist_dropdown_w">90dp</dimen>
+    <dimen name="watchlist_detail_margin_top">-5dp</dimen>
+    <dimen name="watchlist_detail_fund_box">17dp</dimen>
+    <dimen name="pager_symbol_detail">250dp</dimen>
+    <dimen name="pager_symbol_detail_2">220dp</dimen>
+    <dimen name="pager_symbol_detail_small">130dp</dimen>
+    <dimen name="row_symboldetail_h">38dp</dimen>
+    <dimen name="icon_mutualfund_wh">32dp</dimen>
+
+    <!-- News Index -->
+    <dimen name="row_new_h">140dp</dimen>
+
+    <!-- loading progress -->
+    <dimen name="progress_wh">60dp</dimen>
+
+    <!-- category -->
+    <dimen name="icon_star1">26dp</dimen>
+    <dimen name="icon_star2">38dp</dimen>
+
+    <!-- set alert -->
+    <dimen name="setalert_updown">18dp</dimen>
+    <dimen name="setalert_status">36dp</dimen>
+    <dimen name="margin_timeago">-15dp</dimen>
+    <dimen name="setalert_drag_h">60dp</dimen>
+
+    <!-- system trad -->
+    <dimen name="toggle_bs_w">69dp</dimen>
+    <dimen name="toggle_bs_h">28dp</dimen>
+    <dimen name="toggle_w">63dp</dimen>
+    <dimen name="toggle_h">30dp</dimen>
+    <dimen name="count_sign">30dp</dimen>
+    <dimen name="add_symbol">28dp</dimen>
+    <dimen name="icon_system_color">22dp</dimen>
+    <dimen name="icon_system_add">26dp</dimen>
+    <dimen name="icon_system_watch_w">38dp</dimen>
+    <dimen name="icon_system_watch_h">24dp</dimen>
+
+    <!-- system trad mutual fun -->
+    <dimen name="watchlist_detail_mfun_col">60dp</dimen>
+    <dimen name="watchlist_detail_mfun_col2">48dp</dimen>
+    <dimen name="watchlist_detail_mfun_col_long">65dp</dimen>
+    <dimen name="watchlist_detail_mfun_col_date">64dp</dimen>
+    <dimen name="watchlist_detail_mfun_col_rating">100dp</dimen>
+    <dimen name="watchlist_detail_mfun_col_risk">130dp</dimen>
+    <dimen name="watchlist_detail_mfun_col_icon">28dp</dimen>
+    <dimen name="watchlist_chart_mfun_h">24dp</dimen>
+<!--     <dimen name="row_detail_mfun_h">32dp</dimen> -->
+
+    <!-- profile -->
+    <dimen name="profile_bg_h">150dp</dimen>
+    <dimen name="icon_profile_wh">60dp</dimen>
+    <dimen name="remining_wh">60dp</dimen>
+    <dimen name="line_profile_border">0.4dp</dimen>
+    <dimen name="icon_social_login_h">60dp</dimen>
+    <dimen name="icon_profile_status">15dp</dimen>
+    <dimen name="icon_package">20dp</dimen>
+    <dimen name="pwRimWidth">15dp</dimen>
+    <dimen name="icon_profile_realtime">13dp</dimen>
+    <dimen name="icon_suggestion">60dp</dimen>
+    <dimen name="progress_score">100dp</dimen>
+    <dimen name="progress_remining">100dp</dimen>
+    <dimen name="progress_margintop_remining">-63dp</dimen>
+    <dimen name="progress_margintop_score">-62dp</dimen>
+    <dimen name="progress_margintop_score2">-3dp</dimen>
+    <dimen name="profile_bolling_money">60dp</dimen>
+
+    <!-- search symbol -->
+    <dimen name="icon_favorite">26dp</dimen>
+
+    <!-- chartiq -->
+    <dimen name="chartiq_icon_menu">26dp</dimen>
+    <dimen name="chartiq_icon_refresh">32dp</dimen>
+    <dimen name="chartiq_icon_style">24dp</dimen>
+    <dimen name="chartiq_icon_showhide_margin_top">30dp</dimen>
+    <dimen name="chartiq_icon_showhide_margin_top2">45dp</dimen>
+
+    <!-- color picker -->
+    <dimen name="colorGridColumnWidth">230dp</dimen>
+    <dimen name="colorGridSpacing">1dp</dimen>
+    <dimen name="chartiq_color_box">32dp</dimen>
+
+    <!-- mutual fund -->
+    <dimen name="risk_radius">10dp</dimen>
+    <dimen name="risk_line">0.3dp</dimen>
+    <dimen name="risk_height_big">12dp</dimen>
+
+</resources>

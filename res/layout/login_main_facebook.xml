@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_login_facebook"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/main_ui_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <com.facebook.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_big"
+            android:visibility="gone"
+            facebook:confirm_logout="false"
+            facebook:fetch_user_info="true" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_launch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="100dp"
+            android:text="FACEBOOK"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_xlarge"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+            <com.facebook.widget.ProfilePictureView
+                android:id="@+id/profilePicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                facebook:preset_size="normal" />
+
+            <Button
+                android:id="@+id/postStatusUpdateButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Post Status Update" />
+
+            <Button
+                android:id="@+id/postPhotoButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Post Photo" />
+
+            <Button
+                android:id="@+id/pickFriendsButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick Some Friends" />
+
+            <Button
+                android:id="@+id/pickPlaceButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick Place" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_default"
+    android:paddingRight="@dimen/padding_default" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_row" >
+
+        <LinearLayout
+            android:id="@+id/li_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_name_initial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_description" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_name_t"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_description" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_asset_initial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_description" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/bg_default" />
+
+</LinearLayout>

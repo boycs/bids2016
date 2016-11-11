@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/li_row_bord"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_tab_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_title_height"
+        android:gravity="center"
+        android:paddingRight="@dimen/padding_big"
+        android:paddingLeft="@dimen/padding_big" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="0.95"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/img_icon"
+                android:layout_height="@dimen/img_icon"
+                android:background="@drawable/icon_back"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/img_next"
+                android:layout_width="@dimen/img_icon"
+                android:layout_height="@dimen/img_icon"
+                android:background="@drawable/icon_next"
+                android:visibility="gone" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.95"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="Heat Map"
+                android:textColor="@color/c_content2"
+                android:textSize="@dimen/f_normalmor"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/img_reload"
+                android:layout_width="@dimen/img_icon"
+                android:layout_height="@dimen/img_icon"
+                android:background="@drawable/icon_reload"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_setting"
+            android:layout_width="@dimen/img_icon"
+            android:layout_height="@dimen/img_icon"
+            android:background="@drawable/icon_setting"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/wv_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="false" />
+
+</LinearLayout>

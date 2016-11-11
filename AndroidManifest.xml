@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.bids"
+    android:versionCode="19"
+    android:versionName="1.1.9" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.app.bidchart.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <!-- android:name="com.app.bids.GoogleAnalyticsApp" -->
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppBaseTheme" >
+        <activity
+            android:name="com.app.bids.SplashScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.app.bids.FragmentChangeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <!-- android:screenOrientation="portrait" -->
+        <activity
+            android:name="com.app.bids.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.app.bids.LoginRegister"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name="com.app.bids.UiWatchListDetailNewsSelect" />
+        <activity android:name="com.app.bids.UiWatchListDetailNewsSocialSelect" />
+        <activity android:name="com.app.bids.UiWatchlistDetailNewsSelectComments" />
+        <activity android:name="com.app.bids.UiProfileIdeasSelect" />
+        <activity android:name="com.app.bids.UiArticleSelect" />
+        <activity android:name="com.app.bids.UiCdcDetailWebView" />
+        <activity android:name="com.app.bids.UiEsuDetailWebView" />
+        <activity android:name="com.app.bids.UiDusitDetailWebView" />
+        <activity android:name="com.app.bids.UiDusitValuation" />
+        <activity
+            android:name="com.app.bids.UiArticleSelectComments"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.app.bids.UiProfileIdeasSelectComments"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name="com.app.bids.UiHotHeatmap" />
+        <activity android:name="com.app.bids.UiProfileBilling" />
+        <activity
+            android:name="com.app.bids.UiWatchlistDetail_old"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.app.model.login.WebViewActivity"
+            android:label="@string/app_name" />
+        <activity android:name="com.app.model.login.FacebookLoginActivity" />
+        <activity android:name="com.app.model.login.FacebookLoginActivity2" />
+        <activity android:name="com.app.model.login.TwitterLoginActivity" />
+        <activity
+            android:name="com.app.bids.UiWatchlistDetail"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.app.bids.UiMutualfundDetail"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.app.bids.UiWebviewTest"
+            android:screenOrientation="landscape" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.gms.analytics.globalConfigResource" -->
+        <!-- android:resource="@xml/analytics_global_config" /> -->
+
+
+        <!-- <provider -->
+        <!-- android:name="com.facebook.NativeAppCallContentProvider" -->
+        <!-- android:authorities="com.facebook.app.NativeAppCallContentProvider355198514515820" -->
+        <!-- android:exported="true" /> -->
+    </application>
+
+</manifest>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_title_height"
+        android:paddingRight="@dimen/padding_big" >
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.95"
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="@color/c_content2"
+            android:textSize="@dimen/f_normalmor" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Close"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_normalmor" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/padding_big" >
+
+        <com.app.custom.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Infomation"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_wh"
+            android:background="@color/c_line" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_big" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3" >
+
+            <com.app.custom.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="When"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_normal" />
+
+            <com.app.custom.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_normal" />
+
+            <com.app.custom.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Email"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_normal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.95" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_default" >
+
+            <LinearLayout
+                android:id="@+id/li_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone commented on your idea"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone agreed with your idea"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone followed you"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone replied to your comment"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone you follow published new idea"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone published idea on symbol you follow"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone commented on the idea you follow"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone you follow post new comment"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Someone you follow changed status"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+
+            <LinearLayout
+                android:id="@+id/li_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_big"
+                android:paddingTop="@dimen/padding_big" >
+
+                <com.app.custom.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.95"
+                    android:text="Notification sound"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_title" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/bt_savechange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/c_title"
+        android:paddingLeft="@dimen/padding_big"
+        android:paddingRight="@dimen/padding_big"
+        android:text="Save Change"
+        android:textColor="@color/c_success"
+        android:textSize="@dimen/f_normal" />
+
+</LinearLayout>

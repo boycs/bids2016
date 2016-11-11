@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_row" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="@dimen/row_symboldetail_h" >
+
+        <LinearLayout
+            android:id="@+id/row_symbol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:orientation="vertical" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_symbol_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Symbol"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_watchlist_detail" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_symbol_fullname_eng"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_note" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/c_line" />
+
+</LinearLayout>

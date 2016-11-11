@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default" >
+
+    <com.app.custom.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_default"
+        android:text="COMPARE"
+        android:textColor="@color/c_content"
+        android:textSize="@dimen/f_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:weightSum="3" >
+
+        <com.app.custom.CustomTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_default"
+            android:singleLine="true"
+            android:text="Find Symbol "
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/dl_tv_compare_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/bg_profile_input"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/padding_default"
+        android:paddingTop="@dimen/padding_default"
+        android:weightSum="3" >
+
+        <com.app.custom.CustomTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_default"
+            android:singleLine="true"
+            android:text="Color Default "
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_search_default"
+                android:orientation="vertical" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/dl_tv_color"
+                    android:layout_width="@dimen/chartiq_color_box"
+                    android:layout_height="@dimen/chartiq_color_box"
+                    android:tag="" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gridViewColors"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.9"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/colorGridSpacing"
+        android:numColumns="11"
+        android:verticalSpacing="@dimen/colorGridSpacing" >
+    </GridView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_default" >
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/dl_tv_compare_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/c_success"
+            android:paddingBottom="@dimen/padding_default"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="@dimen/padding_default"
+            android:text="Done"
+            android:textColor="@color/c_title"
+            android:textSize="@dimen/f_description" />
+    </LinearLayout>
+
+</LinearLayout>

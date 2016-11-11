@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="false" android:state_pressed="false"><shape>
+            <gradient android:angle="270" android:centerColor="@color/carousel_tab_top" android:endColor="@color/carousel_tab_top" android:startColor="@color/carousel_tab_top" />
+
+            <!-- <stroke android:width="0.3dp" android:color="@color/c_line" /> -->
+
+
+            <!-- <padding android:bottom="@dimen/padding_row" android:left="@dimen/padding_row" android:right="@dimen/padding_row" android:top="@dimen/padding_row" /> -->
+
+            <corners android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp" android:topLeftRadius="@dimen/padding_default" android:topRightRadius="@dimen/padding_default" />
+        </shape></item>
+
+</selector>

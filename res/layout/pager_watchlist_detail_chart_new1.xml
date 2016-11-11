@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_chartiq"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:id="@+id/li_view_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:id="@+id/li_ciq_tool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/chartiq_icon_showhide_margin_top2"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/img_tool_showhide"
+                android:layout_width="@dimen/chartiq_icon_menu"
+                android:layout_height="@dimen/chartiq_icon_menu"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:src="@drawable/icon_chartshowhide" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+                <ImageView
+                    android:id="@+id/img_tool_refresh_chart"
+                    android:layout_width="@dimen/chartiq_icon_refresh"
+                    android:layout_height="@dimen/chartiq_icon_refresh"
+                    android:src="@drawable/icon_refresh"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

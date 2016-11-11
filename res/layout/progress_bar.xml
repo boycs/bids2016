@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default" >
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.ProgressBar.Large.Inverse"
+        android:layout_width="@dimen/progress_wh"
+        android:layout_height="@dimen/progress_wh"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_dialog" />
+
+</LinearLayout>

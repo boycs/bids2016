@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/li_row_bord"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_back"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_title_height"
+        android:background="@color/bg_default"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_row" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/img_title_wh"
+            android:layout_height="@dimen/img_title_wh"
+            android:src="@drawable/icon_back" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/com.app.custom.CustomTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/webNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="false" />
+
+</LinearLayout>

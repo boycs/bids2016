@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/padding_row"
+                android:layout_marginLeft="@dimen/padding_big"
+                android:layout_marginRight="@dimen/padding_big"
+                android:layout_marginTop="@dimen/padding_row"
+                android:background="@drawable/border_button"
+                android:weightSum="3" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_tab_set"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_button_activeleft"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default"
+                    android:singleLine="true"
+                    android:text="SET"
+                    android:textColor="@color/bg_default"
+                    android:textSize="@dimen/f_symbol_detail" />
+
+                <View
+                    android:layout_width="@dimen/line_wh"
+                    android:layout_height="match_parent"
+                    android:background="@color/c_border" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_tab_social"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default"
+                    android:singleLine="true"
+                    android:text="Social"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_symbol_detail" />
+
+                <View
+                    android:layout_width="@dimen/line_wh"
+                    android:layout_height="match_parent"
+                    android:background="@color/c_border" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_tab_bids"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default"
+                    android:singleLine="true"
+                    android:text="BIDs"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_symbol_detail" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="false" android:state_pressed="false"><shape>
+            <gradient android:angle="0" android:centerColor="@color/c_warning" android:endColor="@color/c_danger" android:startColor="@color/c_success" />
+
+            <stroke android:width="@dimen/line_wh" android:color="@color/c_border" />
+
+<!--             <padding android:left="@dimen/padding_default" android:top="@dimen/padding_default" /> -->
+
+            <corners android:radius="@dimen/risk_radius" />
+        </shape></item>
+
+</selector>

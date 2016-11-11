@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_default"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="5" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/img_cat_color"
+                android:layout_width="@dimen/icon_chart_color"
+                android:layout_height="@dimen/icon_chart_color"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_circle" />
+        </LinearLayout>
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_cat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:singleLine="true"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_smart_detail" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:gravity="right"
+            android:singleLine="true"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_smart_detail" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:padding="@dimen/padding_default"
+            android:weightSum="10" >
+
+            <View
+                android:id="@+id/v_percent_1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_7"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_8"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_9"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+
+            <View
+                android:id="@+id/v_percent_10"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/padding_default"
+                android:layout_weight="1"
+                android:background="@color/c_title" />
+        </LinearLayout>
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/tv_percent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="@dimen/padding_default"
+            android:singleLine="true"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_smart_detail" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_index_news"
+        android:gravity="center|center_vertical"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/li_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row_grid_h"
+            android:layout_weight="0.95"
+            android:gravity="bottom"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_transparent"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_default" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_article_keyword"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_default" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_article_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/padding_default" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_created_at"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:paddingLeft="@dimen/padding_default"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_small" />
+
+            <ImageView
+                android:layout_width="@dimen/img_icon_news"
+                android:layout_height="@dimen/img_icon_news"
+                android:layout_weight="0.95"
+                android:background="@drawable/icon_view" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_views_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:gravity="right"
+                android:paddingLeft="@dimen/padding_row"
+                android:paddingRight="@dimen/padding_big"
+                android:text="11"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_small" />
+
+            <ImageView
+                android:layout_width="@dimen/img_icon_news"
+                android:layout_height="@dimen/img_icon_news"
+                android:layout_weight="0.95"
+                android:background="@drawable/icon_like" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_likes_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:paddingLeft="@dimen/padding_row"
+                android:paddingRight="@dimen/padding_big"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_small" />
+
+            <ImageView
+                android:layout_width="@dimen/img_icon_news"
+                android:layout_height="@dimen/img_icon_news"
+                android:layout_weight="0.95"
+                android:background="@drawable/icon_comment" />
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_comments_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:paddingLeft="@dimen/padding_row"
+                android:paddingRight="@dimen/padding_big"
+                android:text="2"
+                android:textColor="@color/c_title"
+                android:textSize="@dimen/f_small" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

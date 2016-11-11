@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="false" android:state_pressed="false"><shape>
+            <gradient android:angle="270" android:centerColor="@color/bg_search_select" android:endColor="@color/bg_search_select" android:startColor="@color/bg_search_select" />
+
+<!--             <stroke android:width="0.5dp" android:color="@color/c_border" /> -->
+
+<!--             <padding android:bottom="@dimen/padding_default" android:left="@dimen/padding_default" android:right="@dimen/padding_default" android:top="@dimen/padding_default" /> -->
+
+            <corners android:topLeftRadius="@dimen/border_default" android:bottomLeftRadius="@dimen/border_default" />
+        </shape></item>
+
+</selector>

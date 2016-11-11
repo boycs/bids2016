@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/li_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/padding_big"
+        android:paddingLeft="@dimen/padding_default"
+        android:paddingRight="@dimen/padding_default"
+        android:paddingTop="@dimen/padding_big" >
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/com.app.custom.CustomTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="@color/c_title"
+            android:textSize="@dimen/f_normalmor" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_back"
+            android:visibility="gone" />
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/dl_tv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cloes"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_wh"
+        android:background="@color/bg_default" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_big" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_default" >
+
+        <com.app.custom.CustomTextView
+            android:id="@+id/com.app.custom.CustomTextView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Information"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_wh"
+            android:background="@color/c_line" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_wh"
+            android:background="@color/c_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_big"
+            android:weightSum="7" >
+
+            <com.app.custom.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:singleLine="true"
+                android:text="When"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_description" />
+
+            <com.app.custom.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="Email"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_description" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_default" >
+
+            <LinearLayout
+                android:id="@+id/dl_li_notification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_default" />
+
+                <LinearLayout
+                    android:id="@+id/li_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone commented on your idea"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_comment_your_idea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_comment_your_idea"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone agreed with your idea"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_agree_your_idea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_agree_your_idea"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone followed you"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_followed_you"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_followed_you"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone replied to your comment"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_reply_your_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_reply_your_comment"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone you follow published new idea"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_you_follow_published_new_idea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_you_follow_published_new_idea"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone published idea on symbol you follow"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_published_idea_on_symbol_you_follow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_published_idea_on_symbol_you_follow"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone commented on the idea you follow"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_commented_on_idea_you_follow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_commented_on_idea_you_follow"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone you follow post new comment"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_you_follow_post_new_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_you_follow_post_new_comment"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Someone you follow changed status"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_you_follow_change_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_you_follow_change_status"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_wh"
+                    android:background="@color/c_line" />
+
+                <LinearLayout
+                    android:id="@+id/li_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7" >
+
+                    <com.app.custom.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="Notification sound"
+                        android:textColor="@color/c_content"
+                        android:textSize="@dimen/f_small" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default" >
+
+                        <CheckBox
+                            android:id="@+id/ck_notification_sound"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_checkbox"
+                            android:checked="true"
+                            android:visibility="gone" />
+
+                        <ToggleButton
+                            android:id="@+id/tg_notification_sound"
+                            android:layout_width="@dimen/toggle_w"
+                            android:layout_height="@dimen/toggle_h"
+                            android:background="@drawable/bg_toggle_profile"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text=""
+                            android:textOff=""
+                            android:textOn="" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_wh"
+                android:background="@color/c_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="@dimen/padding_default" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/dl_tv_savechanges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_default"
+                    android:text="Save Changes"
+                    android:textColor="@color/c_success"
+                    android:textSize="@dimen/f_description" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

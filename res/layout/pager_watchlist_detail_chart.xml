@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default2"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_chartiq"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:id="@+id/li_view_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:id="@+id/li_ciq_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_row"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default"
+            android:visibility="gone"
+            android:weightSum="2" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_symbol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c_content"
+                    android:textSize="@dimen/f_normalmor" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_symbol_name_eng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_symbol_detail" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_last_trade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textColor="@color/c_success"
+                    android:textSize="@dimen/f_normalmor" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_percenchange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textColor="@color/c_success"
+                    android:textSize="@dimen/f_symbol_detail" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/li_ciq_tool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/chartiq_icon_showhide_margin_top2"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/img_tool_showhide"
+                android:layout_width="@dimen/chartiq_icon_menu"
+                android:layout_height="@dimen/chartiq_icon_menu"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:src="@drawable/icon_chartshowhide" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/li_ciq_period"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"
+                    android:weightSum="4" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:background="@drawable/chartiq_border"
+                        android:visibility="visible"
+                        android:weightSum="8" >
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_1d"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/chartiq_activeleft"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="1D"
+                            android:textColor="@color/bg_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_1w"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="1W"
+                            android:textColor="@color/chartiq_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_1min"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="1min"
+                            android:textColor="@color/chartiq_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_5min"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="5min"
+                            android:textColor="@color/chartiq_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_15min"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="15min"
+                            android:textColor="@color/chartiq_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_30min"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="30min"
+                            android:textColor="@color/chartiq_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_60min"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="60min"
+                            android:textColor="@color/chartiq_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <com.app.custom.CustomTextView
+                            android:id="@+id/tv_ciq_120min"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_default"
+                            android:singleLine="true"
+                            android:text="120min"
+                            android:textColor="@color/chartiq_default"
+                            android:textSize="@dimen/f_symbol_detail" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_ciq_showview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/padding_row"
+                    android:visibility="gone"
+                    android:weightSum="3" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/chartiq_border"
+                        android:visibility="visible"
+                        android:weightSum="3" >
+
+                        <LinearLayout
+                            android:id="@+id/li_ciq_1view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/chartiq_activeleft"
+                            android:gravity="center" >
+
+                            <ImageView
+                                android:id="@+id/img_ciq_1view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/chartiq_icon_menu"
+                                android:background="@drawable/icon_chartiq_1view" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <LinearLayout
+                            android:id="@+id/li_ciq_2view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center" >
+
+                            <ImageView
+                                android:id="@+id/img_ciq_2view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/chartiq_icon_menu"
+                                android:background="@drawable/icon_chartiq_3view" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="@dimen/line_wh"
+                            android:layout_height="match_parent"
+                            android:background="@color/chartiq_default" />
+
+                        <LinearLayout
+                            android:id="@+id/li_ciq_3view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center" >
+
+                            <ImageView
+                                android:id="@+id/img_ciq_3view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/chartiq_icon_menu"
+                                android:background="@drawable/icon_chartiq_2view" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:weightSum="4" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:gravity="right"
+                        android:weightSum="8" >
+
+                        <ImageView
+                            android:id="@+id/img_tool_refresh_chart"
+                            android:layout_width="@dimen/chartiq_icon_refresh"
+                            android:layout_height="@dimen/chartiq_icon_refresh"
+                            android:src="@drawable/icon_refresh"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:padding="@dimen/padding_default"
+            android:weightSum="3" >
+
+            <LinearLayout
+                android:id="@+id/li_ciq_tabbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:background="@drawable/chartiq_border"
+                android:visibility="gone"
+                android:weightSum="4" >
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default"
+                    android:singleLine="true"
+                    android:text="Style"
+                    android:textColor="@color/chartiq_default"
+                    android:textSize="@dimen/f_symbol_detail" />
+
+                <View
+                    android:layout_width="@dimen/line_wh"
+                    android:layout_height="match_parent"
+                    android:background="@color/chartiq_default" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_indicator"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default"
+                    android:singleLine="true"
+                    android:text="Indicator"
+                    android:textColor="@color/chartiq_default"
+                    android:textSize="@dimen/f_symbol_detail" />
+
+                <View
+                    android:layout_width="@dimen/line_wh"
+                    android:layout_height="match_parent"
+                    android:background="@color/chartiq_default" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_compare"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default"
+                    android:singleLine="true"
+                    android:text="Compare"
+                    android:textColor="@color/chartiq_default"
+                    android:textSize="@dimen/f_symbol_detail" />
+
+                <View
+                    android:layout_width="@dimen/line_wh"
+                    android:layout_height="match_parent"
+                    android:background="@color/chartiq_default" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ciq_draw"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_default"
+                    android:singleLine="true"
+                    android:text="Draw"
+                    android:textColor="@color/chartiq_default"
+                    android:textSize="@dimen/f_symbol_detail" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

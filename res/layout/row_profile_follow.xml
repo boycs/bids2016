@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_default"
+    android:orientation="vertical" >
+
+    <LinearLayout
+            android:id="@+id/li_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_big" >
+
+        <ImageView
+            android:id="@+id/img_user"
+            android:layout_width="@dimen/img_bottom_menu"
+            android:layout_height="@dimen/img_bottom_menu"
+            android:background="@drawable/icon_username" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_big" >
+
+            <com.app.custom.CustomTextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User"
+                android:textColor="@color/c_content"
+                android:textSize="@dimen/f_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/img_like"
+                    android:layout_width="@dimen/img_icon_news"
+                    android:layout_height="@dimen/img_icon_news"
+                    android:background="@drawable/icon_username" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_follow_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_big"
+                    android:paddingRight="@dimen/padding_big"
+                    android:text="10 Followers"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_small" />
+
+                <ImageView
+                    android:id="@+id/img_comment"
+                    android:layout_width="@dimen/img_icon_news"
+                    android:layout_height="@dimen/img_icon_news"
+                    android:background="@drawable/icon_countidear" />
+
+                <com.app.custom.CustomTextView
+                    android:id="@+id/tv_ideas_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_big"
+                    android:paddingRight="@dimen/padding_big"
+                    android:text="2 Ideas"
+                    android:textColor="@color/c_title"
+                    android:textSize="@dimen/f_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_follow"
+            android:layout_width="@dimen/img_bottom_menu"
+            android:layout_height="@dimen/img_bottom_menu"
+            android:background="@drawable/icon_check" />
+    </LinearLayout>
+
+</LinearLayout>
