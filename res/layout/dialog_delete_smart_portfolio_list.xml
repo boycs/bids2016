@@ -32,7 +32,7 @@
             android:id="@+id/dl_tv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cloes"
+            android:text="Close"
             android:textColor="@color/c_content"
             android:textSize="@dimen/f_normal"
             android:visibility="visible" />

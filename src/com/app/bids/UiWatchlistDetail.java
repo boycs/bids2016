@@ -112,6 +112,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 	public static Dialog dialogLoading;
 
+	public static PagerWatchList pagerWatchList;
+
 	// --------- google analytics
 	// private Tracker mTracker;
 	// String nameTracker = new String("Detail");
@@ -158,6 +160,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 		setContentView(R.layout.ui_watchlist_detail);
 
+		pagerWatchList = new PagerWatchList();
+
 		// // --------- google analytics
 		// Tracker t = ((GoogleAnalyticsApp) getApplicationContext())
 		// .getTracker(TrackerName.APP_TRACKER);
@@ -171,20 +175,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 		// set ค่า static object เริ่มต้น ให้เป็น null
 		setObjectBeginNull();
-		// set view
-		initView();
 	}
-
-	// // ************* init view ***************
-	// public static Handler handlerInitView = new Handler() {
-	// @Override
-	// public void handleMessage(Message msg) {
-	// // set ค่า static object เริ่มต้น ให้เป็น null
-	// setObjectBeginNull();
-	// // set view
-	// initView();
-	// }
-	// };
 
 	// ------- set ค่า static object เริ่มต้น ให้เป็น null
 	private void setObjectBeginNull() {
@@ -205,6 +196,9 @@ public class UiWatchlistDetail extends FragmentActivity {
 		industryListSector = null;
 		industryContentGetWatchlistNewsBySymbol = null;
 		spn_industry_select = false;
+		
+		// set view
+		initView();
 	}
 
 	// @Override
@@ -460,6 +454,51 @@ public class UiWatchlistDetail extends FragmentActivity {
 				} else {
 					if (ckFollow) {
 						getDataFavoriteId(); // unfollow
+
+						// try {
+						// if (FragmentChangeActivity.contentGetSymbolFavorite
+						// .length() >= 1) {
+						// for (int i = 0; i <
+						// FragmentChangeActivity.contentGetSymbolFavorite
+						// .length(); i++) {
+						// JSONObject jsoIndex =
+						// FragmentChangeActivity.contentGetSymbolFavorite
+						// .getJSONObject(i);
+						//
+						// String strFav = jsoIndex
+						// .getString("favorite_number");
+						//
+						// if (FragmentChangeActivity.strFavoriteNumber
+						// .equals(strFav)) {
+						// if ((jsoIndex.getJSONArray("dataAll")) != null) {
+						// FragmentChangeActivity.strGetListSymbol = "";
+						// JSONArray jsaFavSymbol = jsoIndex
+						// .getJSONArray("dataAll");
+						//
+						// for (int j = 0; j < jsaFavSymbol
+						// .length(); j++) {
+						// if (jsaFavSymbol
+						// .getJSONObject(j)
+						// .getString(
+						// "symbol_name")
+						// .equals(FragmentChangeActivity.strSymbolSelect)) {
+						// strRemoveId = jsaFavSymbol
+						// .getJSONObject(j)
+						// .getString("id");
+						// sendRemoveFavorite();
+						// break;
+						// }
+						// }
+						// }
+						// break;
+						// }
+						// }
+						// }
+						//
+						// } catch (JSONException e) {
+						// // TODO Auto-generated catch block
+						// e.printStackTrace();
+						// }
 					} else {
 						if (ckFollowCountLimit) {
 							dialogFavorite();
@@ -507,6 +546,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 					+ SplashScreen.userModel.user_id + "&symbol="
 					+ FragmentChangeActivity.strSymbolSelect + "&timestamp="
 					+ timestamp;
+			
+			Log.v("url_GetDetail",""+url_GetDetail);
 
 			try {
 				// ======= Ui Home ========
@@ -728,34 +769,34 @@ public class UiWatchlistDetail extends FragmentActivity {
 	public static TextView change_tv_open2_price;
 	public static TextView change_tv_open2_price_volume;
 	public static TextView change_tv_close_volume;
-	
-//	public static ArrayList<TextView> row_tv_last_trade;
-//	public static ArrayList<TextView> row_tv_change;
-//	public static ArrayList<TextView> row_tv_percent_change;
-//	public static ArrayList<TextView> row_tv_high;
-//	public static ArrayList<TextView> row_tv_low;
-//	public static ArrayList<TextView> row_tv_volume;
-//	public static ArrayList<TextView> row_tv_value;
-//	public static ArrayList<TextView> row_tv_buy_volume;
-//	public static ArrayList<TextView> row_tv_buy_value;
-//	public static ArrayList<TextView> row_tv_sell_volume;
-//	public static ArrayList<TextView> row_tv_sell_value;
-//	public static ArrayList<TextView> row_tv_avg_buy;
-//	public static ArrayList<TextView> row_tv_avg_sell;
-//	public static ArrayList<TextView> row_tv_max_buy_price;
-//	public static ArrayList<TextView> row_tv_max_buy_price_volume;
-//	public static ArrayList<TextView> row_tv_max_sell_price;
-//	public static ArrayList<TextView> row_tv_max_sell_price_volume;
-//	public static ArrayList<TextView> row_tv_open_price;
-//	public static ArrayList<TextView> row_tv_open1_price;
-//	public static ArrayList<TextView> row_tv_open1_price_volume;
-//	public static ArrayList<TextView> row_tv_open2_price;
-//	public static ArrayList<TextView> row_tv_open2_price_volume;
-//	public static ArrayList<TextView> row_tv_close_volume;
+
+	// public static ArrayList<TextView> row_tv_last_trade;
+	// public static ArrayList<TextView> row_tv_change;
+	// public static ArrayList<TextView> row_tv_percent_change;
+	// public static ArrayList<TextView> row_tv_high;
+	// public static ArrayList<TextView> row_tv_low;
+	// public static ArrayList<TextView> row_tv_volume;
+	// public static ArrayList<TextView> row_tv_value;
+	// public static ArrayList<TextView> row_tv_buy_volume;
+	// public static ArrayList<TextView> row_tv_buy_value;
+	// public static ArrayList<TextView> row_tv_sell_volume;
+	// public static ArrayList<TextView> row_tv_sell_value;
+	// public static ArrayList<TextView> row_tv_avg_buy;
+	// public static ArrayList<TextView> row_tv_avg_sell;
+	// public static ArrayList<TextView> row_tv_max_buy_price;
+	// public static ArrayList<TextView> row_tv_max_buy_price_volume;
+	// public static ArrayList<TextView> row_tv_max_sell_price;
+	// public static ArrayList<TextView> row_tv_max_sell_price_volume;
+	// public static ArrayList<TextView> row_tv_open_price;
+	// public static ArrayList<TextView> row_tv_open1_price;
+	// public static ArrayList<TextView> row_tv_open1_price_volume;
+	// public static ArrayList<TextView> row_tv_open2_price;
+	// public static ArrayList<TextView> row_tv_open2_price_volume;
+	// public static ArrayList<TextView> row_tv_close_volume;
 
 	// main
 	TextView tv_symbol, tv_symbol_status, tv_last_trade, tv_symbol_name_eng,
-	tv_change, tv_percenchange;
+			tv_change, tv_percenchange;
 	// ImageView img_updown;
 	// column 1
 	TextView tv_volume, tv_value, tv_open, tv_high, tv_low;
@@ -776,79 +817,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 	View v_percentBuy, v_percentSell;
 
 	private void setDataDetail() {
-		// ---- custom row
-//		row_tv_last_trade = new ArrayList<TextView>();
-//		row_tv_change = new ArrayList<TextView>();
-//		row_tv_percent_change = new ArrayList<TextView>();
-//		row_tv_high = new ArrayList<TextView>();
-//		row_tv_low = new ArrayList<TextView>();
-//		row_tv_volume = new ArrayList<TextView>();
-//		row_tv_value = new ArrayList<TextView>();
-//		row_tv_buy_volume = new ArrayList<TextView>();
-//		row_tv_buy_value = new ArrayList<TextView>();
-//		row_tv_sell_volume = new ArrayList<TextView>();
-//		row_tv_sell_value = new ArrayList<TextView>();
-//		row_tv_avg_buy = new ArrayList<TextView>();
-//		row_tv_avg_sell = new ArrayList<TextView>();
-//		row_tv_max_buy_price = new ArrayList<TextView>();
-//		row_tv_max_buy_price_volume = new ArrayList<TextView>();
-//		row_tv_max_sell_price = new ArrayList<TextView>();
-//		row_tv_max_sell_price_volume = new ArrayList<TextView>();
-//		row_tv_open_price = new ArrayList<TextView>();
-//		row_tv_open1_price = new ArrayList<TextView>();
-//		row_tv_open1_price_volume = new ArrayList<TextView>();
-//		row_tv_open2_price = new ArrayList<TextView>();
-//		row_tv_open2_price_volume = new ArrayList<TextView>();
-//		row_tv_close_volume = new ArrayList<TextView>();
-		
-//		change_tv_last_trade = new TextView(change_tv_last_trade);
-//		change_tv_change;
-//		change_tv_percent_change;
-//		change_tv_high;
-//		change_tv_low;
-//		change_tv_volume;
-//		change_tv_value;
-//		change_tv_buy_volume;
-//		change_tv_buy_value;
-//		change_tv_sell_volume;
-//		change_tv_sell_value;
-//		change_tv_avg_buy;
-//		TextView change_tv_avg_sell;
-//		TextView change_tv_max_buy_price;
-//		TextView change_tv_max_buy_price_volume;
-//		TextView change_tv_max_sell_price;
-//		TextView change_tv_max_sell_price_volume;
-//		TextView change_tv_open_price;
-//		TextView change_tv_open1_price;
-//		TextView change_tv_open1_price_volume;
-//		TextView change_tv_open2_price;
-//		TextView change_tv_open2_price_volume;
-//		TextView change_tv_close_volume;
-				
-//		row_tv_last_trade.clear();
-//		row_tv_change.clear();
-//		row_tv_percent_change.clear();
-//		row_tv_high.clear();
-//		row_tv_low.clear();
-//		row_tv_volume.clear();
-//		row_tv_value.clear();
-//		row_tv_buy_volume.clear();
-//		row_tv_buy_value.clear();
-//		row_tv_sell_volume.clear();
-//		row_tv_sell_value.clear();
-//		row_tv_avg_buy.clear();
-//		row_tv_avg_sell.clear();
-//		row_tv_max_buy_price.clear();
-//		row_tv_max_buy_price_volume.clear();
-//		row_tv_max_sell_price.clear();
-//		row_tv_max_sell_price_volume.clear();
-//		row_tv_open_price.clear();
-//		row_tv_open1_price.clear();
-//		row_tv_open1_price_volume.clear();
-//		row_tv_open2_price.clear();
-//		row_tv_open2_price_volume.clear();
-//		row_tv_close_volume.clear();
-			
+
 		// init follow & chart iq
 		// img_follow = (ImageView) findViewById(R.id.img_follow);
 		setFollowSymbol();
@@ -944,7 +913,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 				String status = contentGetDetail.getString("status");
 				String status_xd = contentGetDetail.getString("status_xd");
 				strGetSymbolOrderBook_Id = strOrderbookId;
-				
+
 				// tv_symbol.setText(Html.fromHtml(FunctionSymbol
 				// .checkStatusSymbol(strSymbol_name, turnover_list_level,
 				// status, status_xd)));
@@ -973,9 +942,12 @@ public class UiWatchlistDetail extends FragmentActivity {
 						|| (strPercentChange == "0.00")) {
 					tv_percenchange.setText("0.00");
 				} else {
-//					tv_percenchange.setText(strPercentChange + "%");
-					tv_change.setText(FunctionSymbol.setFormatNumber(strChange));
-					tv_percenchange.setText( " ("+ FunctionSymbol.setFormatNumber(strPercentChange) + "%)");
+					// tv_percenchange.setText(strPercentChange + "%");
+					tv_change
+							.setText(FunctionSymbol.setFormatNumber(strChange));
+					tv_percenchange.setText(" ("
+							+ FunctionSymbol.setFormatNumber(strPercentChange)
+							+ "%)");
 				}
 
 				// เซตสี change , lasttrade, percentchange เป็นสีตาม
@@ -988,7 +960,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 					tv_percenchange.setTextColor(getResources().getColor(
 							FunctionSetBg.setColor(strChange)));
 				}
-				
+
 				// column 1
 				String strVolume = contentGetDetail.getString("volume");
 				String strValue = contentGetDetail.getString("value");
@@ -999,6 +971,12 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 				tv_volume.setText(strVolume);
 				tv_value.setText(strValue);
+				// -- color write blue
+				tv_volume.setTextColor(getResources().getColor(
+						FunctionSetBg.setStrColorWriteDetailBlue(strVolume)));
+				tv_value.setTextColor(getResources().getColor(
+						FunctionSetBg.setStrColorWriteDetailBlue(strValue)));
+				
 				tv_open.setText(FunctionSymbol.setFormatNumber(strOpen));
 
 				tv_high.setText(FunctionSetBg.setStrDetailList(strHigh));
@@ -1065,11 +1043,14 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 				// -- color write blue
 				tv_ceil.setTextColor(getResources().getColor(
-						FunctionSetBg.setStrColorWriteDetailBlue(strHigh)));
+						FunctionSetBg.setStrColorWriteDetailBlue(strCeiling)));
 				tv_roe.setTextColor(getResources().getColor(
-						FunctionSetBg.setStrColorWriteDetailBlue(strHigh)));
+						FunctionSetBg.setStrColorWriteDetailBlue(strRoe)));
 				tv_roa.setTextColor(getResources().getColor(
-						FunctionSetBg.setStrColorWriteDetailBlue(strLow)));
+						FunctionSetBg.setStrColorWriteDetailBlue(strRoa)));
+				
+				tv_floor.setTextColor(getResources().getColor(
+						FunctionSetBg.setStrColorWriteDetailPink(strFloor)));
 
 				if (SplashScreen.contentSymbol_Set != null) {
 					String strPe_set = SplashScreen.contentSymbol_Set
@@ -1200,25 +1181,25 @@ public class UiWatchlistDetail extends FragmentActivity {
 					String strAverage_buy = contentGetDetail
 							.getString("average_buy");
 					String strMax_buy_price_volume = contentGetDetail
-							.getString("max_buy_price_volume");
+							.getString("max_buy_price_volume_str");
 					String strMax_buy_price = contentGetDetail
 							.getString("max_buy_price");
 					String strOpen1_volume = contentGetDetail
 							.getString("open1_volume");
 					String strOpen1 = contentGetDetail.getString("open1");
 					String strBuy_volume = contentGetDetail
-							.getString("buy_volume");
+							.getString("buy_volume_str");
 
 					String strAverage_sell = contentGetDetail
 							.getString("average_sell");
 					String strMax_sell_price_volume = contentGetDetail
-							.getString("max_sell_price_volume");
+							.getString("max_sell_price_volume_str");
 					String strMax_sell_price = contentGetDetail
 							.getString("max_sell_price");
 					String strClose_volume = contentGetDetail
 							.getString("close_volume");
 					String strSell_volume = contentGetDetail
-							.getString("sell_volume");
+							.getString("sell_volume_str");
 
 					String strPercentBuy = contentGetDetail
 							.getString("percentBuy");
@@ -1233,7 +1214,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 											FunctionSetBg
 													.setStrColorWriteDetailSuccess(strAverage_buy)));
 					tv_max_buy_price_volume.setText(FunctionSymbol
-							.setFormatNumber(strMax_buy_price_volume)
+							.setFormatNumberEtc(strMax_buy_price_volume)
 							+ ""
 							+ FunctionSymbol.setBracket(strMax_buy_price));
 					tv_max_buy_price_volume
@@ -1242,19 +1223,19 @@ public class UiWatchlistDetail extends FragmentActivity {
 											FunctionSetBg
 													.setStrColorWriteDetailSuccess(strMax_buy_price)));
 					tv_open1_volume.setText(FunctionSymbol
-							.setFormatNumber(strOpen1_volume)
+							.setFormatNumberEtc(strOpen1_volume)
 							+ ""
 							+ FunctionSymbol.setBracket(strOpen1));
 					tv_open1_volume.setTextColor(getResources().getColor(
 							FunctionSetBg
 									.setStrColorWriteDetailSuccess(strOpen1)));
 					tv_buy_volume.setText(FunctionSymbol
-							.setFormatNumber(strBuy_volume));
-					tv_buy_volume
-							.setTextColor(getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strBuy_volume)));
+							.setFormatNumber0(strBuy_volume));
+//					tv_buy_volume
+//							.setTextColor(getResources()
+//									.getColor(
+//											FunctionSetBg
+//													.setStrColorWriteDetailBlue(strBuy_volume)));
 
 					tv_average_sell.setText(FunctionSymbol
 							.checkNull(strAverage_sell));
@@ -1264,7 +1245,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 											FunctionSetBg
 													.setStrColorWriteDetailDanger(strAverage_sell)));
 					tv_max_sell_price_volume.setText(FunctionSymbol
-							.setFormatNumber(strMax_sell_price_volume)
+							.setFormatNumberEtc(strMax_sell_price_volume)
 							+ ""
 							+ FunctionSymbol.setBracket(strMax_sell_price));
 					tv_max_sell_price_volume
@@ -1274,9 +1255,14 @@ public class UiWatchlistDetail extends FragmentActivity {
 													.setStrColorWriteDetailDanger(strMax_sell_price_volume)));
 					tv_close_volume.setText(FunctionSetBg
 							.setStrDetailList(strClose_volume));
+					tv_close_volume
+							.setTextColor(getResources()
+									.getColor(
+											FunctionSetBg
+													.setStrColorWriteDetailDanger(strClose_volume)));
 
 					tv_sell_volume.setText(FunctionSymbol
-							.setFormatNumber(strSell_volume));
+							.setFormatNumberEtc(strSell_volume));
 					tv_sell_volume
 							.setTextColor(getResources()
 									.getColor(
@@ -1319,34 +1305,33 @@ public class UiWatchlistDetail extends FragmentActivity {
 					// startUpdateSymbol();
 					// }
 					// }
-					
 
-					// --- add view tv		
-//					row_tv_last_trade.add(tv_last_trade);
-//					row_tv_change.add(tv_change);
-//					row_tv_percent_change.add(tv_percenchange);
-//					row_tv_high.add(tv_high);
-//					row_tv_low.add(tv_low);
-//					row_tv_volume.add(tv_volume);
-//					row_tv_value.add(tv_value);
-//					row_tv_buy_volume.add(tv_buy_volume);
-//					row_tv_buy_value.add(tv_buy_);
-//					row_tv_sell_volume.add(tv_sell_volume);
-//					row_tv_sell_value.add(tv_);
-//					row_tv_avg_buy.add(tv_average_buy);
-//					row_tv_avg_sell.add(tv_average_sell);
-//					row_tv_max_buy_price.add(tv_);
-//					row_tv_max_buy_price_volume.add(tv_max_buy_price_volume);
-//					row_tv_max_sell_price.add(tv_);
-//					row_tv_max_sell_price_volume.add(tv_max_sell_price_volume);
-//					row_tv_open_price.add(tv_open);
-//					row_tv_open1_price.add(tv_);
-//					row_tv_open1_price_volume.add(tv_open1_volume);
-//					row_tv_open2_price.add(tv_);
-//					row_tv_open2_price_volume.add(tv_);
-//					row_tv_close_volume.add(tv_close_volume);
+					// --- add view tv
+					// row_tv_last_trade.add(tv_last_trade);
+					// row_tv_change.add(tv_change);
+					// row_tv_percent_change.add(tv_percenchange);
+					// row_tv_high.add(tv_high);
+					// row_tv_low.add(tv_low);
+					// row_tv_volume.add(tv_volume);
+					// row_tv_value.add(tv_value);
+					// row_tv_buy_volume.add(tv_buy_volume);
+					// row_tv_buy_value.add(tv_buy_);
+					// row_tv_sell_volume.add(tv_sell_volume);
+					// row_tv_sell_value.add(tv_);
+					// row_tv_avg_buy.add(tv_average_buy);
+					// row_tv_avg_sell.add(tv_average_sell);
+					// row_tv_max_buy_price.add(tv_);
+					// row_tv_max_buy_price_volume.add(tv_max_buy_price_volume);
+					// row_tv_max_sell_price.add(tv_);
+					// row_tv_max_sell_price_volume.add(tv_max_sell_price_volume);
+					// row_tv_open_price.add(tv_open);
+					// row_tv_open1_price.add(tv_);
+					// row_tv_open1_price_volume.add(tv_open1_volume);
+					// row_tv_open2_price.add(tv_);
+					// row_tv_open2_price_volume.add(tv_);
+					// row_tv_close_volume.add(tv_close_volume);
 				}
-				
+
 				// ------ connect socket -----------------
 				if (FragmentChangeActivity.strGetSymbolOrderBook_Id != "") {
 					if (!(SplashScreen.contentGetUserById.getString("package")
@@ -1354,7 +1339,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 						connectWebSocket();
 					}
 				}
-				
+
 				// -------- heightScreen ui detail
 				FragmentChangeActivity.heightScreen = li_detail.getHeight();
 				// -------- init pager
@@ -1406,7 +1391,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 					jsoConnectSocket.put("id",
 							FragmentChangeActivity.id_websocket);
 					jsoConnectSocket.put("user_id", 6);
-					jsoConnectSocket.put("orderbook_list", strGetSymbolOrderBook_Id);
+					jsoConnectSocket.put("orderbook_list",
+							strGetSymbolOrderBook_Id);
 					jsoConnectSocket.put("date", "");
 					jsoConnectSocket.put("hh", "");
 					jsoConnectSocket.put("mm", "");
@@ -1414,7 +1400,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				Log.v("jsonObj send connect symbol", jsoConnectSocket.toString());
+				Log.v("jsonObj send connect symbol",
+						jsoConnectSocket.toString());
 
 				// 11-04 10:12:02.208: V/jsonObj send connect(25506):
 				// {"id":6,"user_id":0,"orderbook_list":",PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217134211490179328221817105421716215217506979121318812099,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT2099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT20991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT2099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT20991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262177516531831,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT2099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT20991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653183162171342,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT2099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217134211490,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT20991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653183162171342114901793,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262177516531831621713421149017932822,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT2099102455304262177516531831621713421149017932822181710542171621521750697912131881209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217134211490179328221817,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KTB,KBS,KBANK,CCN,UKEM,RS,JAS,MEGA,BBL,SIMAT209910245530426217751653183162171342114901793282218171054217162152175069791213188120991024553042621775165318316217134211490179328221817105421716215217506979121318812099102455304262177516531831621713421149017932822181710542,PTT,.SET,PPP,AAV,A,AKR,DTAC,CRYSTAL,ASK,CBG,KT
@@ -1452,7 +1439,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 							try {
 								jsaMassageSocket = new JSONArray(message);
-								Log.v("jsaMassageSocket Symbol Detail", "" + jsaMassageSocket);
+								Log.v("jsaMassageSocket Symbol Detail", ""
+										+ jsaMassageSocket);
 
 								if (jsaMassageSocket.get(0).toString()
 										.equals("3")) {
@@ -1483,41 +1471,42 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 	// ============== Set watchlist symbol ===============
 	public void changeSymbolRealTime() {
-		Log.v("changeSymbolRealTime", "changeSymbolRealTime changeSymbolRealTime");
+		Log.v("changeSymbolRealTime",
+				"changeSymbolRealTime changeSymbolRealTime");
 
 		// [3,2099,"PTT","264.00","4.00","1.54","264.00","262.00","40.63","10,688.85","92,900","24","214,800","56","263.38","262.98","263.00","14,900","263.00","20,000","263.00","263.00","98,600","0.00","0","0"]
 
 		try {
-//			0=id,
-//					1=orderbook_id,
-//					2=symbol_name,
-//					3=last_trade,
-//					4=change,
-//					5=percent_change,
-//					6=high,
-//					7=low,
-//					8=volume (M,K),
-//					9=value (M,K),
-//					10=buy_volume,
-//					11=buy_value,
-//					12=sell_volume,
-//					13=sell_value,
-//					14=avg_buy,
-//					15=avg_sell,
-//					16=max_buy_price
-//					17=max_buy_price_volume,
-//					18=max_sell_price
-//					19=max_sell_price_volume,
-//					20=open_price
-//					21=open1_price,
-//					22=open1_price_volume,
-//					23=open2_price,
-//					24=open2_price_volume,
-//					25=close_volume,
-//					26=side [S,B,””]
-//					27=orderQty,
-//					28=timeOfEvent,
-//					29=page
+			// 0=id,
+			// 1=orderbook_id,
+			// 2=symbol_name,
+			// 3=last_trade,
+			// 4=change,
+			// 5=percent_change,
+			// 6=high,
+			// 7=low,
+			// 8=volume (M,K),
+			// 9=value (M,K),
+			// 10=buy_volume,
+			// 11=buy_value,
+			// 12=sell_volume,
+			// 13=sell_value,
+			// 14=avg_buy,
+			// 15=avg_sell,
+			// 16=max_buy_price
+			// 17=max_buy_price_volume,
+			// 18=max_sell_price
+			// 19=max_sell_price_volume,
+			// 20=open_price
+			// 21=open1_price,
+			// 22=open1_price_volume,
+			// 23=open2_price,
+			// 24=open2_price_volume,
+			// 25=close_volume,
+			// 26=side [S,B,””]
+			// 27=orderQty,
+			// 28=timeOfEvent,
+			// 29=page
 
 			String strOderbookId = "" + jsaMassageSocket.get(1);
 			String strSplitOrderbookId[] = FragmentChangeActivity.strGetSymbolOrderBook_Id
@@ -1530,24 +1519,24 @@ public class UiWatchlistDetail extends FragmentActivity {
 			String strLow = "" + jsaMassageSocket.get(7);
 			String strVolume = "" + jsaMassageSocket.get(8);
 			String strValue = "" + jsaMassageSocket.get(9);
-			
+
 			tv_last_trade.setText(strLastTrade);
 			tv_change.setText(strChange);
-			tv_percenchange.setText(strPercentChange+"%");
+			tv_percenchange.setText("(" + strPercentChange + "%)");
 			tv_high.setText(strHigh);
 			tv_low.setText(strLow);
 			tv_volume.setText(strVolume);
 			tv_value.setText(strValue);
-			
+
 			if (strChange != "") {
 				new CountDownTimer(600, 1) {
 					public void onTick(long millisUntilFinished) {
 						tv_last_trade.setTextColor(getResources().getColor(
-										FunctionSetBg.arrColor[3]));
+								FunctionSetBg.arrColor[3]));
 						tv_change.setTextColor(getResources().getColor(
-										FunctionSetBg.arrColor[3]));
+								FunctionSetBg.arrColor[3]));
 						tv_percenchange.setTextColor(getResources().getColor(
-										FunctionSetBg.arrColor[3]));
+								FunctionSetBg.arrColor[3]));
 					}
 
 					public void onFinish() {
@@ -1555,44 +1544,44 @@ public class UiWatchlistDetail extends FragmentActivity {
 								FunctionSetBg.setColor(strChange)));
 						tv_change.setTextColor(getResources().getColor(
 								FunctionSetBg.setColor(strChange)));
-						tv_percenchange.setTextColor(getResources().getColor(          
+						tv_percenchange.setTextColor(getResources().getColor(
 								FunctionSetBg.setColor(strChange)));
 					}
-				}.start();				
+				}.start();
 			}
 
-//			if (strPrevClose != "") {
-//				if (strHigh != "") {
-//					if ((Float.parseFloat(strHigh.replaceAll(",", ""))) > Float
-//							.parseFloat(strPrevClose.replaceAll(",", ""))) {
-//						tv_high.setTextColor(getResources().getColor(
-//								FunctionSetBg.arrColor[2]));
-//					} else if ((Float.parseFloat(strHigh
-//							.replaceAll(",", ""))) < Float
-//							.parseFloat(strPrevClose.replaceAll(",", ""))) {
-//						tv_high.setTextColor(getResources().getColor(
-//								FunctionSetBg.arrColor[0]));
-//					} else {
-//						tv_high.setTextColor(getResources().getColor(
-//								FunctionSetBg.arrColor[1]));
-//					}
-//				}
-//				if (strLow != "") {
-//					if ((Float.parseFloat(strLow.replaceAll(",", ""))) > Float
-//							.parseFloat(strPrevClose.replaceAll(",", ""))) {
-//						tv_low.setTextColor(getResources().getColor(
-//								FunctionSetBg.arrColor[2]));
-//					} else if ((Float
-//							.parseFloat(strLow.replaceAll(",", ""))) < Float
-//							.parseFloat(strPrevClose.replaceAll(",", ""))) {
-//						tv_low.setTextColor(getResources().getColor(
-//								FunctionSetBg.arrColor[0]));
-//					} else {
-//						tv_low.setTextColor(getResources().getColor(
-//								FunctionSetBg.arrColor[1]));
-//					}
-//				}
-//			}
+			// if (strPrevClose != "") {
+			// if (strHigh != "") {
+			// if ((Float.parseFloat(strHigh.replaceAll(",", ""))) > Float
+			// .parseFloat(strPrevClose.replaceAll(",", ""))) {
+			// tv_high.setTextColor(getResources().getColor(
+			// FunctionSetBg.arrColor[2]));
+			// } else if ((Float.parseFloat(strHigh
+			// .replaceAll(",", ""))) < Float
+			// .parseFloat(strPrevClose.replaceAll(",", ""))) {
+			// tv_high.setTextColor(getResources().getColor(
+			// FunctionSetBg.arrColor[0]));
+			// } else {
+			// tv_high.setTextColor(getResources().getColor(
+			// FunctionSetBg.arrColor[1]));
+			// }
+			// }
+			// if (strLow != "") {
+			// if ((Float.parseFloat(strLow.replaceAll(",", ""))) > Float
+			// .parseFloat(strPrevClose.replaceAll(",", ""))) {
+			// tv_low.setTextColor(getResources().getColor(
+			// FunctionSetBg.arrColor[2]));
+			// } else if ((Float
+			// .parseFloat(strLow.replaceAll(",", ""))) < Float
+			// .parseFloat(strPrevClose.replaceAll(",", ""))) {
+			// tv_low.setTextColor(getResources().getColor(
+			// FunctionSetBg.arrColor[0]));
+			// } else {
+			// tv_low.setTextColor(getResources().getColor(
+			// FunctionSetBg.arrColor[1]));
+			// }
+			// }
+			// }
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -1787,7 +1776,9 @@ public class UiWatchlistDetail extends FragmentActivity {
 			super.onPostExecute(result);
 
 			dialogLoading.dismiss();
-			updateDataFavorite();
+			pagerWatchList.initGetData();
+
+			// updateDataFavorite();
 
 			// switchFragment(new PagerWatchlistDetail());
 		}
@@ -2014,7 +2005,9 @@ public class UiWatchlistDetail extends FragmentActivity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 
-			updateDataFavorite();
+			pagerWatchList.initGetData();
+
+			// updateDataFavorite();
 			// switchFragment(new PagerWatchlistDetail());
 		}
 	}
@@ -2078,9 +2071,16 @@ public class UiWatchlistDetail extends FragmentActivity {
 						contentGetFavoriteId = jsonFavId
 								.getJSONArray("dataAll");
 
+						// {"status":"ok","message":"Success.","dataAll":[{"id":"162","favorite_number":"1","favorite_sort":"100","favorite_symbol":"SIMAT","favorite_type":"WATCHLIST","user_id":"104","created_at":"2016-01-08 01:53:46","updated_at":"2016-01-08 01:53:46","symbol_name":"SIMAT","symbol_pk":"SIMAT","market_id":"MAI","symbol_fullname_eng":"SIMAT TECHNOLOGIES PUBLIC","symbol_fullname_thai":"บริษัท ไซแมท เทคโนโลยี จำกัด (มหาชน)","last_trade":"3.34","average_price":"3.35","average_buy":"3.34637","average_sell":"3.35527","prev_close":"3.34","open":"3.34","open1":"3.34","open2":"3.34","close":"3.34","adj_close":"3.34","high":"3.4","high52W":"4.94","low":"3.3","low52W":"2.5","volume":"2.70 M","value":"9,054,824.00","change":"0.00","percentChange":"0.00","ceiling":"4.34","floor":"2.34","yield":"0","eps":"-0.08","p_bv":"2.12","d_e":"1.02","p_e":"0","roa":"-2.09","roe":"-11.04","npm":"-6.1","peg":null,"dps":"0","ffloat":"54.44","paid_up":"395.74","ebitda":"14.99","cg_score":"0","percentChange1W":"6.37","percentChange1M":"33.6","percentChange3M":"15.17","status":null,"industry":"TECH-m","SET50":"N","SET100":"N","SETHD":"N","sector":"TECH-ms","security_type":"S","benefit":null,"listed_share":"395742431","bv_nv":"1.58","qp_e":"6","financial_statement_date":"2016-06-30","ending_date":"2015-12-31","pod":"12","par_value":"1","market_capitalization":"1321779719.54","tr_bv":"0.23","npg_flag":"0","acc_ds":"0","acc_py":null,"dpr":"0","earning_date":"2016-06-30","allow_short_sell":"0","allow_nvdr":"1","allow_short_sell_on_nvdr":"0","allow_ttf":"3","stabilization_flag":"0","notification_type":null,"non_compliance":"0","parent_symbol":"SIMAT_SYMB","orderbook_id":"1881","subscriptionGroupId":"261","beneficial_signs":"","updateDatetime":"2016-11-14 09:59:49","split_flag":"0","1y_rtn":null,"magic1":null,"magic2":null,"mg":null,"marketListId":"STOCK","segmentId":"COMMON_STOCK","prev_volume":"903940","max_volume200day":"17320745","max_price200day":"3.98","max_volume_high_price200day":"2.67","project_open1":"0","project_open2":"3.74","project_close":"0","project_open1_volume":"0","project_open2_volume":"8000","project_close_volume":"0","project_open1_value":"0","project_open2_value":"29920","project_close_value":"0","project_open1_percent_change":"0","project_open2_percent_change":"0","project_close_percent_change":"0","max_buy_price":"3.34","max_sell_price":"3.34","max_buy_price_volume":"499900","max_sell_price_volume":"79200","open1_volume":"25000","open2_volume":"10000","close_volume":"0","buy_volume":"650400","buy_value":"2176476","sell_volume":"546700","sell_value":"1834323.9","last_update_date":"2016-11-14","turnover_list_level":"0","ipo_price":"3.8","market_status":"","first_trading_date":"2011-01-01"},{"id":"517","favorite_number":"1","favorite_sort":"100","favorite_symbol":"CBG","favorite_type":"WATCHLIST","user_id":"104","created_at":"2016-03-23 12:15:45","updated_at":"2016-03-23 12:15:45","symbol_name":"CBG","symbol_pk":"CBG","market_id":"SET","symbol_fullname_eng":"CARABAO GROUP PUBLIC COMPANY","symbol_fullname_thai":"บริษัท คาราบาวกรุ๊ป จำกัด (มหาชน)","last_trade":"70.50","average_price":"70.84","average_buy":"70.1334","average_sell":"69.9639","prev_close":"70.25","open":"69.75","open1":"69.75","open2":"70.75","close":"70.5","adj_close":"70.75","high":"72.5","high52W":"73","low":"69.25","low52W":"32.25","volume":"4.11 M","value":"291,199,488.00","change":"0.25","percentChange":"0.36","ceiling":"91.25","floor":"49.25","yield":"1.27","eps":"0.76876","p_bv":"10.71","d_e":"0.18","p_e":"51.79","roa":"21.08","roe":"21.43","npm":"17.14","peg":"-5.02","dps":"0.4","ffloat":"24.68","paid_up":"1000","ebitda":"1020.56","cg_score":"3","percentChange1W":"1.81","percentChange1M":"16.12","percentChange3M":"17.57","status":null,"industry":"AGRO","SET50":"N","SET100":"N","SETHD":"N","sector":"FOOD","security_type":"S","benefit":null,"listed_share":"1000000000","bv_nv":"6.56","qp_e":"6","financial_statement_date":"
+
 						for (int i = 0; i < contentGetFavoriteId.length(); i++) {
 							JSONObject jso = contentGetFavoriteId
 									.getJSONObject(i);
+							Log.v("jso.getString(symbol_name)",
+									""
+											+ jso.getString("symbol_name")
+											+ "__"
+											+ FragmentChangeActivity.strSymbolSelect);
 							if (jso.getString("symbol_name").equals(
 									FragmentChangeActivity.strSymbolSelect)) {
 								strRemoveId = jso.getString("id");
@@ -2121,7 +2121,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 			java.util.Date date = new java.util.Date();
 			long timestamp = date.getTime();
 			// ======= url ========
-			// http://www.bidschart.com/service/v2/symbolFavorite?user_id=104
+
 			String url_fav = SplashScreen.url_bidschart
 					+ "/service/v2/symbolFavorite?user_id="
 					+ SplashScreen.userModel.user_id + "&timestamp="
@@ -2160,6 +2160,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 						setFollowSymbol();
 						dialogLoading.dismiss();
 						FragmentChangeActivity.ckLoadWatchlist = true;
+
+						// pagerWatchList.initGetData();
 
 					} catch (JSONException e) {
 						e.printStackTrace();

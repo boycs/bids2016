@@ -63,7 +63,7 @@ public class PagerSmartPortfolio extends Fragment {
 
 	// --- add portfolio
 	public static DialogAddPortfolio dialogAddPortfolio;
-		
+
 	public interface OnPageListener {
 		public void onPage1(String s);
 	}
@@ -109,12 +109,12 @@ public class PagerSmartPortfolio extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		dialogAddPortfolio = new DialogAddPortfolio(context);
-		
-//		if (FragmentChangeActivity.ckLoadSmartPortfolioList) {
-//			initPager();
-//		} else {
-			initLoadData();
-//		}
+
+		// if (FragmentChangeActivity.ckLoadSmartPortfolioList) {
+		// initPager();
+		// } else {
+		initLoadData();
+		// }
 
 		initView();
 	}
@@ -148,7 +148,8 @@ public class PagerSmartPortfolio extends Fragment {
 				.findViewById(R.id.li_search_tabbegin);
 		li_search_select = (LinearLayout) rootView
 				.findViewById(R.id.li_search_select);
-		img_portfolio_add = (ImageView) rootView.findViewById(R.id.img_portfolio_add);
+		img_portfolio_add = (ImageView) rootView
+				.findViewById(R.id.img_portfolio_add);
 		// --- linear tabsearch
 		li_search = (LinearLayout) rootView.findViewById(R.id.li_search);
 		// --- linear tabsearch begin
@@ -248,7 +249,7 @@ public class PagerSmartPortfolio extends Fragment {
 							txtPchange = FunctionSetBg.setColorTxtSliding(
 									txtSetPChenge, txtPchange);
 						}
-					}  
+					}
 
 					strSliding += "   " + txtSymbol + "   " + txtLtrade + "  "
 							+ txtChange + "" + txtPchange;
@@ -261,18 +262,19 @@ public class PagerSmartPortfolio extends Fragment {
 		marque.setSelected(true);
 	}
 
-	
-	// E/AndroidRuntime(26561): Caused by: java.lang.ClassNotFoundException: 
-	// Didn't find class "com.app.bids.GoogleAnalyticsApp" on path: DexPathList[[zip file "/data/app/com.app.bids-1/base.apk"],nativeLibraryDirectories=[/vendor/lib64, /system/lib64]]
+	// E/AndroidRuntime(26561): Caused by: java.lang.ClassNotFoundException:
+	// Didn't find class "com.app.bids.GoogleAnalyticsApp" on path:
+	// DexPathList[[zip file
+	// "/data/app/com.app.bids-1/base.apk"],nativeLibraryDirectories=[/vendor/lib64,
+	// /system/lib64]]
 
-	
 	// =========== search symbol watchlist ==========
 	public static void initSearchSymbol() {
 		// sv_search_symbol = (ScrollView)
 		// rootView.findViewById(R.id.sv_search_symbol);
 		li_search_tabbegin.setVisibility(View.GONE);
 		li_search.setVisibility(View.VISIBLE);
-  
+
 		// ----- search stock
 		final ListAdapterSearchSymbolStock ListAdapterSearch;
 		final ArrayList<CatalogGetSymbol> original_list;
@@ -306,9 +308,9 @@ public class PagerSmartPortfolio extends Fragment {
 		// ----- set list view ------
 		ListAdapterSearch = new ListAdapterSearchSymbolStock(context, 0,
 				second_list);
-		listview_search.setAdapter(ListAdapterSearch);		
-		ListAdapterSearchNameFundPortList = new ListAdapterSearchNameFundPortList(context, 0,
-				second_list_fund);
+		listview_search.setAdapter(ListAdapterSearch);
+		ListAdapterSearchNameFundPortList = new ListAdapterSearchNameFundPortList(
+				context, 0, second_list_fund);
 
 		et_search.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -330,25 +332,35 @@ public class PagerSmartPortfolio extends Fragment {
 
 					if (status_tabsearch == "STOCK") {
 						second_list.clear();
-						if(FragmentChangeActivity.list_getSymbol != null){
+						if (FragmentChangeActivity.list_getSymbol != null) {
 							for (int i = 0; i < original_list.size(); i++) {
-								if (original_list.get(i).symbol.toLowerCase()
+								if (original_list.get(i).symbol
+										.toLowerCase()
 										.contains(text.toString().toLowerCase())) {
-									second_list.add(original_list.get(i));
+									if ((original_list.get(i).status_segmentId == "COMMON")
+											|| (original_list.get(i).status_segmentId == "WARRANT")) {
+										second_list.add(original_list.get(i));
+									}
 								}
 							}
 							ListAdapterSearch.notifyDataSetChanged();
 						}
 					} else {
 						second_list_fund.clear();
-						if(FragmentChangeActivity.list_getNameFund != null){
+						if (FragmentChangeActivity.list_getNameFund != null) {
 							for (int i = 0; i < original_list_fund.size(); i++) {
-								if (original_list_fund.get(i).name_initial.toLowerCase().contains(
+								if (original_list_fund.get(i).name_initial
+										.toLowerCase().contains(
 												text.toString().toLowerCase())) {
-									second_list_fund.add(original_list_fund.get(i));
+									if ((original_list.get(i).status_segmentId == "COMMON")
+											|| (original_list.get(i).status_segmentId == "WARRANT")) {
+										second_list_fund.add(original_list_fund
+												.get(i));
+									}
 								}
 							}
-							ListAdapterSearchNameFundPortList.notifyDataSetChanged();
+							ListAdapterSearchNameFundPortList
+									.notifyDataSetChanged();
 						}
 					}
 				} else {
@@ -365,22 +377,26 @@ public class PagerSmartPortfolio extends Fragment {
 				status_tabsearch = "STOCK"; // STOCK, FUND
 				// ----- set list view ------
 				listview_search.setAdapter(ListAdapterSearch);
-				
+
 				String text = et_search.getText().toString();
 				setTitleSearch();
-				
+
 				if (text.length() > 0) {
 					vp_pager.setVisibility(View.GONE);
 					listview_search.setVisibility(View.VISIBLE);
-					
-					if(FragmentChangeActivity.list_getSymbol != null){
+
+					if (FragmentChangeActivity.list_getSymbol != null) {
 						second_list.clear();
 						for (int i = 0; i < original_list.size(); i++) {
-							if (original_list.get(i).symbol.toLowerCase().contains(text.toString().toLowerCase())) {
-								second_list.add(original_list.get(i));
+							if (original_list.get(i).symbol.toLowerCase()
+									.contains(text.toString().toLowerCase())) {
+								if ((original_list.get(i).status_segmentId == "COMMON")
+										|| (original_list.get(i).status_segmentId == "WARRANT")) {
+									second_list.add(original_list.get(i));
+								}
 							}
 						}
-						ListAdapterSearch.notifyDataSetChanged();	
+						ListAdapterSearch.notifyDataSetChanged();
 					}
 				} else {
 					vp_pager.setVisibility(View.VISIBLE);
@@ -394,22 +410,29 @@ public class PagerSmartPortfolio extends Fragment {
 				status_tabsearch = "FUND"; // STOCK, FUND
 				// ----- set list view ------
 				listview_search.setAdapter(ListAdapterSearchNameFundPortList);
-				
+
 				String text = et_search.getText().toString();
 				setTitleSearch();
 
 				if (text.length() > 0) {
 					vp_pager.setVisibility(View.GONE);
 					listview_search.setVisibility(View.VISIBLE);
-						if(FragmentChangeActivity.list_getNameFund != null){
-							second_list_fund.clear();
-							for (int i = 0; i < original_list_fund.size(); i++) {
-								if (original_list_fund.get(i).name_initial.toLowerCase().contains(text.toString().toLowerCase())) {
-									second_list_fund.add(original_list_fund.get(i));
+					if (FragmentChangeActivity.list_getNameFund != null) {
+						second_list_fund.clear();
+						for (int i = 0; i < original_list_fund.size(); i++) {
+							if (original_list_fund.get(i).name_initial
+									.toLowerCase().contains(
+											text.toString().toLowerCase())) {
+								if ((original_list.get(i).status_segmentId == "COMMON")
+										|| (original_list.get(i).status_segmentId == "WARRANT")) {
+									second_list_fund.add(original_list_fund
+											.get(i));
 								}
 							}
-							ListAdapterSearchNameFundPortList.notifyDataSetChanged();
 						}
+						ListAdapterSearchNameFundPortList
+								.notifyDataSetChanged();
+					}
 				} else {
 					vp_pager.setVisibility(View.VISIBLE);
 					listview_search.setVisibility(View.GONE);
@@ -447,13 +470,13 @@ public class PagerSmartPortfolio extends Fragment {
 				R.color.c_content));
 		tv_thai_stock.setBackgroundColor(Color.TRANSPARENT);
 		tv_thai_mutualfund.setBackgroundColor(Color.TRANSPARENT);
-		
-		if(status_tabsearch == "STOCK"){
+
+		if (status_tabsearch == "STOCK") {
 			tv_thai_stock.setTextColor(context.getResources().getColor(
 					R.color.bg_default));
 			tv_thai_stock
 					.setBackgroundResource(R.drawable.border_search_activeleft);
-		}else{
+		} else {
 			tv_thai_mutualfund.setTextColor(context.getResources().getColor(
 					R.color.bg_default));
 			tv_thai_mutualfund

@@ -1038,7 +1038,6 @@ public class PagerWatchList extends Fragment {
 							try {
 								jsaMassageSocket = new JSONArray(message);
 								Log.v("jsaMassageSocket", "" + jsaMassageSocket);
-
 								if (jsaMassageSocket.get(0).toString()
 										.equals("3")) {
 									changeRowUpdate();
@@ -1129,10 +1128,12 @@ public class PagerWatchList extends Fragment {
 					indexRow = i;
 					row_tv_last_trade.get(indexRow).setText(strLastTrade);
 					row_tv_change.get(indexRow).setText(strChange);
-//					row_tv_high.get(indexRow).setText(strHigh);
-//					row_tv_low.get(indexRow).setText(strLow);
-					row_tv_high.get(indexRow).setText(FunctionSetBg.setStrDetailList(strHigh));
-					row_tv_low.get(indexRow).setText(FunctionSetBg.setStrDetailList(strLow));
+					// row_tv_high.get(indexRow).setText(strHigh);
+					// row_tv_low.get(indexRow).setText(strLow);
+					row_tv_high.get(indexRow).setText(
+							FunctionSetBg.setStrDetailList(strHigh));
+					row_tv_low.get(indexRow).setText(
+							FunctionSetBg.setStrDetailList(strLow));
 					row_tv_volume.get(indexRow).setText(strVolume);
 					row_tv_value.get(indexRow).setText(strValue);
 					if ((strPercentChange == "0") || strPercentChange == "") {
@@ -1174,7 +1175,7 @@ public class PagerWatchList extends Fragment {
 						}.start();
 
 					}
-					
+
 					break;
 				}
 			}
@@ -1694,290 +1695,336 @@ public class PagerWatchList extends Fragment {
 						TextView tv_symbol_name = (TextView) viewSymbol
 								.findViewById(R.id.tv_symbol_name);
 
-						tv_symbol_name
-								.setText(Html.fromHtml(FunctionSymbol
-										.checkStatusSymbol(symbol_name,
-												turnover_list_level, status,
-												status_xd)));
+//						// status check out
+//						String status_checkOut = jsoIndex
+//								.getString("status_checkOut");
+//						if (!status_checkOut.equals("false")) {
+							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+									.checkStatusSymbol(symbol_name,
+											turnover_list_level, status,
+											status_xd)));
 
-						((TextView) viewSymbol
-								.findViewById(R.id.tv_symbol_fullname_eng))
-								.setText(jsoIndex
-										.getString("symbol_fullname_eng"));
+							((TextView) viewSymbol
+									.findViewById(R.id.tv_symbol_fullname_eng))
+									.setText(jsoIndex
+											.getString("symbol_fullname_eng"));
 
-						((LinearLayout) viewSymbol
-								.findViewById(R.id.row_symbol))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							((LinearLayout) viewSymbol
+									.findViewById(R.id.row_symbol))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// detail
-						((LinearLayout) viewDetailFun
-								.findViewById(R.id.row_detail))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							// detail
+							((LinearLayout) viewDetailFun
+									.findViewById(R.id.row_detail))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// fun
-						String strFundam = jsoIndex.getString("fundamental");
-						TextView tv_fundamental = (TextView) viewDetailFun
-								.findViewById(R.id.tv_fundamental);
-						tv_fundamental.setBackgroundColor(FunctionSetBg
-								.setColorWatchListSymbolFundamental(strFundam));
+							// fun
+							String strFundam = jsoIndex
+									.getString("fundamental");
+							TextView tv_fundamental = (TextView) viewDetailFun
+									.findViewById(R.id.tv_fundamental);
+							tv_fundamental
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolFundamental(strFundam));
 
-						// img chart
-						ImageView img_chart = (ImageView) viewDetailFun
-								.findViewById(R.id.img_chart);
-						FragmentChangeActivity.imageLoader.displayImage(
-								SplashScreen.url_bidschart_chart
-										+ jsoIndex.getString("symbol_name")
-										+ ".png", img_chart);
+							// img chart
+							ImageView img_chart = (ImageView) viewDetailFun
+									.findViewById(R.id.img_chart);
+							FragmentChangeActivity.imageLoader.displayImage(
+									SplashScreen.url_bidschart_chart
+											+ jsoIndex.getString("symbol_name")
+											+ ".png", img_chart);
 
-						// ck ltrade change
-						String strLastTrade = jsoIndex.getString("last_trade");
-						String strChange = jsoIndex.getString("change");
-						String strPercentChange = jsoIndex
-								.getString("percentChange");
+							// ck ltrade change
+							String strLastTrade = jsoIndex
+									.getString("last_trade");
+							String strChange = jsoIndex.getString("change");
+							String strPercentChange = jsoIndex
+									.getString("percentChange");
 
-						TextView tv_last_trade = (TextView) viewDetailFun
-								.findViewById(R.id.tv_last_trade);
-						TextView tv_change = (TextView) viewDetailFun
-								.findViewById(R.id.tv_change);
-						TextView tv_percentChange = (TextView) viewDetailFun
-								.findViewById(R.id.tv_percentChange);
+							TextView tv_last_trade = (TextView) viewDetailFun
+									.findViewById(R.id.tv_last_trade);
+							TextView tv_change = (TextView) viewDetailFun
+									.findViewById(R.id.tv_change);
+							TextView tv_percentChange = (TextView) viewDetailFun
+									.findViewById(R.id.tv_percentChange);
 
-						tv_last_trade.setText(strLastTrade);
-						tv_change.setText(strChange);
-						if ((strPercentChange == "0")
-								|| (strPercentChange == "")
-								|| (strPercentChange == "0.00")) {
-							tv_percentChange.setText("0.00");
-						} else {
-							tv_percentChange.setText(strPercentChange + "%");
-						}
-
-						// เซตสี change , lasttrade, percentchange เป็นสีตาม
-						// change โดยเอา change เทียบกับ 0
-						if (strChange != "") {
-							if (!status.equals("SP")) {
-								tv_change.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg
-														.setColor(strChange)));
-								tv_last_trade.setTextColor(context
-										.getResources().getColor(
-												FunctionSetBg
-														.setColor(strChange)));
-								tv_percentChange.setTextColor(context
-										.getResources().getColor(
-												FunctionSetBg
-														.setColor(strChange)));
+							tv_last_trade.setText(strLastTrade);
+							tv_change.setText(strChange);
+							if ((strPercentChange == "0")
+									|| (strPercentChange == "")
+									|| (strPercentChange == "0.00")) {
+								tv_percentChange.setText("0.00");
+							} else {
+								tv_percentChange
+										.setText(strPercentChange + "%");
 							}
-						}
 
-						// color sft
-						String strFundamF = jsoIndex.getString("fundamental");
-						TextView tv_fundamentalF = (TextView) viewDetailFun
-								.findViewById(R.id.tv_fundamental);
-						tv_fundamentalF
-								.setBackgroundColor(FunctionSetBg
-										.setColorWatchListSymbolFundamental(strFundamF));
+							// เซตสี change , lasttrade, percentchange เป็นสีตาม
+							// change โดยเอา change เทียบกับ 0
+							if (strChange != "") {
+								if (!status.equals("SP")) {
+									tv_change
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_last_trade
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_percentChange
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+								}
+							}
 
-						// ck pe pbv peg
-						String strPe = jsoIndex.getString("p_e");
-						String strPbv = jsoIndex.getString("p_bv");
-						String strRoe = jsoIndex.getString("roe");
-						String strRoa = jsoIndex.getString("roa");
-						String strPeg = jsoIndex.getString("peg");
-						String strMktcap = jsoIndex
-								.getString("market_capitalization");
+							// color sft
+							String strFundamF = jsoIndex
+									.getString("fundamental");
+							TextView tv_fundamentalF = (TextView) viewDetailFun
+									.findViewById(R.id.tv_fundamental);
+							tv_fundamentalF
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolFundamental(strFundamF));
 
-						TextView tv_p_e = (TextView) viewDetailFun
-								.findViewById(R.id.tv_p_e);
-						TextView tv_p_bv = (TextView) viewDetailFun
-								.findViewById(R.id.tv_p_bv);
-						TextView tv_roe = (TextView) viewDetailFun
-								.findViewById(R.id.tv_roe);
-						TextView tv_roa = (TextView) viewDetailFun
-								.findViewById(R.id.tv_roa);
-						TextView tv_peg = (TextView) viewDetailFun
-								.findViewById(R.id.tv_peg);
-						TextView tv_mktcap = (TextView) viewDetailFun
-								.findViewById(R.id.tv_mktcap);
+							// ck pe pbv peg
+							String strPe = jsoIndex.getString("p_e");
+							String strPbv = jsoIndex.getString("p_bv");
+							String strRoe = jsoIndex.getString("roe");
+							String strRoa = jsoIndex.getString("roa");
+							String strPeg = jsoIndex.getString("peg");
+							String strMktcap = jsoIndex
+									.getString("market_capitalization");
 
-						tv_p_e.setText(FunctionSetBg.setStrDetailList(strPe));
-						tv_p_bv.setText(FunctionSetBg.setStrDetailList(strPbv));
-						tv_roe.setText(FunctionSetBg.setStrDetailList(strRoe));
-						tv_roa.setText(FunctionSetBg.setStrDetailList(strRoa));
-						tv_peg.setText(FunctionSetBg.setStrDetailList(strPeg));
-						tv_mktcap.setText(strMktcap);
+							TextView tv_p_e = (TextView) viewDetailFun
+									.findViewById(R.id.tv_p_e);
+							TextView tv_p_bv = (TextView) viewDetailFun
+									.findViewById(R.id.tv_p_bv);
+							TextView tv_roe = (TextView) viewDetailFun
+									.findViewById(R.id.tv_roe);
+							TextView tv_roa = (TextView) viewDetailFun
+									.findViewById(R.id.tv_roa);
+							TextView tv_peg = (TextView) viewDetailFun
+									.findViewById(R.id.tv_peg);
+							TextView tv_mktcap = (TextView) viewDetailFun
+									.findViewById(R.id.tv_mktcap);
 
-						// -- color write/blue
-						if (!status.equals("SP")) {
-							tv_roe.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoe)));
-							tv_roa.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoa)));
-						} else {
-							tv_roe.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_roa.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
+							tv_p_e.setText(FunctionSetBg
+									.setStrDetailList(strPe));
+							tv_p_bv.setText(FunctionSetBg
+									.setStrDetailList(strPbv));
+							tv_roe.setText(FunctionSetBg
+									.setStrDetailList(strRoe));
+							tv_roa.setText(FunctionSetBg
+									.setStrDetailList(strRoa));
+							tv_peg.setText(FunctionSetBg
+									.setStrDetailList(strPeg));
+							tv_mktcap.setText(strMktcap);
 
-						if (SplashScreen.contentSymbol_Set != null) {
-							String strPe_set = SplashScreen.contentSymbol_Set
-									.getString("p_e");
-							String strPbv_set = SplashScreen.contentSymbol_Set
-									.getString("p_bv");
 							String strPeg_set = SplashScreen.contentSymbol_Set
 									.getString("peg");
+							tv_peg.setTextColor(context.getResources()
+									.getColor(
+											FunctionSetBg.setStrCheckSet(
+													strPeg, strPeg_set)));
 
+							// -- color write/blue
 							if (!status.equals("SP")) {
-								tv_p_e.setTextColor(context.getResources()
+								tv_roe.setTextColor(context
+										.getResources()
 										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPe, strPe_set)));
-
-								tv_p_bv.setTextColor(context.getResources()
+												FunctionSetBg
+														.setStrColorWriteDetailBlue(strRoe)));
+								tv_roa.setTextColor(context
+										.getResources()
 										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPbv, strPbv_set)));
-
-								tv_peg.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPeg, strPeg_set)));
+												FunctionSetBg
+														.setStrColorWriteDetailBlue(strRoa)));
 							} else {
-								tv_p_e.setTextColor(context.getResources()
+								tv_roe.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
-
-								tv_p_bv.setTextColor(context.getResources()
-										.getColor(R.color.c_content));
-
-								tv_peg.setTextColor(context.getResources()
+								tv_roa.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-						}
 
-						// fun graph
-						String strFundamentalTrend = jsoIndex
-								.getString("fundamental_trend");
+							if (SplashScreen.contentSymbol_Set != null) {
+								String strPe_set = SplashScreen.contentSymbol_Set
+										.getString("p_e");
+								String strPbv_set = SplashScreen.contentSymbol_Set
+										.getString("p_bv");
+								// String strPeg_set =
+								// SplashScreen.contentSymbol_Set
+								// .getString("peg");
+								//
+								// tv_peg.setTextColor(context.getResources()
+								// .getColor(
+								// FunctionSetBg.setStrCheckSet(
+								// strPeg, strPeg_set)));
 
-						ImageView img_t_trend = (ImageView) viewDetailFun
-								.findViewById(R.id.img_t_trend);
-						TextView tv_fundamental_trend = (TextView) viewDetailFun
-								.findViewById(R.id.tv_fundamental_trend);
+								if (!status.equals("SP")) {
+									tv_p_e.setTextColor(context.getResources()
+											.getColor(
+													FunctionSetBg
+															.setStrCheckSet(
+																	strPe,
+																	strPe_set)));
 
-						FragmentChangeActivity.imageLoader.displayImage(
-								SplashScreen.url_bidschart_chart
-										+ "fundamental-"
-										+ jsoIndex.getString("symbol_name")
-										+ ".png", img_t_trend);
-
-						tv_fundamental_trend.setText(strFundamentalTrend);
-						if (!status.equals("SP")) {
-							tv_fundamental_trend
-									.setTextColor(context
+									tv_p_bv.setTextColor(context
 											.getResources()
 											.getColor(
 													FunctionSetBg
-															.setFundamentalTextColor(strFundamentalTrend)));
-						} else {
-							tv_fundamental_trend
-									.setTextColor(context.getResources()
+															.setStrCheckSet(
+																	strPbv,
+																	strPbv_set)));
+
+									// tv_peg.setTextColor(context.getResources()
+									// .getColor(
+									// FunctionSetBg.setStrCheckSet(
+									// strPeg, strPeg_set)));
+								} else {
+									tv_p_e.setTextColor(context.getResources()
 											.getColor(R.color.c_content));
-						}
 
-						// fun กราฟแท่ง
-						ImageView img_activity, img_profit, img_lev, img_liq;
-						img_activity = (ImageView) viewDetailFun
-								.findViewById(R.id.img_activity);
-						img_profit = (ImageView) viewDetailFun
-								.findViewById(R.id.img_profit);
-						img_lev = (ImageView) viewDetailFun
-								.findViewById(R.id.img_lev);
-						img_liq = (ImageView) viewDetailFun
-								.findViewById(R.id.img_liq);
+									tv_p_bv.setTextColor(context.getResources()
+											.getColor(R.color.c_content));
 
-						img_activity
-								.setBackgroundResource(FunctionSetBg
-										.setImgFunGraph(jsoIndex
-												.getString("activity")));
-						img_profit.setBackgroundResource(FunctionSetBg
-								.setImgFunGraph(jsoIndex
-										.getString("profitability")));
-						img_lev.setBackgroundResource(FunctionSetBg
-								.setImgFunGraph(jsoIndex.getString("leverage")));
-						img_liq.setBackgroundResource(FunctionSetBg
-								.setImgFunGraph(jsoIndex.getString("liquidity")));
+									// tv_peg.setTextColor(context.getResources()
+									// .getColor(R.color.c_content));
+								}
+							}
 
-						// not set color
-						TextView tv_rank = (TextView) viewDetailFun
-								.findViewById(R.id.tv_rank);
-						TextView tv_cg = (TextView) viewDetailFun
-								.findViewById(R.id.tv_cg);
-						TextView tv_volume = (TextView) viewDetailFun
-								.findViewById(R.id.tv_volume);
-						TextView tv_value = (TextView) viewDetailFun
-								.findViewById(R.id.tv_value);
+							// fun graph
+							String strFundamentalTrend = jsoIndex
+									.getString("fundamental_trend");
 
-						tv_rank.setText(jsoIndex.getString("rangkingsector"));
-						tv_cg.setText(jsoIndex.getString("cgscore"));
+							ImageView img_t_trend = (ImageView) viewDetailFun
+									.findViewById(R.id.img_t_trend);
+							TextView tv_fundamental_trend = (TextView) viewDetailFun
+									.findViewById(R.id.tv_fundamental_trend);
 
-						String strVolume = jsoIndex.getString("volume");
-						String strValue = jsoIndex.getString("value");
-						String sptVolume[] = strVolume.split(" ");
-						String sptValue[] = strValue.split(" ");
+							FragmentChangeActivity.imageLoader.displayImage(
+									SplashScreen.url_bidschart_chart
+											+ "fundamental-"
+											+ jsoIndex.getString("symbol_name")
+											+ ".png", img_t_trend);
 
-						if (sptVolume.length > 1) {
-							tv_volume.setText(sptVolume[0] + "\n"
-									+ sptVolume[1]);
-						} else {
-							tv_volume.setText(strVolume);
-						}
-						if (sptValue.length > 1) {
-							tv_value.setText(sptValue[0] + "\n" + sptValue[1]);
-						} else {
-							tv_value.setText(strValue);
-						}
+							tv_fundamental_trend.setText(strFundamentalTrend);
+							if (!status.equals("SP")) {
+								tv_fundamental_trend
+										.setTextColor(context
+												.getResources()
+												.getColor(
+														FunctionSetBg
+																.setFundamentalTextColor(strFundamentalTrend)));
+							} else {
+								tv_fundamental_trend.setTextColor(context
+										.getResources().getColor(
+												R.color.c_content));
+							}
 
-						// --- add view tv
-						// row_tv_orderbook_id.add();
-						// row_tv_symbol_name.add();
-						// row_tv_last_trade.add(tv_last_trade);
-						// row_tv_change.add(tv_change);
-						// row_tv_percent_change.add(tv_percentChange);
-						// row_tv_high.add(tv_high);
-						// row_tv_low.add(tv_low);
-						// row_tv_volume.add(tv_volume);
-						// row_tv_value.add(tv_value);
+							// fun กราฟแท่ง
+							ImageView img_activity, img_profit, img_lev, img_liq;
+							img_activity = (ImageView) viewDetailFun
+									.findViewById(R.id.img_activity);
+							img_profit = (ImageView) viewDetailFun
+									.findViewById(R.id.img_profit);
+							img_lev = (ImageView) viewDetailFun
+									.findViewById(R.id.img_lev);
+							img_liq = (ImageView) viewDetailFun
+									.findViewById(R.id.img_liq);
+
+							img_activity.setBackgroundResource(FunctionSetBg
+									.setImgFunGraph(jsoIndex
+											.getString("activity")));
+							img_profit.setBackgroundResource(FunctionSetBg
+									.setImgFunGraph(jsoIndex
+											.getString("profitability")));
+							img_lev.setBackgroundResource(FunctionSetBg
+									.setImgFunGraph(jsoIndex
+											.getString("leverage")));
+							img_liq.setBackgroundResource(FunctionSetBg
+									.setImgFunGraph(jsoIndex
+											.getString("liquidity")));
+
+							// not set color
+							TextView tv_rank = (TextView) viewDetailFun
+									.findViewById(R.id.tv_rank);
+							TextView tv_cg = (TextView) viewDetailFun
+									.findViewById(R.id.tv_cg);
+							TextView tv_volume = (TextView) viewDetailFun
+									.findViewById(R.id.tv_volume);
+							TextView tv_value = (TextView) viewDetailFun
+									.findViewById(R.id.tv_value);
+
+							tv_rank.setText(jsoIndex
+									.getString("rangkingsector"));
+							tv_cg.setText(jsoIndex.getString("cgscore"));
+
+							String strVolume = jsoIndex.getString("volume");
+							String strValue = jsoIndex.getString("value");
+							String sptVolume[] = strVolume.split(" ");
+							String sptValue[] = strValue.split(" ");
+
+							if (sptVolume.length > 1) {
+								tv_volume.setText(sptVolume[0] + "\n"
+										+ sptVolume[1]);
+							} else {
+								tv_volume.setText(strVolume);
+							}
+							if (sptValue.length > 1) {
+								tv_value.setText(sptValue[0] + "\n"
+										+ sptValue[1]);
+							} else {
+								tv_value.setText(strValue);
+							}
+
+							// --- add view tv
+							// row_tv_orderbook_id.add();
+							// row_tv_symbol_name.add();
+							// row_tv_last_trade.add(tv_last_trade);
+							// row_tv_change.add(tv_change);
+							// row_tv_percent_change.add(tv_percentChange);
+							// row_tv_high.add(tv_high);
+							// row_tv_low.add(tv_low);
+							// row_tv_volume.add(tv_volume);
+							// row_tv_value.add(tv_value);
+
+//						} else {
+//							tv_symbol_name.setText(symbol_name);
+//							tv_symbol_name.setTextColor(context.getResources()
+//									.getColor(R.color.c_danger));
+//						}
 
 						list_symbol.addView(viewSymbol);
 						list_detail.addView(viewDetailFun);
@@ -2053,345 +2100,394 @@ public class PagerWatchList extends Fragment {
 						TextView tv_symbol_name = (TextView) viewSymbol
 								.findViewById(R.id.tv_symbol_name);
 
-						tv_symbol_name
-								.setText(Html.fromHtml(FunctionSymbol
-										.checkStatusSymbol(symbol_name,
-												turnover_list_level, status,
-												status_xd)));
+						// status check out
+						String status_checkOut = jsoIndex
+								.getString("status_checkOut");
+						if (!status_checkOut.equals("false")) {
+							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+									.checkStatusSymbol(symbol_name,
+											turnover_list_level, status,
+											status_xd)));
 
-						((TextView) viewSymbol
-								.findViewById(R.id.tv_symbol_fullname_eng))
-								.setText(jsoIndex
-										.getString("symbol_fullname_eng"));
+							((TextView) viewSymbol
+									.findViewById(R.id.tv_symbol_fullname_eng))
+									.setText(jsoIndex
+											.getString("symbol_fullname_eng"));
 
-						((LinearLayout) viewSymbol
-								.findViewById(R.id.row_symbol))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							((LinearLayout) viewSymbol
+									.findViewById(R.id.row_symbol))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// detail
-						((LinearLayout) viewDetailPort
-								.findViewById(R.id.row_detail))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							// detail
+							((LinearLayout) viewDetailPort
+									.findViewById(R.id.row_detail))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// img chart
-						ImageView img_chart = (ImageView) viewDetailPort
-								.findViewById(R.id.img_chart);
-						FragmentChangeActivity.imageLoader.displayImage(
-								SplashScreen.url_bidschart_chart
-										+ jsoIndex.getString("symbol_name")
-										+ ".png", img_chart);
+							// img chart
+							ImageView img_chart = (ImageView) viewDetailPort
+									.findViewById(R.id.img_chart);
+							FragmentChangeActivity.imageLoader.displayImage(
+									SplashScreen.url_bidschart_chart
+											+ jsoIndex.getString("symbol_name")
+											+ ".png", img_chart);
 
-						// trend , signal , date
-						String strTrade = jsoIndex.getString("trade_signal");
-						String strSignel = jsoIndex.getString("signal_type");
-						String strSignelDate = jsoIndex
-								.getString("signal_date");
+							// trend , signal , date
+							String strTrade = jsoIndex
+									.getString("trade_signal");
+							String strSignel = jsoIndex
+									.getString("signal_type");
+							String strSignelDate = jsoIndex
+									.getString("signal_date");
 
-						ImageView img_trade = (ImageView) viewDetailPort
-								.findViewById(R.id.img_trade);
-						ImageView img_signal = (ImageView) viewDetailPort
-								.findViewById(R.id.img_signal);
-						TextView tv_signal_date = (TextView) viewDetailPort
-								.findViewById(R.id.tv_signal_date);
+							ImageView img_trade = (ImageView) viewDetailPort
+									.findViewById(R.id.img_trade);
+							ImageView img_signal = (ImageView) viewDetailPort
+									.findViewById(R.id.img_signal);
+							TextView tv_signal_date = (TextView) viewDetailPort
+									.findViewById(R.id.tv_signal_date);
 
-						img_trade.setBackgroundResource(FunctionSetBg
-								.setImgTrendSignal(strTrade));
-						img_signal
-								.setBackgroundResource(setColorBuySell(strSignel));
-						tv_signal_date.setText(DateTimeCreate
-								.DateDmyWatchlistPortfolio(strSignelDate)); // 2016-02-05
+							img_trade.setBackgroundResource(FunctionSetBg
+									.setImgTrendSignal(strTrade));
+							img_signal
+									.setBackgroundResource(setColorBuySell(strSignel));
+							tv_signal_date.setText(DateTimeCreate
+									.DateDmyWatchlistPortfolio(strSignelDate)); // 2016-02-05
 
-						// ck ltrade change
-						String strLastTrade = jsoIndex.getString("last_trade");
-						String strChange = jsoIndex.getString("change");
-						String strPercentChange = jsoIndex
-								.getString("percentChange");
+							// ck ltrade change
+							String strLastTrade = jsoIndex
+									.getString("last_trade");
+							String strChange = jsoIndex.getString("change");
+							String strPercentChange = jsoIndex
+									.getString("percentChange");
 
-						TextView tv_last_trade = (TextView) viewDetailPort
-								.findViewById(R.id.tv_last_trade);
-						TextView tv_change = (TextView) viewDetailPort
-								.findViewById(R.id.tv_change);
-						TextView tv_percentChange = (TextView) viewDetailPort
-								.findViewById(R.id.tv_percentChange);
+							TextView tv_last_trade = (TextView) viewDetailPort
+									.findViewById(R.id.tv_last_trade);
+							TextView tv_change = (TextView) viewDetailPort
+									.findViewById(R.id.tv_change);
+							TextView tv_percentChange = (TextView) viewDetailPort
+									.findViewById(R.id.tv_percentChange);
 
-						tv_last_trade.setText(strLastTrade);
-						tv_change.setText(strChange);
-						if ((strPercentChange == "0")
-								|| (strPercentChange == "")
-								|| (strPercentChange == "0.00")) {
-							tv_percentChange.setText("0.00");
-						} else {
-							tv_percentChange.setText(strPercentChange + "%");
-						}
+							tv_last_trade.setText(strLastTrade);
+							tv_change.setText(strChange);
+							if ((strPercentChange == "0")
+									|| (strPercentChange == "")
+									|| (strPercentChange == "0.00")) {
+								tv_percentChange.setText("0.00");
+							} else {
+								tv_percentChange
+										.setText(strPercentChange + "%");
+							}
 
-						// เซตสี change , lasttrade, percentchange เป็นสีตาม
-						// change โดยเอา change เทียบกับ 0
-						if (strChange != "") {
+							// เซตสี change , lasttrade, percentchange เป็นสีตาม
+							// change โดยเอา change เทียบกับ 0
+							if (strChange != "") {
+								if (!status.equals("SP")) {
+									tv_change
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_last_trade
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_percentChange
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+								}
+							}
+
+							// sft
+							((LinearLayout) viewDetailPort
+									.findViewById(R.id.li_sft))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											DialogDifinitionSignal.show();
+										}
+									});
+
+							// color sft
+							String strTrends = jsoIndex
+									.getString("trendSignal_avg_percentChange");
+							String strFundam = jsoIndex
+									.getString("fundamental");
+							String strColorMacd = jsoIndex
+									.getString("color_macd");
+
+							TextView tv_trendSignal_avg_percent = (TextView) viewDetailPort
+									.findViewById(R.id.tv_trendSignal_avg_percent);
+							TextView tv_fundamental = (TextView) viewDetailPort
+									.findViewById(R.id.tv_fundamental);
+							TextView tv_color_macd = (TextView) viewDetailPort
+									.findViewById(R.id.tv_color_macd);
+
+							tv_trendSignal_avg_percent
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolTrendSignal(strTrends));
+							tv_fundamental
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolFundamental(strFundam));
+							tv_color_macd
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolColorMacd(strColorMacd));
+
+							// ck hight low
+							String strPrevClose = jsoIndex.getString(
+									"prev_close").replaceAll(",", "");
+							String strHigh = jsoIndex.getString("high")
+									.replaceAll(",", "");
+							String strLow = jsoIndex.getString("low")
+									.replaceAll(",", "");
+
+							TextView tv_high = (TextView) viewDetailPort
+									.findViewById(R.id.tv_high);
+							TextView tv_low = (TextView) viewDetailPort
+									.findViewById(R.id.tv_low);
+
+							tv_high.setText(FunctionSetBg
+									.setStrDetailList(strHigh));
+							tv_low.setText(FunctionSetBg
+									.setStrDetailList(strLow));
+
+							// ----- Trend signal
 							if (!status.equals("SP")) {
-								tv_change.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg
-														.setColor(strChange)));
-								tv_last_trade.setTextColor(context
-										.getResources().getColor(
-												FunctionSetBg
-														.setColor(strChange)));
-								tv_percentChange.setTextColor(context
-										.getResources().getColor(
-												FunctionSetBg
-														.setColor(strChange)));
-							}
-						}
-
-						// sft
-						((LinearLayout) viewDetailPort
-								.findViewById(R.id.li_sft))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										DialogDifinitionSignal.show();
+								if (strPrevClose != "") {
+									if (strHigh != "") {
+										if ((Float.parseFloat(strHigh
+												.replaceAll(",", ""))) > Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[2]));
+										} else if ((Float.parseFloat(strHigh
+												.replaceAll(",", ""))) < Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[0]));
+										} else {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[1]));
+										}
 									}
-								});
-
-						// color sft
-						String strTrends = jsoIndex
-								.getString("trendSignal_avg_percentChange");
-						String strFundam = jsoIndex.getString("fundamental");
-						String strColorMacd = jsoIndex.getString("color_macd");
-
-						TextView tv_trendSignal_avg_percent = (TextView) viewDetailPort
-								.findViewById(R.id.tv_trendSignal_avg_percent);
-						TextView tv_fundamental = (TextView) viewDetailPort
-								.findViewById(R.id.tv_fundamental);
-						TextView tv_color_macd = (TextView) viewDetailPort
-								.findViewById(R.id.tv_color_macd);
-
-						tv_trendSignal_avg_percent
-								.setBackgroundColor(FunctionSetBg
-										.setColorWatchListSymbolTrendSignal(strTrends));
-						tv_fundamental.setBackgroundColor(FunctionSetBg
-								.setColorWatchListSymbolFundamental(strFundam));
-						tv_color_macd
-								.setBackgroundColor(FunctionSetBg
-										.setColorWatchListSymbolColorMacd(strColorMacd));
-
-						// ck hight low
-						String strPrevClose = jsoIndex.getString("prev_close")
-								.replaceAll(",", "");
-						String strHigh = jsoIndex.getString("high").replaceAll(
-								",", "");
-						String strLow = jsoIndex.getString("low").replaceAll(
-								",", "");
-
-						TextView tv_high = (TextView) viewDetailPort
-								.findViewById(R.id.tv_high);
-						TextView tv_low = (TextView) viewDetailPort
-								.findViewById(R.id.tv_low);
-
-						tv_high.setText(FunctionSetBg.setStrDetailList(strHigh));
-						tv_low.setText(FunctionSetBg.setStrDetailList(strLow));
-
-						// ----- Trend signal
-						if (!status.equals("SP")) {
-							if (strPrevClose != "") {
-								if (strHigh != "") {
-									if ((Float.parseFloat(strHigh.replaceAll(
-											",", ""))) > Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[2]));
-									} else if ((Float.parseFloat(strHigh
-											.replaceAll(",", ""))) < Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[0]));
-									} else {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[1]));
-									}
-								}
-								if (strLow != "") {
-									if ((Float.parseFloat(strLow.replaceAll(
-											",", ""))) > Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[2]));
-									} else if ((Float.parseFloat(strLow
-											.replaceAll(",", ""))) < Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[0]));
-									} else {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[1]));
+									if (strLow != "") {
+										if ((Float.parseFloat(strLow
+												.replaceAll(",", ""))) > Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[2]));
+										} else if ((Float.parseFloat(strLow
+												.replaceAll(",", ""))) < Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[0]));
+										} else {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[1]));
+										}
 									}
 								}
 							}
-						}
 
-						// ck pe pbv peg
-						String strPe = jsoIndex.getString("p_e");
-						String strPbv = jsoIndex.getString("p_bv");
-						String strRoe = jsoIndex.getString("roe");
-						String strRoa = jsoIndex.getString("roa");
-						String strPeg = jsoIndex.getString("peg");
+							// ck pe pbv peg
+							String strPe = jsoIndex.getString("p_e");
+							String strPbv = jsoIndex.getString("p_bv");
+							String strRoe = jsoIndex.getString("roe");
+							String strRoa = jsoIndex.getString("roa");
+							String strPeg = jsoIndex.getString("peg");
 
-						TextView tv_p_e = (TextView) viewDetailPort
-								.findViewById(R.id.tv_p_e);
-						TextView tv_p_bv = (TextView) viewDetailPort
-								.findViewById(R.id.tv_p_bv);
-						TextView tv_roe = (TextView) viewDetailPort
-								.findViewById(R.id.tv_roe);
-						TextView tv_roa = (TextView) viewDetailPort
-								.findViewById(R.id.tv_roa);
-						TextView tv_peg = (TextView) viewDetailPort
-								.findViewById(R.id.tv_peg);
+							TextView tv_p_e = (TextView) viewDetailPort
+									.findViewById(R.id.tv_p_e);
+							TextView tv_p_bv = (TextView) viewDetailPort
+									.findViewById(R.id.tv_p_bv);
+							TextView tv_roe = (TextView) viewDetailPort
+									.findViewById(R.id.tv_roe);
+							TextView tv_roa = (TextView) viewDetailPort
+									.findViewById(R.id.tv_roa);
+							TextView tv_peg = (TextView) viewDetailPort
+									.findViewById(R.id.tv_peg);
 
-						tv_p_e.setText(FunctionSetBg.setStrDetailList(strPe));
-						tv_p_bv.setText(FunctionSetBg.setStrDetailList(strPbv));
-						tv_roe.setText(FunctionSetBg.setStrDetailList(strRoe));
-						tv_roa.setText(FunctionSetBg.setStrDetailList(strRoa));
-						tv_peg.setText(FunctionSetBg.setStrDetailList(strPeg));
+							tv_p_e.setText(FunctionSetBg
+									.setStrDetailList(strPe));
+							tv_p_bv.setText(FunctionSetBg
+									.setStrDetailList(strPbv));
+							tv_roe.setText(FunctionSetBg
+									.setStrDetailList(strRoe));
+							tv_roa.setText(FunctionSetBg
+									.setStrDetailList(strRoa));
+							tv_peg.setText(FunctionSetBg
+									.setStrDetailList(strPeg));
 
-						// -- color write/blue
-						if (!status.equals("SP")) {
-							tv_roe.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoe)));
-							tv_roa.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoa)));
-						} else {
-							tv_roe.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_roa.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
-
-						if (SplashScreen.contentSymbol_Set != null) {
-							String strPe_set = SplashScreen.contentSymbol_Set
-									.getString("p_e");
-							String strPbv_set = SplashScreen.contentSymbol_Set
-									.getString("p_bv");
 							String strPeg_set = SplashScreen.contentSymbol_Set
 									.getString("peg");
+							tv_peg.setTextColor(context.getResources()
+									.getColor(
+											FunctionSetBg.setStrCheckSet(
+													strPeg, strPeg_set)));
+
+							// -- color write/blue
 							if (!status.equals("SP")) {
-								tv_p_e.setTextColor(context.getResources()
+								tv_roe.setTextColor(context
+										.getResources()
 										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPe, strPe_set)));
-
-								tv_p_bv.setTextColor(context.getResources()
+												FunctionSetBg
+														.setStrColorWriteDetailBlue(strRoe)));
+								tv_roa.setTextColor(context
+										.getResources()
 										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPbv, strPbv_set)));
-
-								tv_peg.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPeg, strPeg_set)));
+												FunctionSetBg
+														.setStrColorWriteDetailBlue(strRoa)));
 							} else {
-								tv_p_e.setTextColor(context.getResources()
+								tv_roe.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
-
-								tv_p_bv.setTextColor(context.getResources()
-										.getColor(R.color.c_content));
-
-								tv_peg.setTextColor(context.getResources()
+								tv_roa.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-						}
 
-						// not set color
-						TextView tv_volume = (TextView) viewDetailPort
-								.findViewById(R.id.tv_volume);
-						TextView tv_value = (TextView) viewDetailPort
-								.findViewById(R.id.tv_value);
-						TextView tv_ceiling = (TextView) viewDetailPort
-								.findViewById(R.id.tv_ceiling);
-						TextView tv_floor = (TextView) viewDetailPort
-								.findViewById(R.id.tv_floor);
+							if (SplashScreen.contentSymbol_Set != null) {
+								String strPe_set = SplashScreen.contentSymbol_Set
+										.getString("p_e");
+								String strPbv_set = SplashScreen.contentSymbol_Set
+										.getString("p_bv");
+								// String strPeg_set =
+								// SplashScreen.contentSymbol_Set
+								// .getString("peg");
+								//
+								// tv_peg.setTextColor(context.getResources()
+								// .getColor(
+								// FunctionSetBg.setStrCheckSet(
+								// strPeg, strPeg_set)));
 
-						String strVolume = jsoIndex.getString("volume");
-						String strValue = jsoIndex.getString("value");
-						String sptVolume[] = strVolume.split(" ");
-						String sptValue[] = strValue.split(" ");
+								if (!status.equals("SP")) {
+									tv_p_e.setTextColor(context.getResources()
+											.getColor(
+													FunctionSetBg
+															.setStrCheckSet(
+																	strPe,
+																	strPe_set)));
 
-						if (sptVolume.length > 1) {
-							tv_volume.setText(sptVolume[0] + "\n"
-									+ sptVolume[1]);
+									tv_p_bv.setTextColor(context
+											.getResources()
+											.getColor(
+													FunctionSetBg
+															.setStrCheckSet(
+																	strPbv,
+																	strPbv_set)));
+
+									// tv_peg.setTextColor(context.getResources()
+									// .getColor(
+									// FunctionSetBg.setStrCheckSet(
+									// strPeg, strPeg_set)));
+								} else {
+									tv_p_e.setTextColor(context.getResources()
+											.getColor(R.color.c_content));
+
+									tv_p_bv.setTextColor(context.getResources()
+											.getColor(R.color.c_content));
+
+									// tv_peg.setTextColor(context.getResources()
+									// .getColor(R.color.c_content));
+								}
+							}
+
+							// not set color
+							TextView tv_volume = (TextView) viewDetailPort
+									.findViewById(R.id.tv_volume);
+							TextView tv_value = (TextView) viewDetailPort
+									.findViewById(R.id.tv_value);
+							TextView tv_ceiling = (TextView) viewDetailPort
+									.findViewById(R.id.tv_ceiling);
+							TextView tv_floor = (TextView) viewDetailPort
+									.findViewById(R.id.tv_floor);
+
+							String strVolume = jsoIndex.getString("volume");
+							String strValue = jsoIndex.getString("value");
+							String sptVolume[] = strVolume.split(" ");
+							String sptValue[] = strValue.split(" ");
+
+							if (sptVolume.length > 1) {
+								tv_volume.setText(sptVolume[0] + "\n"
+										+ sptVolume[1]);
+							} else {
+								tv_volume.setText(strVolume);
+							}
+							if (sptValue.length > 1) {
+								tv_value.setText(sptValue[0] + "\n"
+										+ sptValue[1]);
+							} else {
+								tv_value.setText(strValue);
+							}
+
+							tv_ceiling.setText(jsoIndex.getString("ceiling"));
+							tv_floor.setText(jsoIndex.getString("floor"));
+							if (status.equals("SP")) {
+								tv_ceiling.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+								tv_floor.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+
+							// --- add row update
+							// row_tv_orderbook_id.add();
+							row_tv_symbol_name.add(tv_symbol_name);
+							row_tv_last_trade.add(tv_last_trade);
+							row_tv_change.add(tv_change);
+							row_tv_percent_change.add(tv_percentChange);
+							row_tv_high.add(tv_high);
+							row_tv_low.add(tv_low);
+							row_tv_volume.add(tv_volume);
+							row_tv_value.add(tv_value);
+
 						} else {
-							tv_volume.setText(strVolume);
+							tv_symbol_name.setText(symbol_name);
+							tv_symbol_name.setTextColor(context.getResources()
+									.getColor(R.color.c_danger));
 						}
-						if (sptValue.length > 1) {
-							tv_value.setText(sptValue[0] + "\n" + sptValue[1]);
-						} else {
-							tv_value.setText(strValue);
-						}
-
-						tv_ceiling.setText(jsoIndex.getString("ceiling"));
-						tv_floor.setText(jsoIndex.getString("floor"));
-						if (status.equals("SP")) {
-							tv_ceiling.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_floor.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
-
-						// --- add row update
-						// row_tv_orderbook_id.add();
-						row_tv_symbol_name.add(tv_symbol_name);
-						row_tv_last_trade.add(tv_last_trade);
-						row_tv_change.add(tv_change);
-						row_tv_percent_change.add(tv_percentChange);
-						row_tv_high.add(tv_high);
-						row_tv_low.add(tv_low);
-						row_tv_volume.add(tv_volume);
-						row_tv_value.add(tv_value);
 
 						// --- add view tv
 						list_symbol.addView(viewSymbol);
@@ -2450,336 +2546,378 @@ public class PagerWatchList extends Fragment {
 						TextView tv_symbol_name = (TextView) viewSymbol
 								.findViewById(R.id.tv_symbol_name);
 
-						tv_symbol_name
-								.setText(Html.fromHtml(FunctionSymbol
-										.checkStatusSymbol(symbol_name,
-												turnover_list_level, status,
-												status_xd)));
+						// status check out
+						String status_checkOut = jsoIndex
+								.getString("status_checkOut");
+						if (!status_checkOut.equals("false")) {
+							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+									.checkStatusSymbol(symbol_name,
+											turnover_list_level, status,
+											status_xd)));
 
-						((TextView) viewSymbol
-								.findViewById(R.id.tv_symbol_fullname_eng))
-								.setText(jsoIndex
-										.getString("symbol_fullname_eng"));
+							((TextView) viewSymbol
+									.findViewById(R.id.tv_symbol_fullname_eng))
+									.setText(jsoIndex
+											.getString("symbol_fullname_eng"));
 
-						((LinearLayout) viewSymbol
-								.findViewById(R.id.row_symbol))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							((LinearLayout) viewSymbol
+									.findViewById(R.id.row_symbol))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// detail
-						((LinearLayout) viewDetailTrend
-								.findViewById(R.id.row_detail))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							// detail
+							((LinearLayout) viewDetailTrend
+									.findViewById(R.id.row_detail))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// img chart
-						ImageView img_chart = (ImageView) viewDetailTrend
-								.findViewById(R.id.img_chart);
-						FragmentChangeActivity.imageLoader.displayImage(
-								SplashScreen.url_bidschart_chart
-										+ jsoIndex.getString("symbol_name")
-										+ ".png", img_chart);
+							// img chart
+							ImageView img_chart = (ImageView) viewDetailTrend
+									.findViewById(R.id.img_chart);
+							FragmentChangeActivity.imageLoader.displayImage(
+									SplashScreen.url_bidschart_chart
+											+ jsoIndex.getString("symbol_name")
+											+ ".png", img_chart);
 
-						// ck ltrade change
-						String strLastTrade = jsoIndex.getString("last_trade");
-						String strChange = jsoIndex.getString("change");
-						String strPercentChange = jsoIndex
-								.getString("percentChange");
+							// ck ltrade change
+							String strLastTrade = jsoIndex
+									.getString("last_trade");
+							String strChange = jsoIndex.getString("change");
+							String strPercentChange = jsoIndex
+									.getString("percentChange");
 
-						ImageView img_updown = (ImageView) viewDetailTrend
-								.findViewById(R.id.img_updown);
-						TextView tv_last_trade = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_last_trade);
-						TextView tv_change = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_change);
-						TextView tv_percentChange = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_percentChange);
+							ImageView img_updown = (ImageView) viewDetailTrend
+									.findViewById(R.id.img_updown);
+							TextView tv_last_trade = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_last_trade);
+							TextView tv_change = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_change);
+							TextView tv_percentChange = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_percentChange);
 
-						tv_last_trade.setText(strLastTrade);
-						tv_change.setText(strChange);
-						if ((strPercentChange == "0")
-								|| (strPercentChange == "")
-								|| (strPercentChange == "0.00")) {
-							tv_percentChange.setText("0.00");
-						} else {
-							tv_percentChange.setText(strPercentChange + "%");
-						}
+							tv_last_trade.setText(strLastTrade);
+							tv_change.setText(strChange);
+							if ((strPercentChange == "0")
+									|| (strPercentChange == "")
+									|| (strPercentChange == "0.00")) {
+								tv_percentChange.setText("0.00");
+							} else {
+								tv_percentChange
+										.setText(strPercentChange + "%");
+							}
 
-						// เซตสี change , lasttrade, percentchange เป็นสีตาม
-						// change โดยเอา change เทียบกับ 0
-						if (strChange != "") {
+							// เซตสี change , lasttrade, percentchange เป็นสีตาม
+							// change โดยเอา change เทียบกับ 0
+							if (strChange != "") {
+								if (!status.equals("SP")) {
+									tv_change
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_last_trade
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_percentChange
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+								}
+							}
+
+							// sft
+							((LinearLayout) viewDetailTrend
+									.findViewById(R.id.li_sft))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											DialogDifinitionSignal.show();
+										}
+									});
+
+							// color sft
+							String strTrends = jsoIndex
+									.getString("trendSignal_avg_percentChange");
+							String strFundam = jsoIndex
+									.getString("fundamental");
+							String strColorm = jsoIndex.getString("color_macd");
+
+							TextView tv_trendSignal_avg_percent = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_trendSignal_avg_percent);
+							TextView tv_fundamental = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_fundamental);
+							TextView tv_color_macd = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_color_macd);
+
+							tv_trendSignal_avg_percent
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolTrendSignal(strTrends));
+							tv_fundamental
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolFundamental(strFundam));
+							tv_color_macd
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolColorMacd(strColorm));
+
+							// ck hight low
+							String strPrevClose = jsoIndex.getString(
+									"prev_close").replaceAll(",", "");
+							String strHigh = jsoIndex.getString("high")
+									.replaceAll(",", "");
+							String strLow = jsoIndex.getString("low")
+									.replaceAll(",", "");
+
+							TextView tv_high = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_high);
+							TextView tv_low = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_low);
+
+							ImageView img_trade_signal = (ImageView) viewDetailTrend
+									.findViewById(R.id.img_trade_signal);
+
+							tv_high.setText(FunctionSetBg
+									.setStrDetailList(strHigh));
+							tv_low.setText(FunctionSetBg
+									.setStrDetailList(strLow));
+
+							// ----- Trend signal
+							String strTrade_signal = jsoIndex
+									.getString("trade_signal");
+							img_trade_signal
+									.setBackgroundResource(FunctionSetBg
+											.setImgTrendSignal(strTrade_signal));
+
 							if (!status.equals("SP")) {
-								tv_change.setTextColor(context.getResources()
+								if (strPrevClose != "") {
+									if (strHigh != "") {
+										if ((Float.parseFloat(strHigh
+												.replaceAll(",", ""))) > Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[2]));
+										} else if ((Float.parseFloat(strHigh
+												.replaceAll(",", ""))) < Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[0]));
+										} else {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[1]));
+										}
+									}
+									if (strLow != "") {
+										if ((Float.parseFloat(strLow
+												.replaceAll(",", ""))) > Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[2]));
+										} else if ((Float.parseFloat(strLow
+												.replaceAll(",", ""))) < Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[0]));
+										} else {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[1]));
+										}
+									}
+								}
+							}
+
+							// ck pe pbv peg
+							String strPe = jsoIndex.getString("p_e");
+							String strPbv = jsoIndex.getString("p_bv");
+							String strRoe = jsoIndex.getString("roe");
+							String strRoa = jsoIndex.getString("roa");
+							String strPeg = jsoIndex.getString("peg");
+
+							TextView tv_p_e = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_p_e);
+							TextView tv_p_bv = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_p_bv);
+							TextView tv_roe = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_roe);
+							TextView tv_roa = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_roa);
+							TextView tv_peg = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_peg);
+
+							tv_p_e.setText(FunctionSetBg
+									.setStrDetailList(strPe));
+							tv_p_bv.setText(FunctionSetBg
+									.setStrDetailList(strPbv));
+							tv_roe.setText(FunctionSetBg
+									.setStrDetailList(strRoe));
+							tv_roa.setText(FunctionSetBg
+									.setStrDetailList(strRoa));
+							tv_peg.setText(FunctionSetBg
+									.setStrDetailList(strPeg));
+
+							String strPeg_set = SplashScreen.contentSymbol_Set
+									.getString("peg");
+							tv_peg.setTextColor(context.getResources()
+									.getColor(
+											FunctionSetBg.setStrCheckSet(
+													strPeg, strPeg_set)));
+
+							// -- color write/blue
+							if (!status.equals("SP")) {
+								tv_roe.setTextColor(context
+										.getResources()
 										.getColor(
 												FunctionSetBg
-														.setColor(strChange)));
-								tv_last_trade.setTextColor(context
-										.getResources().getColor(
+														.setStrColorWriteDetailBlue(strRoe)));
+								tv_roa.setTextColor(context
+										.getResources()
+										.getColor(
 												FunctionSetBg
-														.setColor(strChange)));
-								tv_percentChange.setTextColor(context
-										.getResources().getColor(
-												FunctionSetBg
-														.setColor(strChange)));
+														.setStrColorWriteDetailBlue(strRoa)));
+							} else {
+								tv_roe.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+								tv_roa.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
 							}
-						}
 
-						// sft
-						((LinearLayout) viewDetailTrend
-								.findViewById(R.id.li_sft))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										DialogDifinitionSignal.show();
-									}
-								});
+							if (!status.equals("SP")) {
+								if (SplashScreen.contentSymbol_Set != null) {
+									String strPe_set = SplashScreen.contentSymbol_Set
+											.getString("p_e");
+									String strPbv_set = SplashScreen.contentSymbol_Set
+											.getString("p_bv");
+									// String strPeg_set =
+									// SplashScreen.contentSymbol_Set
+									// .getString("peg");
 
-						// color sft
-						String strTrends = jsoIndex
-								.getString("trendSignal_avg_percentChange");
-						String strFundam = jsoIndex.getString("fundamental");
-						String strColorm = jsoIndex.getString("color_macd");
+									tv_p_e.setTextColor(context.getResources()
+											.getColor(
+													FunctionSetBg
+															.setStrCheckSet(
+																	strPe,
+																	strPe_set)));
 
-						TextView tv_trendSignal_avg_percent = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_trendSignal_avg_percent);
-						TextView tv_fundamental = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_fundamental);
-						TextView tv_color_macd = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_color_macd);
+									tv_p_bv.setTextColor(context
+											.getResources()
+											.getColor(
+													FunctionSetBg
+															.setStrCheckSet(
+																	strPbv,
+																	strPbv_set)));
 
-						tv_trendSignal_avg_percent
-								.setBackgroundColor(FunctionSetBg
-										.setColorWatchListSymbolTrendSignal(strTrends));
-						tv_fundamental.setBackgroundColor(FunctionSetBg
-								.setColorWatchListSymbolFundamental(strFundam));
-						tv_color_macd.setBackgroundColor(FunctionSetBg
-								.setColorWatchListSymbolColorMacd(strColorm));
-
-						// ck hight low
-						String strPrevClose = jsoIndex.getString("prev_close")
-								.replaceAll(",", "");
-						String strHigh = jsoIndex.getString("high").replaceAll(
-								",", "");
-						String strLow = jsoIndex.getString("low").replaceAll(
-								",", "");
-
-						TextView tv_high = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_high);
-						TextView tv_low = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_low);
-
-						ImageView img_trade_signal = (ImageView) viewDetailTrend
-								.findViewById(R.id.img_trade_signal);
-
-						tv_high.setText(FunctionSetBg.setStrDetailList(strHigh));
-						tv_low.setText(FunctionSetBg.setStrDetailList(strLow));
-
-						// ----- Trend signal
-						String strTrade_signal = jsoIndex
-								.getString("trade_signal");
-						img_trade_signal.setBackgroundResource(FunctionSetBg
-								.setImgTrendSignal(strTrade_signal));
-
-						if (!status.equals("SP")) {
-							if (strPrevClose != "") {
-								if (strHigh != "") {
-									if ((Float.parseFloat(strHigh.replaceAll(
-											",", ""))) > Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[2]));
-									} else if ((Float.parseFloat(strHigh
-											.replaceAll(",", ""))) < Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[0]));
-									} else {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[1]));
-									}
+									// tv_peg.setTextColor(context.getResources()
+									// .getColor(
+									// FunctionSetBg.setStrCheckSet(
+									// strPeg, strPeg_set)));
 								}
-								if (strLow != "") {
-									if ((Float.parseFloat(strLow.replaceAll(
-											",", ""))) > Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[2]));
-									} else if ((Float.parseFloat(strLow
-											.replaceAll(",", ""))) < Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[0]));
-									} else {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[1]));
-									}
-								}
-							}
-						}
-
-						// ck pe pbv peg
-						String strPe = jsoIndex.getString("p_e");
-						String strPbv = jsoIndex.getString("p_bv");
-						String strRoe = jsoIndex.getString("roe");
-						String strRoa = jsoIndex.getString("roa");
-						String strPeg = jsoIndex.getString("peg");
-
-						TextView tv_p_e = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_p_e);
-						TextView tv_p_bv = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_p_bv);
-						TextView tv_roe = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_roe);
-						TextView tv_roa = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_roa);
-						TextView tv_peg = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_peg);
-
-						tv_p_e.setText(FunctionSetBg.setStrDetailList(strPe));
-						tv_p_bv.setText(FunctionSetBg.setStrDetailList(strPbv));
-						tv_roe.setText(FunctionSetBg.setStrDetailList(strRoe));
-						tv_roa.setText(FunctionSetBg.setStrDetailList(strRoa));
-						tv_peg.setText(FunctionSetBg.setStrDetailList(strPeg));
-
-						// -- color write/blue
-						if (!status.equals("SP")) {
-							tv_roe.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoe)));
-							tv_roa.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoa)));
-						} else {
-							tv_roe.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_roa.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
-
-						if (!status.equals("SP")) {
-							if (SplashScreen.contentSymbol_Set != null) {
-								String strPe_set = SplashScreen.contentSymbol_Set
-										.getString("p_e");
-								String strPbv_set = SplashScreen.contentSymbol_Set
-										.getString("p_bv");
-								String strPeg_set = SplashScreen.contentSymbol_Set
-										.getString("peg");
-
+							} else {
 								tv_p_e.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPe, strPe_set)));
+										.getColor(R.color.c_content));
 
 								tv_p_bv.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPbv, strPbv_set)));
+										.getColor(R.color.c_content));
 
-								tv_peg.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPeg, strPeg_set)));
+								// tv_peg.setTextColor(context.getResources()
+								// .getColor(R.color.c_content));
 							}
+
+							// not set color
+							TextView tv_volume = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_volume);
+							TextView tv_value = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_value);
+							TextView tv_ceiling = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_ceiling);
+							TextView tv_floor = (TextView) viewDetailTrend
+									.findViewById(R.id.tv_floor);
+
+							String strVolume = jsoIndex.getString("volume");
+							String strValue = jsoIndex.getString("value");
+							String sptVolume[] = strVolume.split(" ");
+							String sptValue[] = strValue.split(" ");
+
+							if (sptVolume.length > 1) {
+								tv_volume.setText(sptVolume[0] + "\n"
+										+ sptVolume[1]);
+							} else {
+								tv_volume.setText(strVolume);
+							}
+							if (sptValue.length > 1) {
+								tv_value.setText(sptValue[0] + "\n"
+										+ sptValue[1]);
+							} else {
+								tv_value.setText(strValue);
+							}
+
+							tv_ceiling.setText(jsoIndex.getString("ceiling"));
+							tv_floor.setText(jsoIndex.getString("floor"));
+							if (status.equals("SP")) {
+								tv_ceiling.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+								tv_floor.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+
+							// --- add view tv
+							// row_tv_orderbook_id.add();
+							row_tv_symbol_name.add(tv_symbol_name);
+							row_tv_last_trade.add(tv_last_trade);
+							row_tv_change.add(tv_change);
+							row_tv_percent_change.add(tv_percentChange);
+							row_tv_high.add(tv_high);
+							row_tv_low.add(tv_low);
+							row_tv_volume.add(tv_volume);
+							row_tv_value.add(tv_value);
+							row_img_updown.add(img_updown);
+
 						} else {
-							tv_p_e.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-
-							tv_p_bv.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-
-							tv_peg.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
+							tv_symbol_name.setText(symbol_name);
+							tv_symbol_name.setTextColor(context.getResources()
+									.getColor(R.color.c_danger));
 						}
-
-						// not set color
-						TextView tv_volume = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_volume);
-						TextView tv_value = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_value);
-						TextView tv_ceiling = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_ceiling);
-						TextView tv_floor = (TextView) viewDetailTrend
-								.findViewById(R.id.tv_floor);
-
-						String strVolume = jsoIndex.getString("volume");
-						String strValue = jsoIndex.getString("value");
-						String sptVolume[] = strVolume.split(" ");
-						String sptValue[] = strValue.split(" ");
-
-						if (sptVolume.length > 1) {
-							tv_volume.setText(sptVolume[0] + "\n"
-									+ sptVolume[1]);
-						} else {
-							tv_volume.setText(strVolume);
-						}
-						if (sptValue.length > 1) {
-							tv_value.setText(sptValue[0] + "\n" + sptValue[1]);
-						} else {
-							tv_value.setText(strValue);
-						}
-
-						tv_ceiling.setText(jsoIndex.getString("ceiling"));
-						tv_floor.setText(jsoIndex.getString("floor"));
-						if (status.equals("SP")) {
-							tv_ceiling.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_floor.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
-
-						// --- add view tv
-						// row_tv_orderbook_id.add();
-						row_tv_symbol_name.add(tv_symbol_name);
-						row_tv_last_trade.add(tv_last_trade);
-						row_tv_change.add(tv_change);
-						row_tv_percent_change.add(tv_percentChange);
-						row_tv_high.add(tv_high);
-						row_tv_low.add(tv_low);
-						row_tv_volume.add(tv_volume);
-						row_tv_value.add(tv_value);
-						row_img_updown.add(img_updown);
 
 						list_symbol.addView(viewSymbol);
 						list_detail.addView(viewDetailTrend);
@@ -2874,340 +3012,382 @@ public class PagerWatchList extends Fragment {
 						TextView tv_symbol_name = (TextView) viewSymbol
 								.findViewById(R.id.tv_symbol_name);
 
-						tv_symbol_name
-								.setText(Html.fromHtml(FunctionSymbol
-										.checkStatusSymbol(symbol_name,
-												turnover_list_level, status,
-												status_xd)));
+						// status check out
+						String status_checkOut = jsoIndex
+								.getString("status_checkOut");
+						if (!status_checkOut.equals("false")) {
+							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+									.checkStatusSymbol(symbol_name,
+											turnover_list_level, status,
+											status_xd)));
 
-						((TextView) viewSymbol
-								.findViewById(R.id.tv_symbol_fullname_eng))
-								.setText(jsoIndex
-										.getString("symbol_fullname_eng"));
+							((TextView) viewSymbol
+									.findViewById(R.id.tv_symbol_fullname_eng))
+									.setText(jsoIndex
+											.getString("symbol_fullname_eng"));
 
-						((LinearLayout) viewSymbol
-								.findViewById(R.id.row_symbol))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							((LinearLayout) viewSymbol
+									.findViewById(R.id.row_symbol))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// detail
-						((LinearLayout) viewDetail
-								.findViewById(R.id.row_detail))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										FragmentChangeActivity.pagerDetail = "watchlist";
-										FragmentChangeActivity.strSymbolSelect = symbol_name;
+							// detail
+							((LinearLayout) viewDetail
+									.findViewById(R.id.row_detail))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											FragmentChangeActivity.pagerDetail = "watchlist";
+											FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-										if (!status.equals("SP")) {
-											context.startActivity(new Intent(
-													context,
-													UiWatchlistDetail.class));
+											if (!status.equals("SP")) {
+												context.startActivity(new Intent(
+														context,
+														UiWatchlistDetail.class));
+											}
 										}
-									}
-								});
+									});
 
-						// img chart
-						ImageView img_chart = (ImageView) viewDetail
-								.findViewById(R.id.img_chart);
-						FragmentChangeActivity.imageLoader.displayImage(
-								SplashScreen.url_bidschart_chart
-										+ jsoIndex.getString("symbol_name")
-										+ ".png", img_chart);
+							// img chart
+							ImageView img_chart = (ImageView) viewDetail
+									.findViewById(R.id.img_chart);
+							FragmentChangeActivity.imageLoader.displayImage(
+									SplashScreen.url_bidschart_chart
+											+ jsoIndex.getString("symbol_name")
+											+ ".png", img_chart);
 
-						// ck ltrade change
-						String strLastTrade = jsoIndex.getString("last_trade");
-						String strChange = jsoIndex.getString("change");
-						String strPercentChange = jsoIndex
-								.getString("percentChange");
+							// ck ltrade change
+							String strLastTrade = jsoIndex
+									.getString("last_trade");
+							String strChange = jsoIndex.getString("change");
+							String strPercentChange = jsoIndex
+									.getString("percentChange");
 
-						ImageView img_updown = (ImageView) viewDetail
-								.findViewById(R.id.img_updown);
-						TextView tv_last_trade = (TextView) viewDetail
-								.findViewById(R.id.tv_last_trade);
-						TextView tv_change = (TextView) viewDetail
-								.findViewById(R.id.tv_change);
-						TextView tv_percentChange = (TextView) viewDetail
-								.findViewById(R.id.tv_percentChange);
+							ImageView img_updown = (ImageView) viewDetail
+									.findViewById(R.id.img_updown);
+							TextView tv_last_trade = (TextView) viewDetail
+									.findViewById(R.id.tv_last_trade);
+							TextView tv_change = (TextView) viewDetail
+									.findViewById(R.id.tv_change);
+							TextView tv_percentChange = (TextView) viewDetail
+									.findViewById(R.id.tv_percentChange);
 
-						tv_last_trade.setText(strLastTrade);
-						tv_change.setText(strChange);
-						if ((strPercentChange == "0")
-								|| (strPercentChange == "")
-								|| (strPercentChange == "0.00")) {
-							tv_percentChange.setText("0.00");
-						} else {
-							tv_percentChange.setText(strPercentChange + "%");
-						}
+							tv_last_trade.setText(strLastTrade);
+							tv_change.setText(strChange);
+							if ((strPercentChange == "0")
+									|| (strPercentChange == "")
+									|| (strPercentChange == "0.00")) {
+								tv_percentChange.setText("0.00");
+							} else {
+								tv_percentChange
+										.setText(strPercentChange + "%");
+							}
 
-						// เซตสี change , lasttrade, percentchange เป็นสีตาม
-						// change โดยเอา change เทียบกับ 0
-						if (strChange != "") {
+							// เซตสี change , lasttrade, percentchange เป็นสีตาม
+							// change โดยเอา change เทียบกับ 0
+							if (strChange != "") {
+								if (!status.equals("SP")) {
+									tv_change
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_last_trade
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+									tv_percentChange
+											.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg
+																	.setColor(strChange)));
+								}
+							}
+
+							// sft
+							((LinearLayout) viewDetail
+									.findViewById(R.id.li_sft))
+									.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											DialogDifinitionSignal.show();
+										}
+									});
+
+							// color sft
+							String strTrends = jsoIndex
+									.getString("trendSignal_avg_percentChange");
+							String strFundam = jsoIndex
+									.getString("fundamental");
+							String strColorm = jsoIndex.getString("color_macd");
+
+							TextView tv_trendSignal_avg_percent = (TextView) viewDetail
+									.findViewById(R.id.tv_trendSignal_avg_percent);
+							TextView tv_fundamental = (TextView) viewDetail
+									.findViewById(R.id.tv_fundamental);
+							TextView tv_color_macd = (TextView) viewDetail
+									.findViewById(R.id.tv_color_macd);
+
+							tv_trendSignal_avg_percent
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolTrendSignal(strTrends));
+							tv_fundamental
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolFundamental(strFundam));
+							tv_color_macd
+									.setBackgroundColor(FunctionSetBg
+											.setColorWatchListSymbolColorMacd(strColorm));
+
+							// ck hight low
+							String strPrevClose = jsoIndex.getString(
+									"prev_close").replaceAll(",", "");
+							String strHigh = jsoIndex.getString("high")
+									.replaceAll(",", "");
+							String strLow = jsoIndex.getString("low")
+									.replaceAll(",", "");
+
+							TextView tv_high = (TextView) viewDetail
+									.findViewById(R.id.tv_high);
+							TextView tv_low = (TextView) viewDetail
+									.findViewById(R.id.tv_low);
+
+							ImageView img_trade_signal = (ImageView) viewDetail
+									.findViewById(R.id.img_trade_signal);
+
+							tv_high.setText(FunctionSetBg
+									.setStrDetailList(strHigh));
+							tv_low.setText(FunctionSetBg
+									.setStrDetailList(strLow));
+
+							// ----- Trend signal
+							String strTrade_signal = jsoIndex
+									.getString("trade_signal");
+							img_trade_signal
+									.setBackgroundResource(FunctionSetBg
+											.setImgTrendSignal(strTrade_signal));
+
 							if (!status.equals("SP")) {
-								tv_change.setTextColor(context.getResources()
+								if (strPrevClose != "") {
+									if (strHigh != "") {
+										if ((Float.parseFloat(strHigh
+												.replaceAll(",", ""))) > Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[2]));
+										} else if ((Float.parseFloat(strHigh
+												.replaceAll(",", ""))) < Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[0]));
+										} else {
+											tv_high.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[1]));
+										}
+									}
+									if (strLow != "") {
+										if ((Float.parseFloat(strLow
+												.replaceAll(",", ""))) > Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[2]));
+										} else if ((Float.parseFloat(strLow
+												.replaceAll(",", ""))) < Float
+												.parseFloat(strPrevClose
+														.replaceAll(",", ""))) {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[0]));
+										} else {
+											tv_low.setTextColor(context
+													.getResources()
+													.getColor(
+															FunctionSetBg.arrColor[1]));
+										}
+									}
+								}
+							} else {
+								tv_high.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+								tv_low.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+
+							// ck pe pbv peg
+							String strPe = jsoIndex.getString("p_e");
+							String strPbv = jsoIndex.getString("p_bv");
+							String strRoe = jsoIndex.getString("roe");
+							String strRoa = jsoIndex.getString("roa");
+							String strPeg = jsoIndex.getString("peg");
+
+							TextView tv_p_e = (TextView) viewDetail
+									.findViewById(R.id.tv_p_e);
+							TextView tv_p_bv = (TextView) viewDetail
+									.findViewById(R.id.tv_p_bv);
+							TextView tv_roe = (TextView) viewDetail
+									.findViewById(R.id.tv_roe);
+							TextView tv_roa = (TextView) viewDetail
+									.findViewById(R.id.tv_roa);
+							TextView tv_peg = (TextView) viewDetail
+									.findViewById(R.id.tv_peg);
+
+							tv_p_e.setText(FunctionSetBg
+									.setStrDetailList(strPe));
+							tv_p_bv.setText(FunctionSetBg
+									.setStrDetailList(strPbv));
+							tv_roe.setText(FunctionSetBg
+									.setStrDetailList(strRoe));
+							tv_roa.setText(FunctionSetBg
+									.setStrDetailList(strRoa));
+							tv_peg.setText(FunctionSetBg
+									.setStrDetailList(strPeg));
+
+							String strPeg_set = SplashScreen.contentSymbol_Set
+									.getString("peg");
+							tv_peg.setTextColor(context.getResources()
+									.getColor(
+											FunctionSetBg.setStrCheckSet(
+													strPeg, strPeg_set)));
+
+							// -- color write/blue
+							if (!status.equals("SP")) {
+								tv_roe.setTextColor(context
+										.getResources()
 										.getColor(
 												FunctionSetBg
-														.setColor(strChange)));
-								tv_last_trade.setTextColor(context
-										.getResources().getColor(
+														.setStrColorWriteDetailBlue(strRoe)));
+								tv_roa.setTextColor(context
+										.getResources()
+										.getColor(
 												FunctionSetBg
-														.setColor(strChange)));
-								tv_percentChange.setTextColor(context
-										.getResources().getColor(
-												FunctionSetBg
-														.setColor(strChange)));
+														.setStrColorWriteDetailBlue(strRoa)));
+							} else {
+								tv_roe.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+								tv_roa.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
 							}
-						}
 
-						// sft
-						((LinearLayout) viewDetail.findViewById(R.id.li_sft))
-								.setOnClickListener(new OnClickListener() {
-									@Override
-									public void onClick(View v) {
-										DialogDifinitionSignal.show();
-									}
-								});
+							if (!status.equals("SP")) {
+								if (SplashScreen.contentSymbol_Set != null) {
+									String strPe_set = SplashScreen.contentSymbol_Set
+											.getString("p_e");
+									String strPbv_set = SplashScreen.contentSymbol_Set
+											.getString("p_bv");
+									// String strPeg_set =
+									// SplashScreen.contentSymbol_Set
+									// .getString("peg");
 
-						// color sft
-						String strTrends = jsoIndex
-								.getString("trendSignal_avg_percentChange");
-						String strFundam = jsoIndex.getString("fundamental");
-						String strColorm = jsoIndex.getString("color_macd");
+									tv_p_e.setTextColor(context.getResources()
+											.getColor(
+													FunctionSetBg
+															.setStrCheckSet(
+																	strPe,
+																	strPe_set)));
 
-						TextView tv_trendSignal_avg_percent = (TextView) viewDetail
-								.findViewById(R.id.tv_trendSignal_avg_percent);
-						TextView tv_fundamental = (TextView) viewDetail
-								.findViewById(R.id.tv_fundamental);
-						TextView tv_color_macd = (TextView) viewDetail
-								.findViewById(R.id.tv_color_macd);
+									tv_p_bv.setTextColor(context
+											.getResources()
+											.getColor(
+													FunctionSetBg
+															.setStrCheckSet(
+																	strPbv,
+																	strPbv_set)));
 
-						tv_trendSignal_avg_percent
-								.setBackgroundColor(FunctionSetBg
-										.setColorWatchListSymbolTrendSignal(strTrends));
-						tv_fundamental.setBackgroundColor(FunctionSetBg
-								.setColorWatchListSymbolFundamental(strFundam));
-						tv_color_macd.setBackgroundColor(FunctionSetBg
-								.setColorWatchListSymbolColorMacd(strColorm));
-
-						// ck hight low
-						String strPrevClose = jsoIndex.getString("prev_close")
-								.replaceAll(",", "");
-						String strHigh = jsoIndex.getString("high").replaceAll(
-								",", "");
-						String strLow = jsoIndex.getString("low").replaceAll(
-								",", "");
-
-						TextView tv_high = (TextView) viewDetail
-								.findViewById(R.id.tv_high);
-						TextView tv_low = (TextView) viewDetail
-								.findViewById(R.id.tv_low);
-
-						ImageView img_trade_signal = (ImageView) viewDetail
-								.findViewById(R.id.img_trade_signal);
-
-						tv_high.setText(FunctionSetBg.setStrDetailList(strHigh));
-						tv_low.setText(FunctionSetBg.setStrDetailList(strLow));
-
-						// ----- Trend signal
-						String strTrade_signal = jsoIndex
-								.getString("trade_signal");
-						img_trade_signal.setBackgroundResource(FunctionSetBg
-								.setImgTrendSignal(strTrade_signal));
-
-						if (!status.equals("SP")) {
-							if (strPrevClose != "") {
-								if (strHigh != "") {
-									if ((Float.parseFloat(strHigh.replaceAll(
-											",", ""))) > Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[2]));
-									} else if ((Float.parseFloat(strHigh
-											.replaceAll(",", ""))) < Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[0]));
-									} else {
-										tv_high.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[1]));
-									}
+									// tv_peg.setTextColor(context.getResources()
+									// .getColor(
+									// FunctionSetBg.setStrCheckSet(
+									// strPeg, strPeg_set)));
 								}
-								if (strLow != "") {
-									if ((Float.parseFloat(strLow.replaceAll(
-											",", ""))) > Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[2]));
-									} else if ((Float.parseFloat(strLow
-											.replaceAll(",", ""))) < Float
-											.parseFloat(strPrevClose
-													.replaceAll(",", ""))) {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[0]));
-									} else {
-										tv_low.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg.arrColor[1]));
-									}
-								}
-							}
-						} else {
-							tv_high.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_low.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
-
-						// ck pe pbv peg
-						String strPe = jsoIndex.getString("p_e");
-						String strPbv = jsoIndex.getString("p_bv");
-						String strRoe = jsoIndex.getString("roe");
-						String strRoa = jsoIndex.getString("roa");
-						String strPeg = jsoIndex.getString("peg");
-
-						TextView tv_p_e = (TextView) viewDetail
-								.findViewById(R.id.tv_p_e);
-						TextView tv_p_bv = (TextView) viewDetail
-								.findViewById(R.id.tv_p_bv);
-						TextView tv_roe = (TextView) viewDetail
-								.findViewById(R.id.tv_roe);
-						TextView tv_roa = (TextView) viewDetail
-								.findViewById(R.id.tv_roa);
-						TextView tv_peg = (TextView) viewDetail
-								.findViewById(R.id.tv_peg);
-
-						tv_p_e.setText(FunctionSetBg.setStrDetailList(strPe));
-						tv_p_bv.setText(FunctionSetBg.setStrDetailList(strPbv));
-						tv_roe.setText(FunctionSetBg.setStrDetailList(strRoe));
-						tv_roa.setText(FunctionSetBg.setStrDetailList(strRoa));
-						tv_peg.setText(FunctionSetBg.setStrDetailList(strPeg));
-
-						// -- color write/blue
-						if (!status.equals("SP")) {
-							tv_roe.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoe)));
-							tv_roa.setTextColor(context
-									.getResources()
-									.getColor(
-											FunctionSetBg
-													.setStrColorWriteDetailBlue(strRoa)));
-						} else {
-							tv_roe.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_roa.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
-
-						if (!status.equals("SP")) {
-							if (SplashScreen.contentSymbol_Set != null) {
-								String strPe_set = SplashScreen.contentSymbol_Set
-										.getString("p_e");
-								String strPbv_set = SplashScreen.contentSymbol_Set
-										.getString("p_bv");
-								String strPeg_set = SplashScreen.contentSymbol_Set
-										.getString("peg");
-
+							} else {
 								tv_p_e.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPe, strPe_set)));
+										.getColor(R.color.c_content));
 
 								tv_p_bv.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPbv, strPbv_set)));
+										.getColor(R.color.c_content));
 
-								tv_peg.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg.setStrCheckSet(
-														strPeg, strPeg_set)));
+								// tv_peg.setTextColor(context.getResources()
+								// .getColor(R.color.c_content));
 							}
+
+							// not set color
+							TextView tv_volume = (TextView) viewDetail
+									.findViewById(R.id.tv_volume);
+							TextView tv_value = (TextView) viewDetail
+									.findViewById(R.id.tv_value);
+							TextView tv_ceiling = (TextView) viewDetail
+									.findViewById(R.id.tv_ceiling);
+							TextView tv_floor = (TextView) viewDetail
+									.findViewById(R.id.tv_floor);
+
+							String strVolume = jsoIndex.getString("volume");
+							String strValue = jsoIndex.getString("value");
+							String sptVolume[] = strVolume.split(" ");
+							String sptValue[] = strValue.split(" ");
+
+							if (sptVolume.length > 1) {
+								tv_volume.setText(sptVolume[0] + "\n"
+										+ sptVolume[1]);
+							} else {
+								tv_volume.setText(strVolume);
+							}
+							if (sptValue.length > 1) {
+								tv_value.setText(sptValue[0] + "\n"
+										+ sptValue[1]);
+							} else {
+								tv_value.setText(strValue);
+							}
+
+							tv_ceiling.setText(jsoIndex.getString("ceiling"));
+							tv_floor.setText(jsoIndex.getString("floor"));
+							if (status.equals("SP")) {
+								tv_ceiling.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+								tv_floor.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+
+							// --- add view tv
+							// row_tv_orderbook_id.add();
+							row_tv_symbol_name.add(tv_symbol_name);
+							row_tv_last_trade.add(tv_last_trade);
+							row_tv_change.add(tv_change);
+							row_tv_percent_change.add(tv_percentChange);
+							row_tv_high.add(tv_high);
+							row_tv_low.add(tv_low);
+							row_tv_volume.add(tv_volume);
+							row_tv_value.add(tv_value);
+							row_img_updown.add(img_updown);
 						} else {
-							tv_p_e.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-
-							tv_p_bv.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-
-							tv_peg.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
+							tv_symbol_name.setText(symbol_name);
+							tv_symbol_name.setTextColor(context.getResources()
+									.getColor(R.color.c_danger));
 						}
-
-						// not set color
-						TextView tv_volume = (TextView) viewDetail
-								.findViewById(R.id.tv_volume);
-						TextView tv_value = (TextView) viewDetail
-								.findViewById(R.id.tv_value);
-						TextView tv_ceiling = (TextView) viewDetail
-								.findViewById(R.id.tv_ceiling);
-						TextView tv_floor = (TextView) viewDetail
-								.findViewById(R.id.tv_floor);
-
-						String strVolume = jsoIndex.getString("volume");
-						String strValue = jsoIndex.getString("value");
-						String sptVolume[] = strVolume.split(" ");
-						String sptValue[] = strValue.split(" ");
-
-						if (sptVolume.length > 1) {
-							tv_volume.setText(sptVolume[0] + "\n"
-									+ sptVolume[1]);
-						} else {
-							tv_volume.setText(strVolume);
-						}
-						if (sptValue.length > 1) {
-							tv_value.setText(sptValue[0] + "\n" + sptValue[1]);
-						} else {
-							tv_value.setText(strValue);
-						}
-
-						tv_ceiling.setText(jsoIndex.getString("ceiling"));
-						tv_floor.setText(jsoIndex.getString("floor"));
-						if (status.equals("SP")) {
-							tv_ceiling.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-							tv_floor.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
-						}
-
-						// --- add view tv
-						// row_tv_orderbook_id.add();
-						row_tv_symbol_name.add(tv_symbol_name);
-						row_tv_last_trade.add(tv_last_trade);
-						row_tv_change.add(tv_change);
-						row_tv_percent_change.add(tv_percentChange);
-						row_tv_high.add(tv_high);
-						row_tv_low.add(tv_low);
-						row_tv_volume.add(tv_volume);
-						row_tv_value.add(tv_value);
-						row_img_updown.add(img_updown);
 
 						list_symbol.addView(viewSymbol);
 						list_detail.addView(viewDetail);
@@ -3339,7 +3519,7 @@ public class PagerWatchList extends Fragment {
 					+ "/service/v2/watchlistSymbolV2?symbol="
 					+ FragmentChangeActivity.strGetListSymbol;
 
-			Log.v("getWatchlistSymbol watchlist", "" + url_GetWatchlistSymbol);
+			Log.v("getWatchlistSymbol List", "" + url_GetWatchlistSymbol);
 
 			try {
 				// ======= Ui Home ========
@@ -3376,9 +3556,11 @@ public class PagerWatchList extends Fragment {
 				if (jsonGetWatchlistSymbol != null) {
 					try {
 						// get content
+						
 						FragmentChangeActivity.contentGetWatchlistSymbol = jsonGetWatchlistSymbol
 								.getJSONArray("dataAll");
-
+						Log.v("LLLLLLLLL 222222222",""+FragmentChangeActivity.contentGetWatchlistSymbol.length());
+						
 						// Log.v("getWatchlistSymbol", "" +
 						// FragmentChangeActivity.strGetListSymbol);
 						// Log.v("getWatchlistSymbol length", "" +
@@ -4084,12 +4266,17 @@ public class PagerWatchList extends Fragment {
 			long timestamp = date.getTime();
 			// ======= url ========
 			// http://www.bidschart.com/service/v2/symbolFavorite?user_id=104
-			String url_fav = SplashScreen.url_bidschart
-					+ "/service/v2/symbolFavorite?user_id="
-					+ SplashScreen.userModel.user_id + "&timestamp="
-					+ timestamp;
+			// String url_fav = SplashScreen.url_bidschart
+			// + "/service/v2/symbolFavorite?user_id="
+			// + SplashScreen.userModel.user_id + "&timestamp="
+			// + timestamp;
 
-			Log.v("getDataFavorite", "" + url_fav);
+			String url_fav = SplashScreen.url_bidschart
+					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
+					+ SplashScreen.userModel.user_id + "&favorite_number="
+					+ FragmentChangeActivity.strFavoriteNumber;
+
+			Log.v("getFavoriteByUserIdFavoriteNumber", "" + url_fav);
 
 			try {
 				jsonFav = ReadJson.readJsonObjectFromUrl(url_fav);
@@ -4124,38 +4311,48 @@ public class PagerWatchList extends Fragment {
 						// http://www.bidschart.com/service/v2/symbolFavorite?user_id=1587&timestamp=1457796354463
 						// Log.v("jsonFav", "" + jsonFav);
 
-						if (FragmentChangeActivity.contentGetSymbolFavorite
-								.length() >= 1) {
+						if (FragmentChangeActivity.contentGetSymbolFavorite != null) {
+							FragmentChangeActivity.strGetListSymbol = "";
 							for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite
 									.length(); i++) {
 								JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite
 										.getJSONObject(i);
 
-								String strFav = jsoIndex
-										.getString("favorite_number");
-
-								if (FragmentChangeActivity.strFavoriteNumber
-										.equals(strFav)) {
-									if ((jsoIndex.getJSONArray("dataAll")) != null) {
-										FragmentChangeActivity.strGetListSymbol = "";
-										JSONArray jsaFavSymbol = jsoIndex
-												.getJSONArray("dataAll");
-
-										for (int j = 0; j < jsaFavSymbol
-												.length(); j++) {
-											FragmentChangeActivity.strGetListSymbol += jsaFavSymbol
-													.getJSONObject(j)
-													.getString("symbol_name");
-											if (j != (jsaFavSymbol.length() - 1)) {
-												FragmentChangeActivity.strGetListSymbol += ",";
-											}
-										}
-										getWatchlistSymbol(); // get watchlist
-																// symbol
-									}
-									break;
+								FragmentChangeActivity.strGetListSymbol += jsoIndex
+										.getString("symbol_name");
+								if (i != (FragmentChangeActivity.contentGetSymbolFavorite
+										.length() - 1)) {
+									FragmentChangeActivity.strGetListSymbol += ",";
 								}
 							}
+							getWatchlistSymbol(); // get watchlist
+							// symbol
+
+							// String strFav = jsoIndex
+							// .getString("favorite_number");
+							// if (FragmentChangeActivity.strFavoriteNumber
+							// .equals(strFav)) {
+							// if ((jsoIndex.getJSONArray("dataAll")) != null) {
+							// FragmentChangeActivity.strGetListSymbol = "";
+							// JSONArray jsaFavSymbol = jsoIndex
+							// .getJSONArray("dataAll");
+							//
+							// for (int j = 0; j < jsaFavSymbol
+							// .length(); j++) {
+							// FragmentChangeActivity.strGetListSymbol +=
+							// jsaFavSymbol
+							// .getJSONObject(j)
+							// .getString("symbol_name");
+							// if (j != (jsaFavSymbol.length() - 1)) {
+							// FragmentChangeActivity.strGetListSymbol += ",";
+							// }
+							// }
+							// getWatchlistSymbol(); // get watchlist
+							// // symbol
+							// }
+							// break;
+							// }
+							// }
 						} else {
 							dialogLoading.dismiss();
 						}

@@ -316,6 +316,7 @@ public class FragmentChangeActivity extends FragmentActivity implements
 		heightScreen = displaymetrics.heightPixels;
 		widthScreen = displaymetrics.widthPixels;
 
+		contentGetSymbol = null;
 		if (SplashScreen.userModel.user_id != "") {
 			selectMenu();
 			initMenuBottomPopup();
@@ -503,7 +504,7 @@ public class FragmentChangeActivity extends FragmentActivity implements
 				}
 
 				img_bottom_systemtrade_t
-						.setBackgroundResource(R.drawable.menu_bottom_cdc_active);
+						.setBackgroundResource(R.drawable.menu_bottom_systemtrade_active);
 				tv_bottom_systemtrade_t.setTextColor(getResources().getColor(
 						R.color.c_success));
 
@@ -561,7 +562,7 @@ public class FragmentChangeActivity extends FragmentActivity implements
 		img_bottom_smartport_t
 				.setBackgroundResource(R.drawable.menu_bottom_smartport);
 		img_bottom_systemtrade_t
-				.setBackgroundResource(R.drawable.menu_bottom_cdc);
+				.setBackgroundResource(R.drawable.menu_bottom_systemtrade);
 		img_bottom_news_t.setBackgroundResource(R.drawable.menu_bottom_heat);
 		img_bottom_profile_t
 				.setBackgroundResource(R.drawable.menu_bottom_profile);

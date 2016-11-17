@@ -137,16 +137,29 @@ public class PagerWatchListDetailHit extends Fragment {
 			// ======= url ========
 
 			// http://bidschart.com/bidsMaster/retrieveSetAlertAllList?user_id=53
+			// String url_GetDetail = SplashScreen.url_bidschart
+			// + "/bidsMaster/retrieveSetAlertAllList?user_id="
+			// + SplashScreen.userModel.user_id + "&timestamp="
+			// + timestamp;
+
+			String strOrderBookId = "";
+			try {
+				strOrderBookId = UiWatchlistDetail.contentGetDetail.getString("orderbook_id");
+			} catch (JSONException e2) {
+				e2.printStackTrace();
+			}
+			
+			// http://bidschart.com/bidsMaster/retrieveSetAlertList?user_id=104&orderbook_id=2099
 			String url_GetDetail = SplashScreen.url_bidschart
-					+ "/bidsMaster/retrieveSetAlertAllList?user_id="
-					+ SplashScreen.userModel.user_id + "&timestamp="
-					+ timestamp;
+					+ "/bidsMaster/retrieveSetAlertList?user_id="
+					+ SplashScreen.userModel.user_id + "&orderbook_id="
+					+ strOrderBookId + "&timestamp=" + timestamp;
 
 			// http://bidschart.com/bidsMaster/retrieveSetAlertList?user_id=104&orderbook_id=2099
-//			String url_GetDetail = SplashScreen.url_bidschart
-//					+ "/bidsMaster/retrieveSetAlertList?user_id="
-//					+ SplashScreen.userModel.user_id + "&orderbook_id="
-//					+ strOrderBookId + "&timestamp=" + timestamp;
+			// String url_GetDetail = SplashScreen.url_bidschart
+			// + "/bidsMaster/retrieveSetAlertList?user_id="
+			// + SplashScreen.userModel.user_id + "&orderbook_id="
+			// + strOrderBookId + "&timestamp=" + timestamp;
 
 			try {
 				// ======= Ui Home ========

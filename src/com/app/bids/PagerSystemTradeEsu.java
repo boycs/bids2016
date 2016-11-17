@@ -75,10 +75,10 @@ public class PagerSystemTradeEsu extends Fragment {
 	private WebSocketClient mWebSocketClient;
 
 	Dialog dialogLoading;
-	
-	// --------- google analytics 
-//	private Tracker mTracker;
-//    String nameTracker = new String("Float Volume Spread");
+
+	// --------- google analytics
+	// private Tracker mTracker;
+	// String nameTracker = new String("Float Volume Spread");
 
 	// list contains fragments to instantiate in the viewpager
 	List<Fragment> fragmentMain = new Vector<Fragment>();
@@ -110,9 +110,8 @@ public class PagerSystemTradeEsu extends Fragment {
 		if (container == null) {
 			return null;
 		}
-		
-		DialogDifinitionSignal = new DialogDifinitionSignal(
-				context);
+
+		DialogDifinitionSignal = new DialogDifinitionSignal(context);
 
 		// inflate view from layout
 		rootView = inflater.inflate(R.layout.pager_systemtrade_esu, container,
@@ -121,8 +120,9 @@ public class PagerSystemTradeEsu extends Fragment {
 		// getFragmentManager().beginTransaction().remove(FragmentPagerSystemTrade.this).commit();
 
 		// --------- google analytics
-//		GoogleAnalyticsApp application = (GoogleAnalyticsApp) getActivity().getApplication();
-//		mTracker = application.getDefaultTracker();
+		// GoogleAnalyticsApp application = (GoogleAnalyticsApp)
+		// getActivity().getApplication();
+		// mTracker = application.getDefaultTracker();
 
 		dialogLoading = new Dialog(context);
 		dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -165,14 +165,14 @@ public class PagerSystemTradeEsu extends Fragment {
 		return rootView;
 
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
-//		Log.v(nameTracker, "onResume onResume onResume");
-//		
-//		mTracker.setScreenName(nameTracker);
-//		mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+		// Log.v(nameTracker, "onResume onResume onResume");
+		//
+		// mTracker.setScreenName(nameTracker);
+		// mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 	}
 
 	// ***************** text sliding ******************
@@ -233,9 +233,8 @@ public class PagerSystemTradeEsu extends Fragment {
 							if (txtPchange != "") {
 								double dbS = Double.parseDouble(txtSetPChenge);
 								double dbO = Double.parseDouble(txtPchange);
-								txtPchange = FunctionSetBg
-										.setColorTxtSliding(txtSetPChenge,
-												txtPchange);
+								txtPchange = FunctionSetBg.setColorTxtSliding(
+										txtSetPChenge, txtPchange);
 							}
 						}
 
@@ -366,7 +365,8 @@ public class PagerSystemTradeEsu extends Fragment {
 						if (original_list.get(i).symbol.toLowerCase().contains(
 								text.toString().toLowerCase())) {
 							if (((original_list.get(i).status_segmentId)
-									.equals(status_segmentId)) || ((original_list.get(i).status_segmentId)
+									.equals(status_segmentId))
+									|| ((original_list.get(i).status_segmentId)
 											.equals(status_segmentIdDot))) {
 								second_list.add(original_list.get(i));
 							}
@@ -397,7 +397,8 @@ public class PagerSystemTradeEsu extends Fragment {
 					if (original_list.get(i).symbol.toLowerCase().contains(
 							et_search.getText().toString().toLowerCase())) {
 						if (((original_list.get(i).status_segmentId)
-								.equals(status_segmentId)) || ((original_list.get(i).status_segmentId)
+								.equals(status_segmentId))
+								|| ((original_list.get(i).status_segmentId)
 										.equals(status_segmentIdDot))) {
 							second_list.add(original_list.get(i));
 						}
@@ -422,7 +423,8 @@ public class PagerSystemTradeEsu extends Fragment {
 					if (original_list.get(i).symbol.toLowerCase().contains(
 							et_search.getText().toString().toLowerCase())) {
 						if (((original_list.get(i).status_segmentId)
-								.equals(status_segmentId)) || ((original_list.get(i).status_segmentId)
+								.equals(status_segmentId))
+								|| ((original_list.get(i).status_segmentId)
 										.equals(status_segmentIdDot))) {
 							second_list.add(original_list.get(i));
 						}
@@ -446,7 +448,8 @@ public class PagerSystemTradeEsu extends Fragment {
 					if (original_list.get(i).symbol.toLowerCase().contains(
 							et_search.getText().toString().toLowerCase())) {
 						if (((original_list.get(i).status_segmentId)
-								.equals(status_segmentId)) || ((original_list.get(i).status_segmentId)
+								.equals(status_segmentId))
+								|| ((original_list.get(i).status_segmentId)
 										.equals(status_segmentIdDot))) {
 							second_list.add(original_list.get(i));
 						}
@@ -712,21 +715,21 @@ public class PagerSystemTradeEsu extends Fragment {
 					// symbol
 					final String symbol_name = jsoIndex
 							.getString("symbol_name");
-//					String turnover_list_level = jsoIndex
-//							.getString("turnover_list_level");
-//					String status = jsoIndex.getString("status");
-//					String status_xd = jsoIndex.getString("status_xd");
+					// String turnover_list_level = jsoIndex
+					// .getString("turnover_list_level");
+					// String status = jsoIndex.getString("status");
+					// String status_xd = jsoIndex.getString("status_xd");
 
 					TextView tv_symbol_name = (TextView) viewSymbol
 							.findViewById(R.id.tv_symbol_name);
 					tv_symbol_name.setText(symbol_name);
-					
-//					tv_symbol_name
-//					.setText(Html.fromHtml(FunctionSymbol
-//							.checkStatusSymbol(symbol_name,
-//									turnover_list_level, status,
-//									status_xd)));
-					
+
+					// tv_symbol_name
+					// .setText(Html.fromHtml(FunctionSymbol
+					// .checkStatusSymbol(symbol_name,
+					// turnover_list_level, status,
+					// status_xd)));
+
 					((TextView) viewSymbol
 							.findViewById(R.id.tv_symbol_fullname_eng))
 							.setText(jsoIndex.getString("symbol_fullname_eng"));
@@ -742,8 +745,7 @@ public class PagerSystemTradeEsu extends Fragment {
 							});
 
 					// ------------ check package
-					View v_sft = (View) rootView
-							.findViewById(R.id.v_sft);
+					View v_sft = (View) rootView.findViewById(R.id.v_sft);
 					LinearLayout li_sft = (LinearLayout) viewDetail
 							.findViewById(R.id.li_sft);
 					v_sft.setVisibility(View.GONE);
@@ -755,7 +757,7 @@ public class PagerSystemTradeEsu extends Fragment {
 							li_sft.setVisibility(View.VISIBLE);
 						}
 					}
-					
+
 					// detail
 					((LinearLayout) viewDetail.findViewById(R.id.row_detail))
 							.setOnClickListener(new OnClickListener() {
@@ -800,16 +802,10 @@ public class PagerSystemTradeEsu extends Fragment {
 					if (strChange != "") {
 						tv_change.setTextColor(context.getResources().getColor(
 								FunctionSetBg.setColor(strChange)));
-						tv_last_trade
-								.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg
-														.setColor(strChange)));
-						tv_percentChange
-								.setTextColor(context.getResources()
-										.getColor(
-												FunctionSetBg
-														.setColor(strChange)));
+						tv_last_trade.setTextColor(context.getResources()
+								.getColor(FunctionSetBg.setColor(strChange)));
+						tv_percentChange.setTextColor(context.getResources()
+								.getColor(FunctionSetBg.setColor(strChange)));
 					}
 
 					// sft
@@ -826,7 +822,7 @@ public class PagerSystemTradeEsu extends Fragment {
 							.getString("trendSignal_avg_percentChange");
 					String strFundam = jsoIndex.getString("fundamental");
 					String strColorm = jsoIndex.getString("color_macd");
-					
+
 					TextView tv_trendSignal_avg_percent = (TextView) viewDetail
 							.findViewById(R.id.tv_trendSignal_avg_percent);
 					TextView tv_fundamental = (TextView) viewDetail
@@ -834,9 +830,8 @@ public class PagerSystemTradeEsu extends Fragment {
 					TextView tv_color_macd = (TextView) viewDetail
 							.findViewById(R.id.tv_color_macd);
 
-					tv_trendSignal_avg_percent
-							.setBackgroundColor(FunctionSetBg
-									.setColorWatchListSymbolTrendSignal(strTrends));
+					tv_trendSignal_avg_percent.setBackgroundColor(FunctionSetBg
+							.setColorWatchListSymbolTrendSignal(strTrends));
 					tv_fundamental.setBackgroundColor(FunctionSetBg
 							.setColorWatchListSymbolFundamental(strFundam));
 					tv_color_macd.setBackgroundColor(FunctionSetBg
@@ -868,6 +863,13 @@ public class PagerSystemTradeEsu extends Fragment {
 					tv_zof_puas.setText(strZofPuas);
 					tv_zof_poc.setText(strZofPoc);
 					tv_zof_puar.setText(strZofPuar);
+					// ค่าเป็น 0 ให้ใส่ -
+					tv_zof_puas.setText(FunctionSymbol
+							.setFormatNumberEtc(strZofPuas));
+					tv_zof_poc.setText(FunctionSymbol
+							.setFormatNumberEtc(strZofPoc));
+					tv_zof_puar.setText(FunctionSymbol
+							.setFormatNumberEtc(strZofPuar));
 
 					tv_imb.setText(FunctionSetBg.setEsuStrImb(strImb));
 					tv_imb.setBackgroundResource(FunctionSetBg
@@ -914,7 +916,7 @@ public class PagerSystemTradeEsu extends Fragment {
 						connectWebSocket();
 					}
 				}
-				
+
 			}
 
 		} catch (JSONException e) {
@@ -1067,7 +1069,7 @@ public class PagerSystemTradeEsu extends Fragment {
 						}.start();
 
 					}
-					
+
 					break;
 				}
 			}
@@ -1075,7 +1077,7 @@ public class PagerSystemTradeEsu extends Fragment {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// the meat of switching the above fragment
 	private void switchFragment(Fragment fragment) {
 		if (getActivity() == null)

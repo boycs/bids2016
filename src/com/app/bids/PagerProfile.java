@@ -221,6 +221,8 @@ public class PagerProfile extends Fragment {
 			tv_remining, tv_remining_percent;
 	public static ImageView img_profile_realtime;
 	public static ProgressWheel progress_remining;
+	
+	public static LinearLayout li_pro;
 
 	private void initBilling() {
 		// ---------- premium pro
@@ -236,13 +238,20 @@ public class PagerProfile extends Fragment {
 				.findViewById(R.id.tv_remining_percent);
 		progress_remining = (ProgressWheel) rootView
 				.findViewById(R.id.progress_remining);
+		li_pro = (LinearLayout)rootView.findViewById(R.id.li_pro);
 
 		try {
 			if (!(SplashScreen.contentGetUserById.getString("package")
 					.equals("free"))) {
 				// img_profile_realtime
 				// .setBackgroundResource(R.drawable.icon_profile_realtime_active);
-				// tv_profile_realtime.setText("Real Time");
+				img_profile_realtime.setVisibility(View.GONE);
+				li_pro.setVisibility(View.VISIBLE);
+				tv_profile_realtime.setText("Real Time");
+			}else{
+				img_profile_realtime.setVisibility(View.VISIBLE);
+				li_pro.setVisibility(View.GONE);
+				tv_profile_realtime.setText("Delay 15 minute");
 			}
 
 			// --------------
@@ -720,10 +729,10 @@ public class PagerProfile extends Fragment {
 						dialogSuggestion();
 					}
 				});
-//		if (!FragmentChangeActivity.ckShowSuggestion) {
-//			FragmentChangeActivity.ckShowSuggestion = true;
-//			dialogSuggestion();
-//		}
+		// if (!FragmentChangeActivity.ckShowSuggestion) {
+		// FragmentChangeActivity.ckShowSuggestion = true;
+		// dialogSuggestion();
+		// }
 
 		// ----------- ส่วนของการจ่ายเงิน
 		initBilling();
@@ -748,13 +757,17 @@ public class PagerProfile extends Fragment {
 		return "";
 	}
 
+	FragmentChangeActivity frg;
 	private void updateDataLogin() {
+		frg = new FragmentChangeActivity();
 		SplashScreen.myDb = new LinnaeusDatabase(context);
 		SplashScreen.myDb.getWritableDatabase(); // First method
 		SplashScreen.arrLogin = SplashScreen.myDb.SelectDataLogin();
 
 		startActivity(new Intent(context, LoginActivity.class));
 		((Activity) context).finish();
+		
+//		frg.finish();
 	}
 
 	// ============== tab pager ===============

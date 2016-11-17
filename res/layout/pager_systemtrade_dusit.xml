@@ -56,7 +56,7 @@
         android:id="@+id/scv_edit_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <LinearLayout
             android:id="@+id/li_edit_condition"
@@ -75,6 +75,7 @@
                 android:weightSum="2" >
 
                 <com.app.custom.CustomTextView
+                    android:id="@+id/tv_topic"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -85,6 +86,7 @@
                     android:textSize="@dimen/f_description" />
 
                 <com.app.custom.CustomTextView
+                    android:id="@+id/tv_condition"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

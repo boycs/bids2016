@@ -503,7 +503,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:singleLine="true"
-                                    android:text="ZOF/PUAS"
+                                    android:text="ZOF/PVAS"
                                     android:textColor="@color/c_title"
                                     android:textSize="@dimen/f_watchlist_detail" />
 
@@ -521,7 +521,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:singleLine="true"
-                                    android:text="ZOF/PUAR"
+                                    android:text="ZOF/PVAR"
                                     android:textColor="@color/c_title"
                                     android:textSize="@dimen/f_watchlist_detail" />
 

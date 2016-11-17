@@ -103,7 +103,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="price"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_description" />
 
@@ -119,7 +118,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="change"
                     android:textColor="@color/c_content"
                     android:textSize="@dimen/f_watchlist_detail" />
 
@@ -129,7 +127,6 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="%"
                     android:textColor="@color/c_content"
                     android:textSize="@dimen/f_note" />
             </LinearLayout>
@@ -140,7 +137,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
-                android:text="Volume"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -150,7 +146,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
-                android:text="Value"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -161,7 +156,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="High"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -172,7 +166,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="Low"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -183,7 +176,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="Ceiling"
                 android:textColor="@color/c_blue"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -194,7 +186,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="Floor"
                 android:textColor="@color/c_pink"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -205,7 +196,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="P/E"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -216,7 +206,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="P/BV"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -227,7 +216,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="-"
                 android:textColor="@color/c_blue"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -238,7 +226,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="-"
                 android:textColor="@color/c_blue"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -249,7 +236,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="-"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
         </LinearLayout>

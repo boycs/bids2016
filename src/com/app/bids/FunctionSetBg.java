@@ -14,8 +14,7 @@ public class FunctionSetBg {
 	public static int setColor(String strColor) {
 		int c = arrColor[3];
 		if ((strColor.trim() != "") && (strColor.trim() != "-")) {
-			double dColor = Double.parseDouble(strColor.replaceAll(",", ""));
-			// Log.v("dColor", "" + dColor);
+			double dColor = Double.parseDouble(strColor);
 			if (dColor < 0) {
 				c = arrColor[0];
 			} else if (dColor == 0) {
@@ -168,7 +167,7 @@ public class FunctionSetBg {
 	// set str detail list
 	public static String setStrDetailList(String str) {
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null"))) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null")) && (!str.equals("-")) ) {
 			str = "-";
 		} else {
 			str = FunctionSymbol.setFormatNumber(str);
@@ -181,7 +180,7 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailDanger(String str) {
 		int c = R.color.c_danger;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null"))) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null")) && (!str.equals("-")) ) {
 			c = R.color.c_content;
 		}
 		return c;
@@ -190,7 +189,7 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailSuccess(String str) {
 		int c = R.color.c_success;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null"))) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null")) && (!str.equals("-")) ) {
 			c = R.color.c_content;
 		}
 		return c;
@@ -199,7 +198,7 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailWaring(String str) {
 		int c = R.color.c_warning;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null"))) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null")) && (!str.equals("-")) ) {
 			c = R.color.c_content;
 		}
 		return c;
@@ -208,7 +207,16 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailBlue(String str) {
 		int c = R.color.c_blue;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null"))) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null")) && (!str.equals("-")) ) {
+			c = R.color.c_content;
+		}
+		return c;
+	}
+	
+	public static int setStrColorWriteDetailPink(String str) {
+		int c = R.color.c_pink;
+		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
+				|| (str == null) || (str.isEmpty()) || (str.equals("null")) && (!str.equals("-")) ) {
 			c = R.color.c_content;
 		}
 		return c;

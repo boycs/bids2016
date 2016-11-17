@@ -111,7 +111,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="price"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_description" />
 
@@ -236,7 +235,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="-"
                 android:textColor="@color/c_blue"
                 android:textSize="@dimen/f_watchlist_detail" />
 
@@ -247,7 +245,6 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/padding_row"
                 android:singleLine="true"
-                android:text="-"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
         </LinearLayout>

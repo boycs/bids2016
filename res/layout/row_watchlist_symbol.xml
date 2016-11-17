@@ -22,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="Symbol"
                 android:textColor="@color/c_content"
                 android:textSize="@dimen/f_watchlist_detail" />
 

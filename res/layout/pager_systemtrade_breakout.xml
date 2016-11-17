@@ -363,7 +363,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.95"
-                            android:text="BreakOut &amp; ATH/L"
+                            android:text="BreakOut &amp; All Time High"
                             android:textColor="@color/c_content"
                             android:textSize="@dimen/f_small" />
 
@@ -372,7 +372,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/padding_row"
                             android:gravity="right"
-                            android:text="Total BreakOut"
+                            android:text="Total"
                             android:textColor="@color/c_content"
                             android:textSize="@dimen/f_small" />
                     </LinearLayout>
@@ -411,13 +411,13 @@
                 android:paddingBottom="@dimen/padding_row"
                 android:paddingTop="@dimen/padding_row"
                 android:visibility="visible"
-                android:weightSum="2" >
+                android:weightSum="5" >
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="0.8"
+                    android:layout_weight="4"
                     android:background="@drawable/border_button"
                     android:weightSum="2" >
 
@@ -447,7 +447,7 @@
                         android:gravity="center"
                         android:padding="@dimen/padding_default"
                         android:singleLine="true"
-                        android:text="ATH/L"
+                        android:text="All Time High/Low"
                         android:textColor="@color/c_content"
                         android:textSize="@dimen/f_symbol_detail" />
                 </LinearLayout>

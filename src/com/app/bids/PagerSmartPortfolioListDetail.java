@@ -299,7 +299,7 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 				mChartPie.setExtraOffsets(5, 10, 5, 5);
 
 				mChartPie.setDragDecelerationFrictionCoef(0.95f);
-				// mChartPie.setCenterText("Market Value"); // settext ในวงกลม
+				mChartPie.setCenterText("Market Value"); // settext ในวงกลม
 
 				mChartPie.setCenterTextColor(context.getResources().getColor(
 						R.color.c_content));
@@ -370,18 +370,18 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 				mChartBar.setDrawGridBackground(false);
 				// mChart.setDrawYLabels(false);
 
+				// /////////////////////
 
-				///////////////////////
-				
-				///////////////////////////
-//		        float MaxValueR, MinValueR;
-//				ArrayList<Float> arrMaxMinR = new ArrayList<Float>();
-//				for (int i = 0; i < jsaResult.length(); i++) {
-//					JSONObject jsaGraph = jsaResult.getJSONObject(i);
-//					arrMaxMinR.add(Float.parseFloat(jsaGraph.getString("pl_percent").replaceAll(",", "")));
-//				}
-//				MaxValueR = FloatMath.ceil(Collections.max(arrMaxMinR));
-//				MinValueR = FloatMath.floor(Collections.min(arrMaxMinR));
+				// /////////////////////////
+				// float MaxValueR, MinValueR;
+				// ArrayList<Float> arrMaxMinR = new ArrayList<Float>();
+				// for (int i = 0; i < jsaResult.length(); i++) {
+				// JSONObject jsaGraph = jsaResult.getJSONObject(i);
+				// arrMaxMinR.add(Float.parseFloat(jsaGraph.getString("pl_percent").replaceAll(",",
+				// "")));
+				// }
+				// MaxValueR = FloatMath.ceil(Collections.max(arrMaxMinR));
+				// MinValueR = FloatMath.floor(Collections.min(arrMaxMinR));
 
 				XAxis xAxis = mChartBar.getXAxis();
 				xAxis.setPosition(XAxisPosition.BOTTOM);
@@ -400,20 +400,21 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 				leftAxis.setTextColor(context.getResources().getColor(
 						R.color.c_content));
 				leftAxis.setStartAtZero(false);
-//				leftAxis.setAxisMaxValue(-10);
-//				leftAxis.setAxisMinValue(100); 
-//				leftAxis.setAxisMaxValue(MaxValueR);
-//				leftAxis.setAxisMinValue(MinValueR); // this replaces setStartAtZero(true)
+				// leftAxis.setAxisMaxValue(-10);
+				// leftAxis.setAxisMinValue(100);
+				// leftAxis.setAxisMaxValue(MaxValueR);
+				// leftAxis.setAxisMinValue(MinValueR); // this replaces
+				// setStartAtZero(true)
 
 				// --- ขวา
 				YAxis rightAxis = mChartBar.getAxisRight();
 				rightAxis.setEnabled(false);
-//				rightAxis.setDrawGridLines(false);
-//				rightAxis.setTextColor(context.getResources().getColor(
-//						R.color.c_content));
-//				rightAxis.setStartAtZero(false);
-//				rightAxis.setAxisMaxValue(MaxValueR);
-//				rightAxis.setAxisMinValue(MinValueR);
+				// rightAxis.setDrawGridLines(false);
+				// rightAxis.setTextColor(context.getResources().getColor(
+				// R.color.c_content));
+				// rightAxis.setStartAtZero(false);
+				// rightAxis.setAxisMaxValue(MaxValueR);
+				// rightAxis.setAxisMinValue(MinValueR);
 
 				Legend l = mChartBar.getLegend();
 				l.setEnabled(false);
@@ -452,18 +453,19 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 					String strPl = jsaResult.getJSONObject(i).getString(
 							"pl_percent");
 					float val = Float.parseFloat(strPl);
-					
+
 					yVals.add(new BarEntry(val, i));
-					
+
 					set1 = new BarDataSet(yVals, "");
 					set1.setBarSpacePercent(35f);
-//					if(val < 0){
-//						set1.setColor(context.getResources().getColor(R.color.c_danger));
-//					}else{
-						set1.setColor(context.getResources().getColor(R.color.c_success));
-//					}
+					// if(val < 0){
+					// set1.setColor(context.getResources().getColor(R.color.c_danger));
+					// }else{
+					set1.setColor(context.getResources().getColor(
+							R.color.c_success));
+					// }
 				}
-				
+
 				ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
 				dataSets.add(set1);
 
@@ -535,6 +537,8 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 	private void setDataView() {
 		try {
 			if ((contentGetDetailList.getString("status")).equals("ok")) {
+				TextView tv_title_symbol = (TextView) rootView
+						.findViewById(R.id.tv_title_symbol);
 				TextView tv_total_value = (TextView) rootView
 						.findViewById(R.id.tv_total_value);
 				TextView tv_market_value0 = (TextView) rootView
@@ -543,6 +547,9 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 						.findViewById(R.id.tv_pl_sum);
 				TextView tv_pl_percent = (TextView) rootView
 						.findViewById(R.id.tv_pl_percent);
+
+				tv_title_symbol.setText(FragmentChangeActivity.strSymbolSelect
+						+ "'s Detail");
 
 				String total_value = contentGetDetailList
 						.getString("total_value");
@@ -1156,7 +1163,10 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 								if (original_list.get(i).symbol
 										.toLowerCase()
 										.contains(text.toString().toLowerCase())) {
-									second_list.add(original_list.get(i));
+									if ((original_list.get(i).status_segmentId == "COMMON")
+											|| (original_list.get(i).status_segmentId == "WARRANT")) {
+										second_list.add(original_list.get(i));
+									}
 								}
 							}
 							ListAdapterSearch.notifyDataSetChanged();
@@ -1168,8 +1178,11 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 								if (original_list_fund.get(i).name_initial
 										.toLowerCase().contains(
 												text.toString().toLowerCase())) {
-									second_list_fund.add(original_list_fund
-											.get(i));
+									if ((original_list.get(i).status_segmentId == "COMMON")
+											|| (original_list.get(i).status_segmentId == "WARRANT")) {
+										second_list_fund.add(original_list_fund
+												.get(i));
+									}
 								}
 							}
 							ListAdapterSearchNameFund.notifyDataSetChanged();
@@ -1202,7 +1215,10 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 						for (int i = 0; i < original_list.size(); i++) {
 							if (original_list.get(i).symbol.toLowerCase()
 									.contains(text.toString().toLowerCase())) {
-								second_list.add(original_list.get(i));
+								if ((original_list.get(i).status_segmentId == "COMMON")
+										|| (original_list.get(i).status_segmentId == "WARRANT")) {
+									second_list.add(original_list.get(i));
+								}
 							}
 						}
 						ListAdapterSearch.notifyDataSetChanged();
@@ -1232,7 +1248,11 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 							if (original_list_fund.get(i).name_initial
 									.toLowerCase().contains(
 											text.toString().toLowerCase())) {
-								second_list_fund.add(original_list_fund.get(i));
+								if ((original_list.get(i).status_segmentId == "COMMON")
+										|| (original_list.get(i).status_segmentId == "WARRANT")) {
+									second_list_fund.add(original_list_fund
+											.get(i));
+								}
 							}
 						}
 						ListAdapterSearchNameFund.notifyDataSetChanged();

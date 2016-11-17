@@ -531,6 +531,9 @@ public class PagerSystemTradeDusit extends Fragment {
 				// ======= Ui Home ========
 				jsonGetDusitRatio = ReadJson
 						.readJsonObjectFromUrl(url_GetDusitRatio);
+				
+				Log.v("url_GetDusitRatio",""+url_GetDusitRatio);
+				
 			} catch (IOException e1) {
 				connectionError = true;
 				jsonGetDusitRatio = null;
@@ -554,6 +557,8 @@ public class PagerSystemTradeDusit extends Fragment {
 			if (connectionError == false) {
 				if (jsonGetDusitRatio != null) {
 					try {
+						Log.v("jsonGetDusitRatio",""+jsonGetDusitRatio);
+						
 						FragmentChangeActivity.contentGetSystemTradeDusitRatio = jsonGetDusitRatio
 								.getJSONArray("data");
 						FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit = jsonGetDusitRatio
@@ -671,8 +676,8 @@ public class PagerSystemTradeDusit extends Fragment {
 		editConditionShow = false;
 		scv_edit_condition.setVisibility(View.GONE);
 
-		tv_edit_sl.setVisibility(View.VISIBLE);
-		img_edit_sl.setVisibility(View.GONE);
+		tv_edit_sl.setVisibility(View.GONE);
+		img_edit_sl.setVisibility(View.VISIBLE);
 		tv_edit_sl.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -680,14 +685,14 @@ public class PagerSystemTradeDusit extends Fragment {
 					editConditionShow = false;
 					scv_edit_condition.setVisibility(View.GONE);
 
-					tv_edit_sl.setVisibility(View.VISIBLE);
-					img_edit_sl.setVisibility(View.GONE);
+					tv_edit_sl.setVisibility(View.GONE);
+					img_edit_sl.setVisibility(View.VISIBLE);
 				} else {
 					editConditionShow = true;
 					scv_edit_condition.setVisibility(View.VISIBLE);
 
-					tv_edit_sl.setVisibility(View.GONE);
-					img_edit_sl.setVisibility(View.VISIBLE);
+					tv_edit_sl.setVisibility(View.VISIBLE);
+					img_edit_sl.setVisibility(View.GONE);
 				}
 			}
 		});
@@ -698,14 +703,14 @@ public class PagerSystemTradeDusit extends Fragment {
 					editConditionShow = false;
 					scv_edit_condition.setVisibility(View.GONE);
 
-					tv_edit_sl.setVisibility(View.VISIBLE);
-					img_edit_sl.setVisibility(View.GONE);
+					tv_edit_sl.setVisibility(View.GONE);
+					img_edit_sl.setVisibility(View.VISIBLE);
 				} else {
 					editConditionShow = true;
 					scv_edit_condition.setVisibility(View.VISIBLE);
 
-					tv_edit_sl.setVisibility(View.GONE);
-					img_edit_sl.setVisibility(View.VISIBLE);
+					tv_edit_sl.setVisibility(View.VISIBLE);
+					img_edit_sl.setVisibility(View.GONE);
 				}
 			}
 		});
@@ -788,7 +793,7 @@ public class PagerSystemTradeDusit extends Fragment {
 			@Override
 			public void onClick(View v) {
 				FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault;
-				setDataCondition();
+				setDataDefault();
 			}
 		});
 		tv_apply.setOnClickListener(new OnClickListener() {
@@ -823,14 +828,17 @@ public class PagerSystemTradeDusit extends Fragment {
 						+ strRevenue + "&eps=" + strEps + "&current="
 						+ strCurrent + "&quick=" + strQuick + "&de=" + strDe
 						+ "&roe=" + strRoe;
+				
+//				Log.v("url_GetDusitRatio",""+url_GetDusitRatio);
+				
 				loadDataDetail(); // load data
 			}
 		});
-		setDataCondition(); // set data condition
+		setDataDefault(); // set data default
 	}
 
-	// ============= set data condition ===========
-	private void setDataCondition() {
+	// ============= set data default ===========
+	private void setDataDefault() {
 		try {
 			if (FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit != null) {
 
@@ -1216,6 +1224,8 @@ public class PagerSystemTradeDusit extends Fragment {
 		@Override
 		public void onClick(final View v) {
 
+			final View vId = v;
+			
 			alertDialogSetAlert = new Dialog(context);
 			LayoutInflater inflater = LayoutInflater.from(context);
 			View dlView = inflater
@@ -1234,7 +1244,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				@Override
 				public void onClick(View v) {
 					alertDialogSetAlert.dismiss();
-					switch (v.getId()) {
+					switch (vId.getId()) {
 					case R.id.tv_gpm_sign:
 						tv_gpm_sign.setText("<");
 						break;
@@ -1275,7 +1285,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				@Override
 				public void onClick(View v) {
 					alertDialogSetAlert.dismiss();
-					switch (v.getId()) {
+					switch (vId.getId()) {
 					case R.id.tv_gpm_sign:
 						tv_gpm_sign.setText("=");
 						break;
@@ -1316,7 +1326,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				@Override
 				public void onClick(View v) {
 					alertDialogSetAlert.dismiss();
-					switch (v.getId()) {
+					switch (vId.getId()) {
 					case R.id.tv_gpm_sign:
 						tv_gpm_sign.setText(">");
 						break;

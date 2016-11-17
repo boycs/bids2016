@@ -253,7 +253,7 @@ public class FunctionSymbol extends Activity {
 	public static String setFormatNumber(String strNumber) {
 		String c = "";
 		if ((!strNumber.equals("")) && (!strNumber.equals("0"))
-				&& (!strNumber.equals("0.00"))) {
+				&& (!strNumber.equals("0.00")) && (!strNumber.equals("-"))) {
 			float value = Float.parseFloat(strNumber.replaceAll(",", ""));
 			// DecimalFormat myFormatter = new DecimalFormat("#,###.00");
 			// c = myFormatter.format(value);
@@ -273,6 +273,42 @@ public class FunctionSymbol extends Activity {
 		return c;
 	}
 
+	// return - ไม่ใส่จุด
+	public static String setFormatNumberEtc(String strNumber) {
+		String c = "";
+		if ((!strNumber.equals("")) && (!strNumber.equals("0"))
+				&& (!strNumber.equals("0.00")) && (!strNumber.equals("-"))) {
+			c = strNumber;
+		} else {
+			c = "-";
+		}
+		return c;
+	}
+
+	// ค่าเป็น 0 ให้ใส่ - ไม่ใส่จุด
+	public static String setFormatNumberBar(String strNumber) {
+		String c = "";
+		if ((strNumber.equals("")) || (strNumber.equals("0"))
+				|| (strNumber.equals("0.00")) || (strNumber.equals("-"))) {
+			c = "-";
+		} else {
+			c = strNumber;
+		}
+		return c;
+	}
+
+	// return 0
+	public static String setFormatNumber0(String strNumber) {
+		String c = "0";
+		if ((!strNumber.equals("")) && (!strNumber.equals("0"))
+				&& (!strNumber.equals("0.00")) && (!strNumber.equals("-"))) {
+			c = strNumber;
+		} else {
+			c = "0";
+		}
+		return c;
+	}
+
 	// แปลงสตริงเป็น float
 	public static float setStringPaseFloat(String strNumber) {
 		float fNum = 0;
@@ -286,7 +322,7 @@ public class FunctionSymbol extends Activity {
 	public static String setBracket(String strNumber) {
 		String c = "";
 		if ((!strNumber.equals("")) && (!strNumber.equals("0"))
-				&& (!strNumber.equals("0.00"))) {
+				&& (!strNumber.equals("0.00")) && (!strNumber.equals("-"))) {
 			c = "(" + setFormatNumber(strNumber) + ")";
 		} else {
 		}
@@ -314,19 +350,19 @@ public class FunctionSymbol extends Activity {
 	// เช็คว่า format Decimal ใส่ , ทศนิยม 2 ตำแหน่ง
 	public static String setFormatAnd2Digit(String strNumber) {
 		String c = "0.00";
-		if(strNumber.equals("N/A")){
+		if (strNumber.equals("N/A")) {
 			c = "N/A";
-		}else if( !(strNumber.equals("")) && !(strNumber.equals("0")) ){
+		} else if (!(strNumber.equals("")) && !(strNumber.equals("0"))) {
 			float value = Float.parseFloat(strNumber.replaceAll(",", ""));
-			if(value > 0.00){
+			if (value > 0.00) {
 				DecimalFormat myFormatter = new DecimalFormat("#,###,###.00");
 				c = myFormatter.format(value);
-				if(value < 1){
-					c = "0"+c;
+				if (value < 1) {
+					c = "0" + c;
 				}
 			}
 		}
-		
+
 		return c;
 	}
 

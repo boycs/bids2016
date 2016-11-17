@@ -249,7 +249,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1.9"
                             android:singleLine="true"
-                            android:text="P/E"
+                            android:text="Avg. P/E"
                             android:textColor="@color/c_content"
                             android:textSize="@dimen/f_description" />
 
@@ -363,7 +363,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1.9"
                             android:singleLine="true"
-                            android:text="P/BV"
+                            android:text="Avg. P/BV"
                             android:textColor="@color/c_content"
                             android:textSize="@dimen/f_description" />
 
@@ -915,7 +915,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1.9"
                             android:singleLine="true"
-                            android:text="Exit P/E"
+                            android:text="Avg. P/E"
                             android:textColor="@color/c_content"
                             android:textSize="@dimen/f_description" />
 
@@ -1086,7 +1086,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1.9"
                             android:singleLine="true"
-                            android:text="B (%)"
+                            android:text="Beta"
                             android:textColor="@color/c_content"
                             android:textSize="@dimen/f_description" />
 

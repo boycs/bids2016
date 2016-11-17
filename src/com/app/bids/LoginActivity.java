@@ -461,6 +461,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 					try {
 						SplashScreen.contentGetUserById = jsonGetUserById
 								.getJSONObject("dataAll");
+						Log.v("SplashScreen.contentGetUserById",""+SplashScreen.contentGetUserById);
 
 						startActivity(new Intent(getApplicationContext(),
 								FragmentChangeActivity.class));

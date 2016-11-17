@@ -66,6 +66,7 @@
     <dimen name="icon_chart_color">13dp</dimen>     
     <dimen name="stoploss_w">10dp</dimen>   
     <dimen name="stoploss_w2">13dp</dimen>
+    <dimen name="row_risk">13dp</dimen>
 
     <!-- login -->
     <dimen name="padding_login">20dp</dimen>

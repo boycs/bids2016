@@ -136,7 +136,7 @@
                     android:layout_width="@dimen/img_bottom_menu"
                     android:layout_height="@dimen/img_bottom_menu"
                     android:layout_margin="@dimen/padding_row"
-                    android:background="@drawable/menu_bottom_cdc" />
+                    android:background="@drawable/menu_bottom_systemtrade" />
 
                 <com.app.custom.CustomTextView
                     android:id="@+id/tv_bottom_systemtrade_t"
