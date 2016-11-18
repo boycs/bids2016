@@ -264,7 +264,7 @@ public class FunctionSymbol extends Activity {
 				DecimalFormat myFormatter2 = new DecimalFormat("0.00");
 				c = myFormatter2.format(value);
 			} else {
-				DecimalFormat myFormatter = new DecimalFormat("#,###.00");
+				DecimalFormat myFormatter = new DecimalFormat("#,###.##");
 				c = myFormatter.format(value);
 			}
 		} else {
@@ -342,7 +342,7 @@ public class FunctionSymbol extends Activity {
 	public static String setFormatDecimal2(String strNumber) {
 		String c = "";
 		float value = Float.parseFloat(strNumber.replaceAll(",", ""));
-		DecimalFormat myFormatter = new DecimalFormat("#,###,###.000");
+		DecimalFormat myFormatter = new DecimalFormat("#,###,###.###");
 		c = myFormatter.format(value);
 		return c;
 	}
@@ -355,7 +355,7 @@ public class FunctionSymbol extends Activity {
 		} else if (!(strNumber.equals("")) && !(strNumber.equals("0"))) {
 			float value = Float.parseFloat(strNumber.replaceAll(",", ""));
 			if (value > 0.00) {
-				DecimalFormat myFormatter = new DecimalFormat("#,###,###.00");
+				DecimalFormat myFormatter = new DecimalFormat("#,###,###.##");
 				c = myFormatter.format(value);
 				if (value < 1) {
 					c = "0" + c;
@@ -373,7 +373,7 @@ public class FunctionSymbol extends Activity {
 		c = String.format("%.02f", value);
 		return c;
 	}
-
+	
 	// เช็คว่า follow หรือยัง
 	public static String checkFollowSymbolWatchlistSystemTradeWatctId(
 			String strSymbol) {

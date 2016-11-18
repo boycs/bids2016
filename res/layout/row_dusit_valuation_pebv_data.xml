@@ -10,7 +10,7 @@
         android:weightSum="5" >
 
         <TextView
-            android:id="@+id/tv_year"
+            android:id="@+id/tv_year_"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,19 +21,7 @@
             android:textSize="@dimen/f_description" />
 
         <TextView
-            android:id="@+id/tv_eps"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border_button"
-            android:gravity="center"
-            android:paddingBottom="@dimen/padding_default"
-            android:paddingTop="@dimen/padding_default"
-            android:textColor="@color/c_content"
-            android:textSize="@dimen/f_description" />
-
-        <TextView
-            android:id="@+id/tv_bvps"
+            android:id="@+id/tv_eps_"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -45,7 +33,7 @@
             android:textSize="@dimen/f_description" />
 
         <TextView
-            android:id="@+id/tv_pe"
+            android:id="@+id/tv_bvps_"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -57,7 +45,19 @@
             android:textSize="@dimen/f_description" />
 
         <TextView
-            android:id="@+id/tv_pbv"
+            android:id="@+id/tv_pe_"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border_button"
+            android:gravity="center"
+            android:paddingBottom="@dimen/padding_default"
+            android:paddingTop="@dimen/padding_default"
+            android:textColor="@color/c_content"
+            android:textSize="@dimen/f_description" />
+
+        <TextView
+            android:id="@+id/tv_pbv_"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

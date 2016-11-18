@@ -153,7 +153,7 @@ public class PagerSystemTradeDusit extends Fragment {
 		url_GetDusitRatio = SplashScreen.url_bidschart
 				+ "/service/v2/getDusitRatioConditionV2?user_id="
 				+ SplashScreen.userModel.user_id
-				+ "&set_get=get&gpm=>20&ebit=>10&ebitda=>10&npm=>10&revenue=>10&eps=>1&current=<2&quick=>1&de=<1&roe=>15";
+				+ "&set_get=get&gpm=>20&ebit=>10&ebitda=>10&npm=>10&revenue=>10&eps=>10&current=<2&quick=>1&de=<1&roe=>15";
 
 		if (FragmentChangeActivity.contentGetSystemTradeDusitRatio != null) {
 			initListData(); // set data
@@ -329,7 +329,7 @@ public class PagerSystemTradeDusit extends Fragment {
 		li_search.setVisibility(View.VISIBLE);
 
 		// search
-		final ListAdapterSearchSymbolSystemTradeEsu ListAdapterSearch;
+		final ListAdapterSearchSymbolSystemTradeDusit ListAdapterSearch;
 		final ArrayList<CatalogGetSymbol> original_list;
 		final ArrayList<CatalogGetSymbol> second_list;
 
@@ -348,9 +348,14 @@ public class PagerSystemTradeDusit extends Fragment {
 				.findViewById(R.id.list_search_symbol);
 		listview_search.setVisibility(View.GONE);
 
-		ListAdapterSearch = new ListAdapterSearchSymbolSystemTradeEsu(context,
+		ListAdapterSearch = new ListAdapterSearchSymbolSystemTradeDusit(context,
 				0, second_list);
 		listview_search.setAdapter(ListAdapterSearch);
+		
+//		FragmentChangeActivity.strSymbolSelect = symbol_name;
+//		FragmentChangeActivity.contentGetSystemTradeDusitRatioSelect = jsoIndex;
+//		context.startActivity(new Intent(context,
+//				UiDusitValuation.class));
 
 		et_search.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -563,11 +568,15 @@ public class PagerSystemTradeDusit extends Fragment {
 								.getJSONArray("data");
 						FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit = jsonGetDusitRatio
 								.getJSONObject("dusit");
-						FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault = jsonGetDusitRatio
-								.getJSONObject("default");
-
+						if(FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault == null){
+							FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault = jsonGetDusitRatio
+									.getJSONObject("default");
+							initEditCondition(); // init condition
+						}else{
+							FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault = jsonGetDusitRatio
+									.getJSONObject("default");
+						}
 						initListData(); // set data
-
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
@@ -799,6 +808,11 @@ public class PagerSystemTradeDusit extends Fragment {
 		tv_apply.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				editConditionShow = false;
+				scv_edit_condition.setVisibility(View.GONE);
+				tv_edit_sl.setVisibility(View.GONE);
+				img_edit_sl.setVisibility(View.VISIBLE);
+				
 				String strGpm = tv_gpm_sign.getText() + ""
 						+ et_gpm.getText().toString();
 				String strEbit = tv_ebit_sign.getText() + ""
@@ -829,7 +843,7 @@ public class PagerSystemTradeDusit extends Fragment {
 						+ strCurrent + "&quick=" + strQuick + "&de=" + strDe
 						+ "&roe=" + strRoe;
 				
-//				Log.v("url_GetDusitRatio",""+url_GetDusitRatio);
+				Log.v("url_GetDusitRatio apply",""+url_GetDusitRatio);
 				
 				loadDataDetail(); // load data
 			}
@@ -839,37 +853,37 @@ public class PagerSystemTradeDusit extends Fragment {
 
 	// ============= set data default ===========
 	private void setDataDefault() {
-		try {
-			if (FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit != null) {
+		try{
+			if (FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault != null) {
 
-				Log.v("contentGetSystemTradeDusitRatioDusit",
+				Log.v("contentGetSystemTradeDusitRatioDefault",
 						""
-								+ FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit);
+								+ FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault);
 
 				// {"gpm":">20","ebit":">10","ebitda":">10","npm":">10","revenue":">10","eps":">10","current":"<2","quick":"<1","de":"<1","roe":">15"}
 
 				// org.json.JSONException: Value >20 at gpm of type
 				// java.lang.String cannot be converted to JSONObject
 
-				String gpm = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String gpm = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("gpm");
-				String ebit = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String ebit = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("ebit");
-				String ebitda = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String ebitda = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("ebitda");
-				String npm = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String npm = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("npm");
-				String revenue = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String revenue = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("revenue");
-				String eps = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String eps = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("eps");
-				String current = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String current = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("current");
-				String quick = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String quick = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("quick");
-				String de = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String de = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("de");
-				String roe = FragmentChangeActivity.contentGetSystemTradeDusitRatioDusit
+				String roe = FragmentChangeActivity.contentGetSystemTradeDusitRatioDefault
 						.getString("roe");
 
 				tv_gpm_sign.setText("" + gpm.charAt(0));
@@ -920,121 +934,161 @@ public class PagerSystemTradeDusit extends Fragment {
 			switch (v.getId()) {
 			case R.id.tv_gpm_minus:
 				text = et_gpm.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
 				et_gpm.setText("" + (dText - 1));
-				// }
 				break;
 			case R.id.tv_ebit_minus:
 				text = et_ebit.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
 				et_ebit.setText("" + (dText - 1));
-				// }
 				break;
 			case R.id.tv_npm_minus:
 				text = et_npm.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
 				et_npm.setText("" + (dText - 1));
-				// }
 				break;
 			case R.id.tv_revenue_minus:
 				text = et_revenue.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
 				et_revenue.setText("" + (dText - 1));
-				// }
 				break;
 			case R.id.tv_ebitda_minus:
 				text = et_ebitda.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
 				et_ebitda.setText("" + (dText - 1));
-				// }
 				break;
 			case R.id.tv_eps_minus:
 				text = et_eps.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
 				et_eps.setText("" + (dText - 1));
-				// }
 				break;
 			case R.id.tv_current_minus:
 				text = et_current.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
-				et_current.setText("" + (dText - 0.10));
-				// }
+				et_current.setText(FunctionSymbol.setFormat2Digit(""+(dText - 0.10)));
 				break;
 			case R.id.tv_quick_minus:
 				text = et_quick.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
-				et_quick.setText("" + (dText - 0.10));
-				// }
+				et_quick.setText(FunctionSymbol.setFormat2Digit(""+(dText - 0.10)));
 				break;
 			case R.id.tv_de_minus:
 				text = et_de.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
-				et_de.setText("" + (dText - 0.10));
-				// }
+				et_de.setText(FunctionSymbol.setFormat2Digit(""+(dText - 0.10)));
 				break;
 			case R.id.tv_roe_minus:
 				text = et_roe.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				// if (dText > 0) {
 				et_roe.setText("" + (dText - 1));
-				// }
 				break;
 			case R.id.tv_gpm_plus:
 				text = et_gpm.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				et_gpm.setText("" + (dText + 1));
 				break;
 			case R.id.tv_ebit_plus:
 				text = et_ebit.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				et_ebit.setText("" + (dText + 1));
 				break;
 			case R.id.tv_npm_plus:
 				text = et_npm.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				et_npm.setText("" + (dText + 1));
 				break;
 			case R.id.tv_revenue_plus:
 				text = et_revenue.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				et_revenue.setText("" + (dText + 1));
 				break;
 			case R.id.tv_ebitda_plus:
 				text = et_ebitda.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				et_ebitda.setText("" + (dText + 1));
 				break;
 			case R.id.tv_eps_plus:
 				text = et_eps.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				et_eps.setText("" + (dText + 1));
 				break;
 			case R.id.tv_current_plus:
 				text = et_current.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_current.setText("" + (dText + 0.10));
+				et_current.setText(FunctionSymbol.setFormat2Digit(""+(dText + 0.10)));
 				break;
 			case R.id.tv_quick_plus:
 				text = et_quick.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_quick.setText("" + (dText + 0.10));
+				et_quick.setText(FunctionSymbol.setFormat2Digit(""+(dText + 0.10)));
 				break;
 			case R.id.tv_de_plus:
 				text = et_de.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_de.setText("" + (dText + 0.10));
+				et_de.setText(FunctionSymbol.setFormat2Digit(""+(dText + 0.10)));
 				break;
 			case R.id.tv_roe_plus:
 				text = et_roe.getText().toString();
+				if( (text=="N/A") && (text=="")){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				et_roe.setText("" + (dText + 1));
 				break;
@@ -1403,9 +1457,7 @@ public class PagerSystemTradeDusit extends Fragment {
 	// ============= set data ===========
 	TextView tv_count, tv_detail;
 
-	private void initListData() {
-		initEditCondition(); // init condition
-
+	private void initListData() {		
 		tv_count = (TextView) rootView.findViewById(R.id.tv_count);
 		tv_detail = (TextView) rootView.findViewById(R.id.tv_detail);
 
