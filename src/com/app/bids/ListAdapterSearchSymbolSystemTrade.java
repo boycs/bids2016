@@ -109,8 +109,8 @@ public class ListAdapterSearchSymbolSystemTrade extends ArrayAdapter {
 			}
 		});
 
-		img_add_symbol.setBackgroundResource(FunctionSymbol
-				.checkFollowSearchSymbol(symbolSelect));
+		img_add_symbol.setBackgroundResource(FollowSymbol
+				.setColorFollowSearchSymbol(symbolSelect));
 
 		li_row.setOnClickListener(new OnClickListener() {
 			@Override

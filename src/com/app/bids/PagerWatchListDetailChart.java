@@ -433,28 +433,28 @@ public class PagerWatchListDetailChart extends Fragment {
 		// --------- update topbar
 		try {
 			// ------ high low
-			String strOpen1 = FunctionSymbol
+			String strOpen1 = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("open1"));
-			String strOpen2 = FunctionSymbol
+			String strOpen2 = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("open2"));
-			String strHigh = FunctionSymbol
+			String strHigh = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("high"));
-			String strLow = FunctionSymbol
+			String strLow = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("low"));
-			String strClose = FunctionSymbol
+			String strClose = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("close"));
-			String strPrevClose = FunctionSymbol
+			String strPrevClose = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("prev_close"));
-			String strChange = FunctionSymbol
+			String strChange = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("change"));
-			String strPercentChange = FunctionSymbol
+			String strPercentChange = FunctionFormatData
 					.setFormatNumber(UiWatchlistDetail.contentGetDetail
 							.getString("percentChange"));
 

@@ -179,7 +179,7 @@ public class PagerSystemTradeBidSystem extends Fragment {
 							.findViewById(R.id.tv_symbol_name);
 
 					tv_symbol_name
-							.setText(FunctionSymbol.checkStatusSymbol(
+							.setText(FunctionFormatData.checkStatusSymbol(
 									symbol_name, turnover_list_level,
 									status, status_xd));
 					

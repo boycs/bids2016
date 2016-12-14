@@ -177,12 +177,23 @@ public class FragmentChangeActivity extends FragmentActivity implements
 	public static int timerUpdateSymbolLength = 40000;
 	public static int timerDelayChangeColor = 1000;
 	public static boolean timerUpdateSymbolStatus = false;
+	public static boolean ckLoadFavAll = false;
 	public static boolean ckLoadWatchlist = false; // false ไม่ต้องโหลดใหม่ ,
 													// true
 													// ให้โหลดใหม่(เลือกCategories)
 
 	// public static JSONArray contentGetWatchlistSymbolBegin = null;
 	public static JSONArray contentGetSymbolFavorite = null;
+	public static JSONArray contentGetSymbolFavorite_1 = null;
+	public static JSONArray contentGetSymbolFavorite_2 = null;
+	public static JSONArray contentGetSymbolFavorite_3 = null;
+	public static JSONArray contentGetSymbolFavorite_4 = null;
+	public static JSONArray contentGetSymbolFavorite_5 = null;
+	public static String strGetListSymbol_fav1 = "";
+	public static String strGetListSymbol_fav2 = "";
+	public static String strGetListSymbol_fav3 = "";
+	public static String strGetListSymbol_fav4 = "";
+	public static String strGetListSymbol_fav5 = "";
 	public static String strGetListSymbol = ""; // .set,.set50,.set100,.setHD,.mai
 	public static String strGetSymbolOrderBook_Id_default = "1024,1062,1063,1064,1025"; // order
 																						// book
@@ -276,6 +287,7 @@ public class FragmentChangeActivity extends FragmentActivity implements
 		wv_chartiq.getSettings().setBuiltInZoomControls(true);
 		wv_chartiq.getSettings().setDomStorageEnabled(true); // android webview
 																// local storage
+		
 		wv_chartiq.getSettings().setJavaScriptEnabled(true);
 		wv_chartiq.setLayoutParams(new ViewGroup.LayoutParams(
 				ViewGroup.LayoutParams.MATCH_PARENT,
@@ -1377,6 +1389,10 @@ public class FragmentChangeActivity extends FragmentActivity implements
 	// ************* start ui detail ***************
 	public static void startUiDetail() {
 		act.startActivity(new Intent(act, UiWatchlistDetail.class));
+	}
+	
+	public static void startUiDetailMutual() {
+		act.startActivity(new Intent(act, UiMutualfundDetail.class));
 	}
 
 	@Override

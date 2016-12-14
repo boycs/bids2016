@@ -43,6 +43,7 @@ import com.app.bids.AFunctionOther;
 import com.app.bids.FragmentChangeActivity;
 import com.app.bids.LoadingDialog;
 import com.app.bids.LoginActivity;
+import com.app.bids.LoginRegister;
 import com.app.bids.PagerWatchList;
 import com.app.bids.R;
 import com.app.bids.ReadJson;
@@ -315,20 +316,31 @@ public class FacebookLoginActivity extends Activity {
 				SplashScreen.userModel.userName = SplashScreen.graphUser
 						.getProperty("name").toString();
 				SplashScreen.userModel.token = session.getAccessToken();
-//				SplashScreen.userModel.email = SplashScreen.graphUser
-//						.getProperty("email").toString();
-				SplashScreen.userModel.email = "";
 				SplashScreen.userModel.profileImagePath = "http://graph.facebook.com/"
 						+ SplashScreen.graphUser.getId()
 						+ "/picture?type=normal";
 				
-				Log.v("SplashScreen.userModel.firstName", ""+SplashScreen.userModel.firstName);
-				Log.v("SplashScreen.userModel.lastName", ""+SplashScreen.userModel.lastName);
-				Log.v("SplashScreen.userModel.id", ""+SplashScreen.userModel.id);
-				Log.v("SplashScreen.userModel.userName", ""+SplashScreen.userModel.userName);
-				Log.v("SplashScreen.userModel.email", ""+SplashScreen.userModel.email);
+				if(SplashScreen.graphUser.getProperty("email") != null){
+					SplashScreen.userModel.email = SplashScreen.graphUser.getProperty("email").toString();
+					sendLoginByFacebook(); // Login by facebook
+				}else{
+					// ถ้า == null ให้ไปหน้า regis ใส่ email แล้วส่งเข้าเซอวิส register
+					SplashScreen.userModel.email = "";
+					startActivity(new Intent(getApplicationContext(),LoginRegister.class));
+				}
+				
+//				SplashScreen.userModel.email = SplashScreen.graphUser
+//						.getProperty("email").toString();
+//				SplashScreen.userModel.email = "";
+				
+				
+//				Log.v("SplashScreen.userModel.firstName", ""+SplashScreen.userModel.firstName);
+//				Log.v("SplashScreen.userModel.lastName", ""+SplashScreen.userModel.lastName);
+//				Log.v("SplashScreen.userModel.id", ""+SplashScreen.userModel.id);
+//				Log.v("SplashScreen.userModel.userName", ""+SplashScreen.userModel.userName);
+//				Log.v("SplashScreen.userModel.email", ""+SplashScreen.userModel.email);
 
-				sendLoginByFacebook(); // Login by facebook
+//				sendLoginByFacebook(); // Login by facebook
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -366,7 +378,7 @@ public class FacebookLoginActivity extends Activity {
 	// ============== loginByFacebook =========================
 	String resultLogin = "";
 
-	private void sendLoginByFacebook() {
+	public void sendLoginByFacebook() {
 		loginByFacebook resp = new loginByFacebook();
 		resp.execute();
 	}

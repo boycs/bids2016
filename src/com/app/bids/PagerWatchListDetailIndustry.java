@@ -348,7 +348,7 @@ public class PagerWatchListDetailIndustry extends Fragment{
 				TextView tv_symbol_name = (TextView) viewSymbol
 						.findViewById(R.id.tv_symbol_name);
 
-				tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+				tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
 						.checkStatusSymbol(symbol_name, turnover_list_level,
 								status, status_xd)));
 
@@ -366,6 +366,9 @@ public class PagerWatchListDetailIndustry extends Fragment{
 								FragmentChangeActivity.strSymbolSelect = symbol_name;
 //								PagerWatchListDetailChart.li_view_chart
 //										.removeView(FragmentChangeActivity.wv_chartiq);
+								
+//								UiWatchlistDetail uwd = new UiWatchlistDetail();
+//								uwd.loadDataDetail();
 								
 //								context.startActivity(new Intent(context,
 //										UiWatchlistDetail.class));

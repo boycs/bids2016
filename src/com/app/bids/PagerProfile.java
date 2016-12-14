@@ -688,7 +688,7 @@ public class PagerProfile extends Fragment {
 		// ------ Logout -------
 		tv_logout.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) {				
 				// --- cancle update
 				if (FragmentChangeActivity.timerUpdateSymbolStatus) {
 					FragmentChangeActivity.timerUpdateSymbolStatus = false;
@@ -763,7 +763,20 @@ public class PagerProfile extends Fragment {
 		SplashScreen.myDb = new LinnaeusDatabase(context);
 		SplashScreen.myDb.getWritableDatabase(); // First method
 		SplashScreen.arrLogin = SplashScreen.myDb.SelectDataLogin();
+		
+		FragmentChangeActivity.ckLoadWatchlist = true;
+		FragmentChangeActivity.strWatchlistCategory = "favorite";
+		FragmentChangeActivity.strFavoriteNumber = "1";
 
+		FragmentChangeActivity.ckLoadFavAll = false;
+		SplashScreen.contentGetUserById = null;
+		SplashScreen.userModel = null;
+		FragmentChangeActivity.contentGetWatchlistSymbol = null;
+		FragmentChangeActivity.contentGetSymbol = null;
+		FragmentChangeActivity.strGetListSymbol = "";
+
+		Log.v("LLLLLLLout","__"+FragmentChangeActivity.strGetListSymbol);
+		
 		startActivity(new Intent(context, LoginActivity.class));
 		((Activity) context).finish();
 		

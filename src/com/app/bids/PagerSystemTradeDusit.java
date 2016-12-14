@@ -934,7 +934,7 @@ public class PagerSystemTradeDusit extends Fragment {
 			switch (v.getId()) {
 			case R.id.tv_gpm_minus:
 				text = et_gpm.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -942,7 +942,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_ebit_minus:
 				text = et_ebit.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -950,7 +950,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_npm_minus:
 				text = et_npm.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -958,7 +958,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_revenue_minus:
 				text = et_revenue.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -966,7 +966,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_ebitda_minus:
 				text = et_ebitda.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -974,7 +974,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_eps_minus:
 				text = et_eps.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -982,31 +982,31 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_current_minus:
 				text = et_current.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_current.setText(FunctionSymbol.setFormat2Digit(""+(dText - 0.10)));
+				et_current.setText(FunctionFormatData.setFormat2Digit(""+(dText - 0.10)));
 				break;
 			case R.id.tv_quick_minus:
 				text = et_quick.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_quick.setText(FunctionSymbol.setFormat2Digit(""+(dText - 0.10)));
+				et_quick.setText(FunctionFormatData.setFormat2Digit(""+(dText - 0.10)));
 				break;
 			case R.id.tv_de_minus:
 				text = et_de.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_de.setText(FunctionSymbol.setFormat2Digit(""+(dText - 0.10)));
+				et_de.setText(FunctionFormatData.setFormat2Digit(""+(dText - 0.10)));
 				break;
 			case R.id.tv_roe_minus:
 				text = et_roe.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -1014,7 +1014,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_gpm_plus:
 				text = et_gpm.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -1022,7 +1022,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_ebit_plus:
 				text = et_ebit.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -1030,7 +1030,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_npm_plus:
 				text = et_npm.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -1038,7 +1038,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_revenue_plus:
 				text = et_revenue.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -1046,7 +1046,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_ebitda_plus:
 				text = et_ebitda.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -1054,7 +1054,7 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_eps_plus:
 				text = et_eps.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
@@ -1062,31 +1062,31 @@ public class PagerSystemTradeDusit extends Fragment {
 				break;
 			case R.id.tv_current_plus:
 				text = et_current.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_current.setText(FunctionSymbol.setFormat2Digit(""+(dText + 0.10)));
+				et_current.setText(FunctionFormatData.setFormat2Digit(""+(dText + 0.10)));
 				break;
 			case R.id.tv_quick_plus:
 				text = et_quick.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_quick.setText(FunctionSymbol.setFormat2Digit(""+(dText + 0.10)));
+				et_quick.setText(FunctionFormatData.setFormat2Digit(""+(dText + 0.10)));
 				break;
 			case R.id.tv_de_plus:
 				text = et_de.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_de.setText(FunctionSymbol.setFormat2Digit(""+(dText + 0.10)));
+				et_de.setText(FunctionFormatData.setFormat2Digit(""+(dText + 0.10)));
 				break;
 			case R.id.tv_roe_plus:
 				text = et_roe.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if( (text.equals("N/A")) || (text.equals(""))){
 					text = "0";
 				}
 				dText = Double.parseDouble(text);

@@ -707,7 +707,6 @@ public class PagerWatchListDetailFundamental extends Fragment implements
 	// ------------- init DataBarChart
 	// private BarChart mChartBar;
 	private CombinedChart mChartCombine;
-	private int itemcount = 0;
 
 	private void initSetDataBarChart() throws JSONException {
 		// mChartBar = (BarChart) rootView.findViewById(R.id.chart_bar);
@@ -716,97 +715,6 @@ public class PagerWatchListDetailFundamental extends Fragment implements
 
 		// mChartBar.removeAllViews();
 		mChartCombine.removeAllViews();
-
-		// mChartBar.setOnChartValueSelectedListener(this);
-		//
-		// mChartBar.setDescription("");
-		//
-		// // if more than 60 entries are displayed in the chart, no values will
-		// be
-		// // drawn
-		// mChartBar.setMaxVisibleValueCount(60);
-		//
-		// // scaling can now only be done on x- and y-axis separately
-		// mChartBar.setPinchZoom(false);
-		//
-		// mChartBar.setDrawGridBackground(false);
-		// mChartBar.setDrawBarShadow(false);
-		//
-		// mChartBar.setDrawValueAboveBar(false);
-		//
-		// // change the position of the y-labels
-		// YAxis yLabels = mChartBar.getAxisLeft();
-		// yLabels.setValueFormatter(new MyValueFormatter());
-		// yLabels.setTextColor(context.getResources().getColor(R.color.c_content));
-		//
-		// mChartBar.getAxisRight().setEnabled(false);
-		//
-		// XAxis xLabels = mChartBar.getXAxis();
-		// xLabels.setPosition(XAxisPosition.BOTTOM);
-		// xLabels.setTextColor(context.getResources().getColor(R.color.c_content));
-		//
-		// Legend l = mChartBar.getLegend();
-		// l.setPosition(LegendPosition.BELOW_CHART_RIGHT);
-		// l.setFormSize(8f);
-		// l.setFormToTextSpace(4f);
-		// l.setXEntrySpace(6f);
-		//
-		// // -------------------------------
-		// ArrayList<String> xVals = new ArrayList<String>();
-		// ArrayList<String> xVals_title = new ArrayList<String>();
-		// for (int i = 1; i < graph_financial.length(); i++) {
-		// JSONArray jsaGraph = graph_financial.getJSONArray(i);
-		// xVals.add(jsaGraph.get(0).toString());
-		// if (i == 0) {
-		// for (int j = 0; j < jsaGraph.length(); j++) {
-		// xVals_title.add(jsaGraph.get(j).toString());
-		// }
-		// }
-		// }
-		//
-		// ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
-		// for (int i = 1; i < graph_financial.length(); i++) {
-		// JSONArray jsaGraph = graph_financial.getJSONArray(i);
-		// float val1 = Float.parseFloat(jsaGraph.get(1).toString());
-		// float val2 = Float.parseFloat(jsaGraph.get(2).toString());
-		// float val3 = Float.parseFloat(jsaGraph.get(3).toString());
-		// float val4 = Float.parseFloat(jsaGraph.get(4).toString());
-		// float val5 = Float.parseFloat(jsaGraph.get(5).toString());
-		// float val6 = Float.parseFloat(jsaGraph.get(6).toString());
-		// float[] val = { val1, val2, val3, val4 };
-		//
-		// yVals1.add(new BarEntry(val, (i - 1)));
-		// // yVals1.add(new BarEntry(new float[] { val1, val2, val3, val4},
-		// // (i-1)));
-		// }
-		//
-		// BarDataSet set1 = new BarDataSet(yVals1, "");
-		// set1.setColors(SplashScreen.mpChartArrColor);
-		// set1.setStackLabels(new String[] { "Births", "Divorces", "Marriages"
-		// });
-		//
-		// ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
-		// dataSets.add(set1);
-		//
-		// BarData data = new BarData(xVals, dataSets);
-		// data.setValueFormatter(new MyValueFormatter());
-		// // data.setValueTextColor(context.getResources().getColor(
-		// // R.color.c_content));
-		//
-		// mChartBar.setData(data);
-		// mChartBar.invalidate();
-
-		// mChartCombine.setOnChartValueSelectedListener(this);
-		// mChartCombine.setDescription("");
-		// // if more than 60 entries are displayed in the chart, no values will
-		// be
-		// // drawn
-		// mChartCombine.setMaxVisibleValueCount(60);
-		// // scaling can now only be done on x- and y-axis separately
-		// mChartCombine.setPinchZoom(false);
-		// mChartCombine.setDrawGridBackground(false);
-		// mChartCombine.setDrawBarShadow(false);
-		// mChartCombine.setDrawValueAboveBar(false);
 
 		// -----------------------------
 		mChartCombine.setDescription("");
@@ -867,13 +775,13 @@ public class PagerWatchListDetailFundamental extends Fragment implements
 	private LineData generateLineData() throws JSONException {
 
 		LineData d = new LineData();
-
-		ArrayList<Entry> entries = new ArrayList<Entry>();
-		itemcount = graph_financial.length() - 1;
+		
+		ArrayList<Entry> entries = new ArrayList<Entry>();		
 		for (int i = 1; i < graph_financial.length(); i++) {
 			JSONArray jsaGraph = graph_financial.getJSONArray(i);
 			float fVals = Float.parseFloat(jsaGraph.get(6).toString());
 			entries.add(new Entry(fVals, (i - 1)));
+			
 		}
 
 		LineDataSet set = new LineDataSet(entries, "Line DataSet");
@@ -882,13 +790,10 @@ public class PagerWatchListDetailFundamental extends Fragment implements
 		set.setCircleColor(context.getResources().getColor(R.color.c_warning));
 		set.setCircleSize(2.5f);
 		set.setFillColor(context.getResources().getColor(R.color.c_warning));
-		set.setDrawCubic(true);
+		set.setDrawCircleHole(false);
 		set.setDrawValues(true);
-		set.setValueTextSize(10f);
-		set.setValueTextColor(context.getResources()
-				.getColor(R.color.c_content));
-
 		set.setAxisDependency(YAxis.AxisDependency.RIGHT);
+		set.setValueTextColor(Color.WHITE);
 
 		d.setValueTextColor(android.graphics.Color.TRANSPARENT);
 		d.addDataSet(set);
@@ -901,6 +806,11 @@ public class PagerWatchListDetailFundamental extends Fragment implements
 		try {
 			ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 			BarDataSet set = new BarDataSet(entries, "");
+			ArrayList<Integer> mpChartArrColor = new ArrayList<Integer>();
+			mpChartArrColor.add(Color.rgb(99, 87, 103));
+			mpChartArrColor.add(Color.rgb(29, 186, 157));
+			mpChartArrColor.add(Color.rgb(80, 175, 205));
+			mpChartArrColor.add(Color.rgb(43, 129, 202));
 			for (int i = 1; i < graph_financial.length(); i++) {
 				JSONArray jsaGraph = graph_financial.getJSONArray(i);
 				float val1 = Float.parseFloat(jsaGraph.get(1).toString());
@@ -912,9 +822,8 @@ public class PagerWatchListDetailFundamental extends Fragment implements
 				entries.add(new BarEntry(val, (i - 1)));
 
 				set = new BarDataSet(entries, "");
-				set.setColors(SplashScreen.mpChartArrColor);
-				set.setValueTextColor(context.getResources().getColor(
-						R.color.c_content));
+				set.setColors(mpChartArrColor);
+				set.setValueTextColor(Color.TRANSPARENT);
 
 				// d.addDataSet(set);
 				// set.setAxisDependency(YAxis.AxisDependency.LEFT);

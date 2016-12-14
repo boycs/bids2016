@@ -237,7 +237,6 @@ public class UiDusitValuation extends FragmentActivity {
 		}
 	}
 
-
 	// ============== Load Data pe bv setting =============
 	public void loadDataPeBvSetting() {
 		loadDataPeBvSetting resp = new loadDataPeBvSetting();
@@ -298,7 +297,72 @@ public class UiDusitValuation extends FragmentActivity {
 			}
 		}
 	}
-	
+
+	// ============== Load Data ddm setting =============
+	public void loadDataDdmSetting() {
+		loadDataDdmSetting resp = new loadDataDdmSetting();
+		resp.execute();
+	}
+
+	public class loadDataDdmSetting extends AsyncTask<Void, Void, Void> {
+		boolean connectionError = false;
+
+		// ======= json ========
+		// private JSONObject jsonGetDetailFollow;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			// progress.show();
+
+			dialogLoading.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			java.util.Date date = new java.util.Date();
+			long timestamp = date.getTime();
+			// ======= url ========
+
+			try {
+				// ======= Ui Home ========
+				jsonGetValuationCondition = ReadJson
+						.readJsonObjectFromUrl(url_ValuationCondition);
+			} catch (IOException e1) {
+				connectionError = true;
+				jsonGetValuationCondition = null;
+				e1.printStackTrace();
+			} catch (JSONException e1) {
+				connectionError = true;
+				jsonGetValuationCondition = null;
+				e1.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				jsonGetValuationCondition = null;
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			if (connectionError == false) {
+				if (jsonGetValuationCondition != null) {
+					setDataDdmSetting();
+					dialogLoading.dismiss();
+				} else {
+					Toast.makeText(getApplicationContext(), "Data Null", 0)
+							.show();
+					dialogLoading.dismiss();
+				}
+			} else {
+				dialogLoading.dismiss();
+			}
+		}
+	}
+
 	// ======= set data
 	public static LinearLayout li_p_ebv_edit, li_ddm_edit;
 	public static ImageView img_setting_p_ebv, img_setting_ddm;
@@ -381,7 +445,7 @@ public class UiDusitValuation extends FragmentActivity {
 						.getString("symbol_fullname_eng");
 
 				tv_symbol.setText(strSymbol_name);
-				tv_last_trade.setText(FunctionSymbol
+				tv_last_trade.setText(FunctionFormatData
 						.setFormatNumber(strLast_trade));
 				tv_symbol_name_eng.setText(strSymbol_fullname_eng);
 
@@ -399,10 +463,10 @@ public class UiDusitValuation extends FragmentActivity {
 					tv_percenchange.setText("0.00");
 				} else {
 					tv_percenchange.setText(strPercentChange + "%");
-					tv_percenchange.setText(FunctionSymbol
+					tv_percenchange.setText(FunctionFormatData
 							.setFormatNumber(strChange)
 							+ " ("
-							+ FunctionSymbol.setFormatNumber(strPercentChange)
+							+ FunctionFormatData.setFormatNumber(strPercentChange)
 							+ "%)");
 				}
 
@@ -432,7 +496,7 @@ public class UiDusitValuation extends FragmentActivity {
 
 	public void setDataPE_PBV() {
 		setDataPeBvSetting(); // set data pebv setting
-		
+
 		try {
 			// --------- data PE_PBV
 			JSONObject jsoPE_PBV_data = null;
@@ -442,7 +506,7 @@ public class UiDusitValuation extends FragmentActivity {
 			jsoPE_PBV_set = jsonGetValuationPE_PBV.getJSONObject("set");
 			jsoPE_PBV_default = jsonGetValuationPE_PBV.getJSONObject("default");
 
-			if (jsoPE_PBV_data != null) {				
+			if (jsoPE_PBV_data != null) {
 				// ------- list pe pbv
 				JSONArray jsaPE_PBV = jsoPE_PBV_data.getJSONArray("pe_pbv");
 				if (jsaPE_PBV != null) {
@@ -465,13 +529,13 @@ public class UiDusitValuation extends FragmentActivity {
 								.findViewById(R.id.tv_pbv_);
 
 						tv_year_.setText(jsoIndex.getString("year"));
-						tv_eps_.setText(FunctionSymbol
+						tv_eps_.setText(FunctionFormatData
 								.setFormatAnd2Digit(jsoIndex.getString("eps")));
-						tv_bvps_.setText(FunctionSymbol
+						tv_bvps_.setText(FunctionFormatData
 								.setFormatAnd2Digit(jsoIndex.getString("bv")));
-						tv_pe_.setText(FunctionSymbol
+						tv_pe_.setText(FunctionFormatData
 								.setFormatAnd2Digit(jsoIndex.getString("p_e")));
-						tv_pbv_.setText(FunctionSymbol
+						tv_pbv_.setText(FunctionFormatData
 								.setFormatAnd2Digit(jsoIndex.getString("p_bv")));
 
 						list_pebv_data.addView(viewData);
@@ -526,17 +590,17 @@ public class UiDusitValuation extends FragmentActivity {
 				tv_p_ebv_mos_plus
 						.setOnClickListener(onClickListenerPlusMinusPeBv);
 
-				et_p_ebv_eps.setText(FunctionSymbol
+				et_p_ebv_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoPE_PBV_set
 								.getString("eps_next_year")));
-				et_p_ebv_pe.setText(FunctionSymbol
+				et_p_ebv_pe.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoPE_PBV_set.getString("pe")));
-				et_p_ebv_bvps.setText(FunctionSymbol
+				et_p_ebv_bvps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoPE_PBV_set
 								.getString("pbv_next_year")));
-				et_p_ebv_pbv.setText(FunctionSymbol
+				et_p_ebv_pbv.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoPE_PBV_set.getString("pbv")));
-				et_p_ebv_mos.setText(FunctionSymbol
+				et_p_ebv_mos.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoPE_PBV_set.getString("mos")));
 
 				tv_p_ebv_default.setOnClickListener(new OnClickListener() {
@@ -570,8 +634,8 @@ public class UiDusitValuation extends FragmentActivity {
 								+ et_p_ebv_bvps.getText().toString() + "&pe="
 								+ et_p_ebv_pe.getText().toString()
 								+ "&timestamp=" + timestamp;
-						Log.v("url_ValuationPE_PBV", ""+url_ValuationPE_PBV);
-						
+						Log.v("url_ValuationPE_PBV", "" + url_ValuationPE_PBV);
+
 						loadDataPeBvSetting();
 
 					}
@@ -582,40 +646,72 @@ public class UiDusitValuation extends FragmentActivity {
 			e.printStackTrace();
 		}
 	}
-	
+
+	// set data ddm setting
+	public void setDataDdmSetting() {
+		try {
+			// --------- data condition
+			JSONObject jsoCondition_data = null;
+			jsoCondition_data = jsonGetValuationCondition.getJSONObject("data");
+
+			setDataConditionDdm(jsoCondition_data); // set data Condition
+			// DDM
+			if (jsoCondition_data != null) {
+				TextView tv_valuation = (TextView) findViewById(R.id.tv_valuation);
+				TextView tv_valuation_mos = (TextView) findViewById(R.id.tv_valuation_mos);
+				tv_valuation.setText(FunctionFormatData
+						.setFormatAnd2Digit(jsoCondition_data
+								.getString("valuation")));
+				tv_valuation_mos.setText(FunctionFormatData
+						.setFormatAnd2Digit(jsoCondition_data
+								.getString("valuation_mos")));
+
+				TextView tv_v5 = (TextView) findViewById(R.id.tv_v5);
+				TextView tv_valuation_current = (TextView) findViewById(R.id.tv_valuation_current);
+				tv_v5.setText(FunctionFormatData
+						.setFormatAnd2Digit(jsoCondition_data.getString("v5")));
+				tv_valuation_current.setText(FunctionFormatData
+						.setFormatAnd2Digit(jsoCondition_data
+								.getString("valuation_current")));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	// set data be bv setting
 	public void setDataPeBvSetting() {
 		try {
 			// --------- data PE_PBV
 			JSONObject jsoPE_PBV_data = null;
 			jsoPE_PBV_data = jsonGetValuationPE_PBV.getJSONObject("data");
-			Log.v("setDataPeBvSetting",""+jsoPE_PBV_data);
+			Log.v("setDataPeBvSetting", "" + jsoPE_PBV_data);
 
 			// {"valuation_current_pe":23.836,"valuation_pe":16.92356,
-			//"valuation_current_pbv":34.2886,"valuation_pbv":24.344906,
-			//"pe_pbv":[{"year":"2011","eps":"4.32","bv":"66.62","p_e":"11.96","p_bv":"1.32"},
-			//{"year":"2012","eps":"12.51","bv":"79.83","p_e":"10.85","p_bv":"1.37"},
-			//{"year":"2013","eps":"28.90","bv":"88.04","p_e":"5.70","p_bv":"1.59"},
-			//{"year":"2014","eps":"1.19","bv":"9.53","p_e":"16.28","p_bv":"1.53"},
-			//{"year":"2015","eps":"1.36","bv":"9.59","p_e":"14.20","p_bv":"1.48"}]}
+			// "valuation_current_pbv":34.2886,"valuation_pbv":24.344906,
+			// "pe_pbv":[{"year":"2011","eps":"4.32","bv":"66.62","p_e":"11.96","p_bv":"1.32"},
+			// {"year":"2012","eps":"12.51","bv":"79.83","p_e":"10.85","p_bv":"1.37"},
+			// {"year":"2013","eps":"28.90","bv":"88.04","p_e":"5.70","p_bv":"1.59"},
+			// {"year":"2014","eps":"1.19","bv":"9.53","p_e":"16.28","p_bv":"1.53"},
+			// {"year":"2015","eps":"1.36","bv":"9.59","p_e":"14.20","p_bv":"1.48"}]}
 
-			
 			if (jsoPE_PBV_data != null) {
-				TextView tv_current_pe = (TextView) findViewById(R.id.tv_current_pe);			
-				TextView tv_pe = (TextView) findViewById(R.id.tv_pe);				
-				TextView tv_current_pbv = (TextView) findViewById(R.id.tv_current_pbv);				
-				TextView tv_pbv = (TextView) findViewById(R.id.tv_pbv);				
-				tv_current_pe.setText(FunctionSymbol
+				TextView tv_current_pe = (TextView) findViewById(R.id.tv_current_pe);
+				TextView tv_pe = (TextView) findViewById(R.id.tv_pe);
+				TextView tv_current_pbv = (TextView) findViewById(R.id.tv_current_pbv);
+				TextView tv_pbv = (TextView) findViewById(R.id.tv_pbv);
+				tv_current_pe.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoPE_PBV_data
 								.getString("valuation_current_pe")));
-				tv_pe.setText(FunctionSymbol.setFormatAnd2Digit(jsoPE_PBV_data
+				tv_pe.setText(FunctionFormatData.setFormatAnd2Digit(jsoPE_PBV_data
 						.getString("valuation_pe")));
-				tv_current_pbv.setText(FunctionSymbol
+				tv_current_pbv.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoPE_PBV_data
 								.getString("valuation_current_pbv")));
-				tv_pbv.setText(FunctionSymbol.setFormatAnd2Digit(jsoPE_PBV_data
+				tv_pbv.setText(FunctionFormatData.setFormatAnd2Digit(jsoPE_PBV_data
 						.getString("valuation_pbv")));
-				
+
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -722,83 +818,93 @@ public class UiDusitValuation extends FragmentActivity {
 			switch (v.getId()) {
 			case R.id.tv_p_ebv_eps_minus:
 				text = et_p_ebv_eps.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_p_ebv_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				break;
 			case R.id.tv_p_ebv_pe_minus:
 				text = et_p_ebv_pe.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_pe.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_p_ebv_pe.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				break;
 			case R.id.tv_p_ebv_bvps_minus:
 				text = et_p_ebv_bvps.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_bvps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_p_ebv_bvps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				break;
 			case R.id.tv_p_ebv_pbv_minus:
 				text = et_p_ebv_pbv.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_pbv.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_p_ebv_pbv.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				break;
 			case R.id.tv_p_ebv_mos_minus:
 				text = et_p_ebv_mos.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_mos.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_p_ebv_mos.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				break;
 			case R.id.tv_p_ebv_eps_plus:
 				text = et_p_ebv_eps.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_p_ebv_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_p_ebv_pe_plus:
 				text = et_p_ebv_pe.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_pe.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_p_ebv_pe.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_p_ebv_bvps_plus:
 				text = et_p_ebv_bvps.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_bvps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_p_ebv_bvps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_p_ebv_pbv_plus:
 				text = et_p_ebv_pbv.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_pbv.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_p_ebv_pbv.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_p_ebv_mos_plus:
 				text = et_p_ebv_mos.getText().toString();
-				if( (text=="N/A") && (text=="")){
+				if ((text == "N/A") && (text == "")) {
 					text = "0";
 				}
 				dText = Double.parseDouble(text);
-				et_p_ebv_mos.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_p_ebv_mos.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			default:
 				break;
@@ -819,6 +925,7 @@ public class UiDusitValuation extends FragmentActivity {
 	public static TextView tv_ddm_default, tv_ddm_apply, tv_ddm_ke_eps;
 
 	public void setDataCondition() {
+		setDataDdmSetting(); // set data ddm setting
 		try {
 			// --------- data condition
 			JSONObject jsoCondition_data = null;
@@ -828,27 +935,6 @@ public class UiDusitValuation extends FragmentActivity {
 			jsoCondition_set = jsonGetValuationCondition.getJSONObject("set");
 			jsoCondition_default = jsonGetValuationCondition
 					.getJSONObject("default");
-
-			setDataConditionDdm(jsoCondition_data); // set data Condition
-													// DDM
-			if (jsoCondition_data != null) {
-				TextView tv_valuation = (TextView) findViewById(R.id.tv_valuation);
-				TextView tv_valuation_mos = (TextView) findViewById(R.id.tv_valuation_mos);
-				tv_valuation.setText(FunctionSymbol
-						.setFormatAnd2Digit(jsoCondition_data
-								.getString("valuation")));
-				tv_valuation_mos.setText(FunctionSymbol
-						.setFormatAnd2Digit(jsoCondition_data
-								.getString("valuation_mos")));
-
-				TextView tv_v5 = (TextView) findViewById(R.id.tv_v5);
-				TextView tv_valuation_current = (TextView) findViewById(R.id.tv_valuation_current);
-				tv_v5.setText(FunctionSymbol
-						.setFormatAnd2Digit(jsoCondition_data.getString("v5")));
-				tv_valuation_current.setText(FunctionSymbol
-						.setFormatAnd2Digit(jsoCondition_data
-								.getString("valuation_current")));
-			}
 
 			// ------------- edit condition
 			if (jsoCondition_set != null) {
@@ -883,18 +969,25 @@ public class UiDusitValuation extends FragmentActivity {
 
 				tv_ddm_default = (TextView) findViewById(R.id.tv_ddm_default);
 				tv_ddm_apply = (TextView) findViewById(R.id.tv_ddm_apply);
-				
-				tv_ddm_dpr_minus.setOnClickListener(onClickListenerPlusMinusDdm);
-				tv_ddm_bvps_minus.setOnClickListener(onClickListenerPlusMinusDdm);
-				tv_ddm_roe_minus.setOnClickListener(onClickListenerPlusMinusDdm);
+
+				tv_ddm_dpr_minus
+						.setOnClickListener(onClickListenerPlusMinusDdm);
+				tv_ddm_bvps_minus
+						.setOnClickListener(onClickListenerPlusMinusDdm);
+				tv_ddm_roe_minus
+						.setOnClickListener(onClickListenerPlusMinusDdm);
 				tv_ddm_pe_minus.setOnClickListener(onClickListenerPlusMinusDdm);
-				tv_ddm_krf_minus.setOnClickListener(onClickListenerPlusMinusDdm);
-				tv_ddm_krm_minus.setOnClickListener(onClickListenerPlusMinusDdm);
+				tv_ddm_krf_minus
+						.setOnClickListener(onClickListenerPlusMinusDdm);
+				tv_ddm_krm_minus
+						.setOnClickListener(onClickListenerPlusMinusDdm);
 				tv_ddm_b_minus.setOnClickListener(onClickListenerPlusMinusDdm);
-				tv_ddm_mos_minus.setOnClickListener(onClickListenerPlusMinusDdm);
+				tv_ddm_mos_minus
+						.setOnClickListener(onClickListenerPlusMinusDdm);
 
 				tv_ddm_dpr_plus.setOnClickListener(onClickListenerPlusMinusDdm);
-				tv_ddm_bvps_plus.setOnClickListener(onClickListenerPlusMinusDdm);
+				tv_ddm_bvps_plus
+						.setOnClickListener(onClickListenerPlusMinusDdm);
 				tv_ddm_roe_plus.setOnClickListener(onClickListenerPlusMinusDdm);
 				tv_ddm_pe_plus.setOnClickListener(onClickListenerPlusMinusDdm);
 				tv_ddm_krf_plus.setOnClickListener(onClickListenerPlusMinusDdm);
@@ -938,30 +1031,31 @@ public class UiDusitValuation extends FragmentActivity {
 								+ "&beta=" + et_ddm_b_eps.getText().toString()
 								+ "&timestamp=" + timestamp;
 
-						loadDataDetail(); // load data
+						// loadDataDetail(); // load data
+						loadDataDdmSetting();
 					}
 				});
 
-				et_ddm_dpr_eps.setText(FunctionSymbol
+				et_ddm_dpr_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_set
 								.getString("payout_ratio")));
-				et_ddm_bvps_eps.setText(FunctionSymbol
+				et_ddm_bvps_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_set.getString("bv")));
-				et_ddm_roe_eps.setText(FunctionSymbol
+				et_ddm_roe_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_set.getString("roe")));
-				et_ddm_pe_eps.setText(FunctionSymbol
+				et_ddm_pe_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_set.getString("pe")));
-				et_ddm_krf_eps.setText(FunctionSymbol
+				et_ddm_krf_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_set.getString("krf")));
-				et_ddm_krm_eps.setText(FunctionSymbol
+				et_ddm_krm_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_set.getString("krm")));
 				et_ddm_b_eps
-						.setText(FunctionSymbol
+						.setText(FunctionFormatData
 								.setFormatAnd2Digit(jsoCondition_set
 										.getString("beta")));
-				et_ddm_mos_eps.setText(FunctionSymbol
+				et_ddm_mos_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_set.getString("mos")));
-				tv_ddm_ke_eps.setText(FunctionSymbol
+				tv_ddm_ke_eps.setText(FunctionFormatData
 						.setFormatAnd2Digit(jsoCondition_data.getString("ke")));
 			}
 		} catch (JSONException e) {
@@ -1116,99 +1210,163 @@ public class UiDusitValuation extends FragmentActivity {
 			switch (v.getId()) {
 			case R.id.tv_ddm_dpr_minus:
 				text = et_ddm_dpr_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_dpr_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_dpr_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_bvps_minus:
 				text = et_ddm_bvps_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_bvps_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_bvps_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_roe_minus:
 				text = et_ddm_roe_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_roe_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_roe_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_pe_minus:
 				text = et_ddm_pe_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_pe_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_pe_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_krf_minus:
 				text = et_ddm_krf_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_krf_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_krf_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_krm_minus:
 				text = et_ddm_krm_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_krm_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_krm_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_b_minus:
 				text = et_ddm_b_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_b_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_b_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_mos_minus:
 				text = et_ddm_mos_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
 				// if (dText > 0) {
-				et_ddm_mos_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText - 1)));
+				et_ddm_mos_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText - 1)));
 				// }
 				break;
 			case R.id.tv_ddm_dpr_plus:
 				text = et_ddm_dpr_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_dpr_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_dpr_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_ddm_bvps_plus:
 				text = et_ddm_bvps_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_bvps_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_bvps_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_ddm_roe_plus:
 				text = et_ddm_roe_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_roe_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_roe_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_ddm_pe_plus:
 				text = et_ddm_pe_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_pe_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_pe_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_ddm_krf_plus:
 				text = et_ddm_krf_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_krf_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_krf_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_ddm_krm_plus:
 				text = et_ddm_krm_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_krm_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_krm_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_ddm_b_plus:
 				text = et_ddm_b_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_b_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_b_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			case R.id.tv_ddm_mos_plus:
 				text = et_ddm_mos_eps.getText().toString();
+				if( (text.equals("N/A")) || (text.equals(""))){
+					text = "0";
+				}
 				dText = Double.parseDouble(text);
-				et_ddm_mos_eps.setText(FunctionSymbol.setFormat2Digit("" + (dText + 1)));
+				et_ddm_mos_eps.setText(FunctionFormatData.setFormat2Digit(""
+						+ (dText + 1)));
 				break;
 			default:
 				break;
@@ -1227,14 +1385,17 @@ public class UiDusitValuation extends FragmentActivity {
 		String sB = et_ddm_b_eps.getText().toString();
 		String sMos = et_ddm_mos_eps.getText().toString();
 
-		if (!(sKrf.equals("")) && !(sKrm.equals("")) && !(sB.equals(""))) {
+		if (!(sKrf.equals("")) && !(sKrm.equals("")) && !(sB.equals("")) 
+				&& !(sKrf.equals("N/A")) && !(sKrm.equals("N/A")) && !(sB.equals("N/A"))) {
 			double dKrf = Double.parseDouble(sKrf);
 			double dKrm = Double.parseDouble(sKrm);
 			double dB = Double.parseDouble(sB);
 
 			// ke = rf+(rm-rf)*beta;
 			double ke = dKrf + (dKrm - dKrf) * dB;
-			tv_ddm_ke_eps.setText(FunctionSymbol.setFormatAnd2Digit("" + ke));
+			tv_ddm_ke_eps.setText(FunctionFormatData.setFormatAnd2Digit("" + ke));
+		}else{
+			tv_ddm_ke_eps.setText("N/A");
 		}
 	};
 
@@ -1300,7 +1461,7 @@ public class UiDusitValuation extends FragmentActivity {
 									tv_row.setTextColor(getResources()
 											.getColor(FunctionSetBg.arrColor[4]));
 								} else {
-									tv_row.setText(FunctionSymbol
+									tv_row.setText(FunctionFormatData
 											.setFormatAnd2Digit(jsaData.get(j)
 													.toString()));
 								}

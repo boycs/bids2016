@@ -89,6 +89,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.login_main);
+		
+		SplashScreen.userModel = new UserModel();
 
 		facebookIcon = (ImageView) findViewById(R.id.facebook_icon);
 		twitterIcon = (ImageView) findViewById(R.id.twitter_icon);

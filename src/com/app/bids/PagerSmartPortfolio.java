@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.app.bids.R;
+import com.app.bids.PagerWatchList.getSymbolBegin;
 import com.app.bids.PagerWatchListDetailNews.loadAll;
 
 import android.app.Activity;
@@ -37,6 +38,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -110,17 +112,131 @@ public class PagerSmartPortfolio extends Fragment {
 
 		dialogAddPortfolio = new DialogAddPortfolio(context);
 
-		// if (FragmentChangeActivity.ckLoadSmartPortfolioList) {
-		// initPager();
-		// } else {
-		initLoadData();
-		// }
+		if (FragmentChangeActivity.ckLoadSmartPortfolioList) {
+			initPager();
+		} else {
+			initLoadData();
+		}
+		
+//		if(FragmentChangeActivity.contentGetSmartPortfolioList != null){
+//			initPager();
+//		} else {
+//			initLoadData();
+//		}
 
-		initView();
+		initSearch(); // init search
 	}
 
-	public static void initView() {
-		initSearchLayout(); // layout search
+	public void initSearch() {
+		if (FragmentChangeActivity.list_getNameFund.size() > 0) {
+			initSearchLayout(); // layout search
+		} else {
+			initGetDataNameFund(); // get NameFund
+		}
+	}
+
+	// ============== get NameFund =========================
+	public void initGetDataNameFund() {
+		getNameFund resp = new getNameFund();
+		resp.execute();
+	}
+
+	public class getNameFund extends AsyncTask<Void, Void, Void> {
+
+		boolean connectionError = false;
+		private JSONObject jsonGetNameFund; // กองทุน
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			java.util.Date date = new java.util.Date();
+			long timestamp = date.getTime();
+
+			String url_GetNameFund = SplashScreen.url_bidschart
+					+ "/service/v2/getNameFund"; // กองทุน
+
+			try {
+				// ======= Ui Home ========
+				jsonGetNameFund = ReadJson
+						.readJsonObjectFromUrl(url_GetNameFund);
+
+			} catch (IOException e1) {
+				connectionError = true;
+				jsonGetNameFund = null;
+				e1.printStackTrace();
+			} catch (JSONException e1) {
+				connectionError = true;
+				jsonGetNameFund = null;
+				e1.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				jsonGetNameFund = null;
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+			if (connectionError == false) {
+
+				try {
+					// --------------- get NameFund ----------
+					// Log.v("jsonGetNameFund", "" + jsonGetNameFund);
+					if (jsonGetNameFund != null) {
+						FragmentChangeActivity.contentGetNameFund = jsonGetNameFund
+								.getJSONArray("data");
+						// arr symbol init
+						if (FragmentChangeActivity.contentGetNameFund != null) {
+							try {
+								for (int i = 0; i < FragmentChangeActivity.contentGetNameFund
+										.length(); i++) {
+									JSONObject jso = FragmentChangeActivity.contentGetNameFund
+											.getJSONObject(i);
+
+									CatalogGetNameFund cg = new CatalogGetNameFund();
+									cg.name_initial = jso
+											.getString("name_initial");
+									cg.name_t = jso.getString("name_t");
+									cg.name_e = jso.getString("name_e");
+									cg.asset_initial = jso
+											.getString("asset_initial");
+									cg.set_initial = jso
+											.getString("set_initial");
+									cg.type_initial = jso
+											.getString("type_initial");
+									cg.invest_value = jso
+											.getString("invest_value");
+									cg.invest_change = jso
+											.getString("invest_change");
+									FragmentChangeActivity.list_getNameFund
+											.add(cg);
+								}
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+							initSearchLayout(); // layout search
+						} else {
+							Log.v("json null", "symbol null");
+						}
+					} else {
+						Log.v("symbol null", "symbol null");
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			} else {
+				Toast.makeText(context, "การเชื่อมต่อล้มเหลว", 0).show();
+				Log.v("connectionError", "Error");
+			}
+		}
 	}
 
 	// ***************** search symbol******************
@@ -223,13 +339,15 @@ public class PagerSmartPortfolio extends Fragment {
 						// DecimalFormat formatter = new
 						// DecimalFormat("#,###.00");
 						// txtLtrade = formatter.format(db);
-						txtLtrade = FunctionSymbol.setFormatNumber(txtLtrade);
+						txtLtrade = FunctionFormatData
+								.setFormatNumber(txtLtrade);
 					}
 
 					if (txtChange != "") {
 						// double db = Double.parseDouble(txtChange);
 						// txtChange = String.format(" %,.2f", db);
-						txtChange = FunctionSymbol.setFormatNumber(txtChange);
+						txtChange = FunctionFormatData
+								.setFormatNumber(txtChange);
 					}
 
 					if (txtSymbol.equals(".SET")) {
@@ -330,15 +448,18 @@ public class PagerSmartPortfolio extends Fragment {
 					vp_pager.setVisibility(View.GONE);
 					listview_search.setVisibility(View.VISIBLE);
 
-					if (status_tabsearch == "STOCK") {
+					if (status_tabsearch.equals("STOCK")) {
 						second_list.clear();
 						if (FragmentChangeActivity.list_getSymbol != null) {
+							Log.v("text", "if if");
 							for (int i = 0; i < original_list.size(); i++) {
 								if (original_list.get(i).symbol
 										.toLowerCase()
 										.contains(text.toString().toLowerCase())) {
-									if ((original_list.get(i).status_segmentId == "COMMON")
-											|| (original_list.get(i).status_segmentId == "WARRANT")) {
+									if ((original_list.get(i).status_segmentId
+											.equals("COMMON"))
+											|| (original_list.get(i).status_segmentId
+													.equals("WARRANT"))) {
 										second_list.add(original_list.get(i));
 									}
 								}
@@ -347,16 +468,28 @@ public class PagerSmartPortfolio extends Fragment {
 						}
 					} else {
 						second_list_fund.clear();
+						Log.v("list_getNameFund.size()",
+								"_"
+										+ FragmentChangeActivity.list_getNameFund
+												.size());
+						Log.v("original_list_fund.size()", "_"
+								+ original_list_fund.size());
 						if (FragmentChangeActivity.list_getNameFund != null) {
 							for (int i = 0; i < original_list_fund.size(); i++) {
+								Log.v("status_tabsearch",
+										"_"
+												+ text.toString()
+												+ "_"
+												+ original_list_fund.get(i).name_initial);
 								if (original_list_fund.get(i).name_initial
 										.toLowerCase().contains(
 												text.toString().toLowerCase())) {
-									if ((original_list.get(i).status_segmentId == "COMMON")
-											|| (original_list.get(i).status_segmentId == "WARRANT")) {
-										second_list_fund.add(original_list_fund
-												.get(i));
-									}
+
+									Log.v("original_list_fund contains",
+											"_"
+													+ original_list_fund.get(i).name_initial);
+									second_list_fund.add(original_list_fund
+											.get(i));
 								}
 							}
 							ListAdapterSearchNameFundPortList
@@ -390,8 +523,10 @@ public class PagerSmartPortfolio extends Fragment {
 						for (int i = 0; i < original_list.size(); i++) {
 							if (original_list.get(i).symbol.toLowerCase()
 									.contains(text.toString().toLowerCase())) {
-								if ((original_list.get(i).status_segmentId == "COMMON")
-										|| (original_list.get(i).status_segmentId == "WARRANT")) {
+								if ((original_list.get(i).status_segmentId
+										.equals("COMMON"))
+										|| (original_list.get(i).status_segmentId
+												.equals("WARRANT"))) {
 									second_list.add(original_list.get(i));
 								}
 							}
@@ -423,11 +558,7 @@ public class PagerSmartPortfolio extends Fragment {
 							if (original_list_fund.get(i).name_initial
 									.toLowerCase().contains(
 											text.toString().toLowerCase())) {
-								if ((original_list.get(i).status_segmentId == "COMMON")
-										|| (original_list.get(i).status_segmentId == "WARRANT")) {
-									second_list_fund.add(original_list_fund
-											.get(i));
-								}
+								second_list_fund.add(original_list_fund.get(i));
 							}
 						}
 						ListAdapterSearchNameFundPortList
@@ -485,7 +616,7 @@ public class PagerSmartPortfolio extends Fragment {
 	}
 
 	// ============== Load initLoadData =========================
-	private void initLoadData() {
+	public void initLoadData() {
 		loadAll resp = new loadAll();
 		resp.execute();
 	}

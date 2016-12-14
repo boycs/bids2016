@@ -233,8 +233,10 @@ public class PagerMutualFundDetailChart extends Fragment implements
 							.getJSONObject(i).getString("date_at");
 
 					arrDataAt.add(strDateAt);
-					arrInvestValue.add(Float.parseFloat(strValue.replaceAll(",", "")));
-					arrMaxMinE.add(new Entry(Float.parseFloat(strValue.replaceAll(",", "")), i));
+					if(!strValue.equals("-")){
+						arrInvestValue.add(Float.parseFloat(strValue.replaceAll(",", "")));
+						arrMaxMinE.add(new Entry(Float.parseFloat(strValue.replaceAll(",", "")), i));
+					}
 				}
 
 				MaxValue = Collections.max(arrInvestValue);

@@ -13,6 +13,7 @@ public class UserModel {
 	public String userName = "";
 	public String firstName = "";
 	public String lastName = "";
+	public String pass = "";
 	public String token = "";
 	public String email = "";
 	public String profileImagePath = "";

@@ -864,11 +864,11 @@ public class PagerSystemTradeEsu extends Fragment {
 					tv_zof_poc.setText(strZofPoc);
 					tv_zof_puar.setText(strZofPuar);
 					// ค่าเป็น 0 ให้ใส่ -
-					tv_zof_puas.setText(FunctionSymbol
+					tv_zof_puas.setText(FunctionFormatData
 							.setFormatNumberEtc(strZofPuas));
-					tv_zof_poc.setText(FunctionSymbol
+					tv_zof_poc.setText(FunctionFormatData
 							.setFormatNumberEtc(strZofPoc));
-					tv_zof_puar.setText(FunctionSymbol
+					tv_zof_puar.setText(FunctionFormatData
 							.setFormatNumberEtc(strZofPuar));
 
 					tv_imb.setText(FunctionSetBg.setEsuStrImb(strImb));

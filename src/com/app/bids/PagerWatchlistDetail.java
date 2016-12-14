@@ -922,7 +922,7 @@ public class PagerWatchlistDetail extends Fragment {
 						}
 					});
 
-					tv_average_buy.setText(FunctionSymbol
+					tv_average_buy.setText(FunctionFormatData
 							.checkNull(contentGetDetail
 									.getString("average_buy")));
 					tv_max_buy_price_volume.setText(contentGetDetail.getString(
@@ -932,7 +932,7 @@ public class PagerWatchlistDetail extends Fragment {
 					tv_buy_volume.setText(contentGetDetail.getString(
 							"buy_volume").toString());
 
-					tv_average_sell.setText(FunctionSymbol
+					tv_average_sell.setText(FunctionFormatData
 							.checkNull(contentGetDetail
 									.getString("average_sell")));
 					tv_max_sell_price_volume.setText(contentGetDetail

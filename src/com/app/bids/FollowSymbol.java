@@ -41,6 +41,378 @@ public class FollowSymbol extends Activity {
 
 	}
 
+	// ใส่หมายเลข follow เกิน 21 หรือยัง ถ้าน้อยกว่า 21 return true(เพิ่มได้)
+	public static boolean checkFollowCount(String strFav) {
+		boolean c = true;
+		if (FragmentChangeActivity.strFavoriteNumber == "1") {
+			FragmentChangeActivity.contentGetSymbolFavorite = FragmentChangeActivity.contentGetSymbolFavorite_1;
+		} else if (FragmentChangeActivity.strFavoriteNumber == "2") {
+			FragmentChangeActivity.contentGetSymbolFavorite = FragmentChangeActivity.contentGetSymbolFavorite_2;
+		} else if (FragmentChangeActivity.strFavoriteNumber == "3") {
+			FragmentChangeActivity.contentGetSymbolFavorite = FragmentChangeActivity.contentGetSymbolFavorite_3;
+		} else if (FragmentChangeActivity.strFavoriteNumber == "4") {
+			FragmentChangeActivity.contentGetSymbolFavorite = FragmentChangeActivity.contentGetSymbolFavorite_4;
+		} else if (FragmentChangeActivity.strFavoriteNumber == "5") {
+			FragmentChangeActivity.contentGetSymbolFavorite = FragmentChangeActivity.contentGetSymbolFavorite_5;
+		}
+
+		if ((FragmentChangeActivity.contentGetSymbolFavorite.length()) < 21) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// เช็คว่า follow หรือยัง
+	public static boolean checkFollowSymbol(String strSymbol) {
+		boolean c = false;
+		try {
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_1
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_1
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					return true;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_2
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_2
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					return true;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_3
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_3
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					return true;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_4
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_4
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					return true;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_5
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_5
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					return true;
+				}
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
+
+	// เช็คว่าอยู่ favorit ไหน
+	public static String checkFavoriteNumber(String strSymbol) {
+		String favId = "";
+		try {
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_1
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_1
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					favId = FragmentChangeActivity.contentGetSymbolFavorite_1
+							.getJSONObject(i).getString("id");
+					return favId;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_2
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_2
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					favId = FragmentChangeActivity.contentGetSymbolFavorite_2
+							.getJSONObject(i).getString("id");
+					return favId;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_3
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_3
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					favId = FragmentChangeActivity.contentGetSymbolFavorite_3
+							.getJSONObject(i).getString("id");
+					return favId;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_4
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_4
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					favId = FragmentChangeActivity.contentGetSymbolFavorite_4
+							.getJSONObject(i).getString("id");
+					return favId;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_5
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_5
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					favId = FragmentChangeActivity.contentGetSymbolFavorite_5
+							.getJSONObject(i).getString("id");
+					return favId;
+				}
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return favId;
+	}
+
+	// เช็ค follow ใน search
+	public static int setColorFollowSearchSymbol(String strSymbol) {
+		int c = R.drawable.icon_plus_blue;
+		try {
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_1
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_1
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					c = R.drawable.icon_check_green;
+					return c;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_2
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_2
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					c = R.drawable.icon_check_green;
+					return c;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_3
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_3
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					c = R.drawable.icon_check_green;
+					return c;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_4
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_4
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					c = R.drawable.icon_check_green;
+					return c;
+				}
+			}
+			for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_5
+					.length(); i++) {
+				String strSymbolIndex = FragmentChangeActivity.contentGetSymbolFavorite_5
+						.getJSONObject(i).getString("symbol_name");
+				if (strSymbol.equals(strSymbolIndex)) {
+					c = R.drawable.icon_check_green;
+					return c;
+				}
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return c;
+	}
+
+	// ============== send symbol add favorite ===============
+	public static void sendSymbolAddFavorite() {
+		sendSymbolAddFavorite resp = new sendSymbolAddFavorite();
+		resp.execute();
+	}
+
+	public static class sendSymbolAddFavorite extends
+			AsyncTask<Void, Void, Void> {
+
+		boolean connectionError = false;
+
+		String temp = "";
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			String url = SplashScreen.url_bidschart + "/service/addFavorite";
+
+			String json = "";
+			InputStream inputStream = null;
+			String result = "";
+
+			try {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(url);
+
+				// 3. build jsonObject
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.accumulate("favorite_number",
+						FragmentChangeActivity.strFavoriteNumber);
+				jsonObject.accumulate("favorite_symbol",
+						FragmentChangeActivity.strSymbolSelect);
+				jsonObject
+						.accumulate("user_id", SplashScreen.userModel.user_id);
+
+				// 4. convert JSONObject to JSON to String
+				json = jsonObject.toString();
+
+				// 5. set json to StringEntity
+				StringEntity se = new StringEntity(json, "UTF-8");
+
+				// 6. set httpPost Entity
+				httppost.setEntity(se);
+
+				// 7. Set some headers to inform server about the type of the
+				// content
+				httppost.setHeader("Accept", "application/json");
+				httppost.setHeader("Content-type", "application/json");
+
+				// 8. Execute POST request to the given URL
+				HttpResponse httpResponse = httpclient.execute(httppost);
+
+				// 9. receive response as inputStream
+				inputStream = httpResponse.getEntity().getContent();
+
+				// 10. convert inputstream to string
+				if (inputStream != null)
+					result = AFunctionOther
+							.convertInputStreamToString(inputStream);
+				else
+					result = "Did not work!";
+
+				// Log.v("sendAddFavorite", ""+result);
+
+			} catch (IOException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			PagerWatchList pg = new PagerWatchList();
+			pg.getDataFavorite();
+			// updateDataFavorite();
+		}
+	}
+
+	// ============== send symbol remove favorite ===============
+	public static void sendSymbolRemoveFavorite() {
+		sendSymbolRemoveFavorite resp = new sendSymbolRemoveFavorite();
+		resp.execute();
+	}
+
+	public static class sendSymbolRemoveFavorite extends
+			AsyncTask<Void, Void, Void> {
+
+		boolean connectionError = false;
+
+		String temp = "";
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			// progress.show();
+
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			// getFavoriteByUserIdFavoriteNumber // หา get favorite id
+
+			String url = SplashScreen.url_bidschart + "/service/removeFavorite";
+
+			String json = "";
+			InputStream inputStream = null;
+			String result = "";
+
+			try {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(url);
+
+				// 3. build jsonObject
+				JSONObject jsonObject = new JSONObject();
+
+				jsonObject
+						.accumulate(
+								"favorite_id",checkFavoriteNumber(FragmentChangeActivity.strSymbolSelect));
+
+				// 4. convert JSONObject to JSON to String
+				json = jsonObject.toString();
+
+				// 5. set json to StringEntity
+				StringEntity se = new StringEntity(json, "UTF-8");
+
+				// 6. set httpPost Entity
+				httppost.setEntity(se);
+
+				// 7. Set some headers to inform server about the type of the
+				// content
+				httppost.setHeader("Accept", "application/json");
+				httppost.setHeader("Content-type", "application/json");
+
+				// 8. Execute POST request to the given URL
+				HttpResponse httpResponse = httpclient.execute(httppost);
+
+				// 9. receive response as inputStream
+				inputStream = httpResponse.getEntity().getContent();
+
+				// 10. convert inputstream to string
+				if (inputStream != null)
+					result = AFunctionOther
+							.convertInputStreamToString(inputStream);
+				else
+					result = "Did not work!";
+
+				Log.v("sendRemoveFavorite Watchlist : ", "" + result);
+
+			} catch (IOException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			PagerWatchList pg = new PagerWatchList();
+			pg.getDataFavorite(); // get favorite
+			// switchFragment(new PagerWatchlistDetail());
+		}
+	}
+
 	// ============== send follow ================
 	public static String resultFollow = "";
 
@@ -71,7 +443,7 @@ public class FollowSymbol extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 
-			String url = SplashScreen.url_bidschart+"/service/addFavorite";
+			String url = SplashScreen.url_bidschart + "/service/addFavorite";
 
 			String json = "";
 			InputStream inputStream = null;
@@ -108,7 +480,8 @@ public class FollowSymbol extends Activity {
 
 				// 10. convert inputstream to string
 				if (inputStream != null)
-					resultFollow = AFunctionOther.convertInputStreamToString(inputStream);
+					resultFollow = AFunctionOther
+							.convertInputStreamToString(inputStream);
 				else
 					resultFollow = "Did not work!";
 				Log.v("result like article", "" + resultFollow);

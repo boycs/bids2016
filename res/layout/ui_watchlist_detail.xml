@@ -70,6 +70,13 @@
                     android:background="@drawable/icon_favorite_default" />
 
                 <ImageView
+                    android:id="@+id/img_portfolio_add"
+                    android:layout_width="@dimen/add_symbol"
+                    android:layout_height="@dimen/add_symbol"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:background="@drawable/icon_portfolio_add" />
+
+                <ImageView
                     android:id="@+id/img_setalert"
                     android:layout_width="@dimen/add_symbol"
                     android:layout_height="@dimen/add_symbol"
@@ -1363,13 +1370,20 @@
                 android:textSize="@dimen/f_symbol_detail" />
         </LinearLayout>
     </LinearLayout>
-
-    <android.support.v4.view.ViewPager
+    
+    <com.app.custom.CustomViewpager
         android:id="@+id/vp_pager"
         android:layout_width="match_parent"
         android:layout_height="@dimen/pager_symbol_detail"
         android:visibility="visible" >
-    </android.support.v4.view.ViewPager>
+    </com.app.custom.CustomViewpager>
+
+<!--     <android.support.v4.view.ViewPager -->
+<!--         android:id="@+id/vp_pager" -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="@dimen/pager_symbol_detail" -->
+<!--         android:visibility="visible" > -->
+<!--     </android.support.v4.view.ViewPager> -->
 
     <LinearLayout
         android:id="@+id/linear_content_frame"

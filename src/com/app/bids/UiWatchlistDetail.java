@@ -100,19 +100,18 @@ public class UiWatchlistDetail extends FragmentActivity {
 	public static WebSocketClient mWebSocketClient;
 
 	// view pager
-	public static ViewPager mPagerMainPreMium;
+	public static ViewPager mPagerMain;
 	// list contains fragments to instantiate in the viewpager
 	public static List<Fragment> fragmentMain = new Vector<Fragment>();
 	private PagerAdapter mPagerAdapterMain;
-
-	public static List<Fragment> fragmentMainPreMium = new Vector<Fragment>();
-	public static PagerAdapter mPagerAdapterMainPreMium;
 
 	public static ImageView img_follow;
 
 	public static Dialog dialogLoading;
 
 	public static PagerWatchList pagerWatchList;
+	// --- add portfolio
+	static DialogDetailAddPortfolio dialogDetailAddPortfolio;
 
 	// --------- google analytics
 	// private Tracker mTracker;
@@ -160,6 +159,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 		setContentView(R.layout.ui_watchlist_detail);
 
+		dialogDetailAddPortfolio = new DialogDetailAddPortfolio(
+				UiWatchlistDetail.this);
 		pagerWatchList = new PagerWatchList();
 
 		// // --------- google analytics
@@ -196,7 +197,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 		industryListSector = null;
 		industryContentGetWatchlistNewsBySymbol = null;
 		spn_industry_select = false;
-		
+
 		// set view
 		initView();
 	}
@@ -227,9 +228,9 @@ public class UiWatchlistDetail extends FragmentActivity {
 	}
 
 	// ============== init view ===============
+	public static ImageView img_portfolio_add;
+
 	private void initView() {
-		((TextView) findViewById(R.id.tv_title_symbol))
-				.setText(FragmentChangeActivity.strSymbolSelect + "'s Detail");
 
 		((LinearLayout) findViewById(R.id.li_back))
 				.setOnClickListener(new OnClickListener() {
@@ -266,6 +267,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 		li_menu_top = (LinearLayout) findViewById(R.id.li_menu_top);
 		li_data = (LinearLayout) findViewById(R.id.li_data);
 
+		img_portfolio_add = (ImageView) findViewById(R.id.img_portfolio_add);
+
 		li_menu_top.setVisibility(View.VISIBLE);
 		li_data.setVisibility(View.VISIBLE);
 
@@ -277,6 +280,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 		loadDataDetail();
 		// setFollowSymbol();
+
+		dialogFavorite();
 
 	}
 
@@ -318,11 +323,13 @@ public class UiWatchlistDetail extends FragmentActivity {
 					if (txtLtrade != "") {
 						double db = Double.parseDouble(txtLtrade.replaceAll(
 								",", ""));
-						txtLtrade = FunctionSymbol.setFormatNumber(txtLtrade);
+						txtLtrade = FunctionFormatData
+								.setFormatNumber(txtLtrade);
 					}
 
 					if (txtChange != "") {
-						txtChange = FunctionSymbol.setFormatNumber(txtChange);
+						txtChange = FunctionFormatData
+								.setFormatNumber(txtChange);
 					}
 
 					if (txtSymbol.equals(".SET")) {
@@ -433,19 +440,20 @@ public class UiWatchlistDetail extends FragmentActivity {
 	// public static ImageView img_follow;
 
 	public void setFollowSymbol() {
-		img_follow.setBackgroundResource(FunctionSymbol
-				.setFavoriteNumber(FragmentChangeActivity.strSymbolSelect));
+		img_follow
+				.setBackgroundResource(FollowSymbolDetail
+						.checkNumberFollowSymbolDetail(FragmentChangeActivity.strSymbolSelect));
 
 		// follow
 		img_follow.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// เช็ค follow หรือยัง
-				boolean ckFollow = FunctionSymbol
+				boolean ckFollow = FollowSymbol
 						.checkFollowSymbol(FragmentChangeActivity.strSymbolSelect);
 
 				// นับ follow T เพิ่มได้ ถ้าเกิน 21 เป็น F เพิ่มไม่ได้
-				boolean ckFollowCountLimit = FunctionSymbol
+				boolean ckFollowCountLimit = FollowSymbol
 						.checkFollowCount(FragmentChangeActivity.strSymbolSelect);
 
 				if (!(SplashScreen.userModel.user_id != "")) {
@@ -453,55 +461,14 @@ public class UiWatchlistDetail extends FragmentActivity {
 					LoginDialog.show();
 				} else {
 					if (ckFollow) {
-						getDataFavoriteId(); // unfollow
-
-						// try {
-						// if (FragmentChangeActivity.contentGetSymbolFavorite
-						// .length() >= 1) {
-						// for (int i = 0; i <
-						// FragmentChangeActivity.contentGetSymbolFavorite
-						// .length(); i++) {
-						// JSONObject jsoIndex =
-						// FragmentChangeActivity.contentGetSymbolFavorite
-						// .getJSONObject(i);
-						//
-						// String strFav = jsoIndex
-						// .getString("favorite_number");
-						//
-						// if (FragmentChangeActivity.strFavoriteNumber
-						// .equals(strFav)) {
-						// if ((jsoIndex.getJSONArray("dataAll")) != null) {
-						// FragmentChangeActivity.strGetListSymbol = "";
-						// JSONArray jsaFavSymbol = jsoIndex
-						// .getJSONArray("dataAll");
-						//
-						// for (int j = 0; j < jsaFavSymbol
-						// .length(); j++) {
-						// if (jsaFavSymbol
-						// .getJSONObject(j)
-						// .getString(
-						// "symbol_name")
-						// .equals(FragmentChangeActivity.strSymbolSelect)) {
-						// strRemoveId = jsaFavSymbol
-						// .getJSONObject(j)
-						// .getString("id");
-						// sendRemoveFavorite();
-						// break;
-						// }
-						// }
-						// }
-						// break;
-						// }
-						// }
-						// }
-						//
-						// } catch (JSONException e) {
-						// // TODO Auto-generated catch block
-						// e.printStackTrace();
-						// }
+						// getDataFavoriteId(); // unfollow
+						FollowSymbolDetail.sendSymbolRemoveFavoriteDetail(); // remove
+																				// fav
+																				// detail
 					} else {
 						if (ckFollowCountLimit) {
-							dialogFavorite();
+							// dialogFavorite();
+							alertDialogFollow.show();
 						} else {
 							Toast.makeText(getApplicationContext(),
 									"Over limit favorites.", 0).show();
@@ -546,8 +513,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 					+ SplashScreen.userModel.user_id + "&symbol="
 					+ FragmentChangeActivity.strSymbolSelect + "&timestamp="
 					+ timestamp;
-			
-			Log.v("url_GetDetail",""+url_GetDetail);
+
+			Log.v("url_GetDetail", "" + url_GetDetail);
 
 			try {
 				// ======= Ui Home ========
@@ -591,16 +558,6 @@ public class UiWatchlistDetail extends FragmentActivity {
 								dialogLoading.dismiss();
 							}
 						}
-
-						// if (jsonGetDetail.getJSONArray("dataAll") != null) {
-						// contentGetDetail = jsonGetDetail.getJSONArray(
-						// "dataAll").getJSONObject(0);
-						//
-						// contentGetDetailFundamental = contentGetDetail
-						// .getString("fundamental");
-						// setDataDetail();
-						// }
-
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
@@ -652,10 +609,10 @@ public class UiWatchlistDetail extends FragmentActivity {
 	public void setDataDetailFuncWidth(int width, int height) {
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 				width, height);
-		mPagerMainPreMium.setLayoutParams(layoutParams);
+		mPagerMain.setLayoutParams(layoutParams);
 
-		Log.v("mPagerMainPreMium", width + "_" + height + "_"
-				+ mPagerMainPreMium.getHeight()); //
+		Log.v("mPagerMain", width + "_" + height + "_"
+				+ mPagerMain.getHeight()); //
 	}
 
 	public void hideDataDetail() {
@@ -691,7 +648,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 	boolean ckHideShowBuySell = false; // hide = false
 	boolean ckHideShowData = false;
 
-	private void initTabPagerPreMium() {
+	private void initTabPager() {
 		tv_premium_chart = (TextView) findViewById(R.id.tv_premium_chart);
 		tv_premium_industry = (TextView) findViewById(R.id.tv_premium_industry);
 		tv_premium_fundamental = (TextView) findViewById(R.id.tv_premium_fundamental);
@@ -710,36 +667,36 @@ public class UiWatchlistDetail extends FragmentActivity {
 		tv_premium_chart.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				selectTabPagerPreMium(1);
-				mPagerMainPreMium.setCurrentItem(0);
+				selectTabPager(1);
+				mPagerMain.setCurrentItem(0);
 			}
 		});
 		tv_premium_industry.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				selectTabPagerPreMium(2);
-				mPagerMainPreMium.setCurrentItem(1);
+				selectTabPager(2);
+				mPagerMain.setCurrentItem(1);
 			}
 		});
 		tv_premium_fundamental.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				selectTabPagerPreMium(3);
-				mPagerMainPreMium.setCurrentItem(2);
+				selectTabPager(3);
+				mPagerMain.setCurrentItem(2);
 			}
 		});
 		tv_premium_news.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				selectTabPagerPreMium(4);
-				mPagerMainPreMium.setCurrentItem(3);
+				selectTabPager(4);
+				mPagerMain.setCurrentItem(3);
 			}
 		});
 		tv_premium_hit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				selectTabPagerPreMium(5);
-				mPagerMainPreMium.setCurrentItem(4);
+				selectTabPager(5);
+				mPagerMain.setCurrentItem(4);
 			}
 		});
 	}
@@ -849,8 +806,14 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 		try {
 			if (contentGetDetail != null) {
-				li_menu_premium.setVisibility(View.VISIBLE);
+				img_portfolio_add.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						dialogDetailAddPortfolio.show();
+					}
+				});
 
+				li_menu_premium.setVisibility(View.VISIBLE);
 				// main
 				tv_symbol = (TextView) findViewById(R.id.tv_symbol);
 				tv_symbol_status = (TextView) findViewById(R.id.tv_symbol_status);
@@ -899,6 +862,9 @@ public class UiWatchlistDetail extends FragmentActivity {
 				v_percentSell = (View) findViewById(R.id.v_percentSell);
 
 				// ======= set data ========
+				((TextView) findViewById(R.id.tv_title_symbol))
+						.setText(FragmentChangeActivity.strSymbolSelect
+								+ "'s Detail");
 				// main
 				String strSymbol_name = contentGetDetail
 						.getString("symbol_name");
@@ -919,11 +885,11 @@ public class UiWatchlistDetail extends FragmentActivity {
 				// status, status_xd)));
 
 				tv_symbol.setText(strSymbol_name);
-				tv_symbol_status.setText(FunctionSymbol
+				tv_symbol_status.setText(FunctionFormatData
 						.checkStatusSymbolDetail(turnover_list_level, status,
 								status_xd));
 
-				tv_last_trade.setText(FunctionSymbol
+				tv_last_trade.setText(FunctionFormatData
 						.setFormatNumber(strLast_trade));
 				tv_symbol_name_eng.setText(strSymbol_fullname_eng);
 
@@ -943,11 +909,11 @@ public class UiWatchlistDetail extends FragmentActivity {
 					tv_percenchange.setText("0.00");
 				} else {
 					// tv_percenchange.setText(strPercentChange + "%");
-					tv_change
-							.setText(FunctionSymbol.setFormatNumber(strChange));
+					tv_change.setText(FunctionFormatData
+							.setFormatNumber(strChange));
 					tv_percenchange.setText(" ("
-							+ FunctionSymbol.setFormatNumber(strPercentChange)
-							+ "%)");
+							+ FunctionFormatData
+									.setFormatNumber(strPercentChange) + "%)");
 				}
 
 				// เซตสี change , lasttrade, percentchange เป็นสีตาม
@@ -976,8 +942,8 @@ public class UiWatchlistDetail extends FragmentActivity {
 						FunctionSetBg.setStrColorWriteDetailBlue(strVolume)));
 				tv_value.setTextColor(getResources().getColor(
 						FunctionSetBg.setStrColorWriteDetailBlue(strValue)));
-				
-				tv_open.setText(FunctionSymbol.setFormatNumber(strOpen));
+
+				tv_open.setText(FunctionFormatData.setFormatNumber(strOpen));
 
 				tv_high.setText(FunctionSetBg.setStrDetailList(strHigh));
 				tv_low.setText(FunctionSetBg.setStrDetailList(strLow));
@@ -1027,12 +993,14 @@ public class UiWatchlistDetail extends FragmentActivity {
 				String strPe = contentGetDetail.getString("p_e");
 				String strPeg = contentGetDetail.getString("peg");
 
-				tv_prev_close.setText(FunctionSymbol
+				tv_prev_close.setText(FunctionFormatData
 						.setFormatNumber(strPrevClose));
-				tv_ceil.setText(FunctionSymbol.setFormatNumber(strCeiling));
-				tv_floor.setText(FunctionSymbol.setFormatNumber(strFloor));
-				tv_high52W.setText(FunctionSymbol.setFormatNumber(strHigh52W));
-				tv_low52W.setText(FunctionSymbol.setFormatNumber(strLow52W));
+				tv_ceil.setText(FunctionFormatData.setFormatNumber(strCeiling));
+				tv_floor.setText(FunctionFormatData.setFormatNumber(strFloor));
+				tv_high52W.setText(FunctionFormatData
+						.setFormatNumber(strHigh52W));
+				tv_low52W
+						.setText(FunctionFormatData.setFormatNumber(strLow52W));
 
 				tv_roe.setText(FunctionSetBg.setStrDetailList(strRoe));
 				tv_roa.setText(FunctionSetBg.setStrDetailList(strRoa));
@@ -1048,7 +1016,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 						FunctionSetBg.setStrColorWriteDetailBlue(strRoe)));
 				tv_roa.setTextColor(getResources().getColor(
 						FunctionSetBg.setStrColorWriteDetailBlue(strRoa)));
-				
+
 				tv_floor.setTextColor(getResources().getColor(
 						FunctionSetBg.setStrColorWriteDetailPink(strFloor)));
 
@@ -1206,48 +1174,48 @@ public class UiWatchlistDetail extends FragmentActivity {
 					String strPercentSell = contentGetDetail
 							.getString("percentSell");
 
-					tv_average_buy.setText(FunctionSymbol
+					tv_average_buy.setText(FunctionFormatData
 							.checkNull(strAverage_buy));
 					tv_average_buy
 							.setTextColor(getResources()
 									.getColor(
 											FunctionSetBg
 													.setStrColorWriteDetailSuccess(strAverage_buy)));
-					tv_max_buy_price_volume.setText(FunctionSymbol
+					tv_max_buy_price_volume.setText(FunctionFormatData
 							.setFormatNumberEtc(strMax_buy_price_volume)
 							+ ""
-							+ FunctionSymbol.setBracket(strMax_buy_price));
+							+ FunctionFormatData.setBracket(strMax_buy_price));
 					tv_max_buy_price_volume
 							.setTextColor(getResources()
 									.getColor(
 											FunctionSetBg
 													.setStrColorWriteDetailSuccess(strMax_buy_price)));
-					tv_open1_volume.setText(FunctionSymbol
+					tv_open1_volume.setText(FunctionFormatData
 							.setFormatNumberEtc(strOpen1_volume)
 							+ ""
-							+ FunctionSymbol.setBracket(strOpen1));
+							+ FunctionFormatData.setBracket(strOpen1));
 					tv_open1_volume.setTextColor(getResources().getColor(
 							FunctionSetBg
 									.setStrColorWriteDetailSuccess(strOpen1)));
-					tv_buy_volume.setText(FunctionSymbol
+					tv_buy_volume.setText(FunctionFormatData
 							.setFormatNumber0(strBuy_volume));
-//					tv_buy_volume
-//							.setTextColor(getResources()
-//									.getColor(
-//											FunctionSetBg
-//													.setStrColorWriteDetailBlue(strBuy_volume)));
+					// tv_buy_volume
+					// .setTextColor(getResources()
+					// .getColor(
+					// FunctionSetBg
+					// .setStrColorWriteDetailBlue(strBuy_volume)));
 
-					tv_average_sell.setText(FunctionSymbol
+					tv_average_sell.setText(FunctionFormatData
 							.checkNull(strAverage_sell));
 					tv_average_sell
 							.setTextColor(getResources()
 									.getColor(
 											FunctionSetBg
 													.setStrColorWriteDetailDanger(strAverage_sell)));
-					tv_max_sell_price_volume.setText(FunctionSymbol
+					tv_max_sell_price_volume.setText(FunctionFormatData
 							.setFormatNumberEtc(strMax_sell_price_volume)
 							+ ""
-							+ FunctionSymbol.setBracket(strMax_sell_price));
+							+ FunctionFormatData.setBracket(strMax_sell_price));
 					tv_max_sell_price_volume
 							.setTextColor(getResources()
 									.getColor(
@@ -1261,7 +1229,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 											FunctionSetBg
 													.setStrColorWriteDetailDanger(strClose_volume)));
 
-					tv_sell_volume.setText(FunctionSymbol
+					tv_sell_volume.setText(FunctionFormatData
 							.setFormatNumberEtc(strSell_volume));
 					tv_sell_volume
 							.setTextColor(getResources()
@@ -1271,10 +1239,11 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 					// percentBuy , sell
 					tv_percentBuy.setText("BUY ("
-							+ FunctionSymbol.setFormatNumber(strPercentBuy)
+							+ FunctionFormatData.setFormatNumber(strPercentBuy)
 							+ "%)");
 					tv_percentSell.setText("("
-							+ FunctionSymbol.setFormatNumber(strPercentSell)
+							+ FunctionFormatData
+									.setFormatNumber(strPercentSell)
 							+ "%) SELL");
 
 					float vBuy = Float.parseFloat(strPercentBuy.replaceAll(",",
@@ -1625,7 +1594,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 		// create an alert dialog
 		alertDialogFollow = alertDialogBuilder.create();
-		alertDialogFollow.show();
+		// alertDialogFollow.show();
 
 		// android.util.AndroidRuntimeException: requestFeature() must be called
 		// before adding content
@@ -1649,27 +1618,32 @@ public class UiWatchlistDetail extends FragmentActivity {
 			switch (v.getId()) {
 			case R.id.li_favorite1:
 				FragmentChangeActivity.strFavoriteNumber = "1";
-				checkAddFavorite();
+				FollowSymbolDetail.sendSymbolAddFavoriteDetail(); // add fav
+																	// detail
 				alertDialogFollow.dismiss();
 				break;
 			case R.id.li_favorite2:
 				FragmentChangeActivity.strFavoriteNumber = "2";
-				checkAddFavorite();
+				FollowSymbolDetail.sendSymbolAddFavoriteDetail(); // add fav
+																	// detail
 				alertDialogFollow.dismiss();
 				break;
 			case R.id.li_favorite3:
 				FragmentChangeActivity.strFavoriteNumber = "3";
-				checkAddFavorite();
+				FollowSymbolDetail.sendSymbolAddFavoriteDetail(); // add fav
+																	// detail
 				alertDialogFollow.dismiss();
 				break;
 			case R.id.li_favorite4:
 				FragmentChangeActivity.strFavoriteNumber = "4";
-				checkAddFavorite();
+				FollowSymbolDetail.sendSymbolAddFavoriteDetail(); // add fav
+																	// detail
 				alertDialogFollow.dismiss();
 				break;
 			case R.id.li_favorite5:
 				FragmentChangeActivity.strFavoriteNumber = "5";
-				checkAddFavorite();
+				FollowSymbolDetail.sendSymbolAddFavoriteDetail(); // add fav
+																	// detail
 				alertDialogFollow.dismiss();
 				break;
 			default:
@@ -1678,19 +1652,21 @@ public class UiWatchlistDetail extends FragmentActivity {
 		}
 	};
 
-	// ============== send addfavorite ===============
-	public void checkAddFavorite() {
-		if (FunctionSymbol
-				.checkFollowCount(FragmentChangeActivity.strFavoriteNumber)) {
-			sendAddFavorite();
-		} else {
-			Toast.makeText(
-					getApplicationContext(),
-					"Over Limit Favorite "
-							+ FragmentChangeActivity.strFavoriteNumber, 0)
-					.show();
-		}
-	}
+	// // ============== send addfavorite ===============
+	// public void checkAddFavorite() {
+	// if (FollowSymbol
+	// .checkFollowCount(FragmentChangeActivity.strFavoriteNumber)) {
+	// // sendAddFavorite();
+	// FollowSymbol.sendSymbolAddFavorite(); // send add favorite
+	// setFollowSymbol();
+	// } else {
+	// Toast.makeText(
+	// getApplicationContext(),
+	// "Over Limit Favorite "
+	// + FragmentChangeActivity.strFavoriteNumber, 0)
+	// .show();
+	// }
+	// }
 
 	public void sendAddFavorite() {
 		setFavorite resp = new setFavorite();
@@ -1778,6 +1754,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 			dialogLoading.dismiss();
 			pagerWatchList.initGetData();
 
+			// setFollowSymbol();
 			// updateDataFavorite();
 
 			// switchFragment(new PagerWatchlistDetail());
@@ -1794,50 +1771,50 @@ public class UiWatchlistDetail extends FragmentActivity {
 		}
 
 		// creating fragments and adding to list
-		fragmentMainPreMium.removeAll(fragmentMainPreMium);
+		fragmentMain.removeAll(fragmentMain);
 		// fragmentMainPreMium.add(Fragment.instantiate(getApplicationContext(),
 		// PagerWatchListDetailChart.class.getName()));
-		fragmentMainPreMium.add(Fragment.instantiate(getApplicationContext(),
+		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
 				PagerWatchListDetailChart_New1.class.getName()));
-		fragmentMainPreMium.add(Fragment.instantiate(getApplicationContext(),
+		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
 				PagerWatchListDetailIndustry.class.getName()));
-		fragmentMainPreMium.add(Fragment.instantiate(getApplicationContext(),
+		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
 				PagerWatchListDetailFundamental.class.getName()));
-		fragmentMainPreMium.add(Fragment.instantiate(getApplicationContext(),
+		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
 				PagerWatchListDetailNews.class.getName()));
-		fragmentMainPreMium.add(Fragment.instantiate(getApplicationContext(),
+		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
 				PagerWatchListDetailHit.class.getName()));
-
+		
 		// creating adapter and linking to view pager
-		this.mPagerAdapterMainPreMium = new PagerAdapter(
-				super.getSupportFragmentManager(), fragmentMainPreMium);
-		mPagerMainPreMium = (ViewPager) findViewById(R.id.vp_pager);
+		this.mPagerAdapterMain = new PagerAdapter(
+				super.getSupportFragmentManager(), fragmentMain);
+		mPagerMain = (ViewPager) findViewById(R.id.vp_pager);
 
-		mPagerMainPreMium.setAdapter(this.mPagerAdapterMainPreMium);
-
-		mPagerMainPreMium.setOnPageChangeListener(new OnPageChangeListener() {
+		mPagerMain.setAdapter(this.mPagerAdapterMain);
+		
+		mPagerMain.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageSelected(int arg0) {
-				selectTabPagerPreMium((mPagerMainPreMium.getCurrentItem()) + 1);
+				selectTabPager((mPagerMain.getCurrentItem()) + 1);
 			}
 
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				mPagerMainPreMium.getParent()
-						.requestDisallowInterceptTouchEvent(true);
+				mPagerMain.getParent()
+						.requestDisallowInterceptTouchEvent(false);
 			}
 
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-			}
+			}			
 		});
 
-		initTabPagerPreMium(); // init tab pager
+		initTabPager(); // init tab pager
 
 	}
 
 	// ============= set tab ===========
-	public int selectTabPagerPreMium(int numtab) {
+	public int selectTabPager(int numtab) {
 		tv_premium_chart.setBackgroundColor(Color.TRANSPARENT);
 		tv_premium_industry.setBackgroundColor(Color.TRANSPARENT);
 		tv_premium_fundamental.setBackgroundColor(Color.TRANSPARENT);
@@ -1890,31 +1867,6 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 			showDataDetail();
 		}
-		return numtab;
-	}
-
-	// ============= set tab ===========
-	public int selectTabPager(int numtab) {
-		tv_chart.setBackgroundColor(Color.TRANSPARENT);
-		tv_news.setBackgroundColor(Color.TRANSPARENT);
-		tv_sector.setBackgroundColor(Color.TRANSPARENT);
-
-		tv_chart.setTextColor(getResources().getColor(R.color.c_content));
-		tv_news.setTextColor(getResources().getColor(R.color.c_content));
-		tv_sector.setTextColor(getResources().getColor(R.color.c_content));
-
-		if (numtab == 1) {
-			tv_chart.setBackgroundResource(R.drawable.border_button_activeleft);
-			tv_chart.setTextColor(getResources().getColor(R.color.bg_default));
-		} else if (numtab == 2) {
-			tv_sector
-					.setBackgroundResource(R.drawable.border_button_activecenter);
-			tv_sector.setTextColor(getResources().getColor(R.color.bg_default));
-		} else if (numtab == 3) {
-			tv_news.setBackgroundResource(R.drawable.border_button_activeright);
-			tv_news.setTextColor(getResources().getColor(R.color.bg_default));
-		}
-
 		return numtab;
 	}
 
@@ -2183,10 +2135,11 @@ public class UiWatchlistDetail extends FragmentActivity {
 		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			// แนวนอน
 			Log.v("onConfigurationChan >> ", "แนวนอน");
-
+			
 			orientation_landscape = true;
 
-			mPagerMainPreMium.setCurrentItem(0);
+//			selectTabPager(1);
+			mPagerMain.setCurrentItem(0);
 
 			li_vertical.setVisibility(View.GONE);
 			li_menu_premium.setVisibility(View.GONE);
@@ -2197,14 +2150,15 @@ public class UiWatchlistDetail extends FragmentActivity {
 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 					LinearLayout.LayoutParams.MATCH_PARENT,
 					LinearLayout.LayoutParams.MATCH_PARENT);
-			mPagerMainPreMium.setLayoutParams(layoutParams);
+			mPagerMain.setLayoutParams(layoutParams);
 		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
 			// แนวตั้ง
 			Log.v("onConfigurationChan >> ", "แนวตั้ง");
 
 			orientation_landscape = false;
 
-			mPagerMainPreMium.setCurrentItem(0);
+//			selectTabPager(1);
+			mPagerMain.setCurrentItem(0);
 
 			li_vertical.setVisibility(View.VISIBLE);
 			li_menu_premium.setVisibility(View.VISIBLE);
@@ -2218,7 +2172,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 			hideDataDetail();
 		}
 	}
-
+	
 	protected void switchFragment(PagerWatchList fragment) {
 		if (getApplicationContext() == null)
 			return;

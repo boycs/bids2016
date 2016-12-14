@@ -206,7 +206,9 @@ public class PagerMutualFundDetailFundAss extends Fragment implements
 
 	// ============== init set data =========================
 	private void initSetData() throws JSONException {
-		if (UiMutualfundDetail.contentGetFundAssData != null) {
+		if (UiMutualfundDetail.contentGetFundAssData.length() > 0) {
+			((TextView) rootView.findViewById(R.id.tv_des))
+					.setVisibility(View.VISIBLE);
 			mChart = (PieChart) rootView.findViewById(R.id.chart1);
 			mChart.setUsePercentValues(true);
 			mChart.setDescription("");
@@ -228,7 +230,7 @@ public class PagerMutualFundDetailFundAss extends Fragment implements
 
 			mChart.setRotationAngle(0);
 			// enable rotation of the chart by touch
-			mChart.setRotationEnabled(true);
+			mChart.setRotationEnabled(false);
 			mChart.setHighlightEnabled(true);
 
 			// mChart.setUnit(" โ�ฌ");
@@ -244,12 +246,12 @@ public class PagerMutualFundDetailFundAss extends Fragment implements
 
 			Legend l = mChart.getLegend();
 			l.setEnabled(false);
-//			l.setPosition(LegendPosition.BELOW_CHART_CENTER);
-//			// l.setHorizontalAlignment(LegendHorizontalAlignment.RIGHT);
-//			l.setXEntrySpace(3f);
-//			l.setTextColor(getResources().getColor(R.color.c_content));
-//			l.setYEntrySpace(0f);
-//			l.setYOffset(0f);
+			// l.setPosition(LegendPosition.BELOW_CHART_CENTER);
+			// // l.setHorizontalAlignment(LegendHorizontalAlignment.RIGHT);
+			// l.setXEntrySpace(3f);
+			// l.setTextColor(getResources().getColor(R.color.c_content));
+			// l.setYEntrySpace(0f);
+			// l.setYOffset(0f);
 
 			Log.v("l.colorsObjc", "" + l.getTextColor());
 
@@ -260,13 +262,14 @@ public class PagerMutualFundDetailFundAss extends Fragment implements
 	}
 
 	JSONArray jsaDataList;
+
 	private void setData(int count, float range) throws JSONException {
 		// ----- หาผลรวม value
 		float fSumV = 0;
 		for (int i = 0; i < count; i++) {
 			String strValue = UiMutualfundDetail.contentGetFundAssData
 					.getJSONObject(i).getString("value");
-			fSumV = fSumV + FunctionSymbol.setStringPaseFloat(strValue);
+			fSumV = fSumV + FunctionFormatData.setStringPaseFloat(strValue);
 		}
 
 		// ----- คิด value แต่ละตัวเป็น %
@@ -274,7 +277,7 @@ public class PagerMutualFundDetailFundAss extends Fragment implements
 		for (int i = 0; i < count; i++) {
 			String strValue = UiMutualfundDetail.contentGetFundAssData
 					.getJSONObject(i).getString("value");
-			float fValue = FunctionSymbol.setStringPaseFloat(strValue);
+			float fValue = FunctionFormatData.setStringPaseFloat(strValue);
 			float fPercent = (100 * fValue) / fSumV;
 
 			yVals1.add(new Entry(fPercent, i));
@@ -284,41 +287,41 @@ public class PagerMutualFundDetailFundAss extends Fragment implements
 		jsaDataList = new JSONArray();
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int i = 0; i < count; i++) {
-			String strDetail = UiMutualfundDetail.contentGetFundAssData.getJSONObject(
-					i).getString("detail");
+			String strDetail = UiMutualfundDetail.contentGetFundAssData
+					.getJSONObject(i).getString("detail");
 			String sptSym0[] = strDetail.split("\\(");
 			String sptSym1 = sptSym0[1].split("\\)")[0];
 			xVals.add(sptSym1);
-			
+
 			String strValue = UiMutualfundDetail.contentGetFundAssData
 					.getJSONObject(i).getString("value");
 			JSONObject jso = new JSONObject();
-			jso.put("symbol", ""+(i+1)+". "+sptSym1);
+			jso.put("symbol", "" + (i + 1) + ". " + sptSym1);
 			jso.put("detail", strDetail.split("\\.")[1]);
-			jso.put("percent", strValue+"%");
+			jso.put("percent", strValue + "%");
 			jsaDataList.put(jso);
 		}
 
-		//----- test
-//		for(int i=0 ;i<yVals1.size() ; i++){
-//			Log.v("yVals1", ""+yVals1.get(i));
-//			// Entry, xIndex: 0 val (sum): 13.172621
-//		}
-		
+		// ----- test
+		// for(int i=0 ;i<yVals1.size() ; i++){
+		// Log.v("yVals1", ""+yVals1.get(i));
+		// // Entry, xIndex: 0 val (sum): 13.172621
+		// }
+
 		PieDataSet dataSet = new PieDataSet(yVals1,
 				"สินทรัพย์ 10 อันดับแรกที่ลงทุนกองทุน");
 		dataSet.setSliceSpace(3f);
 		dataSet.setSelectionShift(5f);
 		dataSet.setColors(SplashScreen.mpChartArrColor);
-		
+
 		// Log.v("colorscolorscolorscolorscolors", ""+colors);
 		// dataSet.setSelectionShift(0f);
 
-//		dataSet.setValueLinePart1OffsetPercentage(80.f);
-//		dataSet.setValueLinePart1Length(0.3f);
-//		dataSet.setValueLinePart2Length(0.4f);
-//		dataSet.setValueLineColor(Color.WHITE);
-//		dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+		// dataSet.setValueLinePart1OffsetPercentage(80.f);
+		// dataSet.setValueLinePart1Length(0.3f);
+		// dataSet.setValueLinePart2Length(0.4f);
+		// dataSet.setValueLineColor(Color.WHITE);
+		// dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
 		PieData data = new PieData(xVals, dataSet);
 		data.setValueFormatter(new PercentFormatter());
@@ -330,60 +333,63 @@ public class PagerMutualFundDetailFundAss extends Fragment implements
 		mChart.highlightValues(null);
 
 		mChart.invalidate();
-		
+
 		// ----------- set list data top 100
 		setListData();
 	}
-	
+
 	// ============== set list data ================
-		private void setListData() {
-			Legend l = mChart.getLegend();
-//			Log.v("l.getColors()", ""+l.getColors()[0]); // -10266777
+	private void setListData() {
+		Legend l = mChart.getLegend();
+		// Log.v("l.getColors()", ""+l.getColors()[0]); // -10266777
 
-			try {
-				if (jsaDataList != null) {
-					if (jsaDataList.length() > 0) {
-						LinearLayout li_list = (LinearLayout) rootView
-								.findViewById(R.id.li_list);
-						li_list.removeAllViews();
-						for (int i = 0; i < jsaDataList.length(); i++) {
-							View viewDetail = ((Activity) context)
-									.getLayoutInflater().inflate(
-											R.layout.row_mutualfund_fundass,
-											null);
+		try {
+			if (jsaDataList != null) {
+				if (jsaDataList.length() > 0) {
+					LinearLayout li_list = (LinearLayout) rootView
+							.findViewById(R.id.li_list);
+					li_list.removeAllViews();
+					for (int i = 0; i < jsaDataList.length(); i++) {
+						View viewDetail = ((Activity) context)
+								.getLayoutInflater().inflate(
+										R.layout.row_mutualfund_fundass, null);
 
-							// ------ get data index
-							JSONObject jsoIndex = jsaDataList.getJSONObject(i);
+						// ------ get data index
+						JSONObject jsoIndex = jsaDataList.getJSONObject(i);
 
-							String strSymbol = jsoIndex.getString("symbol");
-							String strDetail = jsoIndex.getString("detail");
-							String strPercent = jsoIndex.getString("percent");
-							
-							ImageView img_cat_color = (ImageView)viewDetail.findViewById(R.id.img_cat_color);
-							TextView tv_symbol = (TextView) viewDetail
-									.findViewById(R.id.tv_symbol);
-							TextView tv_detail = (TextView) viewDetail
-									.findViewById(R.id.tv_detail);
-							TextView tv_percent = (TextView) viewDetail
-									.findViewById(R.id.tv_percent);
-							tv_symbol.setText(strSymbol);
-							tv_detail.setText(strDetail);
-							tv_percent.setText(strPercent);
-														
-//							Log.v("l.getColors()", ""+l.getColors()[i]); // -10266777
-							Integer intColor = l.getColors()[i];
-							String hexColor = "#" + Integer.toHexString(intColor).substring(2);
-							img_cat_color.setBackgroundColor(Color.parseColor(hexColor));
-							
-							li_list.addView(viewDetail);
-						}
+						String strSymbol = jsoIndex.getString("symbol");
+						String strDetail = jsoIndex.getString("detail");
+						String strPercent = jsoIndex.getString("percent");
+
+						ImageView img_cat_color = (ImageView) viewDetail
+								.findViewById(R.id.img_cat_color);
+						TextView tv_symbol = (TextView) viewDetail
+								.findViewById(R.id.tv_symbol);
+						TextView tv_detail = (TextView) viewDetail
+								.findViewById(R.id.tv_detail);
+						TextView tv_percent = (TextView) viewDetail
+								.findViewById(R.id.tv_percent);
+						tv_symbol.setText(strSymbol);
+						tv_detail.setText(strDetail);
+						tv_percent.setText(strPercent);
+
+						// Log.v("l.getColors()", ""+l.getColors()[i]); //
+						// -10266777
+						Integer intColor = l.getColors()[i];
+						String hexColor = "#"
+								+ Integer.toHexString(intColor).substring(2);
+						img_cat_color.setBackgroundColor(Color
+								.parseColor(hexColor));
+
+						li_list.addView(viewDetail);
 					}
-				} else {
 				}
-			} catch (JSONException e) {
-				e.printStackTrace();
+			} else {
 			}
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
+	}
 
 	// ----- ใส่ Text กลาง ข้างในวงกลม
 	private SpannableString generateCenterSpannableText() {

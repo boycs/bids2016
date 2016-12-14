@@ -15,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.app.bids.R;
-import com.app.bids.FunctionSymbol.setFavorite;
 import com.app.bids.GridviewAdapterUiFav.ViewHolder;
 
 import android.content.Context;
@@ -114,7 +113,7 @@ public class ListAdapterSearchSymbolSystemTradeCdc extends ArrayAdapter {
 			@Override
 			public void onClick(View v) {
 				FragmentChangeActivity.strSymbolSelect = symbolSelect;
-				boolean ckFollow = FunctionSymbol
+				boolean ckFollow = FollowSymbolSystemTrade
 						.checkFollowSymbolWatchlistSystemTrade(FragmentChangeActivity.strSymbolSelect);
 
 				// /service/v2/addWatchlistSystemTrade
@@ -127,10 +126,9 @@ public class ListAdapterSearchSymbolSystemTradeCdc extends ArrayAdapter {
 					img_add_symbol
 							.setBackgroundResource(R.drawable.icon_plus_blue);
 					// FollowFunction.sendRemoveWatchlistSystemTrade();
-					FunctionSymbol
-							.checkFollowSymbolWatchlistSystemTradeWatctId(FragmentChangeActivity.strSymbolSelect);
+					FollowSymbolSystemTrade.getWatchIdWatchlistSystemTrade(FragmentChangeActivity.strSymbolSelect);
 				} else {
-					if (FunctionSymbol
+					if (FollowSymbol
 							.checkFollowCount(FragmentChangeActivity.strSymbolSelect)) {
 						img_add_symbol
 								.setBackgroundResource(R.drawable.icon_check_green);
@@ -141,7 +139,7 @@ public class ListAdapterSearchSymbolSystemTradeCdc extends ArrayAdapter {
 			}
 		});
 
-		img_add_symbol.setBackgroundResource(FunctionSymbol
+		img_add_symbol.setBackgroundResource(FollowSymbolSystemTrade
 				.checkFollowSearchSymbolWatchlistSystemTrade(symbolSelect));
 
 		li_row.setOnClickListener(new OnClickListener() {
@@ -245,7 +243,7 @@ public class ListAdapterSearchSymbolSystemTradeCdc extends ArrayAdapter {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			FunctionSymbol.initGetWatchlistSystemTrade();
+			FollowSymbolSystemTrade.initGetWatchlistSystemTrade();
 		}
 	}
 

@@ -146,7 +146,7 @@ public class PagerSystemTradeCdc extends Fragment {
 		// FragmentChangeActivity.pageSystemTrade = true;
 
 		if (FragmentChangeActivity.contentGetWatchlistSystemTrade == null) {
-			FunctionSymbol.initGetWatchlistSystemTrade();
+			FollowSymbolSystemTrade.initGetWatchlistSystemTrade();
 		}
 
 		if (FragmentChangeActivity.contentGetSystemTradeMacd != null) {
@@ -783,7 +783,7 @@ public class PagerSystemTradeCdc extends Fragment {
 					TextView tv_symbol_name = (TextView) viewSymbol
 							.findViewById(R.id.tv_symbol_name);
 
-					tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+					tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
 							.checkStatusSymbol(symbol_name,
 									turnover_list_level, status, status_xd)));
 

@@ -22,13 +22,15 @@
                 android:layout_height="@dimen/pager_symbol_detail_2" />
 
             <com.app.custom.CustomTextView
+                android:id="@+id/tv_des"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_default"
                 android:gravity="center"
                 android:text="สินทรัพย์ 10 อันดับแรกที่ลงทุนกองทุน"
                 android:textColor="@color/c_content"
-                android:textSize="@dimen/f_description" />
+                android:textSize="@dimen/f_description"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/li_list"

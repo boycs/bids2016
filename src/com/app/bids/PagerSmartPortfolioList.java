@@ -227,7 +227,7 @@ public class PagerSmartPortfolioList extends Fragment implements
 
 				mChart.setRotationAngle(0);
 				// enable rotation of the chart by touch
-				mChart.setRotationEnabled(true);
+				mChart.setRotationEnabled(false);
 //				mChart.setHighlightPerTapEnabled(true);
 
 				// mChart.setUnit(" โ�ฌ");
@@ -240,7 +240,7 @@ public class PagerSmartPortfolioList extends Fragment implements
 						.getJSONArray("result");
 				setData(jsaResult.length(), 100);
 
-				mChart.animateY(1000, Easing.EasingOption.EaseInOutQuad);
+				mChart.animateY(0, Easing.EasingOption.EaseInOutQuad);
 				// mChart.spin(2000, 0, 360);
 
 				Legend l = mChart.getLegend();
@@ -268,14 +268,14 @@ public class PagerSmartPortfolioList extends Fragment implements
 		float fSumV = 0;
 		for (int i = 0; i < count; i++) {
 			String strValue = jsaResult.getJSONObject(i).getString("value");
-			fSumV = fSumV + FunctionSymbol.setStringPaseFloat(strValue);
+			fSumV = fSumV + FunctionFormatData.setStringPaseFloat(strValue);
 		}
 
 		// ----- คิด value แต่ละตัวเป็น %
 		ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 		for (int i = 0; i < count; i++) {
 			String strValue = jsaResult.getJSONObject(i).getString("value");
-			float fValue = FunctionSymbol.setStringPaseFloat(strValue);
+			float fValue = FunctionFormatData.setStringPaseFloat(strValue);
 			float fPercent = (100 * fValue) / fSumV;
 
 			yVals1.add(new Entry(fPercent, i));

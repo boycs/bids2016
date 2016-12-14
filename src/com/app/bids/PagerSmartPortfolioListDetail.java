@@ -20,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.app.bids.R;
-import com.app.bids.PagerWatchList.setRemoveFavorite;
 import com.app.bids.PagerWatchListDetailNews.loadAll;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -106,6 +105,7 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 
 	private PieChart mChartPie;
 	private BarChart mChartBar;
+	private TextView tv_list_symbol;
 
 	public static JSONObject contentGetDetailList = null;
 
@@ -281,6 +281,7 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 	private void initSetData() {
 
 		mChartPie = (PieChart) rootView.findViewById(R.id.chart_pie);
+		tv_list_symbol = (TextView) rootView.findViewById(R.id.tv_list_symbol);		
 		mChartBar = (BarChart) rootView.findViewById(R.id.chart_bar);
 		mChartPie.removeAllViews();
 		mChartBar.removeAllViews();
@@ -300,6 +301,7 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 
 				mChartPie.setDragDecelerationFrictionCoef(0.95f);
 				mChartPie.setCenterText("Market Value"); // settext ในวงกลม
+				mChartPie.setCenterTextSize(8);
 
 				mChartPie.setCenterTextColor(context.getResources().getColor(
 						R.color.c_content));
@@ -320,7 +322,7 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 
 				mChartPie.setRotationAngle(0);
 				// enable rotation of the chart by touch
-				mChartPie.setRotationEnabled(true);
+				mChartPie.setRotationEnabled(false);
 				// mChartPie.setHighlightPerTapEnabled(true);
 
 				// mChart.setUnit(" โ�ฌ");
@@ -331,11 +333,12 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 
 				setDataPieChart(jsaResult.length(), 100);
 
-				mChartPie.animateY(1000, Easing.EasingOption.EaseInOutQuad);
+				mChartPie.animateY(0, Easing.EasingOption.EaseInOutQuad);
 				// mChart.spin(2000, 0, 360);
 
 				Legend l = mChartPie.getLegend();
-				l.setPosition(LegendPosition.BELOW_CHART_CENTER);
+				l.setPosition(LegendPosition.BELOW_CHART_LEFT);
+//				l.setPosition(LegendPosition.BELOW_CHART_CENTER);
 				// l.setHorizontalAlignment(LegendHorizontalAlignment.LEFT);
 				l.setXEntrySpace(3f);
 				l.setTextColor(context.getResources().getColor(
@@ -439,33 +442,28 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 			}
 
 			BarDataSet set1;
+			 ArrayList<Integer> mpChartArrColor = new ArrayList<Integer>();
 			if (mChartBar.getData() != null
 					&& mChartBar.getData().getDataSetCount() > 0) {
 				set1 = (BarDataSet) mChartBar.getData().getDataSetByIndex(0);
-				// set1.setYVals(yVals1);
-				// mChartBar.getData().setXVals(xVals);
 				mChartBar.getData().notifyDataChanged();
 				mChartBar.notifyDataSetChanged();
 			} else {
 				ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
-				set1 = new BarDataSet(yVals, "DataSet");
 				for (int i = 0; i < count; i++) {
 					String strPl = jsaResult.getJSONObject(i).getString(
 							"pl_percent");
 					float val = Float.parseFloat(strPl);
-
 					yVals.add(new BarEntry(val, i));
-
-					set1 = new BarDataSet(yVals, "");
-					set1.setBarSpacePercent(35f);
-					// if(val < 0){
-					// set1.setColor(context.getResources().getColor(R.color.c_danger));
-					// }else{
-					set1.setColor(context.getResources().getColor(
-							R.color.c_success));
-					// }
+					if(val > 0){
+						mpChartArrColor.add(context.getResources().getColor(R.color.c_success));
+					}else{
+						mpChartArrColor.add(context.getResources().getColor(R.color.c_danger));
+					}
 				}
 
+				set1 = new BarDataSet(yVals, "DataSet");
+				set1.setColors(mpChartArrColor);
 				ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
 				dataSets.add(set1);
 
@@ -484,27 +482,24 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 	// ============== set data pie chart =========================
 	private void setDataPieChart(int count, float range) throws JSONException {
 		JSONArray jsaResult = contentGetDetailList.getJSONArray("result");
+		Legend l = mChartPie.getLegend();
 
 		// ----- หาผลรวม value
 		float fSumV = 0;
 		for (int i = 0; i < count; i++) {
 			String strValue = jsaResult.getJSONObject(i).getString("percent");
-			fSumV = fSumV + FunctionSymbol.setStringPaseFloat(strValue);
+			fSumV = fSumV + FunctionFormatData.setStringPaseFloat(strValue);
 		}
 
 		// ----- คิด value แต่ละตัวเป็น %
 		ArrayList<Entry> yVals1 = new ArrayList<Entry>();
+		ArrayList<String> xVals = new ArrayList<String>();
 		for (int i = 0; i < count; i++) {
 			String strValue = jsaResult.getJSONObject(i).getString("percent");
-			float fValue = FunctionSymbol.setStringPaseFloat(strValue);
+			float fValue = FunctionFormatData.setStringPaseFloat(strValue);
 			float fPercent = (100 * fValue) / fSumV;
 
 			yVals1.add(new Entry(fPercent, i));
-		}
-
-		// ----- ชื่อ cat
-		ArrayList<String> xVals = new ArrayList<String>();
-		for (int i = 0; i < count; i++) {
 			xVals.add("");
 		}
 
@@ -520,15 +515,31 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 		// dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
 		PieData data = new PieData(xVals, dataSet);
-		data.setValueFormatter(new PercentFormatter());
+		data.setValueFormatter(new PercentFormatter()); // %
 		data.setValueTextSize(11f);
-		data.setValueTextColor(Color.WHITE);
+		data.setValueTextColor(Color.WHITE); // สีตัวเลข % ใน chart
 		mChartPie.setData(data);
 
 		// undo all highlights
 		mChartPie.highlightValues(null);
 
 		mChartPie.invalidate();
+		
+		// ----- ชื่อ
+		String strListSymbol = "";
+		for (int i = 0; i < count; i++) {
+			String strSymbol = jsaResult.getJSONObject(i).getString("symbol");
+			Integer intColor = l.getColors()[i];
+			String hexColor = "#" + Integer.toHexString(intColor).substring(2);
+			String sDefault = "<font color='" + hexColor + "'> \u25A0</font>"+strSymbol;
+			strListSymbol += sDefault;
+		}
+		tv_list_symbol.setText(Html.fromHtml(strListSymbol));
+		
+//		• = \u2022, ● = \u25CF, ○ = \u25CB, ▪ = \u25AA, ■ = \u25A0, □ = \u25A1, ► = \u25BA
+//				setText("\u2022 Bullet");
+//		http://stackoverflow.com/questions/3429546/how-do-i-add-a-bullet-symbol-in-textview
+		
 	}
 
 	// ============== set data view =========================
@@ -731,7 +742,8 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 
 	// ============== dialog delete smart portfolio symbol ===============
 	public static JSONObject jsoDelete = null;
-
+	public static String strPortfolioId;
+	
 	public static void changeRowDeletePort(View v) {
 		for (int i = 0; i < row_tv_portdel.size(); i++) {
 			row_tv_portdel.get(i).setVisibility(View.GONE);
@@ -810,15 +822,16 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 						}
 					});
 
+					final String portfolio_id = jsoDelete.getString("portfolio_id");
 					tv_delete.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-							FragmentChangeActivity.strSymbolSelect = symbol_name;
+							strPortfolioId = portfolio_id;
 							sendDeletePortList();
 							hideRowDeleteFav(v);
 							li_row.setVisibility(View.GONE);
-							// Toast.makeText(context, "" + strSymbol,
-							// 0).show();
+//							 Toast.makeText(context, "" + FragmentChangeActivity.strSymbolSelect,
+//							 0).show();
 						}
 					});
 
@@ -886,8 +899,7 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 
 				// 3. build jsonObject
 				JSONObject jsonObject = new JSONObject();
-				jsonObject.accumulate("portfolio_id",
-						jsoDelete.getString("portfolio_id"));
+				jsonObject.accumulate("portfolio_id", strPortfolioId);
 
 				// 4. convert JSONObject to JSON to String
 				json = jsonObject.toString();
@@ -946,6 +958,9 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 						Toast.makeText(context, "Success.", 0).show();
 
 						initLoadData(); // get favorite
+						
+//						PagerSmartPortfolio pp = new PagerSmartPortfolio();
+//						pp.initLoadData();
 					}
 				} catch (JSONException e1) {
 					e1.printStackTrace();
@@ -1055,13 +1070,13 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 						// DecimalFormat formatter = new
 						// DecimalFormat("#,###.00");
 						// txtLtrade = formatter.format(db);
-						txtLtrade = FunctionSymbol.setFormatNumber(txtLtrade);
+						txtLtrade = FunctionFormatData.setFormatNumber(txtLtrade);
 					}
 
 					if (txtChange != "") {
 						// double db = Double.parseDouble(txtChange);
 						// txtChange = String.format(" %,.2f", db);
-						txtChange = FunctionSymbol.setFormatNumber(txtChange);
+						txtChange = FunctionFormatData.setFormatNumber(txtChange);
 					}
 
 					if (txtSymbol.equals(".SET")) {
@@ -1163,8 +1178,8 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 								if (original_list.get(i).symbol
 										.toLowerCase()
 										.contains(text.toString().toLowerCase())) {
-									if ((original_list.get(i).status_segmentId == "COMMON")
-											|| (original_list.get(i).status_segmentId == "WARRANT")) {
+									if ((original_list.get(i).status_segmentId.equals("COMMON"))
+											|| (original_list.get(i).status_segmentId.equals("WARRANT"))) {
 										second_list.add(original_list.get(i));
 									}
 								}
@@ -1178,11 +1193,8 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 								if (original_list_fund.get(i).name_initial
 										.toLowerCase().contains(
 												text.toString().toLowerCase())) {
-									if ((original_list.get(i).status_segmentId == "COMMON")
-											|| (original_list.get(i).status_segmentId == "WARRANT")) {
 										second_list_fund.add(original_list_fund
 												.get(i));
-									}
 								}
 							}
 							ListAdapterSearchNameFund.notifyDataSetChanged();
@@ -1215,8 +1227,8 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 						for (int i = 0; i < original_list.size(); i++) {
 							if (original_list.get(i).symbol.toLowerCase()
 									.contains(text.toString().toLowerCase())) {
-								if ((original_list.get(i).status_segmentId == "COMMON")
-										|| (original_list.get(i).status_segmentId == "WARRANT")) {
+								if ((original_list.get(i).status_segmentId.equals("COMMON"))
+										|| (original_list.get(i).status_segmentId.equals("WARRANT")) ) {
 									second_list.add(original_list.get(i));
 								}
 							}
@@ -1248,11 +1260,8 @@ public class PagerSmartPortfolioListDetail extends Fragment implements
 							if (original_list_fund.get(i).name_initial
 									.toLowerCase().contains(
 											text.toString().toLowerCase())) {
-								if ((original_list.get(i).status_segmentId == "COMMON")
-										|| (original_list.get(i).status_segmentId == "WARRANT")) {
 									second_list_fund.add(original_list_fund
 											.get(i));
-								}
 							}
 						}
 						ListAdapterSearchNameFund.notifyDataSetChanged();

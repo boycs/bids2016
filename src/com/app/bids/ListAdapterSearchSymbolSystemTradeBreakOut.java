@@ -81,28 +81,28 @@ public class ListAdapterSearchSymbolSystemTradeBreakOut extends ArrayAdapter {
 		li_row.setTag("" + arl.get(position).symbol);
 
 		final String symbolSelect = arl.get(position).symbol;
-		img_add_symbol.setBackgroundResource(FunctionSymbol
-				.checkFollowSearchSymbol(symbolSelect));
+		img_add_symbol.setBackgroundResource(FollowSymbol
+				.setColorFollowSearchSymbol(symbolSelect));
 
 		img_add_symbol.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
 				FragmentChangeActivity.strSymbolSelect = symbolSelect;
-				boolean ckFollow = FunctionSymbol
+				boolean ckFollow = FollowSymbol
 						.checkFollowSymbol(FragmentChangeActivity.strSymbolSelect);
 
 				if (ckFollow) { // unfollow
 					img_add_symbol
 							.setBackgroundResource(R.drawable.icon_plus_blue);
 
-					FunctionSymbol.getDataFavoriteId();
+					FollowSymbol.sendSymbolRemoveFavorite(); // send remove favorite
 				} else {
-					if (FunctionSymbol
+					if (FollowSymbol
 							.checkFollowCount(FragmentChangeActivity.strSymbolSelect)) {
 						img_add_symbol
 								.setBackgroundResource(R.drawable.icon_check_green);
-						FunctionSymbol.sendAddFavorite();
+						FollowSymbolSystemTrade.sendAddWatchlistSystemTrade();
 					} else {
 					}
 				}

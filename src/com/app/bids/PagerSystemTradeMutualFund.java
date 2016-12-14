@@ -88,8 +88,8 @@ public class PagerSystemTradeMutualFund extends Fragment {
 	public static Dialog dialogLoading;
 
 	// --------- google analytics
-//	private Tracker mTracker;
-//	String nameTracker = new String("Mutual Fund");
+	// private Tracker mTracker;
+	// String nameTracker = new String("Mutual Fund");
 
 	// list contains fragments to instantiate in the viewpager
 	List<Fragment> fragmentMain = new Vector<Fragment>();
@@ -131,9 +131,9 @@ public class PagerSystemTradeMutualFund extends Fragment {
 		// getFragmentManager().beginTransaction().remove(FragmentPagerSystemTrade.this).commit();
 
 		// --------- google analytics
-//		GoogleAnalyticsApp application = (GoogleAnalyticsApp) getActivity()
-//				.getApplication();
-//		mTracker = application.getDefaultTracker();
+		// GoogleAnalyticsApp application = (GoogleAnalyticsApp) getActivity()
+		// .getApplication();
+		// mTracker = application.getDefaultTracker();
 
 		dialogLoading = new Dialog(context);
 		dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -153,7 +153,7 @@ public class PagerSystemTradeMutualFund extends Fragment {
 			loadDataDetail(); // load data
 		}
 
-		// initSearchLayout(); // layout search
+		initSearchLayout(); // layout search
 
 		((TextView) rootView.findViewById(R.id.tv_portfolio))
 				.setOnClickListener(new OnClickListener() {
@@ -171,10 +171,10 @@ public class PagerSystemTradeMutualFund extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-//		Log.v(nameTracker, "onResume onResume onResume");
-//
-//		mTracker.setScreenName(nameTracker);
-//		mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+		// Log.v(nameTracker, "onResume onResume onResume");
+		//
+		// mTracker.setScreenName(nameTracker);
+		// mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 	}
 
 	// คร่าวๆ watch list
@@ -219,10 +219,10 @@ public class PagerSystemTradeMutualFund extends Fragment {
 		li_search_select.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if ((FragmentChangeActivity.contentGetSymbol == null)) {
-					Toast.makeText(context, "Symbol Empty.", 0).show();
-				} else {
+				if (FragmentChangeActivity.list_getNameFund.size() > 0) {
 					initSearchSymbol(); // search symbol
+				} else {
+					Toast.makeText(context, "Symbol Empty.", 0).show();
 				}
 			}
 		});
@@ -235,23 +235,23 @@ public class PagerSystemTradeMutualFund extends Fragment {
 		li_search_tabbegin.setVisibility(View.GONE);
 		li_search.setVisibility(View.VISIBLE);
 
-		// search
-		final ListAdapterSearchSymbolSystemTradeCdc ListAdapterSearch;
-		final ArrayList<CatalogGetSymbol> original_list;
-		final ArrayList<CatalogGetSymbol> second_list;
+		// ----- search fund
+		final ListAdapterSearchSymbolSystemTradeMutualFund ListAdapterSearchSymbolSystemTradeMutualFund;
+		final ArrayList<CatalogGetNameFund> original_list_fund;
+		final ArrayList<CatalogGetNameFund> second_list_fund;
 
-		original_list = new ArrayList<CatalogGetSymbol>();
-		original_list.addAll(FragmentChangeActivity.list_getSymbol);
-		second_list = new ArrayList<CatalogGetSymbol>();
-		second_list.addAll(FragmentChangeActivity.list_getSymbol);
+		original_list_fund = new ArrayList<CatalogGetNameFund>();
+		original_list_fund.addAll(FragmentChangeActivity.list_getNameFund);
+		second_list_fund = new ArrayList<CatalogGetNameFund>();
+		second_list_fund.addAll(FragmentChangeActivity.list_getNameFund);
 
 		listview_search = (ListView) rootView
 				.findViewById(R.id.list_search_symbol);
 		listview_search.setVisibility(View.GONE);
 
-		ListAdapterSearch = new ListAdapterSearchSymbolSystemTradeCdc(context,
-				0, second_list);
-		listview_search.setAdapter(ListAdapterSearch);
+		ListAdapterSearchSymbolSystemTradeMutualFund = new ListAdapterSearchSymbolSystemTradeMutualFund(
+				context, 0, second_list_fund);
+		listview_search.setAdapter(ListAdapterSearchSymbolSystemTradeMutualFund);
 
 		et_search.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -271,14 +271,14 @@ public class PagerSystemTradeMutualFund extends Fragment {
 					li_view.setVisibility(View.GONE);
 					listview_search.setVisibility(View.VISIBLE);
 
-					second_list.clear();
-					for (int i = 0; i < original_list.size(); i++) {
-						if (original_list.get(i).symbol.toLowerCase().contains(
+					second_list_fund.clear();
+					for (int i = 0; i < original_list_fund.size(); i++) {
+						if (original_list_fund.get(i).name_initial.toLowerCase().contains(
 								text.toString().toLowerCase())) {
-							second_list.add(original_list.get(i));
+							second_list_fund.add(original_list_fund.get(i));
 						}
 					}
-					ListAdapterSearch.notifyDataSetChanged();
+					ListAdapterSearchSymbolSystemTradeMutualFund.notifyDataSetChanged();
 				} else {
 					li_view.setVisibility(View.VISIBLE);
 					listview_search.setVisibility(View.GONE);
@@ -588,7 +588,7 @@ public class PagerSystemTradeMutualFund extends Fragment {
 					String dividend_1yr = jsoIndex.getString("dividend_1yr");
 					String dividend_3yr = jsoIndex.getString("dividend_3yr");
 					String dividend_5yr = jsoIndex.getString("dividend_5yr");
-//					String dividend_7yr = jsoIndex.getString("dividend_7yr");
+					// String dividend_7yr = jsoIndex.getString("dividend_7yr");
 					String date_at = jsoIndex.getString("date_at");
 					String fund_risk = jsoIndex.getString("fund_risk");
 
@@ -605,13 +605,13 @@ public class PagerSystemTradeMutualFund extends Fragment {
 					// img chart
 					ImageView img_chart = (ImageView) viewDetail
 							.findViewById(R.id.img_chart);
-					 FragmentChangeActivity.imageLoader.displayImage(
-					 SplashScreen.url_bidschart_chart + name_initial
-					 + ".png", img_chart);
-					 
+					FragmentChangeActivity.imageLoader.displayImage(
+							SplashScreen.url_bidschart_chart + name_initial
+									+ ".png", img_chart);
+
 					LinearLayout li_risk = (LinearLayout) viewDetail
 							.findViewById(R.id.li_risk);
-					
+
 					TextView tv_value = (TextView) viewDetail
 							.findViewById(R.id.tv_value);
 					TextView tv_change = (TextView) viewDetail
@@ -660,29 +660,37 @@ public class PagerSystemTradeMutualFund extends Fragment {
 					arr_risk_v.add(v_risk_6);
 					arr_risk_v.add(v_risk_7);
 					arr_risk_v.add(v_risk_8);
-					
+
 					if ((!fund_risk.equals("")) && (!fund_risk.equals("-"))) {
-//						li_risk.setBackgroundResource(R.drawable.bg_tab_risk_active);
-						setBgFundRisk(fund_risk); // ------ set background fund_risk
-					}else{
+						// li_risk.setBackgroundResource(R.drawable.bg_tab_risk_active);
+						setBgFundRisk(fund_risk); // ------ set background
+													// fund_risk
+					} else {
 						li_risk.setBackgroundResource(R.drawable.bg_tab_risk);
 					}
-					
+
 					RatingBar rb_rating = (RatingBar) viewDetail
 							.findViewById(R.id.rb_rating);
 
 					tv_value.setText(invest_value);
-					
-					if((!invest_change.equals("")) && (!invest_change.equals("null")) && (!invest_change.equals("-"))){
+
+					if ((!invest_change.equals(""))
+							&& (!invest_change.equals("null"))
+							&& (!invest_change.equals("-"))) {
 						tv_change.setText(invest_change + "%");
-						tv_change.setTextColor(context.getResources().getColor(
-								FunctionSetBg
-								.setColorCompareWithZero(invest_change)));
-						tv_value.setTextColor(context.getResources().getColor(
-								FunctionSetBg
-								.setColorCompareWithZero(invest_change)));
+						tv_change
+								.setTextColor(context
+										.getResources()
+										.getColor(
+												FunctionSetBg
+														.setColorCompareWithZero(invest_change)));
+						tv_value.setTextColor(context
+								.getResources()
+								.getColor(
+										FunctionSetBg
+												.setColorCompareWithZero(invest_change)));
 					}
-					
+
 					tv_policy.setText(dividend_policy);
 					tv_1mth.setText(dividend_1mth);
 					tv_3mth.setText(dividend_3mth);
@@ -690,11 +698,12 @@ public class PagerSystemTradeMutualFund extends Fragment {
 					tv_1yr.setText(dividend_1yr);
 					tv_3yr.setText(dividend_3yr);
 					tv_5yr.setText(dividend_5yr);
-					tv_date.setText(DateTimeCreate.DateCreateMutualFunTh(date_at));
+					tv_date.setText(DateTimeCreate
+							.DateCreateMutualFunTh(date_at));
 
-//					tv_value.setTextColor(context.getResources().getColor(
-//							BgColorSymbolDetail
-//									.setColorMutualFund(invest_value)));				
+					// tv_value.setTextColor(context.getResources().getColor(
+					// BgColorSymbolDetail
+					// .setColorMutualFund(invest_value)));
 					tv_1mth.setTextColor(context.getResources().getColor(
 							FunctionSetBg
 									.setColorCompareWithZero(dividend_1mth)));
@@ -704,19 +713,26 @@ public class PagerSystemTradeMutualFund extends Fragment {
 					tv_6mth.setTextColor(context.getResources().getColor(
 							FunctionSetBg
 									.setColorCompareWithZero(dividend_6mth)));
-					tv_1yr.setTextColor(context.getResources().getColor(
-							FunctionSetBg
-									.setColorCompareWithZero(dividend_1yr)));
-					tv_3yr.setTextColor(context.getResources().getColor(
-							FunctionSetBg
-									.setColorCompareWithZero(dividend_3yr)));
-					tv_5yr.setTextColor(context.getResources().getColor(
-							FunctionSetBg
-									.setColorCompareWithZero(dividend_5yr)));
+					tv_1yr.setTextColor(context
+							.getResources()
+							.getColor(
+									FunctionSetBg
+											.setColorCompareWithZero(dividend_1yr)));
+					tv_3yr.setTextColor(context
+							.getResources()
+							.getColor(
+									FunctionSetBg
+											.setColorCompareWithZero(dividend_3yr)));
+					tv_5yr.setTextColor(context
+							.getResources()
+							.getColor(
+									FunctionSetBg
+											.setColorCompareWithZero(dividend_5yr)));
 
 					if ((!fund_rating.equals(""))
 							&& (!fund_rating.equals("N/A"))) {
-						rb_rating.setRating(Float.parseFloat(fund_rating.replaceAll(",", "")));
+						rb_rating.setRating(Float.parseFloat(fund_rating
+								.replaceAll(",", "")));
 					}
 
 					list_symbol.addView(viewSymbol);
@@ -734,21 +750,24 @@ public class PagerSystemTradeMutualFund extends Fragment {
 
 	// ------ set background fund_risk
 	public static String setBgFundRisk(String str) {
-			int intFrisk = Integer.parseInt(str);
-			for (int i = 0; i < arr_risk_v.size(); i++) {
-				arr_risk_v.get(i).setBackgroundColor(Color.TRANSPARENT);
-				if (intFrisk <= i) {
-					if (i == 0) {
-						arr_risk_v.get(i).setBackgroundResource(R.drawable.bg_tab_risk_left);
-					} else if (i == (arr_risk_v.size()-1)) {
-						arr_risk_v.get(i).setBackgroundResource(R.drawable.bg_tab_risk_right);
-					} else {
-						arr_risk_v.get(i).setBackgroundColor(
-								context.getResources().getColor(
-										R.color.bg_default));
-					}
+		int intFrisk = Integer.parseInt(str);
+		for (int i = 0; i < arr_risk_v.size(); i++) {
+			arr_risk_v.get(i).setBackgroundColor(Color.TRANSPARENT);
+			if (intFrisk <= i) {
+				if (i == 0) {
+					arr_risk_v.get(i).setBackgroundResource(
+							R.drawable.bg_tab_risk_left);
+				} else if (i == (arr_risk_v.size() - 1)) {
+					arr_risk_v.get(i).setBackgroundResource(
+							R.drawable.bg_tab_risk_right);
+				} else {
+					arr_risk_v.get(i)
+							.setBackgroundColor(
+									context.getResources().getColor(
+											R.color.bg_default));
 				}
 			}
+		}
 		return str;
 	}
 

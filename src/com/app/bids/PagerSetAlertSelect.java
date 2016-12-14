@@ -219,6 +219,8 @@ public class PagerSetAlertSelect extends Fragment {
 
 	String strOrderBookId, strSymbol, strType;
 
+	String strMarketListId;
+
 	private void initView() {
 		dialogLoading.dismiss();
 		try {
@@ -284,6 +286,7 @@ public class PagerSetAlertSelect extends Fragment {
 
 			strSymbol = objDetail.getString("symbol_name");
 			strOrderBookId = objDetail.getString("orderbook_id");
+			strMarketListId = objDetail.getString("marketListId");
 
 			tv_symbol_tp.setText(objDetail.getString("symbol_name"));
 
@@ -313,7 +316,7 @@ public class PagerSetAlertSelect extends Fragment {
 
 				listPricePeroidTp.add(0, priceUpTp);
 			} while (priceUpTp < dCeillingTp);
-			
+
 			double priceDownTp = dLastTradeTp;
 			do {
 				double gap = calGapDown(priceDownTp);
@@ -646,6 +649,8 @@ public class PagerSetAlertSelect extends Fragment {
 		tv_position_sizing = (TextView) rootView
 				.findViewById(R.id.tv_position_sizing);
 
+		// ถ้า marketListId == ETF เพิ่ม ลด ทีละ 0.1
+
 		// ----- credit
 		tv_credit_plus.setOnClickListener(new OnClickListener() {
 			@Override
@@ -778,7 +783,7 @@ public class PagerSetAlertSelect extends Fragment {
 
 		double dPositionSizing = ((dRisk * 0.01) * dCredit)
 				/ (dCurrentPrice - dPrice1Sl);
-		String sPositionSizing = FunctionSymbol.setFormatNumber(""
+		String sPositionSizing = FunctionFormatData.setFormatNumber(""
 				+ dPositionSizing);
 
 		if (dPrice1Sl == dLastTradeSl) {
@@ -1140,22 +1145,26 @@ public class PagerSetAlertSelect extends Fragment {
 	// เอา return มาบวก price แล้วมาใส่เอาเรย์ข้างหน้า ไม่เกินค่า celling
 	private double calGapUp(double price) {
 		double gap;
-		if (price < 2) {
-			gap = 0.01;
-		} else if (price >= 2 && price < 5) {
-			gap = 0.02;
-		} else if (price >= 5 && price < 10) {
-			gap = 0.05;
-		} else if (price >= 10 && price < 25) {
-			gap = 0.10;
-		} else if (price >= 25 && price < 100) {
-			gap = 0.25;
-		} else if (price >= 100 && price < 200) {
-			gap = 0.50;
-		} else if (price >= 200 && price < 400) {
-			gap = 1.00;
+		if (strMarketListId.equals("ETF")) {
+			gap = 0.1;
 		} else {
-			gap = 2.00;
+			if (price < 2) {
+				gap = 0.01;
+			} else if (price >= 2 && price < 5) {
+				gap = 0.02;
+			} else if (price >= 5 && price < 10) {
+				gap = 0.05;
+			} else if (price >= 10 && price < 25) {
+				gap = 0.10;
+			} else if (price >= 25 && price < 100) {
+				gap = 0.25;
+			} else if (price >= 100 && price < 200) {
+				gap = 0.50;
+			} else if (price >= 200 && price < 400) {
+				gap = 1.00;
+			} else {
+				gap = 2.00;
+			}
 		}
 		return gap;
 	}
@@ -1163,22 +1172,26 @@ public class PagerSetAlertSelect extends Fragment {
 	// เอา price มาลบ return แล้วมาใส่เอาเรย์ข้างหน้า ไม่น้อยกว่าค่า foor
 	private double calGapDown(double price) {
 		double gap;
-		if (price < 2.02) {
-			gap = 0.01;
-		} else if (price >= 2 && price < 5.05) {
-			gap = 0.02;
-		} else if (price >= 5 && price < 10.10) {
-			gap = 0.05;
-		} else if (price >= 10 && price < 25.25) {
-			gap = 0.10;
-		} else if (price >= 25 && price < 100.50) {
-			gap = 0.25;
-		} else if (price >= 100 && price < 201) {
-			gap = 0.50;
-		} else if (price >= 200 && price < 402) {
-			gap = 1.00;
+		if (strMarketListId.equals("ETF")) {
+			gap = 0.1;
 		} else {
-			gap = 2.00;
+			if (price < 2.02) {
+				gap = 0.01;
+			} else if (price >= 2 && price < 5.05) {
+				gap = 0.02;
+			} else if (price >= 5 && price < 10.10) {
+				gap = 0.05;
+			} else if (price >= 10 && price < 25.25) {
+				gap = 0.10;
+			} else if (price >= 25 && price < 100.50) {
+				gap = 0.25;
+			} else if (price >= 100 && price < 201) {
+				gap = 0.50;
+			} else if (price >= 200 && price < 402) {
+				gap = 1.00;
+			} else {
+				gap = 2.00;
+			}
 		}
 		return gap;
 	}
@@ -1209,11 +1222,10 @@ public class PagerSetAlertSelect extends Fragment {
 
 			// http://www.bidschart.com/service/v2/watchlistSymbol?user_id=104&symbol=ptt
 			String url_GetDetail = SplashScreen.url_bidschart
-					+ "/service/v2/watchlistSymbol?user_id="
+					+ "/service/v2/watchlistSymbolV2?user_id="
 					+ SplashScreen.userModel.user_id + "&symbol="
 					+ FragmentChangeActivity.strSymbolSelect + "&timestamp="
 					+ timestamp;
-
 			try {
 				// ======= Ui Home ========
 				jsonGetDetail = ReadJson.readJsonObjectFromUrl(url_GetDetail);

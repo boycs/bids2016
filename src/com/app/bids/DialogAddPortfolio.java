@@ -397,7 +397,7 @@ public class DialogAddPortfolio {
 	// tv_last_trade.setText(String.format("%,.2f", dPrice1));
 	public static void setDataText() {
 		et_invest_value.setText(""
-				+ FunctionSymbol.setFormatAnd2Digit("" + d_invest));
+				+ FunctionFormatData.setFormatAnd2Digit("" + d_invest));
 		et_volume.setText("" + d_volume);
 	}
 
@@ -420,7 +420,7 @@ public class DialogAddPortfolio {
 		tv_save.setEnabled(true);
 		d_value = d_invest * d_volume;
 		tv_value_cal.setText(""
-				+ FunctionSymbol.setFormatAnd2Digit("" + d_value));
+				+ FunctionFormatData.setFormatAnd2Digit("" + d_value));
 
 //		et_volume.setText("" + d_volume);
 //		et_invest_value.setText(""
@@ -505,7 +505,7 @@ public class DialogAddPortfolio {
 
 					TextView tv_symbol_name = (TextView) viewSymbol
 							.findViewById(R.id.tv_symbol_name);
-					tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+					tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
 							.checkStatusSymbol(symbol_name,
 									turnover_list_level, status, status_xd)));
 
@@ -1107,6 +1107,10 @@ public class DialogAddPortfolio {
 						dialogLoading.dismiss();
 						dissmiss();
 
+//						PagerSmartPortfolio psp = new PagerSmartPortfolio();
+//						psp.initLoadData();
+						
+//						FragmentChangeActivity.contentGetSmartPortfolioList = null;
 						switchFragmentPort(new PagerSmartPortfolio());
 					}
 				} catch (JSONException e1) {

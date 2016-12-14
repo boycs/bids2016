@@ -25,6 +25,9 @@ import org.json.JSONObject;
 
 import com.app.bids.R;
 import com.app.model.LoginModel.UserModel;
+import com.app.model.login.FacebookLoginActivity;
+import com.app.model.login.FacebookLoginActivity.loadData;
+import com.app.model.login.FacebookLoginActivity.loginByFacebook;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -91,8 +94,7 @@ public class LoginRegister extends Activity {
 		ScaleDrawable sdu = new ScaleDrawable(drawableUser, 0, 10f, 10f);
 		et_name.setCompoundDrawables(sdu.getDrawable(), null, null, null);
 
-		Drawable drawableEm = getResources().getDrawable(
-				R.drawable.icon_email);
+		Drawable drawableEm = getResources().getDrawable(R.drawable.icon_email);
 		drawableEm.setBounds(0, 0,
 				(int) (drawableEm.getIntrinsicWidth() * 0.5),
 				(int) (drawableEm.getIntrinsicHeight() * 0.5));
@@ -151,6 +153,14 @@ public class LoginRegister extends Activity {
 		// }
 		// });
 
+		if (SplashScreen.userModel.userName != "") {
+			et_name.setText(SplashScreen.userModel.userName);
+		}
+		if (SplashScreen.userModel.pass != "") {
+			et_pss.setText(SplashScreen.userModel.pass);
+			et_pss_con.setText(SplashScreen.userModel.pass);
+		}
+
 		bt_register.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -180,7 +190,13 @@ public class LoginRegister extends Activity {
 				} else {
 					if (isEmailValid(str_email)) {
 						if ((str_password.equals(str_password_confirm))) {
-							sendAddRegister(); // add register to service
+							if (SplashScreen.userModel.userName != "") {
+								SplashScreen.userModel.email = str_email;
+								SplashScreen.userModel.userName = str_name;
+								sendLoginByFacebook(); // Login by facebook
+							} else {
+								sendAddRegister(); // add register to service
+							}
 						} else {
 							final AlertDialog.Builder alert = new AlertDialog.Builder(
 									LoginRegister.this);
@@ -352,7 +368,8 @@ public class LoginRegister extends Activity {
 
 				// 10. convert inputstream to string
 				if (inputStream != null)
-					resultRegister = AFunctionOther.convertInputStreamToString(inputStream);
+					resultRegister = AFunctionOther
+							.convertInputStreamToString(inputStream);
 				else
 					resultRegister = "Did not work!";
 
@@ -397,8 +414,6 @@ public class LoginRegister extends Activity {
 						Log.v("jsoRegisterDataAll : ", "" + jsoRegisterDataAll);
 
 						str_user_id = jsoRegisterDataAll.getString("user_id");
-						sendEditProfileIdCard(); // add birthday, idnumber
-						sendInsertDb();
 
 						// --- intent fragmentchageactivity
 						SplashScreen.userModel.user_id = jsoRegisterDataAll
@@ -408,8 +423,15 @@ public class LoginRegister extends Activity {
 						SplashScreen.contentGetUserById = jsoRegisterDataAll;
 						SplashScreen.userModel.type = SplashScreen.userModel.NONE_TYPE;
 
+						Log.v("Register SplashScreen.userModel.user_id", "__"
+								+ SplashScreen.userModel.user_id);
+
+						sendEditProfileIdCard(); // add birthday, idnumber
+						sendInsertDb();
+
 						startActivity(new Intent(getApplicationContext(),
 								FragmentChangeActivity.class));
+						finish();
 
 					} else {
 						dialogLoading.dismiss();
@@ -523,7 +545,8 @@ public class LoginRegister extends Activity {
 
 				// 10. convert inputstream to string
 				if (inputStream != null)
-					resultEditProfileIdCard = AFunctionOther.convertInputStreamToString(inputStream);
+					resultEditProfileIdCard = AFunctionOther
+							.convertInputStreamToString(inputStream);
 				else
 					resultEditProfileIdCard = "Did not work!";
 
@@ -579,6 +602,249 @@ public class LoginRegister extends Activity {
 			return false;
 		} else {
 			return true;
+		}
+	}
+
+	// ============== loginByFacebook =========================
+	String resultLogin = "";
+
+	public void sendLoginByFacebook() {
+		loginByFacebook resp = new loginByFacebook();
+		resp.execute();
+	}
+
+	public class loginByFacebook extends AsyncTask<Void, Void, Void> {
+
+		boolean connectionError = false;
+
+		String temp = "";
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			String url = SplashScreen.url_bidschart
+					+ "/service/loginByFacebook";
+
+			String json = "";
+			InputStream inputStream = null;
+
+			try {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(url);
+
+				// Facebook id : 812456322136230
+				// username : Sirawich Thangern
+				// firstName : Sirawich
+				// lastName : Thangern
+				// email : narongritnl@hotmail.com
+				// token :
+				// EAAIsgSWJzAkBAHnNv7DeSFZAIdNn1vKOZBBLkUtELS2lyiZCfHgMUvTZClVdL0wGf9DVczuNrJdH3ZCo87UM5T2ZCz5vDwPvIDKNhWVJBntwwPXDgHt20D4p62O5ZC6EG1rIczx9bG5c3ShAnZBz9yV4Y1NhWYLyulK07rMiU7LNEh7mT4AyJahVQOYFumTw3l6HJMDTk2Cpi5QZB8iZAsH1Hb
+
+				// 3. build jsonObject
+				JSONObject jsonObject = new JSONObject();
+
+				jsonObject.accumulate("facebook_id", SplashScreen.userModel.id);
+				jsonObject.accumulate("username",
+						SplashScreen.userModel.userName);
+				jsonObject.accumulate("first_name",
+						SplashScreen.userModel.firstName);
+				jsonObject.accumulate("last_name",
+						SplashScreen.userModel.lastName);
+				jsonObject.accumulate("facebook_token",
+						SplashScreen.userModel.token);
+				jsonObject.accumulate("email", SplashScreen.userModel.email);
+
+				// 4. convert JSONObject to JSON to String
+				json = jsonObject.toString();
+
+				// 5. set json to StringEntity
+				StringEntity se = new StringEntity(json, "UTF-8");
+
+				// 6. set httpPost Entity
+				httppost.setEntity(se);
+
+				// 7. Set some headers to inform server about the type of the
+				// content
+				httppost.setHeader("Accept", "application/json");
+				httppost.setHeader("Content-type", "application/json");
+
+				// 8. Execute POST request to the given URL
+				HttpResponse httpResponse = httpclient.execute(httppost);
+
+				// 9. receive response as inputStream
+				inputStream = httpResponse.getEntity().getContent();
+
+				// 10. convert inputstream to string
+				if (inputStream != null)
+					resultLogin = AFunctionOther
+							.convertInputStreamToString(inputStream);
+				else
+					resultLogin = "Did not work!";
+
+				Log.v("loginByFacebook resultLogin", "" + resultLogin);
+
+				// {"status":"ok","message":"Get data Success.","email":"1","dataAll":{"user_id":"104","username":"Sirawich Thangern",
+				// "first_name":"","email":"narongritnl@hotmail.com","user_type":"free","followers":"1","following":"4","ideas_views":"7",
+				// "ideas_like":"1","published_ideas_count":"0","pushished_ideas":"0"}}
+
+				// {"status":"ok","message":"not email","email":"0","dataAll":{"username":"Pongpang Iillpang",
+				// "email":"","first_name":"Pongpang","last_name":"Iillpang",
+				// "facebook_token":"","facebook_id":"1755704791337345"}}
+
+			} catch (IOException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+			if (connectionError == false) {
+				JSONObject obj;
+				try {
+					obj = new JSONObject(resultLogin);
+
+					Log.v("loginByFacebook onPostExecute obj", "" + obj);
+
+					if (obj.getString("status").equals("ok")) {
+						// if (obj.getString("message")
+						// .equals("Get data Success.")) {
+						SplashScreen.userModel.user_id = ""
+								+ obj.getJSONObject("dataAll")
+										.getInt("user_id");
+
+						SplashScreen.userModel.status = ""
+								+ obj.getString("status");
+
+						SplashScreen.contentGetUserById = obj
+								.getJSONObject("dataAll");
+
+						SplashScreen.userModel.type = SplashScreen.userModel.FACEBOOK_TYPE;
+
+						initLoadAllData();
+						// } else {
+						// Toast.makeText(getApplicationContext(),
+						// "Get data Fail.", 0).show();
+
+						// callFacebookLogout(getApplicationContext());
+						// SplashScreen.myDb.UpdateDataStatusLogin("2", "N");
+
+						// startActivity(new Intent(getApplicationContext(),
+						// LoginActivity.class));
+						// finish();
+						// }
+					} else {
+						Toast.makeText(getApplicationContext(), "Login Fail.",
+								0).show();
+
+						// callFacebookLogout(getApplicationContext());
+						// SplashScreen.myDb.UpdateDataStatusLogin("2", "N");
+
+						startActivity(new Intent(getApplicationContext(),
+								LoginActivity.class));
+						finish();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			} else {
+			}
+		}
+	}
+
+	// ============== Load Data all =============
+	private void initLoadAllData() {
+		loadData resp = new loadData();
+		resp.execute();
+	}
+
+	public class loadData extends AsyncTask<Void, Void, Void> {
+		boolean connectionError = false;
+
+		private JSONObject jsonGetUserById;
+		private JSONObject jsonGetFollowingByUserId;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			java.util.Date date = new java.util.Date();
+			long timestamp = date.getTime();
+
+			String url_GetUserById = SplashScreen.url_bidschart
+					+ "/service/getUserById?user_id="
+					+ SplashScreen.userModel.user_id;
+
+			try {
+				jsonGetUserById = ReadJson
+						.readJsonObjectFromUrl(url_GetUserById);
+			} catch (IOException e1) {
+				connectionError = true;
+				e1.printStackTrace();
+			} catch (JSONException e1) {
+				connectionError = true;
+				e1.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+			if (connectionError == false) {
+				if (jsonGetUserById != null) {
+					try {
+						SplashScreen.contentGetUserById = jsonGetUserById
+								.getJSONObject("dataAll");
+
+						SplashScreen.myDb.UpdateDataStatusLogin("2", "Y");
+						if (SplashScreen.contentGetUserById != null) {
+							if (!(SplashScreen.contentGetUserById
+									.getString("package").equals("free"))) {
+								// SplashScreen.url_bidschart =
+								// "http://realtime.bidschart.com";
+							}
+						}
+
+						startActivity(new Intent(getApplicationContext(),
+								FragmentChangeActivity.class));
+						finish();
+						overridePendingTransition(R.animator.right_to_center,
+								R.animator.center_to_right);
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+						finish();
+					}
+				} else {
+					Log.v("json jsonGetMyIdeas null", "jsonGetMyIdeas null");
+					finish();
+				}
+			} else {
+				finish();
+			}
 		}
 	}
 

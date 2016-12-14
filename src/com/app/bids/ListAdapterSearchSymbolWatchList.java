@@ -85,15 +85,15 @@ public class ListAdapterSearchSymbolWatchList extends ArrayAdapter {
 		li_row.setTag("" + arl.get(position).symbol);
 
 		final String symbolSelect = arl.get(position).symbol;
-		img_add_symbol.setBackgroundResource(FunctionSymbol
-				.checkFollowSearchSymbol(symbolSelect));
+		img_add_symbol.setBackgroundResource(FollowSymbol
+				.setColorFollowSearchSymbol(symbolSelect));
 
 		img_add_symbol.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
 				FragmentChangeActivity.strSymbolSelect = symbolSelect;
-				boolean ckFollow = FunctionSymbol
+				boolean ckFollow = FollowSymbol
 						.checkFollowSymbol(FragmentChangeActivity.strSymbolSelect);
 
 //				Log.v("FragmentChangeActivity.strFavoriteNumber",""+FragmentChangeActivity.strFavoriteNumber);
@@ -101,15 +101,15 @@ public class ListAdapterSearchSymbolWatchList extends ArrayAdapter {
 				if (ckFollow) { // unfollow
 					img_add_symbol
 							.setBackgroundResource(R.drawable.icon_plus_blue);
-					// getDataFavoriteId();
-
-					pagerWatchList.getDataFavoriteIdRemove();
+					FollowSymbol.sendSymbolRemoveFavorite(); // send remove favorite
+//					pagerWatchList.sendRemoveFavorite();
 				} else {
-					if (FunctionSymbol
+					if (FollowSymbol
 							.checkFollowCount(FragmentChangeActivity.strFavoriteNumber)) {
 						img_add_symbol
 								.setBackgroundResource(R.drawable.icon_check_green);
-						sendAddFavorite();
+						FollowSymbol.sendSymbolAddFavorite(); // send add favorite
+//						sendAddFavorite();
 					} else {
 						Toast.makeText(
 								getContext(),
@@ -135,199 +135,198 @@ public class ListAdapterSearchSymbolWatchList extends ArrayAdapter {
 		return v;
 	}
 
-	// ============== send add favorite ===============
-	public static void sendAddFavorite() {
-		setFavorite resp = new setFavorite();
-		resp.execute();
-	}
+//	 ============== send add favorite ===============
+//	public static void sendAddFavorite() {
+//		setFavorite resp = new setFavorite();
+//		resp.execute();
+//	}
+//
+//	public static class setFavorite extends AsyncTask<Void, Void, Void> {
+//
+//		boolean connectionError = false;
+//
+//		String temp = "";
+//
+//		@Override
+//		protected void onPreExecute() {
+//			super.onPreExecute();
+//			// progress.show();
+//
+//		}
+//
+//		@Override
+//		protected Void doInBackground(Void... params) {
+//
+//			String url = SplashScreen.url_bidschart + "/service/addFavorite";
+//
+//			String json = "";
+//			InputStream inputStream = null;
+//			String result = "";
+//
+//			try {
+//				HttpClient httpclient = new DefaultHttpClient();
+//				HttpPost httppost = new HttpPost(url);
+//
+//				// 3. build jsonObject
+//				JSONObject jsonObject = new JSONObject();
+//				jsonObject.accumulate("favorite_number",
+//						FragmentChangeActivity.strFavoriteNumber);
+//				jsonObject.accumulate("favorite_symbol",
+//						FragmentChangeActivity.strSymbolSelect);
+//				jsonObject
+//						.accumulate("user_id", SplashScreen.userModel.user_id);
+//
+//				// 4. convert JSONObject to JSON to String
+//				json = jsonObject.toString();
+//
+//				// 5. set json to StringEntity
+//				StringEntity se = new StringEntity(json, "UTF-8");
+//
+//				// 6. set httpPost Entity
+//				httppost.setEntity(se);
+//
+//				// 7. Set some headers to inform server about the type of the
+//				// content
+//				httppost.setHeader("Accept", "application/json");
+//				httppost.setHeader("Content-type", "application/json");
+//
+//				// 8. Execute POST request to the given URL
+//				HttpResponse httpResponse = httpclient.execute(httppost);
+//
+//				// 9. receive response as inputStream
+//				inputStream = httpResponse.getEntity().getContent();
+//
+//				// 10. convert inputstream to string
+//				if (inputStream != null)
+//					result = AFunctionOther.convertInputStreamToString(inputStream);
+//				else
+//					result = "Did not work!";
+//
+////				Log.v("sendAddFavorite", ""+result);
+//
+//			} catch (IOException e) {
+//				connectionError = true;
+//				e.printStackTrace();
+//			} catch (RuntimeException e) {
+//				connectionError = true;
+//				e.printStackTrace();
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return null;
+//		}
+//
+//		@Override
+//		protected void onPostExecute(Void result) {
+//			super.onPostExecute(result);
+//			pagerWatchList.getDataFavorite();
+//			// updateDataFavorite();
+//		}
+//	}
 
-	public static class setFavorite extends AsyncTask<Void, Void, Void> {
-
-		boolean connectionError = false;
-
-		String temp = "";
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			// progress.show();
-
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-
-			String url = SplashScreen.url_bidschart + "/service/addFavorite";
-
-			String json = "";
-			InputStream inputStream = null;
-			String result = "";
-
-			try {
-				HttpClient httpclient = new DefaultHttpClient();
-				HttpPost httppost = new HttpPost(url);
-
-				// 3. build jsonObject
-				JSONObject jsonObject = new JSONObject();
-				jsonObject.accumulate("favorite_number",
-						FragmentChangeActivity.strFavoriteNumber);
-				jsonObject.accumulate("favorite_symbol",
-						FragmentChangeActivity.strSymbolSelect);
-				jsonObject
-						.accumulate("user_id", SplashScreen.userModel.user_id);
-
-				// 4. convert JSONObject to JSON to String
-				json = jsonObject.toString();
-
-				// 5. set json to StringEntity
-				StringEntity se = new StringEntity(json, "UTF-8");
-
-				// 6. set httpPost Entity
-				httppost.setEntity(se);
-
-				// 7. Set some headers to inform server about the type of the
-				// content
-				httppost.setHeader("Accept", "application/json");
-				httppost.setHeader("Content-type", "application/json");
-
-				// 8. Execute POST request to the given URL
-				HttpResponse httpResponse = httpclient.execute(httppost);
-
-				// 9. receive response as inputStream
-				inputStream = httpResponse.getEntity().getContent();
-
-				// 10. convert inputstream to string
-				if (inputStream != null)
-					result = AFunctionOther.convertInputStreamToString(inputStream);
-				else
-					result = "Did not work!";
-
-//				Log.v("FragmentChangeActivity.strFavoriteNumber",""+FragmentChangeActivity.strFavoriteNumber);
-//				Log.v("sendAddFavorite", ""+result);
-
-			} catch (IOException e) {
-				connectionError = true;
-				e.printStackTrace();
-			} catch (RuntimeException e) {
-				connectionError = true;
-				e.printStackTrace();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-			pagerWatchList.getDataFavorite();
-			// updateDataFavorite();
-		}
-	}
-
-	// ============== update favorite =============
-	public static void updateDataFavorite() {
-		getUpdateFavorite resp = new getUpdateFavorite();
-		resp.execute();
-	}
-
-	public static class getUpdateFavorite extends AsyncTask<Void, Void, Void> {
-		boolean connectionError = false;
-		// ======= json ========
-		private JSONObject jsonFav;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			// progress.show();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-
-			java.util.Date date = new java.util.Date();
-			long timestamp = date.getTime();
-			// ======= url ========
-			// http://www.bidschart.com/service/v2/symbolFavorite?user_id=104
-			String url_fav = SplashScreen.url_bidschart
-					+ "/service/v2/symbolFavorite?user_id="
-					+ SplashScreen.userModel.user_id + "&timestamp="
-					+ timestamp;
-
-			Log.v("updateDataFavorite Adapter", "" + url_fav);
-
-			try {
-				jsonFav = ReadJson.readJsonObjectFromUrl(url_fav);
-			} catch (IOException e1) {
-				connectionError = true;
-				jsonFav = null;
-				e1.printStackTrace();
-			} catch (JSONException e1) {
-				connectionError = true;
-				jsonFav = null;
-				e1.printStackTrace();
-			} catch (RuntimeException e) {
-				connectionError = true;
-				jsonFav = null;
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-
-			if (connectionError == false) {
-				if (jsonFav != null) {
-					try {
-						FragmentChangeActivity.contentGetSymbolFavorite = jsonFav
-								.getJSONArray("dataAll");
-
-						for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite
-								.length(); i++) {
-							JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite
-									.optJSONObject(i);
-
-							String strFav = jsoIndex
-									.getString("favorite_number");
-
-							if (FragmentChangeActivity.strFavoriteNumber
-									.equals(strFav)) {
-								if ((jsoIndex.getJSONArray("dataAll")) != null) {
-									FragmentChangeActivity.strGetListSymbol = "";
-									JSONArray jsaFavSymbol = jsoIndex
-											.getJSONArray("dataAll");
-
-									for (int j = 0; j < jsaFavSymbol.length(); j++) {
-										FragmentChangeActivity.strGetListSymbol += jsaFavSymbol
-												.getJSONObject(j).getString(
-														"symbol_name");
-										if (j != (jsaFavSymbol.length() - 1)) {
-											FragmentChangeActivity.strGetListSymbol += ",";
-										}
-									}
-									// getWatchlistSymbol(); // get watchlist
-									// symbol
-
-									Log.v("strGetListSymbol Adapter",
-											""
-													+ FragmentChangeActivity.strGetListSymbol);
-									pagerWatchList.getWatchlistSymbol();
-								}
-								break;
-							}
-						}
-
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
-			} else {
-			}
-		}
-	}
+//	// ============== update favorite =============
+//	public static void updateDataFavorite() {
+//		getUpdateFavorite resp = new getUpdateFavorite();
+//		resp.execute();
+//	}
+//
+//	public static class getUpdateFavorite extends AsyncTask<Void, Void, Void> {
+//		boolean connectionError = false;
+//		// ======= json ========
+//		private JSONObject jsonFav;
+//
+//		@Override
+//		protected void onPreExecute() {
+//			super.onPreExecute();
+//			// progress.show();
+//		}
+//
+//		@Override
+//		protected Void doInBackground(Void... params) {
+//
+//			java.util.Date date = new java.util.Date();
+//			long timestamp = date.getTime();
+//			// ======= url ========
+//			// http://www.bidschart.com/service/v2/symbolFavorite?user_id=104
+//			String url_fav = SplashScreen.url_bidschart
+//					+ "/service/v2/symbolFavorite?user_id="
+//					+ SplashScreen.userModel.user_id + "&timestamp="
+//					+ timestamp;
+//
+//			Log.v("updateDataFavorite Adapter", "" + url_fav);
+//
+//			try {
+//				jsonFav = ReadJson.readJsonObjectFromUrl(url_fav);
+//			} catch (IOException e1) {
+//				connectionError = true;
+//				jsonFav = null;
+//				e1.printStackTrace();
+//			} catch (JSONException e1) {
+//				connectionError = true;
+//				jsonFav = null;
+//				e1.printStackTrace();
+//			} catch (RuntimeException e) {
+//				connectionError = true;
+//				jsonFav = null;
+//				e.printStackTrace();
+//			}
+//			return null;
+//		}
+//
+//		@Override
+//		protected void onPostExecute(Void result) {
+//			super.onPostExecute(result);
+//
+//			if (connectionError == false) {
+//				if (jsonFav != null) {
+//					try {
+//						FragmentChangeActivity.contentGetSymbolFavorite = jsonFav
+//								.getJSONArray("dataAll");
+//
+//						for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite
+//								.length(); i++) {
+//							JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite
+//									.optJSONObject(i);
+//
+//							String strFav = jsoIndex
+//									.getString("favorite_number");
+//
+//							if (FragmentChangeActivity.strFavoriteNumber
+//									.equals(strFav)) {
+//								if ((jsoIndex.getJSONArray("dataAll")) != null) {
+//									FragmentChangeActivity.strGetListSymbol = "";
+//									JSONArray jsaFavSymbol = jsoIndex
+//											.getJSONArray("dataAll");
+//
+//									for (int j = 0; j < jsaFavSymbol.length(); j++) {
+//										FragmentChangeActivity.strGetListSymbol += jsaFavSymbol
+//												.getJSONObject(j).getString(
+//														"symbol_name");
+//										if (j != (jsaFavSymbol.length() - 1)) {
+//											FragmentChangeActivity.strGetListSymbol += ",";
+//										}
+//									}
+//									// getWatchlistSymbol(); // get watchlist
+//									// symbol
+//
+//									Log.v("strGetListSymbol Adapter",
+//											""
+//													+ FragmentChangeActivity.strGetListSymbol);
+//									pagerWatchList.getWatchlistSymbol();
+//								}
+//								break;
+//							}
+//						}
+//
+//					} catch (JSONException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			} else {
+//			}
+//		}
+//	}
 
 	// ============== set =============
 	// private void getWatchlistSymbol() {

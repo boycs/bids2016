@@ -134,7 +134,7 @@ public class PagerWatchList extends Fragment {
 						dialogCategories.show();
 
 						if (FragmentChangeActivity.contentGetWatchlistSystemTrade == null) {
-							FunctionSymbol.initGetWatchlistSystemTrade();
+							FollowSymbolSystemTrade.initGetWatchlistSystemTrade();
 						}
 					}
 				});
@@ -230,17 +230,16 @@ public class PagerWatchList extends Fragment {
 				|| (FragmentChangeActivity.contentGetIndustrySetSector == null)) {
 			initGetDataSymbolBegin(); // get symbol,industry begin
 		} else {
-
-			// Log.v("contentGetWatchlistSymbol", ""
-			// + FragmentChangeActivity.contentGetWatchlistSymbol);
-
 			if (FragmentChangeActivity.ckLoadWatchlist) {
 				initGetData(); // get data
 			} else {
 				setWatchlistSymbol();
 			}
-
 			initSearchLayout(); // layout search
+		}
+		if (!FragmentChangeActivity.ckLoadFavAll) {
+			FragmentChangeActivity.ckLoadFavAll = true;
+			getDataFavoriteAll();
 		}
 	}
 
@@ -285,13 +284,13 @@ public class PagerWatchList extends Fragment {
 						// DecimalFormat formatter = new
 						// DecimalFormat("#,###.00");
 						// txtLtrade = formatter.format(db);
-						txtLtrade = FunctionSymbol.setFormatNumber(txtLtrade);
+						txtLtrade = FunctionFormatData.setFormatNumber(txtLtrade);
 					}
 
 					if (txtChange != "") {
 						// double db = Double.parseDouble(txtChange);
 						// txtChange = String.format(" %,.2f", db);
-						txtChange = FunctionSymbol.setFormatNumber(txtChange);
+						txtChange = FunctionFormatData.setFormatNumber(txtChange);
 					}
 
 					if (txtSymbol.equals(".SET")) {
@@ -809,7 +808,24 @@ public class PagerWatchList extends Fragment {
 
 		if (FragmentChangeActivity.strWatchlistCategory == "favorite") {
 			tv_edit.setVisibility(View.VISIBLE);
-			getDataFavorite(); // get favorite
+			if (FragmentChangeActivity.strFavoriteNumber == "1") {
+				FragmentChangeActivity.strGetListSymbol = FragmentChangeActivity.strGetListSymbol_fav1;
+			} else if (FragmentChangeActivity.strFavoriteNumber == "2") {
+				FragmentChangeActivity.strGetListSymbol = FragmentChangeActivity.strGetListSymbol_fav2;
+			} else if (FragmentChangeActivity.strFavoriteNumber == "3") {
+				FragmentChangeActivity.strGetListSymbol = FragmentChangeActivity.strGetListSymbol_fav3;
+			} else if (FragmentChangeActivity.strFavoriteNumber == "4") {
+				FragmentChangeActivity.strGetListSymbol = FragmentChangeActivity.strGetListSymbol_fav4;
+			} else if (FragmentChangeActivity.strFavoriteNumber == "5") {
+				FragmentChangeActivity.strGetListSymbol = FragmentChangeActivity.strGetListSymbol_fav5;
+			}
+			if (FragmentChangeActivity.strGetListSymbol == "") {
+				Log.v("strGetListSymbol","null null null null");
+				getDataFavorite(); // get favorite
+			} else {
+				Log.v("strGetListSymbol","not null not null");
+				getWatchlistSymbol(); // get watchlist symbol
+			}
 		} else if (FragmentChangeActivity.strWatchlistCategory == "sector") {
 			loadIndustrySetSectorSelect(); // load Industry select
 		} else if (FragmentChangeActivity.strWatchlistCategory == "topmost") {
@@ -907,10 +923,8 @@ public class PagerWatchList extends Fragment {
 						public void onClick(View v) {
 							// set row select
 							changeRowDeleteFav(v);
-
 							tv_delete.setVisibility(View.VISIBLE);
 
-							// Toast.makeText(context, ""+strSymbol, 0).show();
 						}
 					});
 
@@ -919,11 +933,9 @@ public class PagerWatchList extends Fragment {
 						@Override
 						public void onClick(View v) {
 							FragmentChangeActivity.strSymbolSelect = strSymbol;
-							getDataFavoriteIdRemove();
+							FollowSymbol.sendSymbolRemoveFavorite(); // send remove favorite
 							hideRowDeleteFav(v);
 							li_row.setVisibility(View.GONE);
-							// Toast.makeText(context, "" + strSymbol,
-							// 0).show();
 						}
 					});
 
@@ -1695,337 +1707,328 @@ public class PagerWatchList extends Fragment {
 						TextView tv_symbol_name = (TextView) viewSymbol
 								.findViewById(R.id.tv_symbol_name);
 
-//						// status check out
-//						String status_checkOut = jsoIndex
-//								.getString("status_checkOut");
-//						if (!status_checkOut.equals("false")) {
-							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
-									.checkStatusSymbol(symbol_name,
-											turnover_list_level, status,
-											status_xd)));
+						// // status check out
+						// String status_checkOut = jsoIndex
+						// .getString("status_checkOut");
+						// if (!status_checkOut.equals("false")) {
+						tv_symbol_name
+								.setText(Html.fromHtml(FunctionFormatData
+										.checkStatusSymbol(symbol_name,
+												turnover_list_level, status,
+												status_xd)));
 
-							((TextView) viewSymbol
-									.findViewById(R.id.tv_symbol_fullname_eng))
-									.setText(jsoIndex
-											.getString("symbol_fullname_eng"));
+						((TextView) viewSymbol
+								.findViewById(R.id.tv_symbol_fullname_eng))
+								.setText(jsoIndex
+										.getString("symbol_fullname_eng"));
 
-							((LinearLayout) viewSymbol
-									.findViewById(R.id.row_symbol))
-									.setOnClickListener(new OnClickListener() {
-										@Override
-										public void onClick(View v) {
-											FragmentChangeActivity.pagerDetail = "watchlist";
-											FragmentChangeActivity.strSymbolSelect = symbol_name;
+						((LinearLayout) viewSymbol
+								.findViewById(R.id.row_symbol))
+								.setOnClickListener(new OnClickListener() {
+									@Override
+									public void onClick(View v) {
+										FragmentChangeActivity.pagerDetail = "watchlist";
+										FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-											if (!status.equals("SP")) {
-												context.startActivity(new Intent(
-														context,
-														UiWatchlistDetail.class));
-											}
+										if (!status.equals("SP")) {
+											context.startActivity(new Intent(
+													context,
+													UiWatchlistDetail.class));
 										}
-									});
+									}
+								});
 
-							// detail
-							((LinearLayout) viewDetailFun
-									.findViewById(R.id.row_detail))
-									.setOnClickListener(new OnClickListener() {
-										@Override
-										public void onClick(View v) {
-											FragmentChangeActivity.pagerDetail = "watchlist";
-											FragmentChangeActivity.strSymbolSelect = symbol_name;
+						// detail
+						((LinearLayout) viewDetailFun
+								.findViewById(R.id.row_detail))
+								.setOnClickListener(new OnClickListener() {
+									@Override
+									public void onClick(View v) {
+										FragmentChangeActivity.pagerDetail = "watchlist";
+										FragmentChangeActivity.strSymbolSelect = symbol_name;
 
-											if (!status.equals("SP")) {
-												context.startActivity(new Intent(
-														context,
-														UiWatchlistDetail.class));
-											}
+										if (!status.equals("SP")) {
+											context.startActivity(new Intent(
+													context,
+													UiWatchlistDetail.class));
 										}
-									});
+									}
+								});
 
-							// fun
-							String strFundam = jsoIndex
-									.getString("fundamental");
-							TextView tv_fundamental = (TextView) viewDetailFun
-									.findViewById(R.id.tv_fundamental);
-							tv_fundamental
-									.setBackgroundColor(FunctionSetBg
-											.setColorWatchListSymbolFundamental(strFundam));
+						// fun
+						String strFundam = jsoIndex.getString("fundamental");
+						TextView tv_fundamental = (TextView) viewDetailFun
+								.findViewById(R.id.tv_fundamental);
+						tv_fundamental.setBackgroundColor(FunctionSetBg
+								.setColorWatchListSymbolFundamental(strFundam));
 
-							// img chart
-							ImageView img_chart = (ImageView) viewDetailFun
-									.findViewById(R.id.img_chart);
-							FragmentChangeActivity.imageLoader.displayImage(
-									SplashScreen.url_bidschart_chart
-											+ jsoIndex.getString("symbol_name")
-											+ ".png", img_chart);
+						// img chart
+						ImageView img_chart = (ImageView) viewDetailFun
+								.findViewById(R.id.img_chart);
+						FragmentChangeActivity.imageLoader.displayImage(
+								SplashScreen.url_bidschart_chart
+										+ jsoIndex.getString("symbol_name")
+										+ ".png", img_chart);
 
-							// ck ltrade change
-							String strLastTrade = jsoIndex
-									.getString("last_trade");
-							String strChange = jsoIndex.getString("change");
-							String strPercentChange = jsoIndex
-									.getString("percentChange");
+						// ck ltrade change
+						String strLastTrade = jsoIndex.getString("last_trade");
+						String strChange = jsoIndex.getString("change");
+						String strPercentChange = jsoIndex
+								.getString("percentChange");
 
-							TextView tv_last_trade = (TextView) viewDetailFun
-									.findViewById(R.id.tv_last_trade);
-							TextView tv_change = (TextView) viewDetailFun
-									.findViewById(R.id.tv_change);
-							TextView tv_percentChange = (TextView) viewDetailFun
-									.findViewById(R.id.tv_percentChange);
+						TextView tv_last_trade = (TextView) viewDetailFun
+								.findViewById(R.id.tv_last_trade);
+						TextView tv_change = (TextView) viewDetailFun
+								.findViewById(R.id.tv_change);
+						TextView tv_percentChange = (TextView) viewDetailFun
+								.findViewById(R.id.tv_percentChange);
 
-							tv_last_trade.setText(strLastTrade);
-							tv_change.setText(strChange);
-							if ((strPercentChange == "0")
-									|| (strPercentChange == "")
-									|| (strPercentChange == "0.00")) {
-								tv_percentChange.setText("0.00");
-							} else {
-								tv_percentChange
-										.setText(strPercentChange + "%");
-							}
+						tv_last_trade.setText(strLastTrade);
+						tv_change.setText(strChange);
+						if ((strPercentChange == "0")
+								|| (strPercentChange == "")
+								|| (strPercentChange == "0.00")) {
+							tv_percentChange.setText("0.00");
+						} else {
+							tv_percentChange.setText(strPercentChange + "%");
+						}
 
-							// เซตสี change , lasttrade, percentchange เป็นสีตาม
-							// change โดยเอา change เทียบกับ 0
-							if (strChange != "") {
-								if (!status.equals("SP")) {
-									tv_change
-											.setTextColor(context
-													.getResources()
-													.getColor(
-															FunctionSetBg
-																	.setColor(strChange)));
-									tv_last_trade
-											.setTextColor(context
-													.getResources()
-													.getColor(
-															FunctionSetBg
-																	.setColor(strChange)));
-									tv_percentChange
-											.setTextColor(context
-													.getResources()
-													.getColor(
-															FunctionSetBg
-																	.setColor(strChange)));
-								}
-							}
-
-							// color sft
-							String strFundamF = jsoIndex
-									.getString("fundamental");
-							TextView tv_fundamentalF = (TextView) viewDetailFun
-									.findViewById(R.id.tv_fundamental);
-							tv_fundamentalF
-									.setBackgroundColor(FunctionSetBg
-											.setColorWatchListSymbolFundamental(strFundamF));
-
-							// ck pe pbv peg
-							String strPe = jsoIndex.getString("p_e");
-							String strPbv = jsoIndex.getString("p_bv");
-							String strRoe = jsoIndex.getString("roe");
-							String strRoa = jsoIndex.getString("roa");
-							String strPeg = jsoIndex.getString("peg");
-							String strMktcap = jsoIndex
-									.getString("market_capitalization");
-
-							TextView tv_p_e = (TextView) viewDetailFun
-									.findViewById(R.id.tv_p_e);
-							TextView tv_p_bv = (TextView) viewDetailFun
-									.findViewById(R.id.tv_p_bv);
-							TextView tv_roe = (TextView) viewDetailFun
-									.findViewById(R.id.tv_roe);
-							TextView tv_roa = (TextView) viewDetailFun
-									.findViewById(R.id.tv_roa);
-							TextView tv_peg = (TextView) viewDetailFun
-									.findViewById(R.id.tv_peg);
-							TextView tv_mktcap = (TextView) viewDetailFun
-									.findViewById(R.id.tv_mktcap);
-
-							tv_p_e.setText(FunctionSetBg
-									.setStrDetailList(strPe));
-							tv_p_bv.setText(FunctionSetBg
-									.setStrDetailList(strPbv));
-							tv_roe.setText(FunctionSetBg
-									.setStrDetailList(strRoe));
-							tv_roa.setText(FunctionSetBg
-									.setStrDetailList(strRoa));
-							tv_peg.setText(FunctionSetBg
-									.setStrDetailList(strPeg));
-							tv_mktcap.setText(strMktcap);
-
-							String strPeg_set = SplashScreen.contentSymbol_Set
-									.getString("peg");
-							tv_peg.setTextColor(context.getResources()
-									.getColor(
-											FunctionSetBg.setStrCheckSet(
-													strPeg, strPeg_set)));
-
-							// -- color write/blue
+						// เซตสี change , lasttrade, percentchange เป็นสีตาม
+						// change โดยเอา change เทียบกับ 0
+						if (strChange != "") {
 							if (!status.equals("SP")) {
-								tv_roe.setTextColor(context
-										.getResources()
+								tv_change.setTextColor(context.getResources()
 										.getColor(
 												FunctionSetBg
-														.setStrColorWriteDetailBlue(strRoe)));
-								tv_roa.setTextColor(context
-										.getResources()
-										.getColor(
+														.setColor(strChange)));
+								tv_last_trade.setTextColor(context
+										.getResources().getColor(
 												FunctionSetBg
-														.setStrColorWriteDetailBlue(strRoa)));
-							} else {
-								tv_roe.setTextColor(context.getResources()
-										.getColor(R.color.c_content));
-								tv_roa.setTextColor(context.getResources()
-										.getColor(R.color.c_content));
+														.setColor(strChange)));
+								tv_percentChange.setTextColor(context
+										.getResources().getColor(
+												FunctionSetBg
+														.setColor(strChange)));
 							}
+						}
 
-							if (SplashScreen.contentSymbol_Set != null) {
-								String strPe_set = SplashScreen.contentSymbol_Set
-										.getString("p_e");
-								String strPbv_set = SplashScreen.contentSymbol_Set
-										.getString("p_bv");
-								// String strPeg_set =
-								// SplashScreen.contentSymbol_Set
-								// .getString("peg");
-								//
+						// color sft
+						String strFundamF = jsoIndex.getString("fundamental");
+						TextView tv_fundamentalF = (TextView) viewDetailFun
+								.findViewById(R.id.tv_fundamental);
+						tv_fundamentalF
+								.setBackgroundColor(FunctionSetBg
+										.setColorWatchListSymbolFundamental(strFundamF));
+
+						// ck pe pbv peg
+						String strPe = jsoIndex.getString("p_e");
+						String strPbv = jsoIndex.getString("p_bv");
+						String strRoe = jsoIndex.getString("roe");
+						String strRoa = jsoIndex.getString("roa");
+						String strPeg = jsoIndex.getString("peg");
+						String strMktcap = jsoIndex
+								.getString("market_capitalization");
+
+						TextView tv_p_e = (TextView) viewDetailFun
+								.findViewById(R.id.tv_p_e);
+						TextView tv_p_bv = (TextView) viewDetailFun
+								.findViewById(R.id.tv_p_bv);
+						TextView tv_roe = (TextView) viewDetailFun
+								.findViewById(R.id.tv_roe);
+						TextView tv_roa = (TextView) viewDetailFun
+								.findViewById(R.id.tv_roa);
+						TextView tv_peg = (TextView) viewDetailFun
+								.findViewById(R.id.tv_peg);
+						TextView tv_mktcap = (TextView) viewDetailFun
+								.findViewById(R.id.tv_mktcap);
+
+						tv_p_e.setText(FunctionSetBg.setStrDetailList(strPe));
+						tv_p_bv.setText(FunctionSetBg.setStrDetailList(strPbv));
+						tv_roe.setText(FunctionSetBg.setStrDetailList(strRoe));
+						tv_roa.setText(FunctionSetBg.setStrDetailList(strRoa));
+						tv_peg.setText(FunctionSetBg.setStrDetailList(strPeg));
+						tv_mktcap.setText(strMktcap);
+
+						String strPeg_set = SplashScreen.contentSymbol_Set
+								.getString("peg");
+						tv_peg.setTextColor(context.getResources().getColor(
+								FunctionSetBg
+										.setStrCheckSet(strPeg, strPeg_set)));
+
+						// -- color write/blue
+						if (!status.equals("SP")) {
+							tv_roe.setTextColor(context
+									.getResources()
+									.getColor(
+											FunctionSetBg
+													.setStrColorWriteDetailBlue(strRoe)));
+							tv_roa.setTextColor(context
+									.getResources()
+									.getColor(
+											FunctionSetBg
+													.setStrColorWriteDetailBlue(strRoa)));
+						} else {
+							tv_roe.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+							tv_roa.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+						}
+
+						if (SplashScreen.contentSymbol_Set != null) {
+							String strPe_set = SplashScreen.contentSymbol_Set
+									.getString("p_e");
+							String strPbv_set = SplashScreen.contentSymbol_Set
+									.getString("p_bv");
+							// String strPeg_set =
+							// SplashScreen.contentSymbol_Set
+							// .getString("peg");
+							//
+							// tv_peg.setTextColor(context.getResources()
+							// .getColor(
+							// FunctionSetBg.setStrCheckSet(
+							// strPeg, strPeg_set)));
+
+							if (!status.equals("SP")) {
+								tv_p_e.setTextColor(context.getResources()
+										.getColor(
+												FunctionSetBg.setStrCheckSet(
+														strPe, strPe_set)));
+
+								tv_p_bv.setTextColor(context.getResources()
+										.getColor(
+												FunctionSetBg.setStrCheckSet(
+														strPbv, strPbv_set)));
+
 								// tv_peg.setTextColor(context.getResources()
 								// .getColor(
 								// FunctionSetBg.setStrCheckSet(
 								// strPeg, strPeg_set)));
+							} else {
+								tv_p_e.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
 
-								if (!status.equals("SP")) {
-									tv_p_e.setTextColor(context.getResources()
-											.getColor(
-													FunctionSetBg
-															.setStrCheckSet(
-																	strPe,
-																	strPe_set)));
+								tv_p_bv.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
 
-									tv_p_bv.setTextColor(context
+								// tv_peg.setTextColor(context.getResources()
+								// .getColor(R.color.c_content));
+							}
+						}
+						
+						// fun graph
+						String strFundamentalTrend = jsoIndex
+								.getString("fundamental_trend");
+
+						ImageView img_t_trend = (ImageView) viewDetailFun
+								.findViewById(R.id.img_t_trend);
+						TextView tv_fundamental_trend = (TextView) viewDetailFun
+								.findViewById(R.id.tv_fundamental_trend);
+
+						FragmentChangeActivity.imageLoader.displayImage(
+								SplashScreen.url_bidschart_chart
+										+ "fundamental-"
+										+ jsoIndex.getString("symbol_name")
+										+ ".png", img_t_trend);
+
+						tv_fundamental_trend.setText(strFundamentalTrend);
+						if (!status.equals("SP")) {
+							tv_fundamental_trend
+									.setTextColor(context
 											.getResources()
 											.getColor(
 													FunctionSetBg
-															.setStrCheckSet(
-																	strPbv,
-																	strPbv_set)));
-
-									// tv_peg.setTextColor(context.getResources()
-									// .getColor(
-									// FunctionSetBg.setStrCheckSet(
-									// strPeg, strPeg_set)));
-								} else {
-									tv_p_e.setTextColor(context.getResources()
+															.setFundamentalTextColor(strFundamentalTrend)));
+						} else {
+							tv_fundamental_trend
+									.setTextColor(context.getResources()
 											.getColor(R.color.c_content));
+						}
 
-									tv_p_bv.setTextColor(context.getResources()
-											.getColor(R.color.c_content));
+						// fun กราฟแท่ง
+						ImageView img_activity, img_profit, img_lev, img_liq;
+						img_activity = (ImageView) viewDetailFun
+								.findViewById(R.id.img_activity);
+						img_profit = (ImageView) viewDetailFun
+								.findViewById(R.id.img_profit);
+						img_lev = (ImageView) viewDetailFun
+								.findViewById(R.id.img_lev);
+						img_liq = (ImageView) viewDetailFun
+								.findViewById(R.id.img_liq);
 
-									// tv_peg.setTextColor(context.getResources()
-									// .getColor(R.color.c_content));
-								}
-							}
+						img_activity
+								.setBackgroundResource(FunctionSetBg
+										.setImgFunGraph(jsoIndex
+												.getString("activity")));
+						img_profit.setBackgroundResource(FunctionSetBg
+								.setImgFunGraph(jsoIndex
+										.getString("profitability")));
+						img_lev.setBackgroundResource(FunctionSetBg
+								.setImgFunGraph(jsoIndex.getString("leverage")));
+						img_liq.setBackgroundResource(FunctionSetBg
+								.setImgFunGraph(jsoIndex.getString("liquidity")));
 
-							// fun graph
-							String strFundamentalTrend = jsoIndex
-									.getString("fundamental_trend");
+						// not set color
+						TextView tv_rank = (TextView) viewDetailFun
+								.findViewById(R.id.tv_rank);
+						TextView tv_cg = (TextView) viewDetailFun
+								.findViewById(R.id.tv_cg);
+						TextView tv_volume = (TextView) viewDetailFun
+								.findViewById(R.id.tv_volume);
+						TextView tv_value = (TextView) viewDetailFun
+								.findViewById(R.id.tv_value);
 
-							ImageView img_t_trend = (ImageView) viewDetailFun
-									.findViewById(R.id.img_t_trend);
-							TextView tv_fundamental_trend = (TextView) viewDetailFun
-									.findViewById(R.id.tv_fundamental_trend);
+						tv_rank.setText(jsoIndex.getString("rangkingsector"));
+						tv_cg.setText(jsoIndex.getString("cgscore"));
 
-							FragmentChangeActivity.imageLoader.displayImage(
-									SplashScreen.url_bidschart_chart
-											+ "fundamental-"
-											+ jsoIndex.getString("symbol_name")
-											+ ".png", img_t_trend);
+						String strVolume = jsoIndex.getString("volume");
+						String strValue = jsoIndex.getString("value");
+						String sptVolume[] = strVolume.split(" ");
+						String sptValue[] = strValue.split(" ");
 
-							tv_fundamental_trend.setText(strFundamentalTrend);
-							if (!status.equals("SP")) {
-								tv_fundamental_trend
-										.setTextColor(context
-												.getResources()
-												.getColor(
-														FunctionSetBg
-																.setFundamentalTextColor(strFundamentalTrend)));
-							} else {
-								tv_fundamental_trend.setTextColor(context
-										.getResources().getColor(
-												R.color.c_content));
-							}
+						if (sptVolume.length > 1) {
+							tv_volume.setText(sptVolume[0] + "\n"
+									+ sptVolume[1]);
+						} else {
+							tv_volume.setText(strVolume);
+						}
+						if (sptValue.length > 1) {
+							tv_value.setText(sptValue[0] + "\n" + sptValue[1]);
+						} else {
+							tv_value.setText(strValue);
+						}
 
-							// fun กราฟแท่ง
-							ImageView img_activity, img_profit, img_lev, img_liq;
-							img_activity = (ImageView) viewDetailFun
-									.findViewById(R.id.img_activity);
-							img_profit = (ImageView) viewDetailFun
-									.findViewById(R.id.img_profit);
-							img_lev = (ImageView) viewDetailFun
-									.findViewById(R.id.img_lev);
-							img_liq = (ImageView) viewDetailFun
-									.findViewById(R.id.img_liq);
-
-							img_activity.setBackgroundResource(FunctionSetBg
-									.setImgFunGraph(jsoIndex
-											.getString("activity")));
-							img_profit.setBackgroundResource(FunctionSetBg
-									.setImgFunGraph(jsoIndex
-											.getString("profitability")));
-							img_lev.setBackgroundResource(FunctionSetBg
-									.setImgFunGraph(jsoIndex
-											.getString("leverage")));
-							img_liq.setBackgroundResource(FunctionSetBg
-									.setImgFunGraph(jsoIndex
-											.getString("liquidity")));
-
-							// not set color
-							TextView tv_rank = (TextView) viewDetailFun
-									.findViewById(R.id.tv_rank);
-							TextView tv_cg = (TextView) viewDetailFun
-									.findViewById(R.id.tv_cg);
-							TextView tv_volume = (TextView) viewDetailFun
-									.findViewById(R.id.tv_volume);
-							TextView tv_value = (TextView) viewDetailFun
-									.findViewById(R.id.tv_value);
-
-							tv_rank.setText(jsoIndex
-									.getString("rangkingsector"));
-							tv_cg.setText(jsoIndex.getString("cgscore"));
-
-							String strVolume = jsoIndex.getString("volume");
-							String strValue = jsoIndex.getString("value");
-							String sptVolume[] = strVolume.split(" ");
-							String sptValue[] = strValue.split(" ");
-
-							if (sptVolume.length > 1) {
-								tv_volume.setText(sptVolume[0] + "\n"
-										+ sptVolume[1]);
-							} else {
-								tv_volume.setText(strVolume);
-							}
-							if (sptValue.length > 1) {
-								tv_value.setText(sptValue[0] + "\n"
-										+ sptValue[1]);
-							} else {
-								tv_value.setText(strValue);
-							}
-
-							// --- add view tv
-							// row_tv_orderbook_id.add();
-							// row_tv_symbol_name.add();
-							// row_tv_last_trade.add(tv_last_trade);
-							// row_tv_change.add(tv_change);
-							// row_tv_percent_change.add(tv_percentChange);
-							// row_tv_high.add(tv_high);
-							// row_tv_low.add(tv_low);
-							// row_tv_volume.add(tv_volume);
-							// row_tv_value.add(tv_value);
-
-//						} else {
-//							tv_symbol_name.setText(symbol_name);
-//							tv_symbol_name.setTextColor(context.getResources()
-//									.getColor(R.color.c_danger));
-//						}
-
+						// ถ้าเป็น - ให้เป็นสี ขาว
+						String strPeColor = tv_p_e.getText().toString();
+						String strPbvColor = tv_p_bv.getText().toString();
+						String strRankColor = tv_rank.getText().toString();
+						String strCgColor = tv_cg.getText().toString();
+						String strRoeColor = tv_roe.getText().toString();
+						String strRoaColor = tv_roa.getText().toString();
+						if(strPeColor.equals("-")){
+							tv_p_e.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+						}
+						if(strPbvColor.equals("-")){
+							tv_p_bv.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+						}
+						if(strRankColor.equals("-")){
+							tv_rank.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+						}
+						if(strCgColor.equals("-")){
+							tv_cg.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+						}
+						if(strRoeColor.equals("-")){
+							tv_roe.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+						}
+						if(strRoaColor.equals("-")){
+							tv_roa.setTextColor(context.getResources()
+									.getColor(R.color.c_content));
+						}
+						
 						list_symbol.addView(viewSymbol);
 						list_detail.addView(viewDetailFun);
 
@@ -2104,7 +2107,7 @@ public class PagerWatchList extends Fragment {
 						String status_checkOut = jsoIndex
 								.getString("status_checkOut");
 						if (!status_checkOut.equals("false")) {
-							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+							tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
 									.checkStatusSymbol(symbol_name,
 											turnover_list_level, status,
 											status_xd)));
@@ -2471,7 +2474,49 @@ public class PagerWatchList extends Fragment {
 								tv_floor.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-
+							
+							// ถ้าเป็น - ให้เป็นสี ขาว
+							String strHighColor = tv_high.getText().toString();
+							String strLowColor = tv_low.getText().toString();
+							String strCelingColor = tv_ceiling.getText().toString();
+							String strFloorColor = tv_floor.getText().toString();
+							String strPeColor = tv_p_e.getText().toString();
+							String strPbvColor = tv_p_bv.getText().toString();
+							String strRoeColor = tv_roe.getText().toString();
+							String strRoaColor = tv_roa.getText().toString();
+							if(strHighColor.equals("-")){
+								tv_high.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strLowColor.equals("-")){
+								tv_low.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strCelingColor.equals("-")){
+								tv_ceiling.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strFloorColor.equals("-")){
+								tv_floor.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strPeColor.equals("-")){
+								tv_p_e.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strPbvColor.equals("-")){
+								tv_p_bv.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strRoeColor.equals("-")){
+								tv_roe.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strRoaColor.equals("-")){
+								tv_roa.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							
 							// --- add row update
 							// row_tv_orderbook_id.add();
 							row_tv_symbol_name.add(tv_symbol_name);
@@ -2550,7 +2595,7 @@ public class PagerWatchList extends Fragment {
 						String status_checkOut = jsoIndex
 								.getString("status_checkOut");
 						if (!status_checkOut.equals("false")) {
-							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+							tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
 									.checkStatusSymbol(symbol_name,
 											turnover_list_level, status,
 											status_xd)));
@@ -2901,6 +2946,48 @@ public class PagerWatchList extends Fragment {
 										.getColor(R.color.c_content));
 							}
 
+							// ถ้าเป็น - ให้เป็นสี ขาว
+							String strHighColor = tv_high.getText().toString();
+							String strLowColor = tv_low.getText().toString();
+							String strCelingColor = tv_ceiling.getText().toString();
+							String strFloorColor = tv_floor.getText().toString();
+							String strPeColor = tv_p_e.getText().toString();
+							String strPbvColor = tv_p_bv.getText().toString();
+							String strRoeColor = tv_roe.getText().toString();
+							String strRoaColor = tv_roa.getText().toString();
+							if(strHighColor.equals("-")){
+								tv_high.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strLowColor.equals("-")){
+								tv_low.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strCelingColor.equals("-")){
+								tv_ceiling.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strFloorColor.equals("-")){
+								tv_floor.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strPeColor.equals("-")){
+								tv_p_e.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strPbvColor.equals("-")){
+								tv_p_bv.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strRoeColor.equals("-")){
+								tv_roe.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strRoaColor.equals("-")){
+								tv_roa.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+														
 							// --- add view tv
 							// row_tv_orderbook_id.add();
 							row_tv_symbol_name.add(tv_symbol_name);
@@ -3016,7 +3103,7 @@ public class PagerWatchList extends Fragment {
 						String status_checkOut = jsoIndex
 								.getString("status_checkOut");
 						if (!status_checkOut.equals("false")) {
-							tv_symbol_name.setText(Html.fromHtml(FunctionSymbol
+							tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
 									.checkStatusSymbol(symbol_name,
 											turnover_list_level, status,
 											status_xd)));
@@ -3371,6 +3458,49 @@ public class PagerWatchList extends Fragment {
 								tv_floor.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
+							
+							// ถ้าเป็น - ให้เป็นสี ขาว
+							String strHighColor = tv_high.getText().toString();
+							String strLowColor = tv_low.getText().toString();
+							String strCelingColor = tv_ceiling.getText().toString();
+							String strFloorColor = tv_floor.getText().toString();
+							String strPeColor = tv_p_e.getText().toString();
+							String strPbvColor = tv_p_bv.getText().toString();
+							String strRoeColor = tv_roe.getText().toString();
+							String strRoaColor = tv_roa.getText().toString();
+							if(strHighColor.equals("-")){
+								tv_high.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strLowColor.equals("-")){
+								tv_low.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strCelingColor.equals("-")){
+								tv_ceiling.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strFloorColor.equals("-")){
+								tv_floor.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strPeColor.equals("-")){
+								tv_p_e.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strPbvColor.equals("-")){
+								tv_p_bv.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strRoeColor.equals("-")){
+								tv_roe.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							if(strRoaColor.equals("-")){
+								tv_roa.setTextColor(context.getResources()
+										.getColor(R.color.c_content));
+							}
+							
 
 							// --- add view tv
 							// row_tv_orderbook_id.add();
@@ -3495,7 +3625,6 @@ public class PagerWatchList extends Fragment {
 		boolean connectionError = false;
 		// ======= json ========
 		private JSONObject jsonGetWatchlistSymbol;
-		private JSONObject jsonGetWatchlistSymbolBegin;
 
 		@Override
 		protected void onPreExecute() {
@@ -3510,27 +3639,19 @@ public class PagerWatchList extends Fragment {
 			long timestamp = date.getTime();
 			// ======= url ========
 
-			// String url_GetWatchlistSymbolBegin =
-			// SplashScreen.url_bidschart
-			// +
-			// "/service/v2/watchlistSymbol?symbol=.set,.set50,.set100,.setHD,.mai";
+			// http://bidschart.com/service/v2/watchlistSymbol?symbol=.set,.set50,.set100,.setHD,.mai
 
 			String url_GetWatchlistSymbol = SplashScreen.url_bidschart
 					+ "/service/v2/watchlistSymbolV2?symbol="
 					+ FragmentChangeActivity.strGetListSymbol;
 
-			Log.v("getWatchlistSymbol List", "" + url_GetWatchlistSymbol);
+//			http://www.bidschart.com/service/v2/watchlistSymbolV2?symbol=AHC,AOT,PPP,KASET,ABC,KDH,QHHR,SBPF,SGF,TASCO
+			Log.v("getWatchlistSymbol", "__" + url_GetWatchlistSymbol);
 
 			try {
 				// ======= Ui Home ========
 				jsonGetWatchlistSymbol = ReadJson
 						.readJsonObjectFromUrl(url_GetWatchlistSymbol);
-
-				// if (FragmentChangeActivity.contentGetWatchlistSymbolBegin ==
-				// null) {
-				// jsonGetWatchlistSymbolBegin = ReadJson
-				// .readJsonObjectFromUrl(url_GetWatchlistSymbolBegin);
-				// }
 
 			} catch (IOException e1) {
 				connectionError = true;
@@ -3552,50 +3673,19 @@ public class PagerWatchList extends Fragment {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 
+
+			dialogLoading.dismiss();
 			if (connectionError == false) {
 				if (jsonGetWatchlistSymbol != null) {
 					try {
 						// get content
-						
+
 						FragmentChangeActivity.contentGetWatchlistSymbol = jsonGetWatchlistSymbol
 								.getJSONArray("dataAll");
-						Log.v("LLLLLLLLL 222222222",""+FragmentChangeActivity.contentGetWatchlistSymbol.length());
-						
-						// Log.v("getWatchlistSymbol", "" +
-						// FragmentChangeActivity.strGetListSymbol);
-						// Log.v("getWatchlistSymbol length", "" +
-						// FragmentChangeActivity.contentGetWatchlistSymbol.length());
-
-						// if
-						// (FragmentChangeActivity.contentGetWatchlistSymbolBegin
-						// == null) {
-						// FragmentChangeActivity.contentGetWatchlistSymbolBegin
-						// = jsonGetWatchlistSymbolBegin
-						// .getJSONArray("dataAll");
-						// }
-
-						// -------- orderbook for connectsocket
-						// FragmentChangeActivity.strGetSymbolOrderBook_Id = "";
-						// for (int i = 0; i <
-						// FragmentChangeActivity.contentGetWatchlistSymbol
-						// .length(); i++) {
-						// FragmentChangeActivity.strGetSymbolOrderBook_Id +=
-						// FragmentChangeActivity.contentGetWatchlistSymbol
-						// .getJSONObject(i).getString("orderbook_id");
-						// if (i !=
-						// (FragmentChangeActivity.contentGetWatchlistSymbol
-						// .length() - 1)) {
-						// FragmentChangeActivity.strGetSymbolOrderBook_Id +=
-						// ",";
-						// }
-						// }
-
-						// Log.v("strGetSymbolOrderBook_Id",
-						// ""
-						// + FragmentChangeActivity.strGetSymbolOrderBook_Id);
 
 						setWatchlistSymbol(); // Initial set data
 
+						dialogLoading.dismiss();
 					} catch (JSONException e) {
 						dialogLoading.dismiss();
 						e.printStackTrace();
@@ -3607,7 +3697,7 @@ public class PagerWatchList extends Fragment {
 			} else {
 				dialogLoading.dismiss();
 			}
-			// dialogLoading.dismiss();
+			 dialogLoading.dismiss();
 		}
 	}
 
@@ -3824,28 +3914,8 @@ public class PagerWatchList extends Fragment {
 			if (connectionError == false) {
 				if (jsonIndustrySetSectorSelect != null) {
 					try {
-						// FragmentChangeActivity.contentGetIndustrySetSectorSelect
-						// =
-						// jsonIndustrySetSectorSelect.getJSONArray("dataAll");
-
 						FragmentChangeActivity.contentGetWatchlistSymbol = jsonIndustrySetSectorSelect
 								.getJSONArray("dataAll");
-
-						// -------- orderbook for connectsocket
-						// FragmentChangeActivity.strGetSymbolOrderBook_Id = "";
-						// for (int i = 0; i <
-						// FragmentChangeActivity.contentGetWatchlistSymbol
-						// .length(); i++) {
-						// FragmentChangeActivity.strGetListSymbol +=
-						// FragmentChangeActivity.contentGetWatchlistSymbol
-						// .getJSONObject(i).getString("orderbook_id");
-						// if (i !=
-						// (FragmentChangeActivity.contentGetWatchlistSymbol
-						// .length() - 1)) {
-						// FragmentChangeActivity.strGetSymbolOrderBook_Id +=
-						// ",";
-						// }
-						// }
 
 						setWatchlistSymbol(); // set data
 
@@ -4242,6 +4312,209 @@ public class PagerWatchList extends Fragment {
 		}
 	}
 
+	// ============== get favorite all =============
+	public void getDataFavoriteAll() {
+		getFavoriteAll resp = new getFavoriteAll();
+		resp.execute();
+	}
+
+	public class getFavoriteAll extends AsyncTask<Void, Void, Void> {
+		boolean connectionError = false;
+		// ======= json ========
+		private JSONObject jsonFav_1;
+		private JSONObject jsonFav_2;
+		private JSONObject jsonFav_3;
+		private JSONObject jsonFav_4;
+		private JSONObject jsonFav_5;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			dialogLoading.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			java.util.Date date = new java.util.Date();
+			long timestamp = date.getTime();
+			// ======= url ========
+
+			// http://www.bidschart.com/service/getFavoriteByUserIdFavoriteNumber?user_id=1587&favorite_number=1
+
+			String url_fav_1 = SplashScreen.url_bidschart
+					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
+					+ SplashScreen.userModel.user_id + "&favorite_number=1"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+			String url_fav_2 = SplashScreen.url_bidschart
+					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
+					+ SplashScreen.userModel.user_id + "&favorite_number=2"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+			String url_fav_3 = SplashScreen.url_bidschart
+					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
+					+ SplashScreen.userModel.user_id + "&favorite_number=3"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+			String url_fav_4 = SplashScreen.url_bidschart
+					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
+					+ SplashScreen.userModel.user_id + "&favorite_number=4"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+			String url_fav_5 = SplashScreen.url_bidschart
+					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
+					+ SplashScreen.userModel.user_id + "&favorite_number=5"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+
+//			Log.v("getFavoriteByUserIdFavoriteNumber 1", "" + url_fav_1);
+//			Log.v("getFavoriteByUserIdFavoriteNumber 2", "" + url_fav_2);
+//			Log.v("getFavoriteByUserIdFavoriteNumber 3", "" + url_fav_3);
+//			Log.v("getFavoriteByUserIdFavoriteNumber 4", "" + url_fav_4);
+//			Log.v("getFavoriteByUserIdFavoriteNumber 5", "" + url_fav_5);
+
+			try {
+				jsonFav_1 = ReadJson.readJsonObjectFromUrl(url_fav_1);
+				jsonFav_2 = ReadJson.readJsonObjectFromUrl(url_fav_2);
+				jsonFav_3 = ReadJson.readJsonObjectFromUrl(url_fav_3);
+				jsonFav_4 = ReadJson.readJsonObjectFromUrl(url_fav_4);
+				jsonFav_5 = ReadJson.readJsonObjectFromUrl(url_fav_5);
+			} catch (IOException e1) {
+				connectionError = true;
+				jsonFav_1 = null;
+				e1.printStackTrace();
+			} catch (JSONException e1) {
+				connectionError = true;
+				jsonFav_1 = null;
+				e1.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				jsonFav_1 = null;
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+			if (connectionError == false) {
+				try {
+					FragmentChangeActivity.contentGetSymbolFavorite_1 = jsonFav_1
+							.getJSONArray("dataAll");
+					FragmentChangeActivity.contentGetSymbolFavorite_2 = jsonFav_2
+							.getJSONArray("dataAll");
+					FragmentChangeActivity.contentGetSymbolFavorite_3 = jsonFav_3
+							.getJSONArray("dataAll");
+					FragmentChangeActivity.contentGetSymbolFavorite_4 = jsonFav_4
+							.getJSONArray("dataAll");
+					FragmentChangeActivity.contentGetSymbolFavorite_5 = jsonFav_5
+							.getJSONArray("dataAll");
+					
+					Log.v("getFavoriteByUserIdFavoriteNumber 1 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_1.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 2 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_2.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 3 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_3.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 4 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_4.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 5 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_5.length());
+
+					// ---- fav 1 -------
+					if (FragmentChangeActivity.contentGetSymbolFavorite_1 != null) {
+						FragmentChangeActivity.strGetListSymbol_fav1 = "";
+						for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_1
+								.length(); i++) {
+							JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite_1
+									.getJSONObject(i);
+
+							FragmentChangeActivity.strGetListSymbol_fav1 += jsoIndex
+									.getString("symbol_name");
+							if (i != (FragmentChangeActivity.contentGetSymbolFavorite_1
+									.length() - 1)) {
+								FragmentChangeActivity.strGetListSymbol_fav1 += ",";
+							}
+						}
+					} else {
+						dialogLoading.dismiss();
+					}
+					// ---- fav 2 -------
+					if (FragmentChangeActivity.contentGetSymbolFavorite_2 != null) {
+						FragmentChangeActivity.strGetListSymbol_fav2 = "";
+						for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_2
+								.length(); i++) {
+							JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite_2
+									.getJSONObject(i);
+
+							FragmentChangeActivity.strGetListSymbol_fav2 += jsoIndex
+									.getString("symbol_name");
+							if (i != (FragmentChangeActivity.contentGetSymbolFavorite_2
+									.length() - 1)) {
+								FragmentChangeActivity.strGetListSymbol_fav2 += ",";
+							}
+						}
+					} else {
+						dialogLoading.dismiss();
+					}
+					// ---- fav 3 -------
+					if (FragmentChangeActivity.contentGetSymbolFavorite_3 != null) {
+						FragmentChangeActivity.strGetListSymbol_fav3 = "";
+						for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_3
+								.length(); i++) {
+							JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite_3
+									.getJSONObject(i);
+
+							FragmentChangeActivity.strGetListSymbol_fav3 += jsoIndex
+									.getString("symbol_name");
+							if (i != (FragmentChangeActivity.contentGetSymbolFavorite_3
+									.length() - 1)) {
+								FragmentChangeActivity.strGetListSymbol_fav3 += ",";
+							}
+						}
+					} else {
+						dialogLoading.dismiss();
+					}
+					// ---- fav 4 -------
+					if (FragmentChangeActivity.contentGetSymbolFavorite_4 != null) {
+						FragmentChangeActivity.strGetListSymbol_fav4 = "";
+						for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_4
+								.length(); i++) {
+							JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite_4
+									.getJSONObject(i);
+
+							FragmentChangeActivity.strGetListSymbol_fav4 += jsoIndex
+									.getString("symbol_name");
+							if (i != (FragmentChangeActivity.contentGetSymbolFavorite_4
+									.length() - 1)) {
+								FragmentChangeActivity.strGetListSymbol_fav4 += ",";
+							}
+						}
+					} else {
+						dialogLoading.dismiss();
+					}
+					// ---- fav 5 -------
+					if (FragmentChangeActivity.contentGetSymbolFavorite_5 != null) {
+						FragmentChangeActivity.strGetListSymbol_fav5 = "";
+						for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite_5
+								.length(); i++) {
+							JSONObject jsoIndex = FragmentChangeActivity.contentGetSymbolFavorite_5
+									.getJSONObject(i);
+
+							FragmentChangeActivity.strGetListSymbol_fav5 += jsoIndex
+									.getString("symbol_name");
+							if (i != (FragmentChangeActivity.contentGetSymbolFavorite_5
+									.length() - 1)) {
+								FragmentChangeActivity.strGetListSymbol_fav5 += ",";
+							}
+						}
+					} else {
+						dialogLoading.dismiss();
+					}
+					
+//					Log.v("strGetListSymbol fav 1", "__" + FragmentChangeActivity.strGetListSymbol_fav1);
+//					Log.v("strGetListSymbol fav 2", "__" + FragmentChangeActivity.strGetListSymbol_fav2);
+//					Log.v("strGetListSymbol fav 3", "__" + FragmentChangeActivity.strGetListSymbol_fav3);
+//					Log.v("strGetListSymbol fav 4", "__" + FragmentChangeActivity.strGetListSymbol_fav4);
+//					Log.v("strGetListSymbol fav 5", "__" + FragmentChangeActivity.strGetListSymbol_fav5);
+					
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			} else {
+				dialogLoading.dismiss();
+			}
+		}
+	}
+
 	// ============== get favorite =============
 	public void getDataFavorite() {
 		getFavorite resp = new getFavorite();
@@ -4265,18 +4538,15 @@ public class PagerWatchList extends Fragment {
 			java.util.Date date = new java.util.Date();
 			long timestamp = date.getTime();
 			// ======= url ========
-			// http://www.bidschart.com/service/v2/symbolFavorite?user_id=104
-			// String url_fav = SplashScreen.url_bidschart
-			// + "/service/v2/symbolFavorite?user_id="
-			// + SplashScreen.userModel.user_id + "&timestamp="
-			// + timestamp;
+
+			// http://www.bidschart.com/service/getFavoriteByUserIdFavoriteNumber?user_id=1587&favorite_number=1
 
 			String url_fav = SplashScreen.url_bidschart
 					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
 					+ SplashScreen.userModel.user_id + "&favorite_number="
-					+ FragmentChangeActivity.strFavoriteNumber;
+					+ FragmentChangeActivity.strFavoriteNumber+ "&limit=20&ofset=1&timestamp="+ timestamp;
 
-			Log.v("getFavoriteByUserIdFavoriteNumber", "" + url_fav);
+			Log.v("getFavoriteByUserIdFavoriteNumber", "__" + url_fav);
 
 			try {
 				jsonFav = ReadJson.readJsonObjectFromUrl(url_fav);
@@ -4305,12 +4575,6 @@ public class PagerWatchList extends Fragment {
 					try {
 						FragmentChangeActivity.contentGetSymbolFavorite = jsonFav
 								.getJSONArray("dataAll");
-
-						// setWatchlistSymbol(); // Initial set data
-
-						// http://www.bidschart.com/service/v2/symbolFavorite?user_id=1587&timestamp=1457796354463
-						// Log.v("jsonFav", "" + jsonFav);
-
 						if (FragmentChangeActivity.contentGetSymbolFavorite != null) {
 							FragmentChangeActivity.strGetListSymbol = "";
 							for (int i = 0; i < FragmentChangeActivity.contentGetSymbolFavorite
@@ -4325,34 +4589,23 @@ public class PagerWatchList extends Fragment {
 									FragmentChangeActivity.strGetListSymbol += ",";
 								}
 							}
-							getWatchlistSymbol(); // get watchlist
-							// symbol
-
-							// String strFav = jsoIndex
-							// .getString("favorite_number");
-							// if (FragmentChangeActivity.strFavoriteNumber
-							// .equals(strFav)) {
-							// if ((jsoIndex.getJSONArray("dataAll")) != null) {
-							// FragmentChangeActivity.strGetListSymbol = "";
-							// JSONArray jsaFavSymbol = jsoIndex
-							// .getJSONArray("dataAll");
-							//
-							// for (int j = 0; j < jsaFavSymbol
-							// .length(); j++) {
-							// FragmentChangeActivity.strGetListSymbol +=
-							// jsaFavSymbol
-							// .getJSONObject(j)
-							// .getString("symbol_name");
-							// if (j != (jsaFavSymbol.length() - 1)) {
-							// FragmentChangeActivity.strGetListSymbol += ",";
-							// }
-							// }
-							// getWatchlistSymbol(); // get watchlist
-							// // symbol
-							// }
-							// break;
-							// }
-							// }
+							if (FragmentChangeActivity.strFavoriteNumber == "1") {
+								FragmentChangeActivity.strGetListSymbol_fav1 = FragmentChangeActivity.strGetListSymbol;
+								FragmentChangeActivity.contentGetSymbolFavorite_1 = FragmentChangeActivity.contentGetSymbolFavorite;
+							} else if (FragmentChangeActivity.strFavoriteNumber == "2") {
+								FragmentChangeActivity.strGetListSymbol_fav2 = FragmentChangeActivity.strGetListSymbol;
+								FragmentChangeActivity.contentGetSymbolFavorite_2 = FragmentChangeActivity.contentGetSymbolFavorite;
+							} else if (FragmentChangeActivity.strFavoriteNumber == "3") {
+								FragmentChangeActivity.strGetListSymbol_fav3 = FragmentChangeActivity.strGetListSymbol;
+								FragmentChangeActivity.contentGetSymbolFavorite_3 = FragmentChangeActivity.contentGetSymbolFavorite;
+							} else if (FragmentChangeActivity.strFavoriteNumber == "4") {
+								FragmentChangeActivity.strGetListSymbol_fav4 = FragmentChangeActivity.strGetListSymbol;
+								FragmentChangeActivity.contentGetSymbolFavorite_4 = FragmentChangeActivity.contentGetSymbolFavorite;
+							} else if (FragmentChangeActivity.strFavoriteNumber == "5") {
+								FragmentChangeActivity.strGetListSymbol_fav5 = FragmentChangeActivity.strGetListSymbol;
+								FragmentChangeActivity.contentGetSymbolFavorite_5 = FragmentChangeActivity.contentGetSymbolFavorite;
+							}
+							getWatchlistSymbol(); // get watchlist symbol
 						} else {
 							dialogLoading.dismiss();
 						}
@@ -4490,7 +4743,7 @@ public class PagerWatchList extends Fragment {
 							}
 
 							initSearchLayout(); // layout search
-							initGetData(); // get data
+//							initGetData(); // get data
 
 						} else {
 							Log.v("json null", "symbol null");
@@ -4533,8 +4786,8 @@ public class PagerWatchList extends Fragment {
 								e.printStackTrace();
 							}
 
-							initSearchLayout(); // layout search
-							initGetData(); // get data
+//							initSearchLayout(); // layout search
+//							initGetData(); // get data
 
 						} else {
 							Log.v("json null", "symbol null");
@@ -4542,6 +4795,8 @@ public class PagerWatchList extends Fragment {
 					} else {
 						Log.v("symbol null", "symbol null");
 					}
+					
+					initGetData(); // get data
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -4549,179 +4804,6 @@ public class PagerWatchList extends Fragment {
 				Toast.makeText(context, "การเชื่อมต่อล้มเหลว", 0).show();
 				Log.v("connectionError", "Error");
 			}
-		}
-	}
-
-	// ============== get favorite id =============
-	public static JSONArray contentGetFavoriteId = null;
-
-	public void getDataFavoriteIdRemove() {
-		getFavoriteIdRemove resp = new getFavoriteIdRemove();
-		resp.execute();
-	}
-
-	public class getFavoriteIdRemove extends AsyncTask<Void, Void, Void> {
-		boolean connectionError = false;
-		// ======= json ========
-		private JSONObject jsonFavId;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			// progress.show();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-
-			java.util.Date date = new java.util.Date();
-			long timestamp = date.getTime();
-			// ======= url ========
-			String url_fav;
-			url_fav = SplashScreen.url_bidschart
-					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
-					+ SplashScreen.userModel.user_id + "&favorite_number="
-					+ FragmentChangeActivity.strFavoriteNumber + "&timestamp="
-					+ timestamp;
-
-			Log.v("getDataFavoriteId watchlist", "" + url_fav);
-
-			try {
-				jsonFavId = ReadJson.readJsonObjectFromUrl(url_fav);
-			} catch (IOException e1) {
-				connectionError = true;
-				jsonFavId = null;
-				e1.printStackTrace();
-			} catch (JSONException e1) {
-				connectionError = true;
-				jsonFavId = null;
-				e1.printStackTrace();
-			} catch (RuntimeException e) {
-				connectionError = true;
-				jsonFavId = null;
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-
-			if (connectionError == false) {
-				if (jsonFavId != null) {
-					try {
-						contentGetFavoriteId = jsonFavId
-								.getJSONArray("dataAll");
-
-						for (int i = 0; i < contentGetFavoriteId.length(); i++) {
-							JSONObject jso = contentGetFavoriteId
-									.getJSONObject(i);
-							if (jso.getString("symbol_name").equals(
-									FragmentChangeActivity.strSymbolSelect)) {
-								strRemoveId = jso.getString("id");
-								// strRemoveId = jso.getString("orderbook_id");
-								sendRemoveFavorite();
-							}
-						}
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
-
-			} else {
-			}
-		}
-	}
-
-	// ============== send removefavorite ===============
-	public static String strRemoveId = "";
-
-	public void sendRemoveFavorite() {
-		setRemoveFavorite resp = new setRemoveFavorite();
-		resp.execute();
-	}
-
-	public class setRemoveFavorite extends AsyncTask<Void, Void, Void> {
-
-		boolean connectionError = false;
-
-		String temp = "";
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			// progress.show();
-
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-
-			// getFavoriteByUserIdFavoriteNumber // หา get favorite id
-
-			String url = SplashScreen.url_bidschart + "/service/removeFavorite";
-
-			String json = "";
-			InputStream inputStream = null;
-			String result = "";
-
-			try {
-				HttpClient httpclient = new DefaultHttpClient();
-				HttpPost httppost = new HttpPost(url);
-
-				// 3. build jsonObject
-				JSONObject jsonObject = new JSONObject();
-
-				jsonObject.accumulate("favorite_id", strRemoveId);
-
-				// 4. convert JSONObject to JSON to String
-				json = jsonObject.toString();
-
-				// 5. set json to StringEntity
-				StringEntity se = new StringEntity(json, "UTF-8");
-
-				// 6. set httpPost Entity
-				httppost.setEntity(se);
-
-				// 7. Set some headers to inform server about the type of the
-				// content
-				httppost.setHeader("Accept", "application/json");
-				httppost.setHeader("Content-type", "application/json");
-
-				// 8. Execute POST request to the given URL
-				HttpResponse httpResponse = httpclient.execute(httppost);
-
-				// 9. receive response as inputStream
-				inputStream = httpResponse.getEntity().getContent();
-
-				// 10. convert inputstream to string
-				if (inputStream != null)
-					result = AFunctionOther
-							.convertInputStreamToString(inputStream);
-				else
-					result = "Did not work!";
-
-				Log.v("sendRemoveFavorite Watchlist : ", "" + result);
-
-			} catch (IOException e) {
-				connectionError = true;
-				e.printStackTrace();
-			} catch (RuntimeException e) {
-				connectionError = true;
-				e.printStackTrace();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-			getDataFavorite(); // get favorite
-			// switchFragment(new PagerWatchlistDetail());
 		}
 	}
 

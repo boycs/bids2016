@@ -106,7 +106,7 @@ public class PagerWatchListDetailAddFavorite extends Fragment {
 			public void onClick(View v) {
 				FragmentChangeActivity.strFavoriteNumber = "1";
 //				FragmentChangeActivity.strFavoriteTitle = "Favorite 1";
-				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
+//				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
 				switchFragment(new PagerWatchlistDetail());
 			}
 		});
@@ -115,7 +115,7 @@ public class PagerWatchListDetailAddFavorite extends Fragment {
 			public void onClick(View v) {
 				FragmentChangeActivity.strFavoriteNumber = "2";
 //				FragmentChangeActivity.strFavoriteTitle = "Favorite 2";
-				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
+//				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
 				switchFragment(new PagerWatchlistDetail());
 			}
 		});
@@ -124,7 +124,7 @@ public class PagerWatchListDetailAddFavorite extends Fragment {
 			public void onClick(View v) {
 				FragmentChangeActivity.strFavoriteNumber = "3";
 //				FragmentChangeActivity.strFavoriteTitle = "Favorite 3";
-				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
+//				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
 				switchFragment(new PagerWatchlistDetail());
 			}
 		});
@@ -133,7 +133,7 @@ public class PagerWatchListDetailAddFavorite extends Fragment {
 			public void onClick(View v) {
 				FragmentChangeActivity.strFavoriteNumber = "4";
 //				FragmentChangeActivity.strFavoriteTitle = "Favorite 4";
-				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
+//				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
 				switchFragment(new PagerWatchlistDetail());
 			}
 		});
@@ -142,7 +142,7 @@ public class PagerWatchListDetailAddFavorite extends Fragment {
 			public void onClick(View v) {
 				FragmentChangeActivity.strFavoriteNumber = "5";
 //				FragmentChangeActivity.strFavoriteTitle = "Favorite 5";
-				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
+//				FollowSymbol.sendRemoveFavorite(SplashScreen.userModel.user_id,FragmentChangeActivity.strFavoriteNumber, FragmentChangeActivity.strSymbolSelect);
 				switchFragment(new PagerWatchlistDetail());
 			}
 		});

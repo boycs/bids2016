@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone" >
+                android:visibility="visible" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,58 +165,6 @@
                     android:paddingRight="@dimen/padding_default"
                     android:paddingTop="@dimen/padding_row"
                     android:visibility="visible" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border_search_default"
-                        android:orientation="horizontal"
-                        android:weightSum="3" >
-
-                        <com.app.custom.CustomTextView
-                            android:id="@+id/tv_search_common"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/border_search_activeleft"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_default"
-                            android:text="Common"
-                            android:textColor="@color/bg_default"
-                            android:textSize="@dimen/f_description" />
-
-                        <View
-                            android:layout_width="@dimen/search_border_line"
-                            android:layout_height="match_parent"
-                            android:background="@color/bg_search_select" />
-
-                        <com.app.custom.CustomTextView
-                            android:id="@+id/tv_search_warrant"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_default"
-                            android:text="Warrant"
-                            android:textColor="@color/c_content"
-                            android:textSize="@dimen/f_description" />
-
-                        <View
-                            android:layout_width="@dimen/search_border_line"
-                            android:layout_height="match_parent"
-                            android:background="@color/bg_search_select" />
-
-                        <com.app.custom.CustomTextView
-                            android:id="@+id/tv_search_dw"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_default"
-                            android:text="DW"
-                            android:textColor="@color/c_content"
-                            android:textSize="@dimen/f_description" />
-                    </LinearLayout>
 
                     <ListView
                         android:id="@+id/list_search_symbol"
