@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/padding_default"
-        android:text="com.app.custom.CustomTextView"
         android:textColor="@color/c_title"
         android:textSize="@dimen/f_description" />
 

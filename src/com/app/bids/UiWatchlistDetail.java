@@ -296,14 +296,9 @@ public class UiWatchlistDetail extends FragmentActivity {
 			if (FragmentChangeActivity.contentGetTxtSlidingMarquee != null) {
 
 				// status market
-				if ((FragmentChangeActivity.jsonTxtSlidingMarquee
-						.getString("market")).equals("close")) {
-					img_status_m
-							.setBackgroundResource(R.drawable.icon_status_m_red);
-				} else {
-					img_status_m
-							.setBackgroundResource(R.drawable.icon_status_m_green);
-				}
+				img_status_m.setBackgroundResource(FunctionSetBg
+						.setMarketStatus(FragmentChangeActivity.jsonTxtSlidingMarquee
+								.getString("market")));
 
 				for (int i = 0; i < FragmentChangeActivity.contentGetTxtSlidingMarquee
 						.length(); i++) {
@@ -553,7 +548,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 								contentGetDetail = jsa.getJSONObject(0);
 								contentGetDetailFundamental = contentGetDetail
 										.getString("fundamental");
-								setDataDetail();
+								initSetData();
 							} else {
 								dialogLoading.dismiss();
 							}
@@ -611,8 +606,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 				width, height);
 		mPagerMain.setLayoutParams(layoutParams);
 
-		Log.v("mPagerMain", width + "_" + height + "_"
-				+ mPagerMain.getHeight()); //
+		Log.v("mPagerMain", width + "_" + height + "_" + mPagerMain.getHeight()); //
 	}
 
 	public void hideDataDetail() {
@@ -662,6 +656,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 		// e.printStackTrace();
 		// }
 
+		// showDataDetail();
 		hideDataDetail();
 
 		tv_premium_chart.setOnClickListener(new OnClickListener() {
@@ -681,15 +676,19 @@ public class UiWatchlistDetail extends FragmentActivity {
 		tv_premium_fundamental.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				selectTabPager(3);
-				mPagerMain.setCurrentItem(2);
+				// selectTabPager(3);
+				// mPagerMain.setCurrentItem(2);
+				startActivity(new Intent(getApplicationContext(),
+						UiWatchlistDetailFundamental.class));
 			}
 		});
 		tv_premium_news.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				selectTabPager(4);
-				mPagerMain.setCurrentItem(3);
+				// selectTabPager(4);
+				// mPagerMain.setCurrentItem(3);
+				startActivity(new Intent(getApplicationContext(),
+						UiWatchlistDetailNews.class));
 			}
 		});
 		tv_premium_hit.setOnClickListener(new OnClickListener() {
@@ -752,32 +751,34 @@ public class UiWatchlistDetail extends FragmentActivity {
 	// public static ArrayList<TextView> row_tv_close_volume;
 
 	// main
-	TextView tv_symbol, tv_symbol_status, tv_last_trade, tv_symbol_name_eng,
-			tv_change, tv_percenchange;
+	public static TextView tv_title_symbol, tv_symbol, tv_symbol_status,
+			tv_last_trade, tv_symbol_name_eng, tv_change, tv_percenchange;
 	// ImageView img_updown;
 	// column 1
-	TextView tv_volume, tv_value, tv_open, tv_high, tv_low;
+	public static TextView tv_volume, tv_value, tv_open, tv_high, tv_low;
 	// column 2
-	TextView tv_prev_close, tv_ceil, tv_floor, tv_high52W, tv_low52W;
+	public static TextView tv_prev_close, tv_ceil, tv_floor, tv_high52W,
+			tv_low52W;
 	// column 3
-	TextView tv_roe, tv_roa, tv_peg, tv_p_e, tv_p_bv;
+	public static TextView tv_roe, tv_roa, tv_peg, tv_p_e, tv_p_bv;
 
-	LinearLayout li_showbuysell, li_show_hide, li_buysell;
-	ImageView img_show_hide;
-	TextView tv_average_buy, tv_max_buy_price_volume, tv_open1_volume,
-			tv_buy_volume;
+	public static LinearLayout li_showbuysell, li_show_hide, li_buysell;
+	public static ImageView img_show_hide;
+	public static TextView tv_average_buy, tv_max_buy_price_volume,
+			tv_open1_volume, tv_buy_volume;
 
-	TextView tv_average_sell, tv_max_sell_price_volume, tv_close_volume,
-			tv_sell_volume;
+	public static TextView tv_average_sell, tv_max_sell_price_volume,
+			tv_close_volume, tv_sell_volume;
 
-	TextView tv_percentBuy, tv_percentSell;
-	View v_percentBuy, v_percentSell;
+	public static TextView tv_percentBuy, tv_percentSell;
+	public static View v_percentBuy, v_percentSell;
 
-	private void setDataDetail() {
+	private void initSetData() {
+		dialogLoading.dismiss();
 
 		// init follow & chart iq
 		// img_follow = (ImageView) findViewById(R.id.img_follow);
-		setFollowSymbol();
+		// setFollowSymbol();
 		// initChartIq();
 
 		// -------- tab pager
@@ -804,6 +805,73 @@ public class UiWatchlistDetail extends FragmentActivity {
 			}
 		});
 
+		li_menu_premium.setVisibility(View.VISIBLE);
+		// main
+		tv_title_symbol = (TextView) findViewById(R.id.tv_title_symbol);
+		tv_symbol = (TextView) findViewById(R.id.tv_symbol);
+		tv_symbol_status = (TextView) findViewById(R.id.tv_symbol_status);
+		tv_last_trade = (TextView) findViewById(R.id.tv_last_trade);
+		tv_symbol_name_eng = (TextView) findViewById(R.id.tv_symbol_name_eng);
+		tv_change = (TextView) findViewById(R.id.tv_change);
+		tv_percenchange = (TextView) findViewById(R.id.tv_percenchange);
+		// img_updown = (ImageView) findViewById(R.id.img_updown);
+		// column 1
+		tv_volume = (TextView) findViewById(R.id.tv_volume);
+		tv_value = (TextView) findViewById(R.id.tv_value);
+		tv_open = (TextView) findViewById(R.id.tv_open);
+		tv_high = (TextView) findViewById(R.id.tv_high);
+		tv_low = (TextView) findViewById(R.id.tv_low);
+		// column 2
+		tv_prev_close = (TextView) findViewById(R.id.tv_prev_close);
+		tv_ceil = (TextView) findViewById(R.id.tv_ceil);
+		tv_floor = (TextView) findViewById(R.id.tv_floor);
+		tv_high52W = (TextView) findViewById(R.id.tv_high52W);
+		tv_low52W = (TextView) findViewById(R.id.tv_low52W);
+		// column 3
+		tv_roe = (TextView) findViewById(R.id.tv_roe);
+		tv_roa = (TextView) findViewById(R.id.tv_roa);
+		tv_peg = (TextView) findViewById(R.id.tv_peg);
+		tv_p_e = (TextView) findViewById(R.id.tv_p_e);
+		tv_p_bv = (TextView) findViewById(R.id.tv_p_bv);
+
+		// show hide
+		li_showbysell = (LinearLayout) findViewById(R.id.li_showbuysell);
+		li_show_hide = (LinearLayout) findViewById(R.id.li_show_hide);
+		li_buysell = (LinearLayout) findViewById(R.id.li_buysell);
+		img_show_hide = (ImageView) findViewById(R.id.img_show_hide);
+		tv_average_buy = (TextView) findViewById(R.id.tv_average_buy);
+		tv_max_buy_price_volume = (TextView) findViewById(R.id.tv_max_buy_price_volume);
+		tv_open1_volume = (TextView) findViewById(R.id.tv_open1_volume);
+		tv_buy_volume = (TextView) findViewById(R.id.tv_buy_volume);
+
+		tv_average_sell = (TextView) findViewById(R.id.tv_average_sell);
+		tv_max_sell_price_volume = (TextView) findViewById(R.id.tv_max_sell_price_volume);
+		tv_close_volume = (TextView) findViewById(R.id.tv_close_volume);
+		tv_sell_volume = (TextView) findViewById(R.id.tv_sell_volume);
+
+		tv_percentBuy = (TextView) findViewById(R.id.tv_percentBuy);
+		tv_percentSell = (TextView) findViewById(R.id.tv_percentSell);
+		v_percentBuy = (View) findViewById(R.id.v_percentBuy);
+		v_percentSell = (View) findViewById(R.id.v_percentSell);
+
+		if (contentGetDetail != null) {
+			setDataDetail();
+			// -------- heightScreen ui detail
+			FragmentChangeActivity.heightScreen = li_detail.getHeight();
+			// -------- init pager
+			initPagerPreMium();
+
+		} else {
+			Toast.makeText(getApplicationContext(), "No data.", 0).show();
+		}
+	}
+
+	public void setDataDetailSelectIndustry() {
+		// init follow & chart iq
+		// img_follow = (ImageView) findViewById(R.id.img_follow);
+		setFollowSymbol();
+		// initChartIq();
+
 		try {
 			if (contentGetDetail != null) {
 				img_portfolio_add.setOnClickListener(new OnClickListener() {
@@ -813,58 +881,417 @@ public class UiWatchlistDetail extends FragmentActivity {
 					}
 				});
 
-				li_menu_premium.setVisibility(View.VISIBLE);
+				// ======= set data ========
+				tv_title_symbol.setText(FragmentChangeActivity.strSymbolSelect
+						+ "'s Detail");
+
 				// main
-				tv_symbol = (TextView) findViewById(R.id.tv_symbol);
-				tv_symbol_status = (TextView) findViewById(R.id.tv_symbol_status);
-				tv_last_trade = (TextView) findViewById(R.id.tv_last_trade);
-				tv_symbol_name_eng = (TextView) findViewById(R.id.tv_symbol_name_eng);
-				tv_change = (TextView) findViewById(R.id.tv_change);
-				tv_percenchange = (TextView) findViewById(R.id.tv_percenchange);
-				// img_updown = (ImageView) findViewById(R.id.img_updown);
+				String strSymbol_name = contentGetDetail
+						.getString("symbol_name");
+				String strOrderbookId = contentGetDetail
+						.getString("orderbook_id");
+				String strLast_trade = contentGetDetail.getString("last_trade");
+				String strSymbol_fullname_eng = contentGetDetail
+						.getString("symbol_fullname_eng");
+
+				String turnover_list_level = contentGetDetail
+						.getString("turnover_list_level");
+				String status = contentGetDetail.getString("status");
+				String status_xd = contentGetDetail.getString("status_xd");
+				strGetSymbolOrderBook_Id = strOrderbookId;
+
+				// tv_symbol.setText(Html.fromHtml(FunctionSymbol
+				// .checkStatusSymbol(strSymbol_name, turnover_list_level,
+				// status, status_xd)));
+
+				tv_symbol.setText(strSymbol_name);
+				tv_symbol_status.setText(FunctionFormatData
+						.checkStatusSymbolDetail(turnover_list_level, status,
+								status_xd));
+
+				tv_last_trade.setText(FunctionFormatData
+						.setFormatNumber(strLast_trade));
+				tv_symbol_name_eng.setText(strSymbol_fullname_eng);
+
+				// main color
+				String strColor = contentGetDetail.getString("change");
+
+				// ck ltrade change
+				String strLastTrade = contentGetDetail.getString("last_trade");
+				String strChange = contentGetDetail.getString("change");
+				String strPercentChange = contentGetDetail
+						.getString("percentChange");
+
+				tv_last_trade.setText(strLastTrade);
+				// tv_change.setText(strChange);
+				if ((strPercentChange == "0") || (strPercentChange == "")
+						|| (strPercentChange == "0.00")) {
+					tv_percenchange.setText("0.00");
+				} else {
+					// tv_percenchange.setText(strPercentChange + "%");
+					tv_change.setText(FunctionFormatData
+							.setFormatNumber(strChange));
+					tv_percenchange.setText(" ("
+							+ FunctionFormatData
+									.setFormatNumber(strPercentChange) + "%)");
+				}
+
+				// เซตสี change , lasttrade, percentchange เป็นสีตาม
+				// change โดยเอา change เทียบกับ 0
+				if (strChange != "") {
+					tv_last_trade.setTextColor(FunctionSetBg
+							.setColor(strChange));
+					tv_change.setTextColor(FunctionSetBg.setColor(strChange));
+					tv_percenchange.setTextColor(FunctionSetBg
+							.setColor(strChange));
+				}
+
 				// column 1
-				tv_volume = (TextView) findViewById(R.id.tv_volume);
-				tv_value = (TextView) findViewById(R.id.tv_value);
-				tv_open = (TextView) findViewById(R.id.tv_open);
-				tv_high = (TextView) findViewById(R.id.tv_high);
-				tv_low = (TextView) findViewById(R.id.tv_low);
+				String strVolume = contentGetDetail.getString("volume");
+				String strValue = contentGetDetail.getString("value");
+				String strOpen = contentGetDetail.getString("open");
+				String strHigh = contentGetDetail.getString("high");
+				String strLow = contentGetDetail.getString("low");
+				String strPrevClose = contentGetDetail.getString("prev_close");
+
+				tv_volume.setText(strVolume);
+				tv_value.setText(strValue);
+				// -- color write blue
+				tv_volume.setTextColor(FunctionSetBg
+						.setStrColorWriteDetailBlue(strVolume));
+				tv_value.setTextColor(FunctionSetBg
+						.setStrColorWriteDetailBlue(strValue));
+
+				tv_open.setText(FunctionFormatData.setFormatNumber(strOpen));
+
+				tv_high.setText(FunctionSetBg.setStrDetailList(strHigh));
+				tv_low.setText(FunctionSetBg.setStrDetailList(strLow));
+
+				if (strPrevClose != "") {
+					if (strHigh != "") {
+						if ((Float.parseFloat(strHigh.replaceAll(",", ""))) > Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_high.setTextColor(FunctionSetBg.arrColor[2]);
+						} else if ((Float.parseFloat(strHigh
+								.replaceAll(",", ""))) < Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_high.setTextColor(FunctionSetBg.arrColor[0]);
+						} else {
+							tv_high.setTextColor(FunctionSetBg.arrColor[1]);
+						}
+					}
+					if (strLow != "") {
+						if ((Float.parseFloat(strLow.replaceAll(",", ""))) > Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_low.setTextColor(FunctionSetBg.arrColor[2]);
+						} else if ((Float
+								.parseFloat(strLow.replaceAll(",", ""))) < Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_low.setTextColor(FunctionSetBg.arrColor[0]);
+						} else {
+							tv_low.setTextColor(FunctionSetBg.arrColor[1]);
+						}
+					}
+				}
+
 				// column 2
-				tv_prev_close = (TextView) findViewById(R.id.tv_prev_close);
-				tv_ceil = (TextView) findViewById(R.id.tv_ceil);
-				tv_floor = (TextView) findViewById(R.id.tv_floor);
-				tv_high52W = (TextView) findViewById(R.id.tv_high52W);
-				tv_low52W = (TextView) findViewById(R.id.tv_low52W);
-				// column 3
-				tv_roe = (TextView) findViewById(R.id.tv_roe);
-				tv_roa = (TextView) findViewById(R.id.tv_roa);
-				tv_peg = (TextView) findViewById(R.id.tv_peg);
-				tv_p_e = (TextView) findViewById(R.id.tv_p_e);
-				tv_p_bv = (TextView) findViewById(R.id.tv_p_bv);
+				String strCeiling = contentGetDetail.getString("ceiling");
+				String strFloor = contentGetDetail.getString("floor");
+				String strHigh52W = contentGetDetail.getString("high52W");
+				String strLow52W = contentGetDetail.getString("low52W");
+
+				String strPbv = contentGetDetail.getString("p_bv");
+				String strRoe = contentGetDetail.getString("roe");
+				String strRoa = contentGetDetail.getString("roa");
+				String strPe = contentGetDetail.getString("p_e");
+				String strPeg = contentGetDetail.getString("peg");
+
+				tv_prev_close.setText(FunctionFormatData
+						.setFormatNumber(strPrevClose));
+				tv_ceil.setText(FunctionFormatData.setFormatNumber(strCeiling));
+				tv_floor.setText(FunctionFormatData.setFormatNumber(strFloor));
+				tv_high52W.setText(FunctionFormatData
+						.setFormatNumber(strHigh52W));
+				tv_low52W
+						.setText(FunctionFormatData.setFormatNumber(strLow52W));
+
+				tv_roe.setText(FunctionSetBg.setStrDetailList(strRoe));
+				tv_roa.setText(FunctionSetBg.setStrDetailList(strRoa));
+
+				tv_peg.setText(FunctionSetBg.setStrDetailList(strPeg));
+				tv_p_e.setText(FunctionSetBg.setStrDetailList(strPe));
+				tv_p_bv.setText(FunctionSetBg.setStrDetailList(strPbv));
+
+				// -- color write blue
+				tv_ceil.setTextColor(FunctionSetBg
+						.setStrColorWriteDetailBlue(strCeiling));
+				tv_roe.setTextColor(FunctionSetBg
+						.setStrColorWriteDetailBlue(strRoe));
+				tv_roa.setTextColor(FunctionSetBg
+						.setStrColorWriteDetailBlue(strRoa));
+
+				tv_floor.setTextColor(FunctionSetBg
+						.setStrColorWriteDetailPink(strFloor));
+
+				if (SplashScreen.contentSymbol_Set != null) {
+					String strPe_set = SplashScreen.contentSymbol_Set
+							.getString("p_e");
+					String strPbv_set = SplashScreen.contentSymbol_Set
+							.getString("p_bv");
+					String strPeg_set = SplashScreen.contentSymbol_Set
+							.getString("peg");
+					String strHigh52W_set = SplashScreen.contentSymbol_Set
+							.getString("high52W");
+					String strLow52W_set = SplashScreen.contentSymbol_Set
+							.getString("low52W");
+
+					tv_p_e.setTextColor(FunctionSetBg.setStrCheckSet(strPe,
+							strPe_set));
+					tv_p_bv.setTextColor(FunctionSetBg.setStrCheckSet(strPbv,
+							strPbv_set));
+					tv_peg.setTextColor(FunctionSetBg.setStrCheckSet(strPeg,
+							strPeg_set));
+
+					// tv_peg.setTextColor((
+					// FunctionSetBg.setStrCheckSet(strHigh52W,
+					// strHigh52W_set)));
+					// tv_peg.setTextColor((
+					// FunctionSetBg.setStrCheckSet(strLow52W,
+					// strLow52W_set)));
+				}
+
+				if (strPrevClose != "") {
+					if (strHigh52W != "") {
+						if ((Float.parseFloat(strHigh52W.replaceAll(",", ""))) > Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_high52W.setTextColor(FunctionSetBg.arrColor[2]);
+						} else if ((Float.parseFloat(strHigh52W.replaceAll(",",
+								""))) < Float.parseFloat(strPrevClose
+								.replaceAll(",", ""))) {
+							tv_high52W.setTextColor(FunctionSetBg.arrColor[0]);
+						} else {
+							tv_high52W.setTextColor(FunctionSetBg.arrColor[1]);
+						}
+					}
+					if (strLow52W != "") {
+						if ((Float.parseFloat(strLow52W.replaceAll(",", ""))) > Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_low52W.setTextColor(FunctionSetBg.arrColor[2]);
+						} else if ((Float.parseFloat(strLow52W.replaceAll(",",
+								""))) < Float.parseFloat(strPrevClose
+								.replaceAll(",", ""))) {
+							tv_low52W.setTextColor(FunctionSetBg.arrColor[0]);
+						} else {
+							tv_low52W.setTextColor(FunctionSetBg.arrColor[1]);
+						}
+					}
+					if (strOpen != "") {
+						if ((Float.parseFloat(strOpen.replaceAll(",", ""))) > Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_open.setTextColor(FunctionSetBg.arrColor[2]);
+						} else if ((Float.parseFloat(strOpen
+								.replaceAll(",", ""))) < Float
+								.parseFloat(strPrevClose.replaceAll(",", ""))) {
+							tv_open.setTextColor(FunctionSetBg.arrColor[0]);
+						} else {
+							tv_open.setTextColor(FunctionSetBg.arrColor[1]);
+						}
+					}
+				}
 
 				// show hide
-				li_showbysell = (LinearLayout) findViewById(R.id.li_showbuysell);
-				li_show_hide = (LinearLayout) findViewById(R.id.li_show_hide);
-				li_buysell = (LinearLayout) findViewById(R.id.li_buysell);
-				img_show_hide = (ImageView) findViewById(R.id.img_show_hide);
-				tv_average_buy = (TextView) findViewById(R.id.tv_average_buy);
-				tv_max_buy_price_volume = (TextView) findViewById(R.id.tv_max_buy_price_volume);
-				tv_open1_volume = (TextView) findViewById(R.id.tv_open1_volume);
-				tv_buy_volume = (TextView) findViewById(R.id.tv_buy_volume);
+				// final boolean ckHideShow = false;
+				String strSymbN = contentGetDetail.getString("symbol_name");
+				String strSymbDot = strSymbN.substring(1, 2);
+				if (strSymbDot.equals(".")) {
+					li_showbysell.setVisibility(View.GONE);
+				} else {
+					li_showbysell.setVisibility(View.VISIBLE);
+					li_show_hide.setVisibility(View.GONE);
+					li_buysell.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							if (ckHideShowBuySell) {
+								ckHideShowBuySell = false;
+								li_show_hide.setVisibility(View.GONE);
+								img_show_hide.setVisibility(View.GONE);
+								img_show_hide
+										.setBackgroundResource(R.drawable.icon_dopdowe_down);
+								// showDataDetail();
+							} else {
+								ckHideShowBuySell = true;
+								li_show_hide.setVisibility(View.VISIBLE);
+								img_show_hide.setVisibility(View.VISIBLE);
+								img_show_hide
+										.setBackgroundResource(R.drawable.icon_dopdowe_up);
+								// showDataDetail();
+							}
+						}
+					});
 
-				tv_average_sell = (TextView) findViewById(R.id.tv_average_sell);
-				tv_max_sell_price_volume = (TextView) findViewById(R.id.tv_max_sell_price_volume);
-				tv_close_volume = (TextView) findViewById(R.id.tv_close_volume);
-				tv_sell_volume = (TextView) findViewById(R.id.tv_sell_volume);
+					img_show_hide.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							if (ckHideShowBuySell) {
+								ckHideShowBuySell = false;
+								li_show_hide.setVisibility(View.GONE);
+								img_show_hide.setVisibility(View.GONE);
+								img_show_hide
+										.setBackgroundResource(R.drawable.icon_dopdowe_down);
+								// showDataDetail();
+							} else {
+								ckHideShowBuySell = true;
+								li_show_hide.setVisibility(View.VISIBLE);
+								img_show_hide.setVisibility(View.VISIBLE);
+								img_show_hide
+										.setBackgroundResource(R.drawable.icon_dopdowe_up);
+								// showDataDetail();
+							}
+						}
+					});
 
-				tv_percentBuy = (TextView) findViewById(R.id.tv_percentBuy);
-				tv_percentSell = (TextView) findViewById(R.id.tv_percentSell);
-				v_percentBuy = (View) findViewById(R.id.v_percentBuy);
-				v_percentSell = (View) findViewById(R.id.v_percentSell);
+					String strAverage_buy = contentGetDetail
+							.getString("average_buy");
+					String strMax_buy_price_volume = contentGetDetail
+							.getString("max_buy_price_volume_str");
+					String strMax_buy_price = contentGetDetail
+							.getString("max_buy_price");
+					String strOpen1_volume = contentGetDetail
+							.getString("open1_volume");
+					String strOpen1 = contentGetDetail.getString("open1");
+					String strBuy_volume = contentGetDetail
+							.getString("buy_volume_str");
+
+					String strAverage_sell = contentGetDetail
+							.getString("average_sell");
+					String strMax_sell_price_volume = contentGetDetail
+							.getString("max_sell_price_volume_str");
+					String strMax_sell_price = contentGetDetail
+							.getString("max_sell_price");
+					String strClose_volume = contentGetDetail
+							.getString("close_volume");
+					String strSell_volume = contentGetDetail
+							.getString("sell_volume_str");
+
+					String strPercentBuy = contentGetDetail
+							.getString("percentBuy");
+					String strPercentSell = contentGetDetail
+							.getString("percentSell");
+
+					tv_average_buy.setText(FunctionFormatData
+							.checkNull(strAverage_buy));
+					tv_average_buy.setTextColor(FunctionSetBg
+							.setStrColorWriteDetailSuccess(strAverage_buy));
+					tv_max_buy_price_volume.setText(FunctionFormatData
+							.setFormatNumberEtc(strMax_buy_price_volume)
+							+ ""
+							+ FunctionFormatData.setBracket(strMax_buy_price));
+					tv_max_buy_price_volume.setTextColor(FunctionSetBg
+							.setStrColorWriteDetailSuccess(strMax_buy_price));
+					tv_open1_volume.setText(FunctionFormatData
+							.setFormatNumberEtc(strOpen1_volume)
+							+ ""
+							+ FunctionFormatData.setBracket(strOpen1));
+					tv_open1_volume.setTextColor(FunctionSetBg
+							.setStrColorWriteDetailSuccess(strOpen1));
+					tv_buy_volume.setText(FunctionFormatData
+							.setFormatNumber0(strBuy_volume));
+					// tv_buy_volume
+					// .setTextColor(getResources()
+					// .getColor(
+					// FunctionSetBg
+					// .setStrColorWriteDetailBlue(strBuy_volume)));
+
+					tv_average_sell.setText(FunctionFormatData
+							.checkNull(strAverage_sell));
+					tv_average_sell.setTextColor(FunctionSetBg
+							.setStrColorWriteDetailDanger(strAverage_sell));
+					tv_max_sell_price_volume.setText(FunctionFormatData
+							.setFormatNumberEtc(strMax_sell_price_volume)
+							+ ""
+							+ FunctionFormatData.setBracket(strMax_sell_price));
+					tv_max_sell_price_volume
+							.setTextColor(FunctionSetBg
+									.setStrColorWriteDetailDanger(strMax_sell_price_volume));
+					tv_close_volume.setText(FunctionSetBg
+							.setStrDetailList(strClose_volume));
+					tv_close_volume.setTextColor(FunctionSetBg
+							.setStrColorWriteDetailDanger(strClose_volume));
+
+					tv_sell_volume.setText(FunctionFormatData
+							.setFormatNumberEtc(strSell_volume));
+					tv_sell_volume.setTextColor(FunctionSetBg
+							.setStrColorWriteDetailBlue(strSell_volume));
+
+					// percentBuy , sell
+					tv_percentBuy.setText("BUY ("
+							+ FunctionFormatData.setFormatNumber(strPercentBuy)
+							+ "%)");
+					tv_percentSell.setText("("
+							+ FunctionFormatData
+									.setFormatNumber(strPercentSell)
+							+ "%) SELL");
+
+					float vBuy = Float.parseFloat(strPercentBuy.replaceAll(",",
+							""));
+					float vSell = Float.parseFloat(strPercentSell.replaceAll(
+							",", ""));
+					LinearLayout.LayoutParams loparams = (LinearLayout.LayoutParams) v_percentBuy
+							.getLayoutParams();
+					loparams.weight = vBuy;
+					v_percentBuy.setLayoutParams(loparams);
+
+					LinearLayout.LayoutParams loparams2 = (LinearLayout.LayoutParams) v_percentSell
+							.getLayoutParams();
+					loparams2.weight = vSell;
+					v_percentSell.setLayoutParams(loparams2);
+				}
+
+				// ------ connect socket -----------------
+				if (FragmentChangeActivity.strGetSymbolOrderBook_Id != "") {
+					if (!(SplashScreen.contentGetUserById.getString("package")
+							.equals("free"))) {
+						connectWebSocket();
+					}
+				}
+
+			} else {
+				Toast.makeText(getApplicationContext(), "No data.", 0).show();
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// dialogLoading.dismiss();
+	}
+
+	// ************* handler data detail ***************
+	public static Handler handlerSetDataDetail = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+
+		}
+	};
+
+	public void setDataDetail() {
+		// init follow & chart iq
+		// img_follow = (ImageView) findViewById(R.id.img_follow);
+		setFollowSymbol();
+		// initChartIq();
+
+		try {
+			if (contentGetDetail != null) {
+				img_portfolio_add.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						dialogDetailAddPortfolio.show();
+					}
+				});
 
 				// ======= set data ========
-				((TextView) findViewById(R.id.tv_title_symbol))
-						.setText(FragmentChangeActivity.strSymbolSelect
-								+ "'s Detail");
+				tv_title_symbol.setText(FragmentChangeActivity.strSymbolSelect
+						+ "'s Detail");
+
 				// main
 				String strSymbol_name = contentGetDetail
 						.getString("symbol_name");
@@ -1259,46 +1686,6 @@ public class UiWatchlistDetail extends FragmentActivity {
 							.getLayoutParams();
 					loparams2.weight = vSell;
 					v_percentSell.setLayoutParams(loparams2);
-
-					// ------ update symbol -------
-					// if (SplashScreen.contentGetUserById != null) {
-					// if (!(SplashScreen.contentGetUserById
-					// .getString("package").equals("free"))) {
-					//
-					// // ---- set status connect
-					// ImageView img_connect_c = (ImageView)
-					// findViewById(R.id.img_connect_c);
-					// img_connect_c
-					// .setBackgroundResource(R.drawable.icon_connect_c_green);
-					//
-					// startUpdateSymbol();
-					// }
-					// }
-
-					// --- add view tv
-					// row_tv_last_trade.add(tv_last_trade);
-					// row_tv_change.add(tv_change);
-					// row_tv_percent_change.add(tv_percenchange);
-					// row_tv_high.add(tv_high);
-					// row_tv_low.add(tv_low);
-					// row_tv_volume.add(tv_volume);
-					// row_tv_value.add(tv_value);
-					// row_tv_buy_volume.add(tv_buy_volume);
-					// row_tv_buy_value.add(tv_buy_);
-					// row_tv_sell_volume.add(tv_sell_volume);
-					// row_tv_sell_value.add(tv_);
-					// row_tv_avg_buy.add(tv_average_buy);
-					// row_tv_avg_sell.add(tv_average_sell);
-					// row_tv_max_buy_price.add(tv_);
-					// row_tv_max_buy_price_volume.add(tv_max_buy_price_volume);
-					// row_tv_max_sell_price.add(tv_);
-					// row_tv_max_sell_price_volume.add(tv_max_sell_price_volume);
-					// row_tv_open_price.add(tv_open);
-					// row_tv_open1_price.add(tv_);
-					// row_tv_open1_price_volume.add(tv_open1_volume);
-					// row_tv_open2_price.add(tv_);
-					// row_tv_open2_price_volume.add(tv_);
-					// row_tv_close_volume.add(tv_close_volume);
 				}
 
 				// ------ connect socket -----------------
@@ -1308,11 +1695,6 @@ public class UiWatchlistDetail extends FragmentActivity {
 						connectWebSocket();
 					}
 				}
-
-				// -------- heightScreen ui detail
-				FragmentChangeActivity.heightScreen = li_detail.getHeight();
-				// -------- init pager
-				initPagerPreMium();
 
 			} else {
 				Toast.makeText(getApplicationContext(), "No data.", 0).show();
@@ -1778,20 +2160,20 @@ public class UiWatchlistDetail extends FragmentActivity {
 				PagerWatchListDetailChart_New1.class.getName()));
 		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
 				PagerWatchListDetailIndustry.class.getName()));
-		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
-				PagerWatchListDetailFundamental.class.getName()));
-		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
-				PagerWatchListDetailNews.class.getName()));
+		// fragmentMain.add(Fragment.instantiate(getApplicationContext(),
+		// PagerWatchListDetailFundamental.class.getName()));
+		// fragmentMain.add(Fragment.instantiate(getApplicationContext(),
+		// PagerWatchListDetailNews.class.getName()));
 		fragmentMain.add(Fragment.instantiate(getApplicationContext(),
 				PagerWatchListDetailHit.class.getName()));
-		
+
 		// creating adapter and linking to view pager
 		this.mPagerAdapterMain = new PagerAdapter(
 				super.getSupportFragmentManager(), fragmentMain);
 		mPagerMain = (ViewPager) findViewById(R.id.vp_pager);
 
 		mPagerMain.setAdapter(this.mPagerAdapterMain);
-		
+
 		mPagerMain.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageSelected(int arg0) {
@@ -1806,7 +2188,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-			}			
+			}
 		});
 
 		initTabPager(); // init tab pager
@@ -1837,6 +2219,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 			tv_premium_chart.setTextColor(getResources().getColor(
 					R.color.bg_default));
 
+			// showDataDetail();
 			hideDataDetail();
 		} else if (numtab == 2) {
 			tv_premium_industry
@@ -1844,21 +2227,22 @@ public class UiWatchlistDetail extends FragmentActivity {
 			tv_premium_industry.setTextColor(getResources().getColor(
 					R.color.bg_default));
 
-			hideDataDetail();
+			showDataDetail();
+			// hideDataDetail();
 		} else if (numtab == 3) {
-			tv_premium_fundamental
-					.setBackgroundResource(R.drawable.border_button_activecenter);
-			tv_premium_fundamental.setTextColor(getResources().getColor(
-					R.color.bg_default));
-
-			hideDataDetail();
+			// tv_premium_fundamental
+			// .setBackgroundResource(R.drawable.border_button_activecenter);
+			// tv_premium_fundamental.setTextColor(getResources().getColor(
+			// R.color.bg_default));
+			//
+			// hideDataDetail();
 		} else if (numtab == 4) {
-			tv_premium_news
-					.setBackgroundResource(R.drawable.border_button_activecenter);
-			tv_premium_news.setTextColor(getResources().getColor(
-					R.color.bg_default));
-
-			hideDataDetail();
+			// tv_premium_news
+			// .setBackgroundResource(R.drawable.border_button_activecenter);
+			// tv_premium_news.setTextColor(getResources().getColor(
+			// R.color.bg_default));
+			//
+			// hideDataDetail();
 		} else if (numtab == 5) {
 			tv_premium_hit
 					.setBackgroundResource(R.drawable.border_button_activeright);
@@ -2135,10 +2519,10 @@ public class UiWatchlistDetail extends FragmentActivity {
 		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			// แนวนอน
 			Log.v("onConfigurationChan >> ", "แนวนอน");
-			
+
 			orientation_landscape = true;
 
-//			selectTabPager(1);
+			// selectTabPager(1);
 			mPagerMain.setCurrentItem(0);
 
 			li_vertical.setVisibility(View.GONE);
@@ -2157,7 +2541,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 
 			orientation_landscape = false;
 
-//			selectTabPager(1);
+			// selectTabPager(1);
 			mPagerMain.setCurrentItem(0);
 
 			li_vertical.setVisibility(View.VISIBLE);
@@ -2172,7 +2556,7 @@ public class UiWatchlistDetail extends FragmentActivity {
 			hideDataDetail();
 		}
 	}
-	
+
 	protected void switchFragment(PagerWatchList fragment) {
 		if (getApplicationContext() == null)
 			return;

@@ -296,19 +296,16 @@
             <!-- android:background="@color/bg_default" -->
             <!-- android:padding="@dimen/padding_row" /> -->
 
-
             <!-- <ScrollView -->
             <!-- android:id="@+id/sv_search_symbol" -->
             <!-- android:layout_width="match_parent" -->
             <!-- android:layout_height="wrap_content" -->
             <!-- android:visibility="gone" > -->
 
-
             <!-- <LinearLayout -->
             <!-- android:layout_width="match_parent" -->
             <!-- android:layout_height="match_parent" -->
             <!-- android:orientation="vertical" > -->
-
 
             <!-- <ListView -->
             <!-- android:id="@+id/list_search_symbol" -->

@@ -326,7 +326,7 @@ public class FragmentChangeActivity extends FragmentActivity implements
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 		heightScreen = displaymetrics.heightPixels;
-		widthScreen = displaymetrics.widthPixels;
+		widthScreen = displaymetrics.widthPixels; 
 
 		contentGetSymbol = null;
 		if (SplashScreen.userModel.user_id != "") {

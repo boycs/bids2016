@@ -296,7 +296,6 @@ public class PagerWatchListDetailIndustry extends Fragment{
 			if (connectionError == false) {
 				if (jsonIndustrySetSectorSelect != null) {
 					try {
-
 						UiWatchlistDetail.industryContentGetWatchlistNewsBySymbol = jsonIndustrySetSectorSelect
 								.getJSONArray("dataAll");
 						initSetData();
@@ -364,6 +363,10 @@ public class PagerWatchListDetailIndustry extends Fragment{
 								// switchFragment(new PagerWatchlistDetail());
 
 								FragmentChangeActivity.strSymbolSelect = symbol_name;
+								
+//								LoadSymbolDetail ld = new LoadSymbolDetail();
+//								ld.loadDataDetail();
+								
 //								PagerWatchListDetailChart.li_view_chart
 //										.removeView(FragmentChangeActivity.wv_chartiq);
 								
@@ -387,6 +390,10 @@ public class PagerWatchListDetailIndustry extends Fragment{
 								// switchFragment(new PagerWatchlistDetail());
 
 								FragmentChangeActivity.strSymbolSelect = symbol_name;
+								
+//								LoadSymbolDetail ld = new LoadSymbolDetail();
+//								ld.loadDataDetail();
+								
 //								PagerWatchListDetailChart.li_view_chart
 //										.removeView(FragmentChangeActivity.wv_chartiq);
 								

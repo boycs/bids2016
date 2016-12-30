@@ -57,7 +57,7 @@ public class UiWatchListDetailNewsSocialSelect extends Activity {
 		// view data select
 		WebView webNews = (WebView) findViewById(R.id.webNews);
 
-		String url = "" + PagerWatchListDetailNews.linkNewsSelect;
+		String url = "" + UiWatchlistDetailNews.linkNewsSelect;
 
 		// webNews.getSettings().setLoadWithOverviewMode(true);
 		// webNews.getSettings().setUseWideViewPort(true);

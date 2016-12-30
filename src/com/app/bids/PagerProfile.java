@@ -1399,7 +1399,7 @@ public class PagerProfile extends Fragment {
 		@Override
 		protected Void doInBackground(Void... params) {
 
-			String url = "http://www.bidschart.com/service/updateStatusUser";
+			String url = SplashScreen.url_bidschart+"/service/updateStatusUser";
 
 			String json = "";
 			InputStream inputStream = null;

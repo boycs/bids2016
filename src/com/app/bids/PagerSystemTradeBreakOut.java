@@ -201,14 +201,9 @@ public class PagerSystemTradeBreakOut extends Fragment {
 		try {
 			if (FragmentChangeActivity.contentGetTxtSlidingMarquee != null) {
 				// status market
-				if ((FragmentChangeActivity.jsonTxtSlidingMarquee
-						.getString("market")).equals("close")) {
-					img_status_m
-							.setBackgroundResource(R.drawable.icon_status_m_red);
-				} else {
-					img_status_m
-							.setBackgroundResource(R.drawable.icon_status_m_green);
-				}
+				img_status_m.setBackgroundResource(FunctionSetBg
+						.setMarketStatus(FragmentChangeActivity.jsonTxtSlidingMarquee
+								.getString("market")));
 
 				for (int i = 0; i < FragmentChangeActivity.contentGetTxtSlidingMarquee
 						.length(); i++) {

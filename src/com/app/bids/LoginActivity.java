@@ -21,6 +21,7 @@ import com.app.bids.R;
 import com.app.bids.LoginRegister.sendAdd;
 import com.app.bids.LoginSetalert.sendLogin;
 import com.app.bids.PagerProfile.loadData;
+import com.app.bids.PagerProfile.sendEditStatus;
 import com.app.model.LoginModel.UserModel;
 import com.app.model.login.FacebookLoginActivity;
 import com.app.model.login.TwitterLoginActivity;
@@ -50,11 +51,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -75,7 +78,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private ImageView twitterIcon;
 	private ImageView plusIcon;
 
-	private TextView tv_forget;
+	private TextView tv_forget_pss;
 	private TextView tv_register;
 
 	private Button bt_login_email;
@@ -84,6 +87,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	private String str_email, str_password;
 
+	static Dialog dialogLoading;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,6 +96,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.login_main);
 		
 		SplashScreen.userModel = new UserModel();
+		
+		dialogLoading = new Dialog(LoginActivity.this);
+		dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialogLoading.getWindow().setBackgroundDrawable(
+				new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		dialogLoading.setContentView(R.layout.progress_bar);
+		dialogLoading.setCancelable(false);
+		dialogLoading.setCanceledOnTouchOutside(false);
 
 		facebookIcon = (ImageView) findViewById(R.id.facebook_icon);
 		twitterIcon = (ImageView) findViewById(R.id.twitter_icon);
@@ -99,7 +112,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		twitterIcon.setOnClickListener(this);
 		plusIcon.setOnClickListener(this);
 
-		tv_forget = (TextView) findViewById(R.id.tv_forget);
+		tv_forget_pss = (TextView) findViewById(R.id.tv_forget_pss);
 		tv_register = (TextView) findViewById(R.id.tv_register);
 		bt_login_email = (Button) findViewById(R.id.bt_login_email);
 		cb_remember = (CheckBox) findViewById(R.id.cb_remember);
@@ -162,6 +175,15 @@ public class LoginActivity extends Activity implements OnClickListener {
 			}
 		});
 
+		// forget password
+		dialogForgetPassword();
+		tv_forget_pss.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alertDialogForget.show();
+			}
+		});
+		
 		// GET DEVICE ID => 53e004ada30ad7d2
 		SplashScreen.lg_device_id = Secure.getString(getContentResolver(),
 				Secure.ANDROID_ID);
@@ -199,6 +221,180 @@ public class LoginActivity extends Activity implements OnClickListener {
 		}
 
 	}
+	
+
+	// ------- dialog forget pss ----------
+	public static String strInputSendForget;
+	public static AlertDialog alertDialogForget;
+
+	private void dialogForgetPassword() {
+		LayoutInflater layoutInflater = LayoutInflater.from(this);
+		View dlView = layoutInflater.inflate(R.layout.dialog_login_forget_pss, null);
+		final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				this);
+		alertDialogBuilder.setView(dlView);
+		
+		final EditText dl_et_input = (EditText) dlView
+				.findViewById(R.id.dl_et_input);
+
+		// ----- send ---------
+		((TextView) dlView.findViewById(R.id.dl_tv_send))
+				.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						strInputSendForget = dl_et_input.getText().toString()
+								.trim();
+						if (!(strInputSendForget.equals(""))) {
+							sendForgetPassword();
+							alertDialogForget.dismiss();
+						} else {
+							Toast.makeText(getApplicationContext(), "Input Email", 0).show();
+						}
+					}
+				});
+
+		((TextView) dlView.findViewById(R.id.dl_tv_cancle))
+				.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						alertDialogForget.dismiss();
+					}
+				});
+
+		// create an alert dialog
+		alertDialogForget = alertDialogBuilder.create();
+
+		alertDialogForget.getWindow().setBackgroundDrawable(
+				new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+		WindowManager.LayoutParams wmlp = alertDialogForget.getWindow()
+				.getAttributes();
+
+//		wmlp.gravity = Gravity.TOP | Gravity.RIGHT;
+//		// wmlp.x = 100; // x position
+//		wmlp.y = 100; // y position
+	}
+
+	// ============== forget pss ================
+	public static String resultSendForget;
+	private void sendForgetPassword() {
+		dialogLoading.show();
+		sendForgetPss resp = new sendForgetPss();
+		resp.execute();
+	}
+
+	public class sendForgetPss extends AsyncTask<Void, Void, Void> {
+		boolean connectionError = false;
+
+		String temp = "";
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			String url = SplashScreen.url_bidschart+"/service/v2/forgetPassword";
+
+			String json = "";
+			InputStream inputStream = null;
+//			String result = "";
+
+			try {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(url);
+
+				// 3. build jsonObject
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.accumulate("email", strInputSendForget);
+
+				// 4. convert JSONObject to JSON to String
+				json = jsonObject.toString();
+
+				// 5. set json to StringEntity
+				StringEntity se = new StringEntity(json, "UTF-8");
+
+				// 6. set httpPost Entity
+				httppost.setEntity(se);
+
+				// 7. Set some headers to inform server about the type of the
+				// content
+				httppost.setHeader("Accept", "application/json");
+				httppost.setHeader("Content-type", "application/json");
+
+				// 8. Execute POST request to the given URL
+				HttpResponse httpResponse = httpclient.execute(httppost);
+
+				// 9. receive response as inputStream
+				inputStream = httpResponse.getEntity().getContent();
+
+				// 10. convert inputstream to string
+				if (inputStream != null)
+					resultSendForget = AFunctionOther
+							.convertInputStreamToString(inputStream);
+				else
+					resultSendForget = "Did not work!";
+
+//				LOG.V("RESULT FORGOT STATUS : ", "" + RESULTSENDFORGET);
+				// {"status":"ok","message":"\u0e01\u0e23\u0e38\u0e13\u0e32\u0e15\u0e23\u0e27\u0e08\u0e2a\u0e2d\u0e1a\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e17\u0e35\u0e48 email:narongritnl@hotmail.com","dataAll":true}
+
+
+			} catch (IOException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (RuntimeException e) {
+				connectionError = true;
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			dialogLoading.dismiss();
+//			resultSendForget
+			
+			Log.v("connection update Error", "" + connectionError);
+			Log.v("result forgot status : ", "" + resultSendForget);
+			if (connectionError == false) {
+				try {
+					JSONObject jsoForget = new JSONObject(resultSendForget);
+					boolean dataAll = jsoForget.getBoolean("dataAll");
+					if (dataAll){
+						AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
+						alertDialog.setTitle("BIDs");
+						alertDialog.setMessage("กรุณาตรวจสอบข้อมูลได้ที่\nemail:"+strInputSendForget);
+						alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+						    new DialogInterface.OnClickListener() {
+						        public void onClick(DialogInterface dialog, int which) {
+						            dialog.dismiss();
+						        }
+						    });
+						alertDialog.show();
+					} else {
+						AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
+						alertDialog.setTitle("BIDs");
+						alertDialog.setMessage("email ไม่มีในฐานข้อมูล กรุณาสมัครสมาชิก");
+						alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+						    new DialogInterface.OnClickListener() {
+						        public void onClick(DialogInterface dialog, int which) {
+						            dialog.dismiss();
+						        }
+						    });
+						alertDialog.show();
+					}
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
 
 	private static final String TWITTER_KEY = "qweYTYiqer5tTeqiq1";
 	private static final String TWITTER_SECRET = "wuquUUwy1626661719qw8wwWQHEJQ";
@@ -230,20 +426,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	// ============ send login =========
-	static Dialog dialogLoading;
-
 	String resultLoginMail = "";
 	JSONObject jsoLoginMailDataAll = null;
 
 	private void sendLoginMail() {
-		dialogLoading = new Dialog(LoginActivity.this);
-		dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialogLoading.getWindow().setBackgroundDrawable(
-				new ColorDrawable(android.graphics.Color.TRANSPARENT));
-		dialogLoading.setContentView(R.layout.progress_bar);
-		dialogLoading.setCancelable(false);
-		dialogLoading.setCanceledOnTouchOutside(false);
-
 		sendLogin resp = new sendLogin();
 		resp.execute();
 	}

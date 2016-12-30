@@ -75,7 +75,7 @@ public class UiWatchListDetailNewsSelect extends Activity {
 			// ======= Ui News ========
 			String url_GetArticleById = SplashScreen.url_bidschart
 					+ "/service/getArticleById?article_id="
-					+ PagerWatchListDetailNews.strArticleIdSelect + "&user_id="
+					+ UiWatchlistDetailNews.strArticleIdSelect + "&user_id="
 					+ SplashScreen.userModel.user_id;
 
 			try {
@@ -155,7 +155,7 @@ public class UiWatchListDetailNewsSelect extends Activity {
 						try {
 							article_id = ""
 									+ contentGetArticleById.getString("id");
-							PagerWatchListDetailNews.strArticleIdSelect = contentGetArticleById
+							UiWatchlistDetailNews.strArticleIdSelect = contentGetArticleById
 									.getString("id");
 
 							// like
@@ -291,7 +291,7 @@ public class UiWatchListDetailNewsSelect extends Activity {
 			try {
 				url_GetArticleById = SplashScreen.url_bidschart
 						+ "/service/getArticleById?article_id="
-						+ PagerWatchListDetailNews.strArticleIdSelect
+						+ UiWatchlistDetailNews.strArticleIdSelect
 						+ "&user_id=" + SplashScreen.userModel.user_id;
 
 				jsonGetArticleById = ReadJson

@@ -27,12 +27,15 @@ import com.facebook.model.GraphUser;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +50,9 @@ import android.widget.Toast;
 public class SplashScreen extends Activity {
 
 	private Handler myHandler;
+	Runnable runnable;
+	long delay_time;
+	long time = 3000L;
 
 	public static JSONObject contentSymbol_Set = null;
 
@@ -83,24 +89,24 @@ public class SplashScreen extends Activity {
 	public static String url_bidschart_fund = "http://fund.bidschart.com/imagesV2/blg/";
 	public static String url_websocket = "ws1://bidschart.com:4504";
 	public static String url_websocket2 = "ws1://bidschart.com:8080";
-	
-	//----------- font --------
+
+	// ----------- font --------
 	public static Typeface fontSliding;
 	public static Typeface fontDefault;
-	
-	//----------- MPChart ----
+
+	// ----------- MPChart ----
 	public static ArrayList<Integer> mpChartArrColor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
-//		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		requestWindowFeature(Window.FEATURE_NO_TITLE); 
+
+		// this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.splash_screen);
-		
+
 		// set sliding
 		fontSliding = Typeface.createFromAsset(getApplicationContext()
 				.getAssets(), "BPdotsUnicasePlus.otf");
@@ -108,7 +114,6 @@ public class SplashScreen extends Activity {
 		// set font
 		fontDefault = Typeface.createFromAsset(getApplicationContext()
 				.getAssets(), "SF-UI-Display-Regular.otf");
-		
 
 		// --------- mpchart color ------
 		mpChartArrColor = new ArrayList<Integer>();
@@ -122,37 +127,107 @@ public class SplashScreen extends Activity {
 		mpChartArrColor.add(Color.rgb(235, 57, 117));
 		mpChartArrColor.add(Color.rgb(238, 152, 49));
 		mpChartArrColor.add(Color.rgb(238, 200, 49));
-		
+
 		// ID : email = 1, facebook = 2, googleplus = 3, twitter = 4
 		myDb = new LinnaeusDatabase(this);
 		myDb.getWritableDatabase(); // First method
 		arrLogin = SplashScreen.myDb.SelectDataLogin();
 
-		Handler myHandler = new Handler();
-		myHandler.postDelayed(new Runnable() {
-			public void run() {
+		myHandler = new Handler();
+		initLogin();
 
-				if (SplashScreen.arrLogin != null) {
-					if ((SplashScreen.arrLogin[0][2]).equals("Y")) { // email
-						sendLoginMail();
-					} else if ((SplashScreen.arrLogin[1][2]).equals("Y")) { // facebook
-						Intent it = new Intent(getApplicationContext(),
-								FacebookLoginActivity.class);
-						startActivityForResult(it,
-								SplashScreen.TWITTER_LOGIN_REQUEST_CODE);
-						finish();
-						// } else if ((SplashScreen.arrLogin[2][2]).equals("Y"))
-						// { // googleplus
-						// } else if ((SplashScreen.arrLogin[3][2]).equals("Y"))
-						// { // twitter
-					} else {
-						startActivity(new Intent(getApplicationContext(),
-								LoginActivity.class));
-						finish();
+		// myHandler.postDelayed(new Runnable() {
+		// public void run() {
+		// if (SplashScreen.arrLogin != null) {
+		// if ((SplashScreen.arrLogin[0][2]).equals("Y")) { // email
+		// sendLoginMail();
+		// } else if ((SplashScreen.arrLogin[1][2]).equals("Y")) { // facebook
+		// Intent it = new Intent(getApplicationContext(),
+		// FacebookLoginActivity.class);
+		// startActivityForResult(it,
+		// SplashScreen.TWITTER_LOGIN_REQUEST_CODE);
+		// finish();
+		// // } else if ((SplashScreen.arrLogin[2][2]).equals("Y"))
+		// // { // googleplus
+		// // } else if ((SplashScreen.arrLogin[3][2]).equals("Y"))
+		// // { // twitter
+		// } else {
+		// startActivity(new Intent(getApplicationContext(),
+		// LoginActivity.class));
+		// finish();
+		// }
+		// }
+		// }
+		// }, 2000);
+	}
+
+	// check connect network
+	public void initLogin() {
+		if (isNetworkAvailable()) {
+			runnable = new Runnable() {
+				public void run() {
+					if (SplashScreen.arrLogin != null) {
+						if ((SplashScreen.arrLogin[0][2]).equals("Y")) { // email
+							sendLoginMail();
+						} else if ((SplashScreen.arrLogin[1][2]).equals("Y")) { // facebook
+							Intent it = new Intent(getApplicationContext(),
+									FacebookLoginActivity.class);
+							startActivityForResult(it,
+									SplashScreen.TWITTER_LOGIN_REQUEST_CODE);
+							finish();
+						} else {
+							startActivity(new Intent(getApplicationContext(),
+									LoginActivity.class));
+							finish();
+						}
 					}
 				}
-			}
-		}, 2000);
+			};
+		} else {
+			final AlertDialog.Builder alertbox = new AlertDialog.Builder(
+					SplashScreen.this);
+			alertbox.setTitle("  Bids");
+			alertbox.setMessage(" internet is not available.");
+			alertbox.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							initLogin();
+						}
+					});
+			alertbox.setNegativeButton("Cancel",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							finish();
+						}
+					});
+			alertbox.show();
+		}
+	}
+
+	// check connect network
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager
+				.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+
+	// http://www.akexorcist.com/2013/05/android-code-splash-screen.html
+	public void onResume() {
+		super.onResume();
+		delay_time = time;
+		myHandler.postDelayed(runnable, delay_time);
+		time = System.currentTimeMillis();
+	}
+
+	public void onPause() {
+		super.onPause();
+		myHandler.removeCallbacks(runnable);
+		time = delay_time - (System.currentTimeMillis() - time);
 	}
 
 	// ============ send login =========
@@ -162,13 +237,13 @@ public class SplashScreen extends Activity {
 	JSONObject jsoLoginMailDataAll = null;
 
 	private void sendLoginMail() {
-//		dialogLoading = new Dialog(SplashScreen.this);
-//		dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//		dialogLoading.getWindow().setBackgroundDrawable(
-//				new ColorDrawable(android.graphics.Color.TRANSPARENT));
-//		dialogLoading.setContentView(R.layout.progress_bar);
-//		dialogLoading.setCancelable(false);
-//		dialogLoading.setCanceledOnTouchOutside(false);
+		// dialogLoading = new Dialog(SplashScreen.this);
+		// dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// dialogLoading.getWindow().setBackgroundDrawable(
+		// new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		// dialogLoading.setContentView(R.layout.progress_bar);
+		// dialogLoading.setCancelable(false);
+		// dialogLoading.setCanceledOnTouchOutside(false);
 
 		sendLogin resp = new sendLogin();
 		resp.execute();
@@ -184,7 +259,7 @@ public class SplashScreen extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-//			dialogLoading.show();
+			// dialogLoading.show();
 		}
 
 		@Override
@@ -231,7 +306,8 @@ public class SplashScreen extends Activity {
 
 				// 10. convert inputstream to string
 				if (inputStream != null)
-					resultLoginMail = AFunctionOther.convertInputStreamToString(inputStream);
+					resultLoginMail = AFunctionOther
+							.convertInputStreamToString(inputStream);
 				else
 					resultLoginMail = "Did not work!";
 
@@ -272,19 +348,19 @@ public class SplashScreen extends Activity {
 						startActivity(new Intent(getApplicationContext(),
 								LoginActivity.class));
 						finish();
-						
+
 					}
 				} catch (JSONException e1) {
 					e1.printStackTrace();
 				}
 			} else {
-//				dialogLoading.dismiss();
+				// dialogLoading.dismiss();
 				startActivity(new Intent(getApplicationContext(),
 						LoginActivity.class));
 				finish();
-				
+
 			}
-//			dialogLoading.dismiss();
+			// dialogLoading.dismiss();
 		}
 	}
 

@@ -3,13 +3,15 @@ package com.app.bids;
 import android.R.string;
 import android.graphics.Color;
 import android.util.Log;
+
 import com.app.bids.R;
 
 public class FunctionSetBg {
 
 	// set color main
 	public static int[] arrColor = { R.color.c_danger, R.color.c_warning,
-			R.color.c_success, R.color.c_content, R.color.c_blue, R.color.c_title };
+			R.color.c_success, R.color.c_content, R.color.c_blue,
+			R.color.c_title };
 
 	public static int setColor(String strColor) {
 		int c = arrColor[3];
@@ -82,18 +84,18 @@ public class FunctionSetBg {
 		}
 		return c;
 	}
-	
+
 	// ใส่ % ต่อท้าย ถ้ามีข้อมูล ให้ใส่ %
-		public static String setSymbolPercent(String strColor) {
-			String c = "";
-			if ((!strColor.equals("")) && (!strColor.equals("-"))
-					&& (!strColor.equals("null")) && (!strColor.equals("N/A"))) {
-				c = "%";
-			}else{
-				
-			}
-			return c;
+	public static String setSymbolPercent(String strColor) {
+		String c = "";
+		if ((!strColor.equals("")) && (!strColor.equals("-"))
+				&& (!strColor.equals("null")) && (!strColor.equals("N/A"))) {
+			c = "%";
+		} else {
+
 		}
+		return c;
+	}
 
 	// set img updown symbol
 	public static int setImgUpDown(String strColor) {
@@ -167,7 +169,8 @@ public class FunctionSetBg {
 	// set str detail list
 	public static String setStrDetailList(String str) {
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null")) && (!str.equals("-")) ) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null"))
+				&& (!str.equals("-"))) {
 			str = "-";
 		} else {
 			str = FunctionFormatData.setFormatNumber(str);
@@ -180,7 +183,8 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailDanger(String str) {
 		int c = R.color.c_danger;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null")) || (str.equals("-")) ) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null"))
+				|| (str.equals("-"))) {
 			c = R.color.c_content;
 		}
 		return c;
@@ -189,7 +193,8 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailSuccess(String str) {
 		int c = R.color.c_success;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null")) || (str.equals("-")) ) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null"))
+				|| (str.equals("-"))) {
 			c = R.color.c_content;
 		}
 		return c;
@@ -198,7 +203,8 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailWaring(String str) {
 		int c = R.color.c_warning;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null")) || (str.equals("-")) ) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null"))
+				|| (str.equals("-"))) {
 			c = R.color.c_content;
 		}
 		return c;
@@ -207,16 +213,18 @@ public class FunctionSetBg {
 	public static int setStrColorWriteDetailBlue(String str) {
 		int c = R.color.c_blue;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null")) || (str.equals("-")) ) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null"))
+				|| (str.equals("-"))) {
 			c = R.color.c_content;
 		}
 		return c;
 	}
-	
+
 	public static int setStrColorWriteDetailPink(String str) {
 		int c = R.color.c_pink;
 		if ((str.equals("0.00")) || (str.equals("0")) || (str.equals(""))
-				|| (str == null) || (str.isEmpty()) || (str.equals("null")) || (str.equals("-")) ) {
+				|| (str == null) || (str.isEmpty()) || (str.equals("null"))
+				|| (str.equals("-"))) {
 			c = R.color.c_content;
 		}
 		return c;
@@ -473,6 +481,36 @@ public class FunctionSetBg {
 				c = arrColor[2];
 			}
 		}
+		return c;
+	}
+
+	// set status market
+	// "Closed","Closed2","Intermission","OffHour","Open1","Open2"
+	// "Pre-close","Pre-Open1","Pre-Open2"
+	public static int setMarketStatus(String strMarket) {
+		int c = R.drawable.icon_status_m;
+		if (strMarket.equals("Closed")) {
+			c = R.drawable.icon_status_m;
+		} else if (strMarket.equals("Closed2")) {
+			c = R.drawable.icon_status_m;
+			
+		} else if (strMarket.equals("Intermission")) {
+			c = R.drawable.icon_status_m_yellow;
+		} else if (strMarket.equals("OffHour")) {
+			c = R.drawable.icon_status_m_yellow;
+			
+		} else if (strMarket.equals("Pre-close")) {
+			c = R.drawable.icon_status_m_yellow;
+		} else if (strMarket.equals("Pre-Open1")) {
+			c = R.drawable.icon_status_m_yellow;
+		} else if (strMarket.equals("Pre-Open2")) {
+			c = R.drawable.icon_status_m_yellow;
+			
+		} else if (strMarket.equals("Open1")) {
+			c = R.drawable.icon_status_m_green;
+		} else if (strMarket.equals("Open2")) {
+			c = R.drawable.icon_status_m_green;
+		} 
 		return c;
 	}
 

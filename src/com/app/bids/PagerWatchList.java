@@ -134,7 +134,8 @@ public class PagerWatchList extends Fragment {
 						dialogCategories.show();
 
 						if (FragmentChangeActivity.contentGetWatchlistSystemTrade == null) {
-							FollowSymbolSystemTrade.initGetWatchlistSystemTrade();
+							FollowSymbolSystemTrade
+									.initGetWatchlistSystemTrade();
 						}
 					}
 				});
@@ -255,14 +256,9 @@ public class PagerWatchList extends Fragment {
 		try {
 			if (FragmentChangeActivity.contentGetTxtSlidingMarquee != null) {
 				// status market
-				if ((FragmentChangeActivity.jsonTxtSlidingMarquee
-						.getString("market")).equals("close")) {
-					img_status_m
-							.setBackgroundResource(R.drawable.icon_status_m_red);
-				} else {
-					img_status_m
-							.setBackgroundResource(R.drawable.icon_status_m_green);
-				}
+				img_status_m.setBackgroundResource(FunctionSetBg
+								.setMarketStatus(FragmentChangeActivity.jsonTxtSlidingMarquee
+										.getString("market")));
 
 				for (int i = 0; i < FragmentChangeActivity.contentGetTxtSlidingMarquee
 						.length(); i++) {
@@ -284,13 +280,15 @@ public class PagerWatchList extends Fragment {
 						// DecimalFormat formatter = new
 						// DecimalFormat("#,###.00");
 						// txtLtrade = formatter.format(db);
-						txtLtrade = FunctionFormatData.setFormatNumber(txtLtrade);
+						txtLtrade = FunctionFormatData
+								.setFormatNumber(txtLtrade);
 					}
 
 					if (txtChange != "") {
 						// double db = Double.parseDouble(txtChange);
 						// txtChange = String.format(" %,.2f", db);
-						txtChange = FunctionFormatData.setFormatNumber(txtChange);
+						txtChange = FunctionFormatData
+								.setFormatNumber(txtChange);
 					}
 
 					if (txtSymbol.equals(".SET")) {
@@ -820,10 +818,10 @@ public class PagerWatchList extends Fragment {
 				FragmentChangeActivity.strGetListSymbol = FragmentChangeActivity.strGetListSymbol_fav5;
 			}
 			if (FragmentChangeActivity.strGetListSymbol == "") {
-				Log.v("strGetListSymbol","null null null null");
+				Log.v("strGetListSymbol", "null null null null");
 				getDataFavorite(); // get favorite
 			} else {
-				Log.v("strGetListSymbol","not null not null");
+				Log.v("strGetListSymbol", "not null not null");
 				getWatchlistSymbol(); // get watchlist symbol
 			}
 		} else if (FragmentChangeActivity.strWatchlistCategory == "sector") {
@@ -933,7 +931,9 @@ public class PagerWatchList extends Fragment {
 						@Override
 						public void onClick(View v) {
 							FragmentChangeActivity.strSymbolSelect = strSymbol;
-							FollowSymbol.sendSymbolRemoveFavorite(); // send remove favorite
+							FollowSymbol.sendSymbolRemoveFavorite(); // send
+																		// remove
+																		// favorite
 							hideRowDeleteFav(v);
 							li_row.setVisibility(View.GONE);
 						}
@@ -1047,9 +1047,12 @@ public class PagerWatchList extends Fragment {
 							// watchList = มี orderbook_list หลายตัว
 							// symbolRealtime = มี orderbook_list ตัวเดียว
 
+							// [3,1024,".SET","1,521.79","-0.72","-0.05","1,527.03","1,521.23","3,268.31 M","22,307.42 M","favorite","favorite","favorite"]
+
 							try {
 								jsaMassageSocket = new JSONArray(message);
-								Log.v("jsaMassageSocket", "" + jsaMassageSocket);
+								// Log.v("jsaMassageSocket", "" +
+								// jsaMassageSocket);
 								if (jsaMassageSocket.get(0).toString()
 										.equals("3")) {
 									changeRowUpdate();
@@ -1086,6 +1089,7 @@ public class PagerWatchList extends Fragment {
 	// ============== Set watchlist symbol ===============
 	public void changeRowUpdate() {
 
+		Log.v("jsaMassageSocket", "" + jsaMassageSocket);
 		Log.v("changeRowWatchlist", "changeRowWatchlist changeRowWatchlist");
 
 		// [3,2099,"PTT","264.00","4.00","1.54","264.00","262.00","40.63","10,688.85","92,900","24","214,800","56","263.38","262.98","263.00","14,900","263.00","20,000","263.00","263.00","98,600","0.00","0","0"]
@@ -1134,6 +1138,14 @@ public class PagerWatchList extends Fragment {
 			String strLow = "" + jsaMassageSocket.get(7);
 			String strVolume = "" + jsaMassageSocket.get(8);
 			String strValue = "" + jsaMassageSocket.get(9);
+
+			// _[3,2099,"PTT","364.00","1.00","0.28","366.00","364.00","2.46 M","898.52 M","favorite","favorite"]
+			Log.v("jsaMassageSocket", "_" + jsaMassageSocket);
+			Log.v("jsaMassageSocket", "_"
+					+ FragmentChangeActivity.strGetSymbolOrderBook_Id);
+
+			// [3,1793,"KTB","17.30","-0.10","-0.57","17.40","17.30","7.18 M","124.60 M","favorite"]
+			// _1881,11490,1342,6217,1653,1775,4262,5530,1024,1793,2822,,1213,6979,1750,2152,1716,10542,1817,2099
 
 			for (int i = 0; i < strSplitOrderbookId.length; i++) {
 				if (strSplitOrderbookId[i].equals(strOderbookId)) {
@@ -1914,7 +1926,7 @@ public class PagerWatchList extends Fragment {
 								// .getColor(R.color.c_content));
 							}
 						}
-						
+
 						// fun graph
 						String strFundamentalTrend = jsoIndex
 								.getString("fundamental_trend");
@@ -2004,31 +2016,31 @@ public class PagerWatchList extends Fragment {
 						String strCgColor = tv_cg.getText().toString();
 						String strRoeColor = tv_roe.getText().toString();
 						String strRoaColor = tv_roa.getText().toString();
-						if(strPeColor.equals("-")){
+						if (strPeColor.equals("-")) {
 							tv_p_e.setTextColor(context.getResources()
 									.getColor(R.color.c_content));
 						}
-						if(strPbvColor.equals("-")){
+						if (strPbvColor.equals("-")) {
 							tv_p_bv.setTextColor(context.getResources()
 									.getColor(R.color.c_content));
 						}
-						if(strRankColor.equals("-")){
+						if (strRankColor.equals("-")) {
 							tv_rank.setTextColor(context.getResources()
 									.getColor(R.color.c_content));
 						}
-						if(strCgColor.equals("-")){
-							tv_cg.setTextColor(context.getResources()
-									.getColor(R.color.c_content));
+						if (strCgColor.equals("-")) {
+							tv_cg.setTextColor(context.getResources().getColor(
+									R.color.c_content));
 						}
-						if(strRoeColor.equals("-")){
+						if (strRoeColor.equals("-")) {
 							tv_roe.setTextColor(context.getResources()
 									.getColor(R.color.c_content));
 						}
-						if(strRoaColor.equals("-")){
+						if (strRoaColor.equals("-")) {
 							tv_roa.setTextColor(context.getResources()
 									.getColor(R.color.c_content));
 						}
-						
+
 						list_symbol.addView(viewSymbol);
 						list_detail.addView(viewDetailFun);
 
@@ -2107,10 +2119,11 @@ public class PagerWatchList extends Fragment {
 						String status_checkOut = jsoIndex
 								.getString("status_checkOut");
 						if (!status_checkOut.equals("false")) {
-							tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
-									.checkStatusSymbol(symbol_name,
-											turnover_list_level, status,
-											status_xd)));
+							tv_symbol_name.setText(Html
+									.fromHtml(FunctionFormatData
+											.checkStatusSymbol(symbol_name,
+													turnover_list_level,
+													status, status_xd)));
 
 							((TextView) viewSymbol
 									.findViewById(R.id.tv_symbol_fullname_eng))
@@ -2474,49 +2487,51 @@ public class PagerWatchList extends Fragment {
 								tv_floor.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							
+
 							// ถ้าเป็น - ให้เป็นสี ขาว
 							String strHighColor = tv_high.getText().toString();
 							String strLowColor = tv_low.getText().toString();
-							String strCelingColor = tv_ceiling.getText().toString();
-							String strFloorColor = tv_floor.getText().toString();
+							String strCelingColor = tv_ceiling.getText()
+									.toString();
+							String strFloorColor = tv_floor.getText()
+									.toString();
 							String strPeColor = tv_p_e.getText().toString();
 							String strPbvColor = tv_p_bv.getText().toString();
 							String strRoeColor = tv_roe.getText().toString();
 							String strRoaColor = tv_roa.getText().toString();
-							if(strHighColor.equals("-")){
+							if (strHighColor.equals("-")) {
 								tv_high.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strLowColor.equals("-")){
+							if (strLowColor.equals("-")) {
 								tv_low.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strCelingColor.equals("-")){
+							if (strCelingColor.equals("-")) {
 								tv_ceiling.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strFloorColor.equals("-")){
+							if (strFloorColor.equals("-")) {
 								tv_floor.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strPeColor.equals("-")){
+							if (strPeColor.equals("-")) {
 								tv_p_e.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strPbvColor.equals("-")){
+							if (strPbvColor.equals("-")) {
 								tv_p_bv.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strRoeColor.equals("-")){
+							if (strRoeColor.equals("-")) {
 								tv_roe.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strRoaColor.equals("-")){
+							if (strRoaColor.equals("-")) {
 								tv_roa.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							
+
 							// --- add row update
 							// row_tv_orderbook_id.add();
 							row_tv_symbol_name.add(tv_symbol_name);
@@ -2595,10 +2610,11 @@ public class PagerWatchList extends Fragment {
 						String status_checkOut = jsoIndex
 								.getString("status_checkOut");
 						if (!status_checkOut.equals("false")) {
-							tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
-									.checkStatusSymbol(symbol_name,
-											turnover_list_level, status,
-											status_xd)));
+							tv_symbol_name.setText(Html
+									.fromHtml(FunctionFormatData
+											.checkStatusSymbol(symbol_name,
+													turnover_list_level,
+													status, status_xd)));
 
 							((TextView) viewSymbol
 									.findViewById(R.id.tv_symbol_fullname_eng))
@@ -2949,45 +2965,47 @@ public class PagerWatchList extends Fragment {
 							// ถ้าเป็น - ให้เป็นสี ขาว
 							String strHighColor = tv_high.getText().toString();
 							String strLowColor = tv_low.getText().toString();
-							String strCelingColor = tv_ceiling.getText().toString();
-							String strFloorColor = tv_floor.getText().toString();
+							String strCelingColor = tv_ceiling.getText()
+									.toString();
+							String strFloorColor = tv_floor.getText()
+									.toString();
 							String strPeColor = tv_p_e.getText().toString();
 							String strPbvColor = tv_p_bv.getText().toString();
 							String strRoeColor = tv_roe.getText().toString();
 							String strRoaColor = tv_roa.getText().toString();
-							if(strHighColor.equals("-")){
+							if (strHighColor.equals("-")) {
 								tv_high.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strLowColor.equals("-")){
+							if (strLowColor.equals("-")) {
 								tv_low.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strCelingColor.equals("-")){
+							if (strCelingColor.equals("-")) {
 								tv_ceiling.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strFloorColor.equals("-")){
+							if (strFloorColor.equals("-")) {
 								tv_floor.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strPeColor.equals("-")){
+							if (strPeColor.equals("-")) {
 								tv_p_e.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strPbvColor.equals("-")){
+							if (strPbvColor.equals("-")) {
 								tv_p_bv.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strRoeColor.equals("-")){
+							if (strRoeColor.equals("-")) {
 								tv_roe.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strRoaColor.equals("-")){
+							if (strRoaColor.equals("-")) {
 								tv_roa.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-														
+
 							// --- add view tv
 							// row_tv_orderbook_id.add();
 							row_tv_symbol_name.add(tv_symbol_name);
@@ -3103,10 +3121,11 @@ public class PagerWatchList extends Fragment {
 						String status_checkOut = jsoIndex
 								.getString("status_checkOut");
 						if (!status_checkOut.equals("false")) {
-							tv_symbol_name.setText(Html.fromHtml(FunctionFormatData
-									.checkStatusSymbol(symbol_name,
-											turnover_list_level, status,
-											status_xd)));
+							tv_symbol_name.setText(Html
+									.fromHtml(FunctionFormatData
+											.checkStatusSymbol(symbol_name,
+													turnover_list_level,
+													status, status_xd)));
 
 							((TextView) viewSymbol
 									.findViewById(R.id.tv_symbol_fullname_eng))
@@ -3458,49 +3477,50 @@ public class PagerWatchList extends Fragment {
 								tv_floor.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							
+
 							// ถ้าเป็น - ให้เป็นสี ขาว
 							String strHighColor = tv_high.getText().toString();
 							String strLowColor = tv_low.getText().toString();
-							String strCelingColor = tv_ceiling.getText().toString();
-							String strFloorColor = tv_floor.getText().toString();
+							String strCelingColor = tv_ceiling.getText()
+									.toString();
+							String strFloorColor = tv_floor.getText()
+									.toString();
 							String strPeColor = tv_p_e.getText().toString();
 							String strPbvColor = tv_p_bv.getText().toString();
 							String strRoeColor = tv_roe.getText().toString();
 							String strRoaColor = tv_roa.getText().toString();
-							if(strHighColor.equals("-")){
+							if (strHighColor.equals("-")) {
 								tv_high.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strLowColor.equals("-")){
+							if (strLowColor.equals("-")) {
 								tv_low.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strCelingColor.equals("-")){
+							if (strCelingColor.equals("-")) {
 								tv_ceiling.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strFloorColor.equals("-")){
+							if (strFloorColor.equals("-")) {
 								tv_floor.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strPeColor.equals("-")){
+							if (strPeColor.equals("-")) {
 								tv_p_e.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strPbvColor.equals("-")){
+							if (strPbvColor.equals("-")) {
 								tv_p_bv.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strRoeColor.equals("-")){
+							if (strRoeColor.equals("-")) {
 								tv_roe.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							if(strRoaColor.equals("-")){
+							if (strRoaColor.equals("-")) {
 								tv_roa.setTextColor(context.getResources()
 										.getColor(R.color.c_content));
 							}
-							
 
 							// --- add view tv
 							// row_tv_orderbook_id.add();
@@ -3645,7 +3665,7 @@ public class PagerWatchList extends Fragment {
 					+ "/service/v2/watchlistSymbolV2?symbol="
 					+ FragmentChangeActivity.strGetListSymbol;
 
-//			http://www.bidschart.com/service/v2/watchlistSymbolV2?symbol=AHC,AOT,PPP,KASET,ABC,KDH,QHHR,SBPF,SGF,TASCO
+			// http://www.bidschart.com/service/v2/watchlistSymbolV2?symbol=AHC,AOT,PPP,KASET,ABC,KDH,QHHR,SBPF,SGF,TASCO
 			Log.v("getWatchlistSymbol", "__" + url_GetWatchlistSymbol);
 
 			try {
@@ -3673,7 +3693,6 @@ public class PagerWatchList extends Fragment {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 
-
 			dialogLoading.dismiss();
 			if (connectionError == false) {
 				if (jsonGetWatchlistSymbol != null) {
@@ -3697,7 +3716,7 @@ public class PagerWatchList extends Fragment {
 			} else {
 				dialogLoading.dismiss();
 			}
-			 dialogLoading.dismiss();
+			dialogLoading.dismiss();
 		}
 	}
 
@@ -4344,25 +4363,30 @@ public class PagerWatchList extends Fragment {
 
 			String url_fav_1 = SplashScreen.url_bidschart
 					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
-					+ SplashScreen.userModel.user_id + "&favorite_number=1"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+					+ SplashScreen.userModel.user_id + "&favorite_number=1"
+					+ "&limit=20&ofset=1&timestamp=" + timestamp;
 			String url_fav_2 = SplashScreen.url_bidschart
 					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
-					+ SplashScreen.userModel.user_id + "&favorite_number=2"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+					+ SplashScreen.userModel.user_id + "&favorite_number=2"
+					+ "&limit=20&ofset=1&timestamp=" + timestamp;
 			String url_fav_3 = SplashScreen.url_bidschart
 					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
-					+ SplashScreen.userModel.user_id + "&favorite_number=3"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+					+ SplashScreen.userModel.user_id + "&favorite_number=3"
+					+ "&limit=20&ofset=1&timestamp=" + timestamp;
 			String url_fav_4 = SplashScreen.url_bidschart
 					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
-					+ SplashScreen.userModel.user_id + "&favorite_number=4"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+					+ SplashScreen.userModel.user_id + "&favorite_number=4"
+					+ "&limit=20&ofset=1&timestamp=" + timestamp;
 			String url_fav_5 = SplashScreen.url_bidschart
 					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
-					+ SplashScreen.userModel.user_id + "&favorite_number=5"+ "&limit=20&ofset=1&timestamp="+ timestamp;
+					+ SplashScreen.userModel.user_id + "&favorite_number=5"
+					+ "&limit=20&ofset=1&timestamp=" + timestamp;
 
-//			Log.v("getFavoriteByUserIdFavoriteNumber 1", "" + url_fav_1);
-//			Log.v("getFavoriteByUserIdFavoriteNumber 2", "" + url_fav_2);
-//			Log.v("getFavoriteByUserIdFavoriteNumber 3", "" + url_fav_3);
-//			Log.v("getFavoriteByUserIdFavoriteNumber 4", "" + url_fav_4);
-//			Log.v("getFavoriteByUserIdFavoriteNumber 5", "" + url_fav_5);
+			// Log.v("getFavoriteByUserIdFavoriteNumber 1", "" + url_fav_1);
+			// Log.v("getFavoriteByUserIdFavoriteNumber 2", "" + url_fav_2);
+			// Log.v("getFavoriteByUserIdFavoriteNumber 3", "" + url_fav_3);
+			// Log.v("getFavoriteByUserIdFavoriteNumber 4", "" + url_fav_4);
+			// Log.v("getFavoriteByUserIdFavoriteNumber 5", "" + url_fav_5);
 
 			try {
 				jsonFav_1 = ReadJson.readJsonObjectFromUrl(url_fav_1);
@@ -4402,12 +4426,27 @@ public class PagerWatchList extends Fragment {
 							.getJSONArray("dataAll");
 					FragmentChangeActivity.contentGetSymbolFavorite_5 = jsonFav_5
 							.getJSONArray("dataAll");
-					
-					Log.v("getFavoriteByUserIdFavoriteNumber 1 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_1.length());
-					Log.v("getFavoriteByUserIdFavoriteNumber 2 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_2.length());
-					Log.v("getFavoriteByUserIdFavoriteNumber 3 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_3.length());
-					Log.v("getFavoriteByUserIdFavoriteNumber 4 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_4.length());
-					Log.v("getFavoriteByUserIdFavoriteNumber 5 lenght", "__" + FragmentChangeActivity.contentGetSymbolFavorite_5.length());
+
+					Log.v("getFavoriteByUserIdFavoriteNumber 1 lenght",
+							"__"
+									+ FragmentChangeActivity.contentGetSymbolFavorite_1
+											.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 2 lenght",
+							"__"
+									+ FragmentChangeActivity.contentGetSymbolFavorite_2
+											.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 3 lenght",
+							"__"
+									+ FragmentChangeActivity.contentGetSymbolFavorite_3
+											.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 4 lenght",
+							"__"
+									+ FragmentChangeActivity.contentGetSymbolFavorite_4
+											.length());
+					Log.v("getFavoriteByUserIdFavoriteNumber 5 lenght",
+							"__"
+									+ FragmentChangeActivity.contentGetSymbolFavorite_5
+											.length());
 
 					// ---- fav 1 -------
 					if (FragmentChangeActivity.contentGetSymbolFavorite_1 != null) {
@@ -4499,13 +4538,18 @@ public class PagerWatchList extends Fragment {
 					} else {
 						dialogLoading.dismiss();
 					}
-					
-//					Log.v("strGetListSymbol fav 1", "__" + FragmentChangeActivity.strGetListSymbol_fav1);
-//					Log.v("strGetListSymbol fav 2", "__" + FragmentChangeActivity.strGetListSymbol_fav2);
-//					Log.v("strGetListSymbol fav 3", "__" + FragmentChangeActivity.strGetListSymbol_fav3);
-//					Log.v("strGetListSymbol fav 4", "__" + FragmentChangeActivity.strGetListSymbol_fav4);
-//					Log.v("strGetListSymbol fav 5", "__" + FragmentChangeActivity.strGetListSymbol_fav5);
-					
+
+					// Log.v("strGetListSymbol fav 1", "__" +
+					// FragmentChangeActivity.strGetListSymbol_fav1);
+					// Log.v("strGetListSymbol fav 2", "__" +
+					// FragmentChangeActivity.strGetListSymbol_fav2);
+					// Log.v("strGetListSymbol fav 3", "__" +
+					// FragmentChangeActivity.strGetListSymbol_fav3);
+					// Log.v("strGetListSymbol fav 4", "__" +
+					// FragmentChangeActivity.strGetListSymbol_fav4);
+					// Log.v("strGetListSymbol fav 5", "__" +
+					// FragmentChangeActivity.strGetListSymbol_fav5);
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -4544,7 +4588,8 @@ public class PagerWatchList extends Fragment {
 			String url_fav = SplashScreen.url_bidschart
 					+ "/service/getFavoriteByUserIdFavoriteNumber?user_id="
 					+ SplashScreen.userModel.user_id + "&favorite_number="
-					+ FragmentChangeActivity.strFavoriteNumber+ "&limit=20&ofset=1&timestamp="+ timestamp;
+					+ FragmentChangeActivity.strFavoriteNumber
+					+ "&limit=20&ofset=1&timestamp=" + timestamp;
 
 			Log.v("getFavoriteByUserIdFavoriteNumber", "__" + url_fav);
 
@@ -4743,7 +4788,7 @@ public class PagerWatchList extends Fragment {
 							}
 
 							initSearchLayout(); // layout search
-//							initGetData(); // get data
+							// initGetData(); // get data
 
 						} else {
 							Log.v("json null", "symbol null");
@@ -4786,8 +4831,8 @@ public class PagerWatchList extends Fragment {
 								e.printStackTrace();
 							}
 
-//							initSearchLayout(); // layout search
-//							initGetData(); // get data
+							// initSearchLayout(); // layout search
+							// initGetData(); // get data
 
 						} else {
 							Log.v("json null", "symbol null");
@@ -4795,7 +4840,7 @@ public class PagerWatchList extends Fragment {
 					} else {
 						Log.v("symbol null", "symbol null");
 					}
-					
+
 					initGetData(); // get data
 				} catch (JSONException e) {
 					e.printStackTrace();
